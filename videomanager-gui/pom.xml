@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>com.gamergeo.project</groupId>
+		<artifactId>videomanager</artifactId>
+		<version>${revision}</version>
+	</parent>
+
+	<artifactId>videomanager-gui</artifactId>
+	<packaging>jar</packaging>
+	
+	<build>
+		<finalName>videomanager</finalName>
+	</build>
+	
+	<dependencies>
+		<dependency>
+			<groupId>com.gamergeo.project</groupId>
+			<artifactId>videomanager-model</artifactId>
+		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/org.openjfx/javafx-controls -->
+		<dependency>
+		    <groupId>org.openjfx</groupId>
+		    <artifactId>javafx-graphics</artifactId>
+		</dependency>
+		<dependency>
+		    <groupId>org.openjfx</groupId>
+		    <artifactId>javafx-controls</artifactId>
+		</dependency>
+		<dependency>
+		    <groupId>org.openjfx</groupId>
+		    <artifactId>javafx-fxml</artifactId>
+		</dependency>
+
+	</dependencies>
+</project>
