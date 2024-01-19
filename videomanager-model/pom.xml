@@ -15,4 +15,12 @@
 	<artifactId>videomanager-model</artifactId>
 	<packaging>jar</packaging>
 	
+	<dependencies>
+		<!-- Mapping XML -->
+		<dependency>
+			<groupId>javax.xml.bind</groupId>
+			<artifactId>jaxb-api</artifactId>
+		</dependency>
+	</dependencies>
+	
 </project>

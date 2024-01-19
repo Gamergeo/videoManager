@@ -12,10 +12,24 @@
 		<version>${revision}</version>
 	</parent>
 
-	<artifactId>videomanager-model</artifactId>
+	<artifactId>videomanager-service</artifactId>
 	<packaging>jar</packaging>	
 	
 	<build>
 		<finalName>videomanager-api</finalName>
 	</build>
+	
+	<dependencies>
+		<!-- Project dependency -->
+		<dependency>
+			<groupId>com.gamergeo.project</groupId>
+			<artifactId>videomanager-model</artifactId>
+		</dependency>
+	
+		<!-- Spring -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+		</dependency>
+	</dependencies>
 </project>

@@ -22,7 +22,7 @@
 	<dependencies>
 		<dependency>
 			<groupId>com.gamergeo.project</groupId>
-			<artifactId>videomanager-model</artifactId>
+			<artifactId>videomanager-service</artifactId>
 		</dependency>
 		
 		<!-- https://mvnrepository.com/artifact/org.openjfx/javafx-controls -->
