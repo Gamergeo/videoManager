@@ -1,11 +1,9 @@
 package com.gamergeo.project.videomanager.service;
 
 import java.util.List;
-import org.springframework.stereotype.Service;
+
 import com.gamergeo.project.videomanager.model.Video;
 
-
-@Service
 public interface VideoService {
 	
 	List<Video> getVideoList();

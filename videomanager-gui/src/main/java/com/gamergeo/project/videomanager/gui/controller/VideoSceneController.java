@@ -24,7 +24,7 @@ public class VideoSceneController {
 	private TitledPane videoSearch;
 	
 	@FXML
-	private TitledPane videoList;
+	private TitledPane videoTable;
 	
 	@FXML
 	private TitledPane videoView;
@@ -32,8 +32,20 @@ public class VideoSceneController {
     @FXML
     private void initialize() throws IOException {
     	
-    	videoList.setContent(VideoManagerApplication.load("videoTable"));
+    	loadTitledPane(videoTable);
+    	loadTitledPane(videoView);
 //    	videoTableController.getVideo();
+    }
+    
+    private void loadTitledPane(TitledPane pane) throws IOException {
+    	pane.setContent(VideoManagerApplication.load(pane.getId()));
+    	pane.heightProperty().addListener((obs, oldHeight, newHeight) -> applicationContent.getScene().getWindow().sizeToScene());
+    }
+    
+    public void openVideoView() {
+    	videoView.setExpanded(true);
+    }
+    	
     	
     	
     	
@@ -48,7 +60,6 @@ public class VideoSceneController {
 //    			applicationContent.getChildren().add(personPane);
 //    		}
 //        });
-    }
     
 //    private Node loadElement(String fxmlFile) throws IOException {
 //        FXMLLoader loader = new FXMLLoader(MainApplication.class.getResource("/fxml/" + fxmlFile + ".fxml"));

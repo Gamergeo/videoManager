@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.layout.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+
+<VBox spacing="3.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gamergeo.project.videomanager.gui.controller.VideoViewController">
+   <children>
+      <Label fx:id="videoTitleLabel" />
+      <TextField fx:id="videoUrlField" />
+      <Label />
+      <FlowPane fx:id="videoTagsPane" />
+   </children>
+   <padding>
+      <Insets left="5.0" right="5.0" />
+   </padding>
+</VBox>

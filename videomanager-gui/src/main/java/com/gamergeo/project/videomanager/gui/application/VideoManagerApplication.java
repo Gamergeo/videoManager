@@ -15,6 +15,7 @@ public class VideoManagerApplication extends AbstractApplication {
         primaryStage.setTitle("Video manager");
 //        scene.getStylesheets().add("/css/button.css");
         primaryStage.setScene(scene);		
+//        primaryStage.sizeToScene();
         primaryStage.show();
     }
 

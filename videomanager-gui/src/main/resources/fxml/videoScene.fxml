@@ -4,10 +4,10 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox fx:id="applicationContent" fx:controller="com.gamergeo.project.videomanager.gui.controller.VideoSceneController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<VBox fx:id="applicationContent" fx:controller="com.gamergeo.project.videomanager.gui.controller.VideoSceneController" prefWidth="600" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <TitledPane fx:id="videoSearch" />
-      <TitledPane fx:id="videoList" expanded="false" />
+      <TitledPane fx:id="videoTable" expanded="false" />
       <TitledPane fx:id="videoView" expanded="false" />
    </children>
 </VBox>

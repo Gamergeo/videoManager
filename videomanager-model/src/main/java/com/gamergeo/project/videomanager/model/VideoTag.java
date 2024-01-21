@@ -6,13 +6,15 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
-@XmlRootElement(name=XMLStructure.CATEGORY.ROOT)
-@XmlType(propOrder = {XMLStructure.CATEGORY.TEXT})
-public class Category implements Serializable {
+import com.gamergeo.lib.gamlib.model.Model;
+
+@XmlRootElement(name=XMLStructure.TAG.ROOT)
+@XmlType(propOrder = {XMLStructure.TAG.TEXT})
+public class VideoTag implements Serializable, Model {
 
 	private static final long serialVersionUID = 6257375419629830569L;
 	
-	@XmlAttribute(name = XMLStructure.CATEGORY.TEXT)
+	@XmlAttribute(name = XMLStructure.TAG.TEXT)
 	protected String text;
 
 	public String getText() {

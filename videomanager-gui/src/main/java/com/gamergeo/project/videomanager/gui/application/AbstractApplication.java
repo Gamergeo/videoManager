@@ -22,9 +22,13 @@ public abstract class AbstractApplication extends Application {
     }
 	
 	public static Node load(String name) throws IOException {
-        FXMLLoader loader = new FXMLLoader(AbstractApplication.class.getResource("/fxml/" + name + ".fxml"));
+        FXMLLoader loader = getLoader(name);
         loader.setControllerFactory(applicationContext::getBean);
 		return loader.load();
+	}
+	
+	public static FXMLLoader getLoader(String name) {
+        return new FXMLLoader(AbstractApplication.class.getResource("/fxml/" + name + ".fxml"));
 	}
 	
     @Override

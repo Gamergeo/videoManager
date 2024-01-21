@@ -1,58 +1,60 @@
 package com.gamergeo.project.videomanager.gui.controller;
 
+import java.io.IOException;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.gamergeo.project.videomanager.gui.viewmodel.VideoModel;
+import com.gamergeo.project.videomanager.gui.mapper.VideoMapper;
+import com.gamergeo.project.videomanager.gui.viewmodel.VideoTableModel;
+import com.gamergeo.project.videomanager.gui.viewmodel.VideoViewModel;
 import com.gamergeo.project.videomanager.service.VideoService;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 
 @Component
 public class VideoTableController {
 	
 	@Autowired
 	private VideoService videoService;
-
-	private ObservableList<VideoModel> videoList = FXCollections.observableArrayList();
+	
+	@Autowired
+	private VideoViewController videoViewController;
+	
+	@Autowired
+	private VideoSceneController videoSceneController;
+	
+	@Autowired
+	private VideoMapper videoMapper;
+	
+	private VideoTableModel videoTableModel = new VideoTableModel();
 
 	@FXML
-    private TableView<VideoModel> videoTable;
+    private TableView<VideoViewModel> videoTable;
 	
     @FXML
-    private TableColumn<VideoModel, String> titleColumn;
+    private TableColumn<VideoViewModel, String> titleColumn;
     
     @FXML
-    private TableColumn<VideoModel, Boolean> bestofColumn;
+    private TableColumn<VideoViewModel, String> tagsColumn;
     
-    @FXML
-    private TableColumn<VideoModel, Boolean> disabledColum;
+//    @FXML
+//    private TableColumn<VideoModel, Boolean> disabledColum;
     
     @FXML
     private void initialize() {
-    	videoList.setAll(VideoModel.fromModels(videoService.getVideoList()));
-    	videoTable.setItems(videoList);
-    	titleColumn.setCellValueFactory(new PropertyValueFactory<VideoModel, String>("title"));
-    	bestofColumn.setCellValueFactory(new PropertyValueFactory<VideoModel, Boolean>("bestof"));
-    	disabledColum.setCellValueFactory(new PropertyValueFactory<VideoModel, Boolean>("disabled"));
+    	List<VideoViewModel> videoList = videoMapper.getViewModels(videoService.getVideoList());
+    	videoTableModel.getVideoList().setAll(videoList);
+    	videoTable.setItems(videoTableModel.getVideoList());
+    	titleColumn.setCellValueFactory(new PropertyValueFactory<VideoViewModel, String>("title"));
+    	tagsColumn.setCellValueFactory(new PropertyValueFactory<VideoViewModel, String>("videoTags"));
     }
     
-    public void getVideo() {
-    }
-//    	personList.add(new PersonView(new Person(1, "jean_mi", true)));
-//    	personList.add(new PersonView(new Person(2, "jeannot", false)));
-//    	
-//    	tableView.setItems(personList);
-//    	
-//        idColumn.setCellValueFactory(new PropertyValueFactory<PersonView, Integer>("id"));
-//        nameColumn.setCellValueFactory(new PropertyValueFactory<PersonView, String>("name"));
-//        employedColumn.setCellValueFactory(new PropertyValueFactory<PersonView, Boolean>("isEmployed"));
-//    }
 //    
 //	/**
 //	 * Refresh les données de la table en fonction du paramètre
@@ -79,20 +81,13 @@ public class VideoTableController {
 //        th.start();	
 //    }
 //    
-//    public void selectPerson(MouseEvent event) throws IOException {
-//        if (event.isPrimaryButtonDown() && event.getClickCount() == 1) {
-//        	personScene.setSelectedPerson(tableView.getSelectionModel().getSelectedItem());
-//        }
-//    }
-//    
-//	public void setPersonScene(PersonSceneView personScene) {
-//		this.personScene = personScene;
-//        
-//        // Bind search
-//		personScene.buttonPressedProperty().addListener((observable, oldValue, newValue)->{
-//			if (newValue) {
-//				loadDataTable(personScene.getSearchText());	
-//			}
-//        });
-//	}
+    /**
+     * On click, change the video panel to selected video
+     */
+    public void selectVideo(MouseEvent event) throws IOException {
+        if (event.isPrimaryButtonDown() && event.getClickCount() == 1) {
+        	videoViewController.setVideo(videoTable.getSelectionModel().getSelectedItem());
+        	videoSceneController.openVideoView();
+        }
+    }
 }
