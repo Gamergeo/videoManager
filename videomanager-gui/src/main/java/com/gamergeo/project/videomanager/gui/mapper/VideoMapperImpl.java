@@ -19,6 +19,7 @@ public class VideoMapperImpl extends AbstractMapper<Video, VideoViewModel> imple
 		videoViewModel.setTitle(video.getTitle());
 		videoViewModel.setUrl(video.getUrl());
 		videoViewModel.setVideoTagList(videoTagMapper.getViewModels(video.getVideoTags()));
+		videoViewModel.setAddedDate(video.getAddedDate());
 		
 		return videoViewModel;
 	}

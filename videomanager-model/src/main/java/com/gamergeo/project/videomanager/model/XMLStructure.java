@@ -19,6 +19,8 @@ public class XMLStructure {
 		
 		public static final String URL = "url";
 		
+		public static final String ADDED_DATE = "added_date";
+		
 		public static final String TAGS = "tags";
 		
 //		public static final String BEST_OF = "best_of";

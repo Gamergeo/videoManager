@@ -23,17 +23,20 @@ public class VideoViewController {
 	private TextField videoUrlField;
 	
 	@FXML
+	private Label addedDateLabel;
+	
+	@FXML
 	private FlowPane videoTagsPane;
 	
 	public void setVideo(VideoViewModel videoView) throws IOException {
 		videoTitleLabel.textProperty().bind(videoView.titleProperty());
 		videoUrlField.textProperty().bind(videoView.urlProperty());
+		addedDateLabel.setText(videoView.getAddedDate());
 		
 		videoTagsPane.getChildren().clear();
 		
 		for (VideoTagViewModel videoTag : videoView.getVideoTagList()) {
-			VideoTagComponent videoTagComponent = new VideoTagComponent();
-			videoTagComponent.setVideoTag(videoTag);
+			VideoTagComponent videoTagComponent = new VideoTagComponent(videoTag);
 			videoTagsPane.getChildren().add(videoTagComponent);
 		}
 		
@@ -97,3 +100,4 @@ public class VideoViewController {
 //        });
 //	}
 }
+

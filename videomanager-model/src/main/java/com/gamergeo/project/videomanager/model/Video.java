@@ -1,6 +1,7 @@
 package com.gamergeo.project.videomanager.model;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.xml.bind.annotation.XmlAttribute;
@@ -24,9 +25,9 @@ public class Video implements Serializable, Model {
 	@XmlAttribute(name = XMLStructure.VIDEO.URL)
 	protected String url;
 	
-//	@XmlAttribute(name = XMLStructure.VIDEO.LINK)
-//	protected String link;
-
+	@XmlAttribute(name = XMLStructure.VIDEO.URL)
+	protected LocalDate addedDate;
+	
 	@XmlAttribute(name = XMLStructure.VIDEO.TAGS)
 	protected List<VideoTag> videoTags;
 
@@ -38,14 +39,6 @@ public class Video implements Serializable, Model {
 		this.title = title;
 	}
 	
-//	public String getLink() {
-//		return link;
-//	}
-//
-//	public void setLink(String link) {
-//		this.link = link;
-//	}
-
 	public String getUrl() {
 		return url;
 	}
@@ -61,5 +54,12 @@ public class Video implements Serializable, Model {
 	public void setVideoTags(List<VideoTag> videoTags) {
 		this.videoTags = videoTags;
 	}
-	
+
+	public LocalDate getAddedDate() {
+		return addedDate;
+	}
+
+	public void setAddedDate(LocalDate addedDate) {
+		this.addedDate = addedDate;
+	}
 }

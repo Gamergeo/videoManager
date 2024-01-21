@@ -1,0 +1,7 @@
+.videoTagComponent {
+    -fx-border-color: black;
+    -fx-border-width: 1; 
+    -fx-border-radius: 15;
+    -fx-background-color: green;
+  	-fx-background-radius: 15;
+}

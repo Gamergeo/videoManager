@@ -2,20 +2,15 @@ package com.gamergeo.project.videomanager.gui.component;
 
 import java.io.IOException;
 
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Controller;
-
 import com.gamergeo.project.videomanager.gui.application.VideoManagerApplication;
 import com.gamergeo.project.videomanager.gui.viewmodel.VideoTagViewModel;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
-import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 
-@Controller
-@Scope("prototype")
-public class VideoTagComponent extends GridPane {
+public class VideoTagComponent extends HBox {
 	
 	private VideoTagViewModel videoTag;
 	
@@ -23,14 +18,18 @@ public class VideoTagComponent extends GridPane {
 	private Label videoTagLabel;
 	
     public VideoTagComponent() throws IOException {
+    	super();
         FXMLLoader fxmlLoader = VideoManagerApplication.getLoader("videoTagComponent");
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(VideoTagComponent.this);
         fxmlLoader.load();
+        getStyleClass().add("videoTagComponent");
     }
-
-	public void setVideoTag(VideoTagViewModel videoTag) {
+    
+    public VideoTagComponent(VideoTagViewModel videoTag) throws IOException {
+    	this();
 		this.videoTag = videoTag;
 		videoTagLabel.textProperty().bind(this.videoTag.textProperty());
 	}
+    
 }

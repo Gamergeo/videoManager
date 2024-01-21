@@ -1,5 +1,8 @@
 	package com.gamergeo.project.videomanager.service;
 
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.temporal.TemporalAmount;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,6 +35,7 @@ public class VideoServiceImpl implements VideoService {
 //		vid1.setId(1);
 		vid1.setTitle("a");
 		vid1.setUrl("link a");
+		vid1.setAddedDate(LocalDate.now());
 		vid1.setVideoTags(cats1);
 		
 		Video vid2 = new Video();
@@ -39,6 +43,7 @@ public class VideoServiceImpl implements VideoService {
 		vid2.setTitle("b");
 		vid2.setUrl("link b");
 		vid2.setVideoTags(cats2);
+		vid2.setAddedDate(LocalDate.now().minus(Period.ofMonths(2)));
 		
 		List<Video> vids = new ArrayList<Video>();
 		vids.add(vid1);

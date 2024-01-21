@@ -9,8 +9,8 @@
    <children>
       <Label fx:id="videoTitleLabel" />
       <TextField fx:id="videoUrlField" />
-      <Label />
-      <FlowPane fx:id="videoTagsPane" />
+      <Label fx:id="addedDateLabel" />
+      <FlowPane fx:id="videoTagsPane" hgap="5.0" vgap="5.0" />
    </children>
    <padding>
       <Insets left="5.0" right="5.0" />

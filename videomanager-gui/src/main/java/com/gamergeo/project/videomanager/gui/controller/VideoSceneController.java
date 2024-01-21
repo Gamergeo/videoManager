@@ -9,6 +9,7 @@ import com.gamergeo.project.videomanager.gui.application.VideoManagerApplication
 
 import javafx.fxml.FXML;
 import javafx.scene.control.TitledPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 
 @Component
@@ -18,7 +19,7 @@ public class VideoSceneController {
 	VideoTableController videoTableController;
 	
 	@FXML
-	private VBox applicationContent;
+	private GridPane applicationContent;
 	
 	@FXML
 	private TitledPane videoSearch;
@@ -34,12 +35,20 @@ public class VideoSceneController {
     	
     	loadTitledPane(videoTable);
     	loadTitledPane(videoView);
+    	loadTitledPane(videoSearch);
 //    	videoTableController.getVideo();
     }
     
     private void loadTitledPane(TitledPane pane) throws IOException {
     	pane.setContent(VideoManagerApplication.load(pane.getId()));
-    	pane.heightProperty().addListener((obs, oldHeight, newHeight) -> applicationContent.getScene().getWindow().sizeToScene());
+    	pane.heightProperty().addListener((obs, oldHeight, newHeight) -> {
+    		applicationContent.getScene().getWindow().sizeToScene();
+//    		double totalHeight = videoTable.getHeight() + videoView.getHeight() + videoSearch.getHeight();
+//    		if (applicationContent.getScene().getHeight() > applicationContent.getScene().getWindow().getHeight()) {
+//    			applicationContent.getScene().getWindow().setHeight(applicationContent.getScene().getHeight());
+//    		}
+    	});
+//    				
     }
     
     public void openVideoView() {

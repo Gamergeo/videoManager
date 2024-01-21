@@ -1,21 +1,26 @@
 package com.gamergeo.project.videomanager.gui.viewmodel;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import com.gamergeo.lib.gamlib.gui.viewmodel.ViewModel;
 
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 public class VideoViewModel implements ViewModel {
 	
-    private final SimpleStringProperty title = new SimpleStringProperty();
-    private final SimpleStringProperty url = new SimpleStringProperty();
+    private final StringProperty title = new SimpleStringProperty();
+    private final StringProperty url = new SimpleStringProperty();
+    private final ObjectProperty<LocalDate> addedDate = new SimpleObjectProperty<LocalDate>();
     
 	private ObservableList<VideoTagViewModel> videoTagList = FXCollections.observableArrayList();
     
-    public SimpleStringProperty titleProperty() {
+    public StringProperty titleProperty() {
         return title;
     }
 
@@ -48,7 +53,7 @@ public class VideoViewModel implements ViewModel {
 		return videoTags;
 	}
 
-	public final SimpleStringProperty urlProperty() {
+	public final StringProperty urlProperty() {
 		return this.url;
 	}
 	
@@ -58,5 +63,17 @@ public class VideoViewModel implements ViewModel {
 	
 	public final void setUrl(final String url) {
 		this.urlProperty().set(url);
+	}
+
+	public final ObjectProperty<LocalDate> addedDateProperty() {
+		return this.addedDate;
+	}
+
+	public final String getAddedDate() {
+		return this.addedDateProperty().get().toString();
+	}
+	
+	public final void setAddedDate(final LocalDate addedDate) {
+		this.addedDateProperty().set(addedDate);
 	}
 }
