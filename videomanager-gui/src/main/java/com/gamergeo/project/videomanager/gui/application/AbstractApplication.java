@@ -2,6 +2,7 @@ package com.gamergeo.project.videomanager.gui.application;
 
 import java.io.IOException;
 
+import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -18,8 +19,13 @@ public abstract class AbstractApplication extends Application {
     
     @Override
     public void init() {
-    	applicationContext = new ClassPathXmlApplicationContext("application-context.xml");
-    }
+        applicationContext = new SpringApplicationBuilder(VideoManagerApplication.class).run();
+    }	
+    
+//    @Override
+//    public void init() {
+//    	applicationContext = new ClassPathXmlApplicationContext("application-context.xml");
+//    }
 	
 	public static Node load(String name) throws IOException {
         FXMLLoader loader = getLoader(name);
@@ -33,6 +39,6 @@ public abstract class AbstractApplication extends Application {
 	
     @Override
     public void stop() {
-    	applicationContext.close();
+    	applicationContext.close();    
     }
 }

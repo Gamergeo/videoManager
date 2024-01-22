@@ -1,35 +1,46 @@
 package com.gamergeo.project.videomanager.model;
 
-import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
 
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlType;
+import com.gamergeo.lib.gamlib.mapper.MappedModel;
 
-import com.gamergeo.lib.gamlib.model.Model;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 
-@XmlRootElement(name=XMLStructure.VIDEO.ROOT)
-@XmlType(propOrder = {XMLStructure.VIDEO.ID})
-public class Video implements Serializable, Model {
+@Entity(name = DatabaseName.VIDEO.TABLE)
+@Table(name = DatabaseName.VIDEO.TABLE)
+public class Video implements MappedModel {//, HibernateModel {
 
-	private static final long serialVersionUID = -2649188449485629485L;
-
-//	@XmlAttribute(name = XMLStructure.VIDEO.ID)
-//	protected Integer id;
+//	private static final long serialVersionUID = -2649188449485629485L;
 	
-	@XmlAttribute(name = XMLStructure.VIDEO.TITLE)
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	protected Long id;
+
 	protected String title;
-	
-	@XmlAttribute(name = XMLStructure.VIDEO.URL)
+
 	protected String url;
 	
-	@XmlAttribute(name = XMLStructure.VIDEO.URL)
+	@Transient
 	protected LocalDate addedDate;
 	
-	@XmlAttribute(name = XMLStructure.VIDEO.TAGS)
+	@Transient
 	protected List<VideoTag> videoTags;
+	
+//	@Override
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
 
 	public String getTitle() {
 		return title;

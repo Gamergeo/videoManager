@@ -3,6 +3,7 @@ package com.gamergeo.project.videomanager.gui.component;
 import java.io.IOException;
 
 import com.gamergeo.project.videomanager.gui.application.VideoManagerApplication;
+import com.gamergeo.project.videomanager.gui.application.VideoManagerGuiApplication;
 import com.gamergeo.project.videomanager.gui.viewmodel.VideoTagViewModel;
 
 import javafx.fxml.FXML;
@@ -19,7 +20,7 @@ public class VideoTagComponent extends HBox {
 	
     public VideoTagComponent() throws IOException {
     	super();
-        FXMLLoader fxmlLoader = VideoManagerApplication.getLoader("videoTagComponent");
+        FXMLLoader fxmlLoader = VideoManagerGuiApplication.getLoader("videoTagComponent");
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(VideoTagComponent.this);
         fxmlLoader.load();

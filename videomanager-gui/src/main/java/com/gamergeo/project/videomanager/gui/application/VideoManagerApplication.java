@@ -1,28 +1,23 @@
 package com.gamergeo.project.videomanager.gui.application;
 
-import javafx.scene.Scene;
-import javafx.scene.layout.GridPane;
-import javafx.stage.Screen;
-import javafx.stage.Stage;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
-public class VideoManagerApplication extends AbstractApplication {
-	
-    @Override
-    public void start(Stage primaryStage) throws Exception {
-        GridPane page = (GridPane) load("videoScene");
-//        page.getChildren().add(loader.load());
-        Scene scene = new Scene(page);
-        scene.getStylesheets().add("/css/videomanager.css");
+import javafx.application.Application;
 
-        primaryStage.setY(50);
-        primaryStage.setX(Screen.getPrimary().getBounds().getWidth()/2-300);
-        primaryStage.setTitle("Video manager");
-        primaryStage.setScene(scene);		
-//        primaryStage.sizeToScene();
-        primaryStage.show();
-    }
+@Configuration
+@EnableAutoConfiguration
+@ComponentScan(basePackages = "com.gamergeo.project.videomanager")
+@EntityScan("com.gamergeo.project.videomanager.model")
+@EnableJpaRepositories("com.gamergeo.project.videomanager.dao") 
+public class VideoManagerApplication {
 
-//    public static void main(String[] args) {
-//        launch(args);
-//    }
+  public static void main(String[] args) {
+//    SpringApplication.run(VideoManagerApplication.class, args);
+    Application.launch(VideoManagerGuiApplication.class, args);
+  }
+
 }

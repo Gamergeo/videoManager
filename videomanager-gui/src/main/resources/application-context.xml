@@ -1,17 +1,47 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	   xmlns:context="http://www.springframework.org/schema/context"
-       xmlns="http://www.springframework.org/schema/beans"
-       xsi:schemaLocation="
-            http://www.springframework.org/schema/beans
-            http://www.springframework.org/schema/beans/spring-beans.xsd
-            http://www.springframework.org/schema/context
-            http://www.springframework.org/schema/context/spring-context.xsd">
+<!-- <?xml version="1.0" encoding="UTF-8"?> -->
+<!-- <beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" -->
+<!-- 	   xmlns:context="http://www.springframework.org/schema/context" -->
+<!--        xmlns="http://www.springframework.org/schema/beans" -->
+<!--        xsi:schemaLocation=" -->
+<!--             http://www.springframework.org/schema/beans -->
+<!--             http://www.springframework.org/schema/beans/spring-beans.xsd -->
+<!--             http://www.springframework.org/schema/context -->
+<!--             http://www.springframework.org/schema/context/spring-context.xsd"> -->
             
-     <!-- Prend en compte la configuration des injections (@Autowired...) -->
-    <context:annotation-config/>
+<!--      Prend en compte la configuration des injections (@Autowired...) -->
+<!--     <context:annotation-config/> -->
 
-    <!-- Scanne les packages pour trouver les beans qui se déclarent (@Named...) -->
-    <context:component-scan base-package="com.gamergeo.project.videomanager"/>
+<!--     Scanne les packages pour trouver les beans qui se déclarent (@Named...) -->
+<!--     <context:component-scan base-package="com.gamergeo.project.videomanager"/> -->
     
-</beans>
+<!--     Databse connexion TODO -->
+<!--     Utilisation de properties : attention à ne pas faire ca IRL car password public -->
+<!-- <!-- 	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"> --> -->
+<!-- <!--         <property name="locations"> --> -->
+<!-- <!--             <list> --> -->
+<!-- <!--                 <value>classpath:/database.properties</value> --> -->
+<!-- <!--             </list> --> -->
+<!-- <!--         </property> --> -->
+<!-- <!--         <property name="ignoreUnresolvablePlaceholders" value="false"/> --> -->
+<!-- <!--     </bean> --> -->
+    
+<!-- <!--     <bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource"> --> -->
+<!-- <!--     	<property name="driverClassName" value="${database.game.driverClassName}"/> --> -->
+<!-- <!--         <property name="url" value="${database.game.url}"/> --> -->
+<!-- <!--         <property name="username" value="${database.game.username}"/> --> -->
+<!-- <!--         <property name="password" value="${database.game.password}"/> --> -->
+<!-- <!--     </bean> --> -->
+    
+<!-- <!-- 	<bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean"> --> -->
+<!-- <!-- 		<property name="dataSource" ref="dataSource"/> --> -->
+<!-- <!--         <property name="packagesToScan" value="com.gamergeo.project.videomanager.model"/> --> -->
+<!-- <!--         <property name="hibernateProperties"> --> -->
+<!-- <!--             <props> --> -->
+<!-- <!--                 <prop key="hibernate.dialect"> --> -->
+<!-- <!--                     org.hibernate.dialect.MySQL8Dialect --> -->
+<!-- <!--                 </prop> --> -->
+<!-- <!--             </props> --> -->
+<!-- <!--         </property> --> -->
+<!-- <!--     </bean> --> -->
+    
+<!-- </beans> -->

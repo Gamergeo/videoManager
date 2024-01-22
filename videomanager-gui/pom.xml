@@ -17,6 +17,18 @@
 	
 	<build>
 		<finalName>videomanager</finalName>
+		
+		<!-- Plugin for local execution -->
+		<plugins>
+			<plugin>
+				<groupId>org.openjfx</groupId>
+	    		<artifactId>javafx-maven-plugin</artifactId>
+			</plugin>
+	    	<plugin>
+	    		<groupId>org.apache.maven.plugins</groupId>
+	    		<artifactId>maven-shade-plugin</artifactId>
+    		</plugin>
+		</plugins>
 	</build>
 	
 	<dependencies>
@@ -38,5 +50,12 @@
 		    <groupId>org.openjfx</groupId>
 		    <artifactId>javafx-fxml</artifactId>
 		</dependency>
+		
+		<dependency>
+		    <groupId>com.h2database</groupId>
+		    <artifactId>h2</artifactId>
+		    <scope>runtime</scope>
+		</dependency>
+
 	</dependencies>
 </project>

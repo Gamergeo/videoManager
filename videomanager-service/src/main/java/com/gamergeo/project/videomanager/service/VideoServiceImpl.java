@@ -2,17 +2,40 @@
 
 import java.time.LocalDate;
 import java.time.Period;
-import java.time.temporal.TemporalAmount;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.gamergeo.project.videomanager.model.VideoTag;
+import com.gamergeo.project.videomanager.dao.VideoDao;
 import com.gamergeo.project.videomanager.model.Video;
+import com.gamergeo.project.videomanager.model.VideoTag;
 
 @Service("videoService")
-public class VideoServiceImpl implements VideoService {
+public class VideoServiceImpl implements VideoService { //extends HibernateDatabaseServiceImpl<Video> 
+	
+	@Autowired
+	VideoDao videoDao;
+//
+//	@Override
+//	public HibernateDao<Video> getDao() {
+//		return videoDao;
+//	}
+	
+	@Override
+	public Video getVideo() {
+		Video vid1 = new Video();
+//		vid1.setId(1);
+		vid1.setTitle("a");
+		vid1.setUrl("link a");
+//		vid1.setAddedDate(LocalDate.now());
+//		vid1.setVideoTags(cats1);
+		
+//		videoDao.save(vid1);
+		
+		return videoDao.findById(1).get();
+	}
 
 	@Override
 	public List<Video> getVideoList() {

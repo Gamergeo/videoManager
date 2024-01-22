@@ -2,22 +2,17 @@ package com.gamergeo.project.videomanager.gui.controller;
 
 import java.io.IOException;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
 
-import com.gamergeo.project.videomanager.gui.application.VideoManagerApplication;
+import com.gamergeo.project.videomanager.gui.application.VideoManagerGuiApplication;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.TitledPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.VBox;
 
-@Component
+@Controller
 public class VideoSceneController {
-	
-	@Autowired
-	VideoTableController videoTableController;
-	
+		
 	@FXML
 	private GridPane applicationContent;
 	
@@ -40,7 +35,7 @@ public class VideoSceneController {
     }
     
     private void loadTitledPane(TitledPane pane) throws IOException {
-    	pane.setContent(VideoManagerApplication.load(pane.getId()));
+    	pane.setContent(VideoManagerGuiApplication.load(pane.getId()));
     	pane.heightProperty().addListener((obs, oldHeight, newHeight) -> {
     		applicationContent.getScene().getWindow().sizeToScene();
 //    		double totalHeight = videoTable.getHeight() + videoView.getHeight() + videoSearch.getHeight();

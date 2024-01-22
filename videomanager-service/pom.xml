@@ -17,19 +17,27 @@
 	
 	<build>
 		<finalName>videomanager-api</finalName>
+		
+		<!-- Plugin for local execution -->
+		<plugins>
+			<plugin>
+		    	<groupId>org.codehaus.mojo</groupId>
+			    <artifactId>flatten-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
 	</build>
 	
 	<dependencies>
 		<!-- Project dependency -->
 		<dependency>
 			<groupId>com.gamergeo.project</groupId>
-			<artifactId>videomanager-model</artifactId>
+			<artifactId>videomanager-dao</artifactId>
 		</dependency>
 	
 		<!-- Spring -->
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-context</artifactId>
-		</dependency>
+<!--		<dependency>-->
+<!--			<groupId>org.springframework</groupId>-->
+<!--			<artifactId>spring-context</artifactId>-->
+<!--		</dependency>-->
 	</dependencies>
 </project>

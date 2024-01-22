@@ -4,13 +4,9 @@ import java.util.List;
 
 import com.gamergeo.project.videomanager.model.Video;
 
-public interface VideoService {
+public interface VideoService { //extends HibernateDatabaseService<Video> {
 	
 	List<Video> getVideoList();
 
-//	Video addNewVideo(Video video);
-//
-//	Video update(Video video);
-//
-//	Video getRandomVideo(List<String> wantedCategories, boolean bestof, boolean disabled);
+	Video getVideo();
 }

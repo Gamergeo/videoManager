@@ -2,20 +2,33 @@ package com.gamergeo.project.videomanager.model;
 
 import java.io.Serializable;
 
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlType;
+import com.gamergeo.lib.gamlib.mapper.MappedModel;
 
-import com.gamergeo.lib.gamlib.model.Model;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
-@XmlRootElement(name=XMLStructure.TAG.ROOT)
-@XmlType(propOrder = {XMLStructure.TAG.TEXT})
-public class VideoTag implements Serializable, Model {
+@Entity(name = DatabaseName.TAG.TABLE)
+@Table(name = DatabaseName.TAG.TABLE)
+public class VideoTag implements Serializable, MappedModel {//, HibernateModel {
 
 	private static final long serialVersionUID = 6257375419629830569L;
 	
-	@XmlAttribute(name = XMLStructure.TAG.TEXT)
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	protected Long id;
+	
 	protected String text;
+	
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
 
 	public String getText() {
 		return text;

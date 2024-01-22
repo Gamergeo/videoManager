@@ -4,3 +4,5 @@ target
 .settings
 dependency-reduced-pom.xml
 .flattened-pom.xml
+**.mv.db
+*.trace.db
