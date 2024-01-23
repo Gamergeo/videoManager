@@ -8,9 +8,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.gamergeo.project.videomanager.dao.VideoDao;
 import com.gamergeo.project.videomanager.model.Video;
 import com.gamergeo.project.videomanager.model.VideoTag;
+import com.gamergeo.project.videomanager.persistence.VideoDao;
 
 @Service("videoService")
 public class VideoServiceImpl implements VideoService { //extends HibernateDatabaseServiceImpl<Video> 

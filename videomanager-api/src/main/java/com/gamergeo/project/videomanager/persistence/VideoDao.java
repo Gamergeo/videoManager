@@ -1,4 +1,4 @@
-package com.gamergeo.project.videomanager.dao;
+package com.gamergeo.project.videomanager.persistence;
 
 import org.springframework.data.repository.CrudRepository;
 

@@ -1,0 +1,94 @@
+<?xml version="1.0"?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>com.gamergeo.project</groupId>
+		<artifactId>videomanager</artifactId>
+		<version>${revision}</version>
+	</parent>
+
+	<artifactId>videomanager-api</artifactId>
+	<packaging>jar</packaging>
+	
+	<profiles>
+		<profile>
+			<id>dev</id>
+            <build>
+				<plugins>
+					<!-- Indispensable pour écrire en dur le pom !-->
+					<plugin>
+				    	<groupId>org.codehaus.mojo</groupId>
+					    <artifactId>flatten-maven-plugin</artifactId>
+					    <version>${flatten-maven-plugin.version}</version>
+					    <executions>
+							<!-- enable flattening -->
+							<execution>
+					        	<id>flatten</id>
+					        	<phase>process-resources</phase>
+					        	<goals>
+					          		<goal>flatten</goal>
+					        	</goals>
+					      	</execution>
+				   		</executions>
+					</plugin>
+				</plugins>
+			</build>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+		</profile>
+		<profile>
+			<id>prod</id>
+		</profile>
+	</profiles>
+	
+    <build>
+		<plugins>
+			<!-- Indispensable pour écrire en dur le pom !-->
+			<plugin>
+		    	<groupId>org.codehaus.mojo</groupId>
+			    <artifactId>flatten-maven-plugin</artifactId>
+			    <version>${flatten-maven-plugin.version}</version>
+			    <executions>
+			      	<!-- ensure proper cleanup -->
+			      	<execution>
+			        	<id>flatten.clean</id>
+		        		<phase>clean</phase>
+		        		<goals>
+		          			<goal>clean</goal>
+		        		</goals>
+		      		</execution>
+		   		</executions>
+			</plugin>
+		</plugins>
+	</build>
+	
+	<dependencies>
+		<!-- Gamergeo lib -->
+		<dependency>
+			<groupId>com.gamergeo.lib</groupId>
+			<artifactId>gamlib-mapper</artifactId>
+		</dependency>
+		
+		<dependency>
+		    <groupId>org.projectlombok</groupId>
+		    <artifactId>lombok</artifactId>
+		    <scope>provided</scope>
+		</dependency>
+		
+		<dependency>
+		    <groupId>org.springframework.boot</groupId>
+		    <artifactId>spring-boot-starter</artifactId>
+		</dependency>
+		
+		<dependency>
+		    <groupId>org.springframework.boot</groupId>
+		    <artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+	</dependencies>
+</project>

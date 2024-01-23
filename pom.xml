@@ -6,140 +6,35 @@
 	<artifactId>videomanager</artifactId>
 	<version>${revision}</version>
 	<packaging>pom</packaging>
+	
+	<parent>
+	    <groupId>org.springframework.boot</groupId>
+	    <artifactId>spring-boot-starter-parent</artifactId>
+	    <version>3.2.2</version>
+	</parent>
   
 	<modules>
 		<module>videomanager-gui</module>
-		<module>videomanager-model</module>
-		<module>videomanager-service</module>
-		<module>videomanager-dao</module>
+		<module>videomanager-api</module>
 	</modules>
 	
 	<properties>
 		<!-- Project properties -->
-		<revision>0.2.1</revision>
+		<revision>0.2.2</revision>
 		<java.version>21</java.version>
-    	<javafx.version>21</javafx.version>	
 	    <encoding>UTF-8</encoding>
     	<project.build.sourceEncoding>${encoding}</project.build.sourceEncoding>
     	
-    	 <!-- Plugin version -->
-    	<maven-compiler-plugin.version>3.12.1</maven-compiler-plugin.version>
-    	<flatten-maven-plugin.version>1.6.0</flatten-maven-plugin.version>
-    	<maven.shade.plugin.version>3.5.1</maven.shade.plugin.version>
-    	<javafx.maven.plugin.version>0.0.8</javafx.maven.plugin.version>
-    	
     	 <!-- Bom version -->
     	<gambom.version>1.0</gambom.version>
+    	
+    	<flatten-maven-plugin.version>1.6.0</flatten-maven-plugin.version>
 	</properties>
 	
-	
-	<build>
-		<pluginManagement>
-			<plugins>
-				<!-- java compiler (pour avoir la bonne version de java systématiquement -->
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-compiler-plugin</artifactId>
-					<version>${maven-compiler-plugin.version}</version>
-					<configuration>
-						<release>${java.version}</release>
-						<showDeprecation>true</showDeprecation>
-						<showWarnings>true</showWarnings>
-					</configuration>
-				</plugin>
-				
-				<plugin>
-					<groupId>org.openjfx</groupId>
-		    		<artifactId>javafx-maven-plugin</artifactId>
-		    		<version>${javafx.maven.plugin.version}</version>
-				    <configuration>
-		      			<mainClass>com.gamergeo.project.videomanager.gui.application.VideoManagerApplication</mainClass>
-		    		</configuration>
-		    		<executions>
-						<execution>
-		                    <!-- Configuration for debugging -->
-		                    <id>debug</id>
-		                    <configuration>
-		                        <options>
-		                            <option>-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=*:8001</option>
-		                        </options>
-		                        <mainClass>com.gamergeo.project.videomanager.gui.application.VideoManagerApplication</mainClass>
-		                    </configuration>
-		                </execution>
-		           </executions>
-		  		</plugin>
-		    
-		    	<!-- Plugin for deployment -->
-		    	<plugin>
-		    		<groupId>org.apache.maven.plugins</groupId>
-		    		<artifactId>maven-shade-plugin</artifactId>
-		    		<version>${maven.shade.plugin.version}</version>
-		    		<executions>
-		        		<execution>
-		            		<phase>package</phase>
-		            		<goals>
-		                		<goal>shade</goal>
-		            		</goals>
-		            		<configuration>
-		                		<transformers>
-		                    		<transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-		                        		<mainClass>com.gamergeo.project.videomanager.gui.application.VideoManagerApplication</mainClass>
-		                    		</transformer>
-		                		</transformers>
-		            		</configuration>
-		        		</execution>
-		    		</executions>
-				</plugin>
-				
-				<!-- Indispensable pour écrire en dur le pom !-->
-				<plugin>
-			    	<groupId>org.codehaus.mojo</groupId>
-				    <artifactId>flatten-maven-plugin</artifactId>
-				    <version>${flatten-maven-plugin.version}</version>
-				    <executions>
-						<!-- enable flattening -->
-						<execution>
-				        	<id>flatten</id>
-				        	<phase>process-resources</phase>
-				        	<goals>
-				          		<goal>flatten</goal>
-				        	</goals>
-				      	</execution>
-				      	<!-- ensure proper cleanup -->
-				      	<execution>
-				        	<id>flatten.clean</id>
-				        		<phase>clean</phase>
-				        		<goals>
-				          			<goal>clean</goal>
-				        		</goals>
-			      		</execution>
-			   		</executions>
-				</plugin>
-			</plugins>
-		</pluginManagement>
-	</build>
-  
 	<!-- Dependencies Management (No import their, check module instead) -->
 	<dependencyManagement>
 		<dependencies>
 
-			<!-- Project dependency -->
-			<dependency>
-				<groupId>com.gamergeo.project</groupId>
-				<artifactId>videomanager-model</artifactId>
-				<version>${revision}</version>
-			</dependency>
-			<dependency>
-				<groupId>com.gamergeo.project</groupId>
-				<artifactId>videomanager-dao</artifactId>
-				<version>${revision}</version>
-			</dependency>
-			<dependency>
-				<groupId>com.gamergeo.project</groupId>
-				<artifactId>videomanager-service</artifactId>
-				<version>${revision}</version>
-			</dependency>
-			
 			<!-- Gamergeo BOM -->
 			<dependency>
 				<groupId>com.gamergeo.lib</groupId>

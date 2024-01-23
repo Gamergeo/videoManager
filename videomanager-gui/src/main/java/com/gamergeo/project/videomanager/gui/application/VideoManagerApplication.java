@@ -12,11 +12,11 @@ import javafx.application.Application;
 @EnableAutoConfiguration
 @ComponentScan(basePackages = "com.gamergeo.project.videomanager")
 @EntityScan("com.gamergeo.project.videomanager.model")
-@EnableJpaRepositories("com.gamergeo.project.videomanager.dao") 
+@EnableJpaRepositories("com.gamergeo.project.videomanager.persistence") 
 public class VideoManagerApplication {
 
   public static void main(String[] args) {
-//    SpringApplication.run(VideoManagerApplication.class, args);
+//    SpringApplication.run(VideoManagerApplication.class, args);>
     Application.launch(VideoManagerGuiApplication.class, args);
   }
 

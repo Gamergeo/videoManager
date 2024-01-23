@@ -15,26 +15,77 @@
 	<artifactId>videomanager-gui</artifactId>
 	<packaging>jar</packaging>
 	
+	<properties>
+    	<javafx.maven.plugin.version>0.0.8</javafx.maven.plugin.version>
+    	<start-class>com.gamergeo.project.videomanager.gui.application.VideoManagerApplication</start-class>
+	</properties>
+	
+	<profiles>
+        <profile>
+            <id>dev</id>
+            <properties>
+                <springProfile>dev</springProfile>
+            </properties>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+        </profile>
+        <profile>
+            <id>prod</id>
+            <properties>
+                <springProfile>prod</springProfile>
+            </properties>
+        </profile>
+	</profiles>
+	
 	<build>
 		<finalName>videomanager</finalName>
 		
 		<!-- Plugin for local execution -->
 		<plugins>
+		    <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+            		<mainClass>${start-class}</mainClass>
+                    <executable>true</executable>
+                </configuration>
+                <executions>
+				    <execution>
+				        <goals>
+				            <goal>repackage</goal>
+				        </goals>
+				    </execution>
+				</executions>
+            </plugin>
 			<plugin>
 				<groupId>org.openjfx</groupId>
 	    		<artifactId>javafx-maven-plugin</artifactId>
-			</plugin>
-	    	<plugin>
-	    		<groupId>org.apache.maven.plugins</groupId>
-	    		<artifactId>maven-shade-plugin</artifactId>
-    		</plugin>
+	    		<version>${javafx.maven.plugin.version}</version>
+			    <configuration>
+	      			<mainClass>${start-class}</mainClass>
+	    		</configuration>
+	    		<executions>
+					<execution>
+	                    <!-- Configuration for debugging -->
+	                    <id>debug</id>
+	                    <configuration>
+	                        <options>
+	                            <option>-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=*:8001</option>
+	                        </options>
+	                        <mainClass>${start-class}</mainClass>
+	                    </configuration>
+	                </execution>
+	           </executions>
+	  		</plugin>
 		</plugins>
 	</build>
 	
 	<dependencies>
 		<dependency>
 			<groupId>com.gamergeo.project</groupId>
-			<artifactId>videomanager-service</artifactId>
+			<artifactId>videomanager-api</artifactId>
+			<version>${revision}</version>
 		</dependency>
 		
 		<!-- https://mvnrepository.com/artifact/org.openjfx/javafx-controls -->
