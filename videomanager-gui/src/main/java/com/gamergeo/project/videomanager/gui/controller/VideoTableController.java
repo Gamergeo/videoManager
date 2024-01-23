@@ -49,7 +49,7 @@ public class VideoTableController {
     @FXML
     private void initialize() {
     	List<VideoViewModel> videoList = videoMapper.getViewModels(videoService.getVideoList());
-    	videoList.add(videoMapper.toViewModel(videoService.getVideo()));
+    	videoList.add(videoMapper.getViewModel(videoService.getVideo()));
     	videoTableModel.getVideoList().setAll(videoList);
     	videoTable.setItems(videoTableModel.getVideoList());
     	titleColumn.setCellValueFactory(new PropertyValueFactory<VideoViewModel, String>("title"));

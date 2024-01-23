@@ -4,7 +4,7 @@
 
 	<groupId>com.gamergeo.project</groupId>
 	<artifactId>videomanager</artifactId>
-	<version>${revision}</version>
+	<version>0.2.3</version>
 	<packaging>pom</packaging>
 	
 	<parent>
@@ -20,20 +20,23 @@
 	
 	<properties>
 		<!-- Project properties -->
-		<revision>0.2.2</revision>
 		<java.version>21</java.version>
 	    <encoding>UTF-8</encoding>
     	<project.build.sourceEncoding>${encoding}</project.build.sourceEncoding>
     	
     	 <!-- Bom version -->
     	<gambom.version>1.0</gambom.version>
-    	
-    	<flatten-maven-plugin.version>1.6.0</flatten-maven-plugin.version>
 	</properties>
 	
 	<!-- Dependencies Management (No import their, check module instead) -->
 	<dependencyManagement>
 		<dependencies>
+			<!-- Project dependency -->
+			<dependency>
+				<groupId>com.gamergeo.project</groupId>
+				<artifactId>videomanager-api</artifactId>
+				<version>${project.version}</version>
+			</dependency>
 
 			<!-- Gamergeo BOM -->
 			<dependency>

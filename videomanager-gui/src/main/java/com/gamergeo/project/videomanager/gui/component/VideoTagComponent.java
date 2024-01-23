@@ -2,7 +2,6 @@ package com.gamergeo.project.videomanager.gui.component;
 
 import java.io.IOException;
 
-import com.gamergeo.project.videomanager.gui.application.VideoManagerApplication;
 import com.gamergeo.project.videomanager.gui.application.VideoManagerGuiApplication;
 import com.gamergeo.project.videomanager.gui.viewmodel.VideoTagViewModel;
 

@@ -3,8 +3,6 @@ package com.gamergeo.project.videomanager.model;
 import java.time.LocalDate;
 import java.util.List;
 
-import com.gamergeo.lib.gamlib.mapper.MappedModel;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -16,7 +14,7 @@ import lombok.Data;
 @Entity(name = DatabaseName.VIDEO.TABLE)
 @Table(name = DatabaseName.VIDEO.TABLE)
 @Data
-public class Video implements MappedModel {//, HibernateModel {
+public class Video {//, HibernateModel {
 
 //	private static final long serialVersionUID = -2649188449485629485L;
 	

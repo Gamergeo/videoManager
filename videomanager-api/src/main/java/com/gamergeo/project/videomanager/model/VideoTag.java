@@ -2,8 +2,6 @@ package com.gamergeo.project.videomanager.model;
 
 import java.io.Serializable;
 
-import com.gamergeo.lib.gamlib.mapper.MappedModel;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -14,7 +12,7 @@ import lombok.Data;
 @Entity(name = DatabaseName.TAG.TABLE)
 @Table(name = DatabaseName.TAG.TABLE)
 @Data
-public class VideoTag implements Serializable, MappedModel {//, HibernateModel {
+public class VideoTag implements Serializable {//, HibernateModel {
 
 	private static final long serialVersionUID = 6257375419629830569L;
 	

@@ -3,8 +3,6 @@ package com.gamergeo.project.videomanager.gui.viewmodel;
 import java.time.LocalDate;
 import java.util.List;
 
-import com.gamergeo.lib.gamlib.mapper.MappedViewModel;
-
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -12,7 +10,7 @@ import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-public class VideoViewModel implements MappedViewModel {
+public class VideoViewModel {
 	
     private final StringProperty title = new SimpleStringProperty();
     private final StringProperty url = new SimpleStringProperty();

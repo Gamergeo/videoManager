@@ -14,7 +14,7 @@ public class VideoMapperImpl extends AbstractMVMMapper<Video, VideoViewModel> im
 	private VideoTagMapper videoTagMapper;
 	
 	@Override
-	public VideoViewModel toViewModel(Video video) {
+	public VideoViewModel getViewModel(Video video) {
 		VideoViewModel videoViewModel = new VideoViewModel();
 		videoViewModel.setTitle(video.getTitle());
 		videoViewModel.setUrl(video.getUrl());
@@ -23,5 +23,11 @@ public class VideoMapperImpl extends AbstractMVMMapper<Video, VideoViewModel> im
 		videoViewModel.setAddedDate(video.getAddedDate());
 		
 		return videoViewModel;
+	}
+
+	@Override
+	public Video getModel(VideoViewModel model) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

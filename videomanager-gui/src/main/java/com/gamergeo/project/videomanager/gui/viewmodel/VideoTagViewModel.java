@@ -1,10 +1,8 @@
 package com.gamergeo.project.videomanager.gui.viewmodel;
 
-import com.gamergeo.lib.gamlib.mapper.MappedViewModel;
-
 import javafx.beans.property.SimpleStringProperty;
 
-public class VideoTagViewModel implements MappedViewModel {
+public class VideoTagViewModel {
 	
     private final SimpleStringProperty text = new SimpleStringProperty();
     
