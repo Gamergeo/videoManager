@@ -12,6 +12,7 @@ import com.gamergeo.project.videomanager.model.Video;
 import com.gamergeo.project.videomanager.model.VideoTag;
 import com.gamergeo.project.videomanager.persistence.VideoDao;
 
+import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 
 @Service
@@ -20,64 +21,14 @@ public class VideoServiceImpl implements VideoService { //extends HibernateDatab
 	
 	@Autowired
 	VideoDao videoDao;
-	
-//	@Override
-//	public List<Video> getVideoList() {
-//		
-//		videoDao.findAll()
-//	}
 
 	@Override
-	public Video getVideo() {
-		Video vid1 = new Video();
-//		vid1.setId(1);
-		vid1.setTitle("a");
-		vid1.setUrl("link a");
-//		vid1.setAddedDate(LocalDate.now());
-//		vid1.setVideoTags(cats1);
-		
-//		videoDao.save(vid1);
-		
-		return videoDao.findById(1).get();
-	}
-
-	@Override
+	@Transactional
 	public List<Video> getVideoList() {
-		log.info("Request video list");
-		VideoTag cat1 = new VideoTag();
-		cat1.setText("cat 1");
-		
-		VideoTag cat2 = new VideoTag();
-		cat2.setText("cat 2");
-		
-		VideoTag cat3 = new VideoTag();
-		cat3.setText("cat 3");
-		
-		List<VideoTag> cats1 = new ArrayList<VideoTag>();
-		cats1.add(cat1);
-		List<VideoTag> cats2 = new ArrayList<VideoTag>();
-		cats2.add(cat2);
-		cats2.add(cat3);
-		
-		Video vid1 = new Video();
-		vid1.setId(Long.valueOf(1));
-		vid1.setTitle("a");
-		vid1.setUrl("link a");
-		vid1.setAddedDate(LocalDate.now());
-		vid1.setVideoTags(cats1);
-		
-		Video vid2 = new Video();
-		vid2.setId(Long.valueOf(2));
-		vid2.setTitle("b");
-		vid2.setUrl("link b");
-		vid2.setVideoTags(cats2);
-		vid2.setAddedDate(LocalDate.now().minus(Period.ofMonths(2)));
-		
-		List<Video> vids = new ArrayList<Video>();
-		vids.add(vid1);
-		vids.add(vid2);
-		
-		return vids;
+		log.info("Require videos list");
+		List<Video> videos = videoDao.findAll();
+		log.info("Videos list loaded");
+		return videos;
 	}
 
 }

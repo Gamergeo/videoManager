@@ -9,10 +9,8 @@ import com.gamergeo.project.videomanager.gui.application.VideoManagerGuiApplicat
 import javafx.fxml.FXML;
 import javafx.scene.control.TitledPane;
 import javafx.scene.layout.GridPane;
-import lombok.extern.slf4j.Slf4j;
 
 @Controller
-@Slf4j
 public class VideoSceneController {
 		
 	@FXML
