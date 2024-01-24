@@ -1,8 +1,8 @@
 package com.gamergeo.project.videomanager.gui.component;
 
-import java.io.IOException;
+import org.springframework.beans.factory.annotation.Autowired;
 
-import com.gamergeo.project.videomanager.gui.VideoManagerGuiApplication;
+import com.gamergeo.project.videomanager.gui.loader.ApplicationLoader;
 import com.gamergeo.project.videomanager.gui.viewmodel.VideoTagViewModel;
 
 import javafx.fxml.FXML;
@@ -12,21 +12,24 @@ import javafx.scene.layout.HBox;
 
 public class VideoTagComponent extends HBox {
 	
+	@Autowired
+	ApplicationLoader loader;
+	
 	private VideoTagViewModel videoTag;
 	
 	@FXML
 	private Label videoTagLabel;
 	
-    public VideoTagComponent() throws IOException {
+    public VideoTagComponent() {
     	super();
-        FXMLLoader fxmlLoader = VideoManagerGuiApplication.getLoader("videoTagComponent");
+        FXMLLoader fxmlLoader = loader.getLoader("videoTagComponent");
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(VideoTagComponent.this);
-        fxmlLoader.load();
+        loader.load(fxmlLoader);
         getStyleClass().add("videoTagComponent");
     }
     
-    public VideoTagComponent(VideoTagViewModel videoTag) throws IOException {
+    public VideoTagComponent(VideoTagViewModel videoTag) {
     	this();
 		this.videoTag = videoTag;
 		videoTagLabel.textProperty().bind(this.videoTag.textProperty());

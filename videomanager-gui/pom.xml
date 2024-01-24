@@ -9,7 +9,7 @@
 	<parent>
 		<groupId>com.gamergeo.project</groupId>
 		<artifactId>videomanager</artifactId>
-		<version>0.3.1</version>
+		<version>0.3.3</version>
 	</parent>
 
 	<artifactId>videomanager-gui</artifactId>
@@ -17,7 +17,7 @@
 	
 	<properties>
     	<javafx.maven.plugin.version>0.0.8</javafx.maven.plugin.version>
-    	<start-class>com.gamergeo.project.videomanager.gui.application.VideoManagerApplication</start-class>
+    	<start-class>com.gamergeo.project.videomanager.gui.Application</start-class>
 	</properties>
 	
 	<profiles>

@@ -3,11 +3,19 @@ package com.gamergeo.project.videomanager.gui;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
+import com.gamergeo.project.videomanager.gui.loader.ApplicationLoader;
+
 import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.layout.GridPane;
+import javafx.stage.Screen;
+import javafx.stage.Stage;
 import lombok.extern.slf4j.Slf4j;
 
 @Configuration
@@ -17,12 +25,39 @@ import lombok.extern.slf4j.Slf4j;
 @EnableJpaRepositories("com.gamergeo.project.videomanager.persistence")
 @SpringBootApplication
 @Slf4j
-public class VideoManagerApplication {
+public class VideoManagerApplication extends Application {
 
-  public static void main(String[] args) {
-  	log.info("Application VideoManager is starting...");
-    Application.launch(VideoManagerGuiApplication.class, args);
-    log.info("Application VideoManager started");
-  }
+    private static ConfigurableApplicationContext applicationContext;
+	
+	public static void main(String[] args) {
+		launch(args);
+	}
+    
+    @Override
+    public void init() {
+    	log.info("Application VideoManager JavaFX is starting...");
+		SpringApplicationBuilder builder = new SpringApplicationBuilder(VideoManagerApplication.class);
+		applicationContext = builder.run(getParameters().getRaw().toArray(new String[0]));
+        log.info("Application VideoManager JavaFX started");
+    }
+    @Override
+    public void stop() {
+    	log.info("Application VideoManager is closing...");
+    	applicationContext.close();    
+        log.info("Application VideoManager closed");
+    }
+	
+    @Override
+    public void start(Stage primaryStage) throws Exception {
+        GridPane page = (GridPane) applicationContext.getBean(ApplicationLoader.class).load("videoScene");
+        Scene scene = new Scene(page);
+        scene.getStylesheets().add("/css/videomanager.css");
 
+        primaryStage.setY(50);
+        primaryStage.setX(Screen.getPrimary().getBounds().getWidth()/2-300);
+        primaryStage.setTitle("Video manager");
+        primaryStage.setScene(scene);		
+//        primaryStage.sizeToScene();
+        primaryStage.show();
+    }
 }

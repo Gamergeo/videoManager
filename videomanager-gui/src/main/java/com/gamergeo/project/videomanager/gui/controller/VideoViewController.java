@@ -1,9 +1,6 @@
 package com.gamergeo.project.videomanager.gui.controller;
 
-import java.io.IOException;
-
-import org.springframework.stereotype.Controller;
-
+import com.gamergeo.lib.gamlib.javafx.controller.SceneChildController;
 import com.gamergeo.project.videomanager.gui.component.VideoTagComponent;
 import com.gamergeo.project.videomanager.gui.viewmodel.VideoTagViewModel;
 import com.gamergeo.project.videomanager.gui.viewmodel.VideoViewModel;
@@ -12,8 +9,10 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.FlowPane;
+import lombok.extern.slf4j.Slf4j;
 
-@Controller
+@SceneChildController
+@Slf4j
 public class VideoViewController {
 	
 	@FXML
@@ -28,7 +27,8 @@ public class VideoViewController {
 	@FXML
 	private FlowPane videoTagsPane;
 	
-	public void setVideo(VideoViewModel videoView) throws IOException {
+	public void setVideo(VideoViewModel videoView) {
+		log.info("Change video view infos: " + videoView.getId());
 		videoTitleLabel.textProperty().bind(videoView.titleProperty());
 		videoUrlField.textProperty().bind(videoView.urlProperty());
 		addedDateLabel.setText(videoView.getAddedDate());
@@ -39,6 +39,7 @@ public class VideoViewController {
 			VideoTagComponent videoTagComponent = new VideoTagComponent(videoTag);
 			videoTagsPane.getChildren().add(videoTagComponent);
 		}
+	}
 		
 //		((GridPane) VideoManagerApplication.load("videoTagView")).set
 		
@@ -52,7 +53,6 @@ public class VideoViewController {
 //        	namePerson.textProperty().bind(Bindings.selectString(person, "name"));
 //        	employedPerson.textProperty().bind(Bindings.selectBoolean(person, "employed").asString());
 //        });
-	}
     
 //    	personList.add(new PersonView(new Person(1, "jean_mi", true)));
 //    	personList.add(new PersonView(new Person(2, "jeannot", false)));

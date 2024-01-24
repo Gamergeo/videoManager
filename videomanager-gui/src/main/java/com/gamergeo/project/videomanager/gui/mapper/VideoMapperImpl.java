@@ -3,7 +3,7 @@ package com.gamergeo.project.videomanager.gui.mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.gamergeo.lib.gamlib.mapper.AbstractMVMMapper;
+import com.gamergeo.lib.gamlib.javafx.mapper.AbstractMVMMapper;
 import com.gamergeo.project.videomanager.gui.viewmodel.VideoViewModel;
 import com.gamergeo.project.videomanager.model.Video;
 

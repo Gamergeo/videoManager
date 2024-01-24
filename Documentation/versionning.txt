@@ -4,4 +4,6 @@
 	
 	0.3.2 : Integration Test
 	
-	0.3.3
+	0.3.3 : Basic Title Search
+	
+	0.3.4 : Annotation, simplification, amélioration des dépendences lazy

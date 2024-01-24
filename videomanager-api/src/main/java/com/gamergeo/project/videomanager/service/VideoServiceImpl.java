@@ -1,15 +1,11 @@
 	package com.gamergeo.project.videomanager.service;
 
-import java.time.LocalDate;
-import java.time.Period;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.gamergeo.project.videomanager.model.Video;
-import com.gamergeo.project.videomanager.model.VideoTag;
 import com.gamergeo.project.videomanager.persistence.VideoDao;
 
 import jakarta.transaction.Transactional;
@@ -27,6 +23,15 @@ public class VideoServiceImpl implements VideoService { //extends HibernateDatab
 	public List<Video> getVideoList() {
 		log.info("Require videos list");
 		List<Video> videos = videoDao.findAll();
+		log.info("Videos list loaded");
+		return videos;
+	}
+	
+	@Override
+	@Transactional
+	public List<Video> getVideoList(String title) {
+		log.info("Require videos list");
+		List<Video> videos = videoDao.findByTitleContaining(title);
 		log.info("Videos list loaded");
 		return videos;
 	}

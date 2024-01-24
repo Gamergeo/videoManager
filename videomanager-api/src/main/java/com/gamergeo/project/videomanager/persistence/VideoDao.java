@@ -10,4 +10,6 @@ import com.gamergeo.project.videomanager.model.Video;
 public interface VideoDao extends CrudRepository<Video, Integer> {
 	
 	List<Video> findAll();
+	
+	List<Video> findByTitleContaining(String title);
 }

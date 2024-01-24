@@ -1,18 +1,32 @@
 package com.gamergeo.project.videomanager.gui.controller;
 
-import java.io.IOException;
+import java.util.List;
 
-import org.springframework.stereotype.Controller;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 
-import com.gamergeo.project.videomanager.gui.VideoManagerGuiApplication;
+import com.gamergeo.lib.gamlib.javafx.controller.SceneController;
+import com.gamergeo.project.videomanager.gui.loader.ApplicationLoader;
+import com.gamergeo.project.videomanager.gui.mapper.VideoMapper;
+import com.gamergeo.project.videomanager.gui.viewmodel.VideoViewModel;
+import com.gamergeo.project.videomanager.service.VideoService;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.TitledPane;
 import javafx.scene.layout.GridPane;
 
-@Controller
+@SceneController
 public class VideoSceneController {
-		
+	
+	@Autowired
+	ApplicationLoader loader;
+	
+	@Autowired
+	private VideoMapper videoMapper;
+	
+	@Autowired
+	private VideoService videoService;
+	
 	@FXML
 	private GridPane applicationContent;
 	
@@ -25,17 +39,34 @@ public class VideoSceneController {
 	@FXML
 	private TitledPane videoView;
 	
+	@Autowired
+	@Lazy
+	private VideoSearchController videoSearchController;
+	
+	@Autowired
+	@Lazy
+	private VideoTableController videoTableController;
+	
+	@Autowired
+	@Lazy
+	private VideoViewController videoViewController;
+	
     @FXML
-    private void initialize() throws IOException {
-    	
-    	loadTitledPane(videoTable);
-    	loadTitledPane(videoView);
+    private void initialize() {
+
     	loadTitledPane(videoSearch);
-//    	videoTableController.getVideo();
+    	loadTitledPane(videoTable);
+    	refreshVideoList();
+    	loadTitledPane(videoView);
     }
     
-    private void loadTitledPane(TitledPane pane) throws IOException {
-    	pane.setContent(VideoManagerGuiApplication.load(pane.getId()));
+    private void loadTitledPane(TitledPane pane) {
+    	
+    	
+    	
+//    	FXMLLoader fxmlLoader = loader.getLoader(pane.getId());
+//    	videoTableController = fxmlLoader.getController();
+    	pane.setContent(loader.load(pane.getId()));
     	pane.heightProperty().addListener((obs, oldHeight, newHeight) -> {
     		applicationContent.getScene().getWindow().sizeToScene();
 //    		double totalHeight = videoTable.getHeight() + videoView.getHeight() + videoSearch.getHeight();
@@ -48,6 +79,21 @@ public class VideoSceneController {
     
     public void openVideoView() {
     	videoView.setExpanded(true);
+    }
+    
+    public void refreshVideoList() {
+    	List<VideoViewModel> videoList = videoMapper.getViewModels(videoService.getVideoList());
+    	videoTableController.setVideoList(videoList);
+    }
+    
+    public void refreshVideoList(String title) {
+    	List<VideoViewModel> videoList = videoMapper.getViewModels(videoService.getVideoList(title));
+    	videoTableController.setVideoList(videoList);
+    }
+    
+    public void refreshVideoView(VideoViewModel video) {
+    	openVideoView();
+		videoViewController.setVideo(video);
     }
     	
     	
