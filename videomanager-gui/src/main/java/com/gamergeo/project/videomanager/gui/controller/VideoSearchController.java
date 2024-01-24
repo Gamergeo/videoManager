@@ -2,6 +2,7 @@ package com.gamergeo.project.videomanager.gui.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.gamergeo.lib.gamlib.javafx.controller.FXMLController;
 import com.gamergeo.lib.gamlib.javafx.controller.SceneChildController;
 
 import javafx.fxml.FXML;
@@ -10,7 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @SceneChildController
-public class VideoSearchController {
+public class VideoSearchController implements FXMLController {
 	
 	@Autowired
 	private VideoSceneController videoSceneController;

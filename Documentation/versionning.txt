@@ -7,3 +7,5 @@
 	0.3.3 : Basic Title Search
 	
 	0.3.4 : Annotation, simplification, amélioration des dépendences lazy
+	
+	0.3.5 : Essai architecture

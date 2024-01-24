@@ -1,7 +1,13 @@
 package com.gamergeo.project.videomanager.gui.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.gamergeo.lib.gamlib.javafx.controller.FXMLController;
 import com.gamergeo.lib.gamlib.javafx.controller.SceneChildController;
-import com.gamergeo.project.videomanager.gui.component.VideoTagComponent;
+import com.gamergeo.lib.gamlib.javafx.view.FXMLView;
+import com.gamergeo.project.videomanager.gui.controller.component.VideoTagComponentController;
+import com.gamergeo.project.videomanager.gui.loader.VideoManagerLoader;
+import com.gamergeo.project.videomanager.gui.view.component.VideoTagComponent;
 import com.gamergeo.project.videomanager.gui.viewmodel.VideoTagViewModel;
 import com.gamergeo.project.videomanager.gui.viewmodel.VideoViewModel;
 
@@ -9,11 +15,15 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.FlowPane;
+import javafx.util.converter.LocalDateStringConverter;
 import lombok.extern.slf4j.Slf4j;
 
 @SceneChildController
 @Slf4j
-public class VideoViewController {
+public class VideoViewController implements FXMLController {
+	
+	@Autowired
+	VideoManagerLoader loader;
 	
 	@FXML
 	private Label videoTitleLabel;
@@ -31,13 +41,15 @@ public class VideoViewController {
 		log.info("Change video view infos: " + videoView.getId());
 		videoTitleLabel.textProperty().bind(videoView.titleProperty());
 		videoUrlField.textProperty().bind(videoView.urlProperty());
-		addedDateLabel.setText(videoView.getAddedDate());
+		addedDateLabel.textProperty().bindBidirectional(videoView.addedDateProperty(), new LocalDateStringConverter());
 		
 		videoTagsPane.getChildren().clear();
 		
 		for (VideoTagViewModel videoTag : videoView.getVideoTagList()) {
-			VideoTagComponent videoTagComponent = new VideoTagComponent(videoTag);
-			videoTagsPane.getChildren().add(videoTagComponent);
+			FXMLView videoTagComponent = loader.createView(VideoTagComponent.class);
+			((VideoTagComponentController) videoTagComponent.getController()).setTag(videoTag);
+			videoTagComponent.getRoot().getStyleClass().add("videoTagComponent");
+			videoTagsPane.getChildren().add(videoTagComponent.getRoot());
 		}
 	}
 		

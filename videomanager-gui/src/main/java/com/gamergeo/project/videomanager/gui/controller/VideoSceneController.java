@@ -5,9 +5,15 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 
+import com.gamergeo.lib.gamlib.javafx.controller.FXMLController;
 import com.gamergeo.lib.gamlib.javafx.controller.SceneController;
-import com.gamergeo.project.videomanager.gui.loader.ApplicationLoader;
+import com.gamergeo.lib.gamlib.javafx.view.FXMLView;
+import com.gamergeo.project.videomanager.gui.loader.VideoManagerLoader;
 import com.gamergeo.project.videomanager.gui.mapper.VideoMapper;
+import com.gamergeo.project.videomanager.gui.view.VideoSceneView;
+import com.gamergeo.project.videomanager.gui.view.VideoSearchView;
+import com.gamergeo.project.videomanager.gui.view.VideoTableView;
+import com.gamergeo.project.videomanager.gui.view.VideoView;
 import com.gamergeo.project.videomanager.gui.viewmodel.VideoViewModel;
 import com.gamergeo.project.videomanager.service.VideoService;
 
@@ -16,10 +22,10 @@ import javafx.scene.control.TitledPane;
 import javafx.scene.layout.GridPane;
 
 @SceneController
-public class VideoSceneController {
+public class VideoSceneController implements FXMLController {
 	
 	@Autowired
-	ApplicationLoader loader;
+	VideoManagerLoader loader;
 	
 	@Autowired
 	private VideoMapper videoMapper;
@@ -53,20 +59,22 @@ public class VideoSceneController {
 	
     @FXML
     private void initialize() {
-
-    	loadTitledPane(videoSearch);
-    	loadTitledPane(videoTable);
+    	
+    	FXMLView videoSearchView = loader.createView(VideoSearchView.class);
+    	videoSearch.setContent(videoSearchView.getRoot());
+    	bindHeight(videoSearch);
+    	
+    	FXMLView videoTableView = loader.createView(VideoTableView.class);
+    	videoTable.setContent(videoTableView.getRoot());
+    	bindHeight(videoTable);
+    	
+    	FXMLView videoViewView = loader.createView(VideoView.class);
+    	videoView.setContent(videoViewView.getRoot());
+    	bindHeight(videoView);
     	refreshVideoList();
-    	loadTitledPane(videoView);
     }
     
-    private void loadTitledPane(TitledPane pane) {
-    	
-    	
-    	
-//    	FXMLLoader fxmlLoader = loader.getLoader(pane.getId());
-//    	videoTableController = fxmlLoader.getController();
-    	pane.setContent(loader.load(pane.getId()));
+    private void bindHeight(TitledPane pane) {
     	pane.heightProperty().addListener((obs, oldHeight, newHeight) -> {
     		applicationContent.getScene().getWindow().sizeToScene();
 //    		double totalHeight = videoTable.getHeight() + videoView.getHeight() + videoSearch.getHeight();

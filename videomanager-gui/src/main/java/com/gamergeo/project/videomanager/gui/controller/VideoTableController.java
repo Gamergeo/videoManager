@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.gamergeo.lib.gamlib.javafx.controller.FXMLController;
 import com.gamergeo.lib.gamlib.javafx.controller.SceneChildController;
 import com.gamergeo.project.videomanager.gui.viewmodel.VideoViewModel;
 
@@ -16,7 +17,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @SceneChildController
 @Slf4j
-public class VideoTableController {
+public class VideoTableController implements FXMLController {
 	
 	@Autowired
 	private VideoSceneController videoSceneController;

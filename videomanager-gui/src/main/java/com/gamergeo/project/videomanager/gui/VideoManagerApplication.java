@@ -9,7 +9,8 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
-import com.gamergeo.project.videomanager.gui.loader.ApplicationLoader;
+import com.gamergeo.project.videomanager.gui.loader.VideoManagerLoader;
+import com.gamergeo.project.videomanager.gui.view.VideoSceneView;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -49,7 +50,7 @@ public class VideoManagerApplication extends Application {
 	
     @Override
     public void start(Stage primaryStage) throws Exception {
-        GridPane page = (GridPane) applicationContext.getBean(ApplicationLoader.class).load("videoScene");
+        GridPane page = (GridPane) applicationContext.getBean(VideoManagerLoader.class).createView(VideoSceneView.class).getRoot();
         Scene scene = new Scene(page);
         scene.getStylesheets().add("/css/videomanager.css");
 
