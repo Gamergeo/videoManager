@@ -3,12 +3,14 @@ package com.gamergeo.project.videomanager.model;
 import java.time.LocalDate;
 import java.util.List;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import jakarta.persistence.Transient;
 import lombok.Data;
 
 @Entity(name = DatabaseName.VIDEO.TABLE)
@@ -22,14 +24,18 @@ public class Video {//, HibernateModel {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	protected Long id;
 
+	@Column(length = 2000)
 	protected String title;
 
+	@Column(length = 2000)
 	protected String url;
 	
-	@Transient
 	protected LocalDate addedDate;
 	
-	@Transient
+	protected Long rate;
+	
+	@ManyToMany
 	protected List<VideoTag> videoTags;
 	
+	protected Boolean disabled;
 }

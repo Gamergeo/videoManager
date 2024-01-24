@@ -41,3 +41,1307 @@
 2024-01-24 13:00:09,574 INFO c.z.h.HikariDataSource [JavaFX Application Thread] HikariPool-1 - Shutdown completed.
 2024-01-24 13:00:09,574 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX Application Thread] Application VideoManager closed
 2024-01-24 13:00:09,578 INFO c.g.p.v.g.a.VideoManagerApplication [main] Application VideoManager started
+2024-01-24 13:03:20,540 INFO o.s.b.StartupInfoLogger [JavaFX-Launcher] Starting application using Java 21.0.1 with PID 7584 (started by gleva in C:\Projets\Repository\videoManager\videomanager-gui)
+2024-01-24 13:03:20,543 INFO o.s.b.SpringApplication [JavaFX-Launcher] The following 1 profile is active: "dev"
+2024-01-24 13:03:20,765 INFO o.s.d.r.c.RepositoryConfigurationDelegate [JavaFX-Launcher] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-01-24 13:03:20,802 INFO o.s.d.r.c.RepositoryConfigurationDelegate [JavaFX-Launcher] Finished Spring Data repository scanning in 34 ms. Found 2 JPA repository interfaces.
+2024-01-24 13:03:21,084 INFO o.h.j.i.u.LogHelper [JavaFX-Launcher] HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-01-24 13:03:21,121 INFO o.h.Version [JavaFX-Launcher] HHH000412: Hibernate ORM core version 6.4.1.Final
+2024-01-24 13:03:21,148 INFO o.h.c.i.RegionFactoryInitiator [JavaFX-Launcher] HHH000026: Second-level cache disabled
+2024-01-24 13:03:21,281 INFO o.s.o.j.p.SpringPersistenceUnitInfo [JavaFX-Launcher] No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-01-24 13:03:21,293 INFO c.z.h.HikariDataSource [JavaFX-Launcher] HikariPool-1 - Starting...
+2024-01-24 13:03:21,406 INFO c.z.h.p.HikariPool [JavaFX-Launcher] HikariPool-1 - Added connection conn0: url=jdbc:h2:file:/Projets/Environnements/Dev/data/videodata-dev user=ADMIN
+2024-01-24 13:03:21,407 INFO c.z.h.HikariDataSource [JavaFX-Launcher] HikariPool-1 - Start completed.
+2024-01-24 13:03:21,419 WARN o.h.e.j.d.i.DialectFactoryImpl [JavaFX-Launcher] HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-01-24 13:03:21,883 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [JavaFX-Launcher] HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-01-24 13:03:21,913 INFO o.s.o.j.AbstractEntityManagerFactoryBean [JavaFX-Launcher] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-01-24 13:03:22,217 WARN o.s.c.s.AbstractApplicationContext [JavaFX-Launcher] Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'dataSourceScriptDatabaseInitializer' defined in class path resource [org/springframework/boot/autoconfigure/sql/init/DataSourceInitializationConfiguration.class]: Failed to execute database script from resource [file [C:\Projets\Repository\videoManager\videomanager-gui\target\classes\data.sql]]
+2024-01-24 13:03:22,217 INFO o.s.o.j.AbstractEntityManagerFactoryBean [JavaFX-Launcher] Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-01-24 13:03:22,220 INFO c.z.h.HikariDataSource [JavaFX-Launcher] HikariPool-1 - Shutdown initiated...
+2024-01-24 13:03:22,430 INFO c.z.h.HikariDataSource [JavaFX-Launcher] HikariPool-1 - Shutdown completed.
+2024-01-24 13:03:22,434 INFO o.s.b.a.l.ConditionEvaluationReportLogger [JavaFX-Launcher] 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2024-01-24 13:03:22,450 ERROR o.s.b.SpringApplication [JavaFX-Launcher] Application run failed
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'dataSourceScriptDatabaseInitializer' defined in class path resource [org/springframework/boot/autoconfigure/sql/init/DataSourceInitializationConfiguration.class]: Failed to execute database script from resource [file [C:\Projets\Repository\videoManager\videomanager-gui\target\classes\data.sql]]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1773)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:599)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:521)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:312)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:975)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:959)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:624)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:334)
+	at org.springframework.boot.builder.SpringApplicationBuilder.run(SpringApplicationBuilder.java:149)
+	at com.gamergeo.project.videomanager.gui.application.VideoManagerGuiApplication.init(VideoManagerGuiApplication.java:25)
+	at javafx.graphics@21.0.1/com.sun.javafx.application.LauncherImpl.launchApplication1(LauncherImpl.java:817)
+	at javafx.graphics@21.0.1/com.sun.javafx.application.LauncherImpl.lambda$launchApplication$2(LauncherImpl.java:196)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+Caused by: org.springframework.jdbc.datasource.init.UncategorizedScriptException: Failed to execute database script from resource [file [C:\Projets\Repository\videoManager\videomanager-gui\target\classes\data.sql]]
+	at org.springframework.jdbc.datasource.init.ScriptUtils.executeSqlScript(ScriptUtils.java:305)
+	at org.springframework.jdbc.datasource.init.ResourceDatabasePopulator.populate(ResourceDatabasePopulator.java:254)
+	at org.springframework.jdbc.datasource.init.DatabasePopulatorUtils.execute(DatabasePopulatorUtils.java:54)
+	at org.springframework.boot.jdbc.init.DataSourceScriptDatabaseInitializer.runScripts(DataSourceScriptDatabaseInitializer.java:87)
+	at org.springframework.boot.sql.init.AbstractScriptDatabaseInitializer.runScripts(AbstractScriptDatabaseInitializer.java:146)
+	at org.springframework.boot.sql.init.AbstractScriptDatabaseInitializer.applyScripts(AbstractScriptDatabaseInitializer.java:108)
+	at org.springframework.boot.sql.init.AbstractScriptDatabaseInitializer.applyDataScripts(AbstractScriptDatabaseInitializer.java:102)
+	at org.springframework.boot.sql.init.AbstractScriptDatabaseInitializer.initializeDatabase(AbstractScriptDatabaseInitializer.java:77)
+	at org.springframework.boot.sql.init.AbstractScriptDatabaseInitializer.afterPropertiesSet(AbstractScriptDatabaseInitializer.java:66)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1820)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1769)
+	... 19 common frames omitted
+Caused by: java.lang.IllegalArgumentException: 'script' must not be null or empty
+	at org.springframework.util.Assert.hasText(Assert.java:240)
+	at org.springframework.jdbc.datasource.init.ScriptUtils.splitSqlScript(ScriptUtils.java:475)
+	at org.springframework.jdbc.datasource.init.ScriptUtils.executeSqlScript(ScriptUtils.java:252)
+	... 29 common frames omitted
+2024-01-24 13:03:55,646 INFO o.s.b.StartupInfoLogger [JavaFX-Launcher] Starting application using Java 21.0.1 with PID 2920 (started by gleva in C:\Projets\Repository\videoManager\videomanager-gui)
+2024-01-24 13:03:55,647 INFO o.s.b.SpringApplication [JavaFX-Launcher] The following 1 profile is active: "dev"
+2024-01-24 13:03:55,858 INFO o.s.d.r.c.RepositoryConfigurationDelegate [JavaFX-Launcher] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-01-24 13:03:55,892 INFO o.s.d.r.c.RepositoryConfigurationDelegate [JavaFX-Launcher] Finished Spring Data repository scanning in 30 ms. Found 2 JPA repository interfaces.
+2024-01-24 13:03:56,161 INFO o.h.j.i.u.LogHelper [JavaFX-Launcher] HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-01-24 13:03:56,200 INFO o.h.Version [JavaFX-Launcher] HHH000412: Hibernate ORM core version 6.4.1.Final
+2024-01-24 13:03:56,218 INFO o.h.c.i.RegionFactoryInitiator [JavaFX-Launcher] HHH000026: Second-level cache disabled
+2024-01-24 13:03:56,341 INFO o.s.o.j.p.SpringPersistenceUnitInfo [JavaFX-Launcher] No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-01-24 13:03:56,353 INFO c.z.h.HikariDataSource [JavaFX-Launcher] HikariPool-1 - Starting...
+2024-01-24 13:03:56,463 INFO c.z.h.p.HikariPool [JavaFX-Launcher] HikariPool-1 - Added connection conn0: url=jdbc:h2:file:/Projets/Environnements/Dev/data/videodata-dev user=ADMIN
+2024-01-24 13:03:56,465 INFO c.z.h.HikariDataSource [JavaFX-Launcher] HikariPool-1 - Start completed.
+2024-01-24 13:03:56,477 WARN o.h.e.j.d.i.DialectFactoryImpl [JavaFX-Launcher] HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-01-24 13:03:56,945 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [JavaFX-Launcher] HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-01-24 13:03:56,968 INFO o.s.o.j.AbstractEntityManagerFactoryBean [JavaFX-Launcher] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-01-24 13:03:57,434 INFO o.s.b.StartupInfoLogger [JavaFX-Launcher] Started application in 2.084 seconds (process running for 2.572)
+2024-01-24 13:03:57,439 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX-Launcher] Application VideoManager JavaFX started
+2024-01-24 13:03:57,462 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX Application Thread] Load FXML for: videoScene
+2024-01-24 13:03:57,462 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX Application Thread] Require FXML Loader for: videoScene
+2024-01-24 13:03:57,677 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX Application Thread] Load FXML for: videoTable
+2024-01-24 13:03:57,678 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX Application Thread] Require FXML Loader for: videoTable
+2024-01-24 13:03:57,726 INFO c.g.p.v.s.VideoServiceImpl [JavaFX Application Thread] Request video list
+2024-01-24 13:03:57,730 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX Application Thread] Load FXML for: videoView
+2024-01-24 13:03:57,731 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX Application Thread] Require FXML Loader for: videoView
+2024-01-24 13:03:57,755 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX Application Thread] Load FXML for: videoSearch
+2024-01-24 13:03:57,756 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX Application Thread] Require FXML Loader for: videoSearch
+2024-01-24 13:04:00,705 INFO c.g.p.v.g.c.VideoTableController [JavaFX Application Thread] Video selected: null
+2024-01-24 13:04:00,707 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX Application Thread] Require FXML Loader for: videoTagComponent
+2024-01-24 13:04:02,868 INFO c.g.p.v.g.c.VideoTableController [JavaFX Application Thread] Video selected: null
+2024-01-24 13:04:02,869 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX Application Thread] Require FXML Loader for: videoTagComponent
+2024-01-24 13:04:02,872 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX Application Thread] Require FXML Loader for: videoTagComponent
+2024-01-24 13:04:04,498 INFO c.g.p.v.g.c.VideoTableController [JavaFX Application Thread] Video selected: null
+2024-01-24 13:04:04,499 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX Application Thread] Require FXML Loader for: videoTagComponent
+2024-01-24 13:04:04,502 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX Application Thread] Require FXML Loader for: videoTagComponent
+2024-01-24 13:04:05,219 INFO c.g.p.v.g.c.VideoTableController [JavaFX Application Thread] Video selected: null
+2024-01-24 13:04:05,219 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX Application Thread] Require FXML Loader for: videoTagComponent
+2024-01-24 13:04:05,222 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX Application Thread] Require FXML Loader for: videoTagComponent
+2024-01-24 13:04:06,122 INFO c.g.p.v.g.c.VideoTableController [JavaFX Application Thread] Video selected: null
+2024-01-24 13:04:06,124 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX Application Thread] Require FXML Loader for: videoTagComponent
+2024-01-24 13:04:07,880 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX Application Thread] Application VideoManager is closing...
+2024-01-24 13:04:07,883 INFO o.s.o.j.AbstractEntityManagerFactoryBean [JavaFX Application Thread] Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-01-24 13:04:07,883 INFO c.z.h.HikariDataSource [JavaFX Application Thread] HikariPool-1 - Shutdown initiated...
+2024-01-24 13:04:08,088 INFO c.z.h.HikariDataSource [JavaFX Application Thread] HikariPool-1 - Shutdown completed.
+2024-01-24 13:04:08,088 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX Application Thread] Application VideoManager closed
+2024-01-24 13:04:08,091 INFO c.g.p.v.g.a.VideoManagerApplication [main] Application VideoManager started
+2024-01-24 13:07:13,567 INFO o.s.b.StartupInfoLogger [JavaFX-Launcher] Starting application using Java 21.0.1 with PID 16092 (started by gleva in C:\Projets\Repository\videoManager\videomanager-gui)
+2024-01-24 13:07:13,569 INFO o.s.b.SpringApplication [JavaFX-Launcher] The following 1 profile is active: "dev"
+2024-01-24 13:07:13,810 INFO o.s.d.r.c.RepositoryConfigurationDelegate [JavaFX-Launcher] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-01-24 13:07:13,844 INFO o.s.d.r.c.RepositoryConfigurationDelegate [JavaFX-Launcher] Finished Spring Data repository scanning in 30 ms. Found 2 JPA repository interfaces.
+2024-01-24 13:07:14,108 INFO o.h.j.i.u.LogHelper [JavaFX-Launcher] HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-01-24 13:07:14,137 INFO o.h.Version [JavaFX-Launcher] HHH000412: Hibernate ORM core version 6.4.1.Final
+2024-01-24 13:07:14,157 INFO o.h.c.i.RegionFactoryInitiator [JavaFX-Launcher] HHH000026: Second-level cache disabled
+2024-01-24 13:07:14,279 INFO o.s.o.j.p.SpringPersistenceUnitInfo [JavaFX-Launcher] No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-01-24 13:07:14,292 INFO c.z.h.HikariDataSource [JavaFX-Launcher] HikariPool-1 - Starting...
+2024-01-24 13:07:14,403 INFO c.z.h.p.HikariPool [JavaFX-Launcher] HikariPool-1 - Added connection conn0: url=jdbc:h2:file:/Projets/Environnements/Dev/data/videodata-dev user=ADMIN
+2024-01-24 13:07:14,403 INFO c.z.h.HikariDataSource [JavaFX-Launcher] HikariPool-1 - Start completed.
+2024-01-24 13:07:14,417 WARN o.h.e.j.d.i.DialectFactoryImpl [JavaFX-Launcher] HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-01-24 13:07:14,859 ERROR o.s.o.j.AbstractEntityManagerFactoryBean [JavaFX-Launcher] Failed to initialize JPA EntityManagerFactory: [PersistenceUnit: default] Unable to build Hibernate SessionFactory; nested exception is java.lang.ClassCastException: class org.hibernate.type.internal.BasicTypeImpl cannot be cast to class org.hibernate.type.BasicPluralType (org.hibernate.type.internal.BasicTypeImpl and org.hibernate.type.BasicPluralType are in unnamed module of loader 'app')
+2024-01-24 13:07:14,859 WARN o.s.c.s.AbstractApplicationContext [JavaFX-Launcher] Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: [PersistenceUnit: default] Unable to build Hibernate SessionFactory; nested exception is java.lang.ClassCastException: class org.hibernate.type.internal.BasicTypeImpl cannot be cast to class org.hibernate.type.BasicPluralType (org.hibernate.type.internal.BasicTypeImpl and org.hibernate.type.BasicPluralType are in unnamed module of loader 'app')
+2024-01-24 13:07:14,859 INFO c.z.h.HikariDataSource [JavaFX-Launcher] HikariPool-1 - Shutdown initiated...
+2024-01-24 13:07:15,063 INFO c.z.h.HikariDataSource [JavaFX-Launcher] HikariPool-1 - Shutdown completed.
+2024-01-24 13:07:15,067 INFO o.s.b.a.l.ConditionEvaluationReportLogger [JavaFX-Launcher] 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2024-01-24 13:07:15,079 ERROR o.s.b.SpringApplication [JavaFX-Launcher] Application run failed
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: [PersistenceUnit: default] Unable to build Hibernate SessionFactory; nested exception is java.lang.ClassCastException: class org.hibernate.type.internal.BasicTypeImpl cannot be cast to class org.hibernate.type.BasicPluralType (org.hibernate.type.internal.BasicTypeImpl and org.hibernate.type.BasicPluralType are in unnamed module of loader 'app')
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1773)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:599)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:521)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1231)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:949)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:624)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:334)
+	at org.springframework.boot.builder.SpringApplicationBuilder.run(SpringApplicationBuilder.java:149)
+	at com.gamergeo.project.videomanager.gui.application.VideoManagerGuiApplication.init(VideoManagerGuiApplication.java:25)
+	at javafx.graphics@21.0.1/com.sun.javafx.application.LauncherImpl.launchApplication1(LauncherImpl.java:817)
+	at javafx.graphics@21.0.1/com.sun.javafx.application.LauncherImpl.lambda$launchApplication$2(LauncherImpl.java:196)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+Caused by: jakarta.persistence.PersistenceException: [PersistenceUnit: default] Unable to build Hibernate SessionFactory; nested exception is java.lang.ClassCastException: class org.hibernate.type.internal.BasicTypeImpl cannot be cast to class org.hibernate.type.BasicPluralType (org.hibernate.type.internal.BasicTypeImpl and org.hibernate.type.BasicPluralType are in unnamed module of loader 'app')
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:421)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:396)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:352)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1820)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1769)
+	... 17 common frames omitted
+Caused by: java.lang.ClassCastException: class org.hibernate.type.internal.BasicTypeImpl cannot be cast to class org.hibernate.type.BasicPluralType (org.hibernate.type.internal.BasicTypeImpl and org.hibernate.type.BasicPluralType are in unnamed module of loader 'app')
+	at org.hibernate.type.descriptor.sql.internal.ArrayDdlTypeImpl.getCastTypeName(ArrayDdlTypeImpl.java:34)
+	at org.hibernate.sql.ast.spi.AbstractSqlAstTranslator.getCastTypeName(AbstractSqlAstTranslator.java:6353)
+	at org.hibernate.sql.ast.spi.AbstractSqlAstTranslator.visitCastTarget(AbstractSqlAstTranslator.java:6300)
+	at org.hibernate.sql.ast.tree.expression.CastTarget.accept(CastTarget.java:75)
+	at org.hibernate.sql.ast.spi.AbstractSqlAstTranslator.render(AbstractSqlAstTranslator.java:6434)
+	at org.hibernate.query.sqm.produce.function.internal.PatternRenderer.render(PatternRenderer.java:224)
+	at org.hibernate.query.sqm.produce.function.internal.PatternRenderer.render(PatternRenderer.java:159)
+	at org.hibernate.query.sqm.produce.function.internal.PatternRenderer.render(PatternRenderer.java:142)
+	at org.hibernate.dialect.function.CastFunction.render(CastFunction.java:76)
+	at org.hibernate.sql.ast.spi.AbstractSqlAstTranslator.renderCasted(AbstractSqlAstTranslator.java:5259)
+	at org.hibernate.dialect.SqlAstTranslatorWithMerge.renderMergeUsingQuerySelection(SqlAstTranslatorWithMerge.java:156)
+	at org.hibernate.dialect.SqlAstTranslatorWithMerge.renderMergeUsingQuery(SqlAstTranslatorWithMerge.java:145)
+	at org.hibernate.dialect.SqlAstTranslatorWithMerge.renderMergeUsing(SqlAstTranslatorWithMerge.java:121)
+	at org.hibernate.dialect.SqlAstTranslatorWithMerge.renderMergeStatement(SqlAstTranslatorWithMerge.java:77)
+	at org.hibernate.dialect.SqlAstTranslatorWithMerge.createMergeOperation(SqlAstTranslatorWithMerge.java:43)
+	at org.hibernate.dialect.H2Dialect.usingMerge(H2Dialect.java:912)
+	at org.hibernate.dialect.H2Dialect.createOptionalTableUpdateOperation(H2Dialect.java:904)
+	at org.hibernate.sql.model.internal.OptionalTableUpdate.createMutationOperation(OptionalTableUpdate.java:136)
+	at org.hibernate.persister.entity.mutation.AbstractMutationCoordinator.createOperationGroup(AbstractMutationCoordinator.java:87)
+	at org.hibernate.persister.entity.mutation.UpdateCoordinatorStandard.buildStaticUpdateGroup(UpdateCoordinatorStandard.java:1646)
+	at org.hibernate.persister.entity.mutation.UpdateCoordinatorStandard.<init>(UpdateCoordinatorStandard.java:90)
+	at org.hibernate.persister.entity.mutation.MergeCoordinator.<init>(MergeCoordinator.java:23)
+	at org.hibernate.persister.entity.AbstractEntityPersister.buildMergeCoordinator(AbstractEntityPersister.java:3647)
+	at org.hibernate.persister.entity.AbstractEntityPersister.doLateInit(AbstractEntityPersister.java:3415)
+	at org.hibernate.persister.entity.AbstractEntityPersister.postInstantiate(AbstractEntityPersister.java:3679)
+	at org.hibernate.metamodel.model.domain.internal.MappingMetamodelImpl.finishInitialization(MappingMetamodelImpl.java:201)
+	at org.hibernate.internal.SessionFactoryImpl.initializeMappingModel(SessionFactoryImpl.java:364)
+	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:293)
+	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:450)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1507)
+	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:75)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:376)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:409)
+	... 21 common frames omitted
+2024-01-24 13:08:49,287 INFO o.s.b.StartupInfoLogger [JavaFX-Launcher] Starting application using Java 21.0.1 with PID 20252 (started by gleva in C:\Projets\Repository\videoManager\videomanager-gui)
+2024-01-24 13:08:49,290 INFO o.s.b.SpringApplication [JavaFX-Launcher] The following 1 profile is active: "dev"
+2024-01-24 13:08:49,509 INFO o.s.d.r.c.RepositoryConfigurationDelegate [JavaFX-Launcher] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-01-24 13:08:49,545 INFO o.s.d.r.c.RepositoryConfigurationDelegate [JavaFX-Launcher] Finished Spring Data repository scanning in 31 ms. Found 2 JPA repository interfaces.
+2024-01-24 13:08:49,817 INFO o.h.j.i.u.LogHelper [JavaFX-Launcher] HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-01-24 13:08:49,851 INFO o.h.Version [JavaFX-Launcher] HHH000412: Hibernate ORM core version 6.4.1.Final
+2024-01-24 13:08:49,867 INFO o.h.c.i.RegionFactoryInitiator [JavaFX-Launcher] HHH000026: Second-level cache disabled
+2024-01-24 13:08:49,994 INFO o.s.o.j.p.SpringPersistenceUnitInfo [JavaFX-Launcher] No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-01-24 13:08:50,007 INFO c.z.h.HikariDataSource [JavaFX-Launcher] HikariPool-1 - Starting...
+2024-01-24 13:08:50,117 INFO c.z.h.p.HikariPool [JavaFX-Launcher] HikariPool-1 - Added connection conn0: url=jdbc:h2:file:/Projets/Environnements/Dev/data/videodata-dev user=ADMIN
+2024-01-24 13:08:50,118 INFO c.z.h.HikariDataSource [JavaFX-Launcher] HikariPool-1 - Start completed.
+2024-01-24 13:08:50,130 WARN o.h.e.j.d.i.DialectFactoryImpl [JavaFX-Launcher] HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-01-24 13:08:50,235 ERROR o.s.o.j.AbstractEntityManagerFactoryBean [JavaFX-Launcher] Failed to initialize JPA EntityManagerFactory: Association 'com.gamergeo.project.videomanager.model.Video.videoTags' targets an unknown entity named 'java.util.List'
+2024-01-24 13:08:50,236 WARN o.s.c.s.AbstractApplicationContext [JavaFX-Launcher] Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Association 'com.gamergeo.project.videomanager.model.Video.videoTags' targets an unknown entity named 'java.util.List'
+2024-01-24 13:08:50,236 INFO c.z.h.HikariDataSource [JavaFX-Launcher] HikariPool-1 - Shutdown initiated...
+2024-01-24 13:08:50,248 INFO c.z.h.HikariDataSource [JavaFX-Launcher] HikariPool-1 - Shutdown completed.
+2024-01-24 13:08:50,253 INFO o.s.b.a.l.ConditionEvaluationReportLogger [JavaFX-Launcher] 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2024-01-24 13:08:50,266 ERROR o.s.b.SpringApplication [JavaFX-Launcher] Application run failed
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Association 'com.gamergeo.project.videomanager.model.Video.videoTags' targets an unknown entity named 'java.util.List'
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1773)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:599)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:521)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1231)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:949)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:624)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:334)
+	at org.springframework.boot.builder.SpringApplicationBuilder.run(SpringApplicationBuilder.java:149)
+	at com.gamergeo.project.videomanager.gui.application.VideoManagerGuiApplication.init(VideoManagerGuiApplication.java:25)
+	at javafx.graphics@21.0.1/com.sun.javafx.application.LauncherImpl.launchApplication1(LauncherImpl.java:817)
+	at javafx.graphics@21.0.1/com.sun.javafx.application.LauncherImpl.lambda$launchApplication$2(LauncherImpl.java:196)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+Caused by: org.hibernate.AnnotationException: Association 'com.gamergeo.project.videomanager.model.Video.videoTags' targets an unknown entity named 'java.util.List'
+	at org.hibernate.boot.model.internal.ToOneFkSecondPass.doSecondPass(ToOneFkSecondPass.java:104)
+	at org.hibernate.boot.internal.InFlightMetadataCollectorImpl.processEndOfQueue(InFlightMetadataCollectorImpl.java:1910)
+	at org.hibernate.boot.internal.InFlightMetadataCollectorImpl.processFkSecondPassesInOrder(InFlightMetadataCollectorImpl.java:1859)
+	at org.hibernate.boot.internal.InFlightMetadataCollectorImpl.processSecondPasses(InFlightMetadataCollectorImpl.java:1768)
+	at org.hibernate.boot.model.process.spi.MetadataBuildingProcess.complete(MetadataBuildingProcess.java:332)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.metadata(EntityManagerFactoryBuilderImpl.java:1432)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1503)
+	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:75)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:376)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:409)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:396)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:352)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1820)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1769)
+	... 17 common frames omitted
+2024-01-24 13:10:14,094 INFO o.s.b.StartupInfoLogger [JavaFX-Launcher] Starting application using Java 21.0.1 with PID 12372 (started by gleva in C:\Projets\Repository\videoManager\videomanager-gui)
+2024-01-24 13:10:14,096 INFO o.s.b.SpringApplication [JavaFX-Launcher] The following 1 profile is active: "dev"
+2024-01-24 13:10:14,329 INFO o.s.d.r.c.RepositoryConfigurationDelegate [JavaFX-Launcher] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-01-24 13:10:14,364 INFO o.s.d.r.c.RepositoryConfigurationDelegate [JavaFX-Launcher] Finished Spring Data repository scanning in 30 ms. Found 2 JPA repository interfaces.
+2024-01-24 13:10:14,665 INFO o.h.j.i.u.LogHelper [JavaFX-Launcher] HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-01-24 13:10:14,709 INFO o.h.Version [JavaFX-Launcher] HHH000412: Hibernate ORM core version 6.4.1.Final
+2024-01-24 13:10:14,730 INFO o.h.c.i.RegionFactoryInitiator [JavaFX-Launcher] HHH000026: Second-level cache disabled
+2024-01-24 13:10:14,855 INFO o.s.o.j.p.SpringPersistenceUnitInfo [JavaFX-Launcher] No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-01-24 13:10:14,868 INFO c.z.h.HikariDataSource [JavaFX-Launcher] HikariPool-1 - Starting...
+2024-01-24 13:10:14,975 INFO c.z.h.p.HikariPool [JavaFX-Launcher] HikariPool-1 - Added connection conn0: url=jdbc:h2:file:/Projets/Environnements/Dev/data/videodata-dev user=ADMIN
+2024-01-24 13:10:14,976 INFO c.z.h.HikariDataSource [JavaFX-Launcher] HikariPool-1 - Start completed.
+2024-01-24 13:10:14,988 WARN o.h.e.j.d.i.DialectFactoryImpl [JavaFX-Launcher] HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-01-24 13:10:15,093 ERROR o.s.o.j.AbstractEntityManagerFactoryBean [JavaFX-Launcher] Failed to initialize JPA EntityManagerFactory: Association 'com.gamergeo.project.videomanager.model.Video.videoTags' targets an unknown entity named 'java.util.List'
+2024-01-24 13:10:15,093 WARN o.s.c.s.AbstractApplicationContext [JavaFX-Launcher] Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Association 'com.gamergeo.project.videomanager.model.Video.videoTags' targets an unknown entity named 'java.util.List'
+2024-01-24 13:10:15,093 INFO c.z.h.HikariDataSource [JavaFX-Launcher] HikariPool-1 - Shutdown initiated...
+2024-01-24 13:10:15,101 INFO c.z.h.HikariDataSource [JavaFX-Launcher] HikariPool-1 - Shutdown completed.
+2024-01-24 13:10:15,105 INFO o.s.b.a.l.ConditionEvaluationReportLogger [JavaFX-Launcher] 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2024-01-24 13:10:15,117 ERROR o.s.b.SpringApplication [JavaFX-Launcher] Application run failed
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Association 'com.gamergeo.project.videomanager.model.Video.videoTags' targets an unknown entity named 'java.util.List'
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1773)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:599)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:521)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1231)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:949)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:624)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:334)
+	at org.springframework.boot.builder.SpringApplicationBuilder.run(SpringApplicationBuilder.java:149)
+	at com.gamergeo.project.videomanager.gui.application.VideoManagerGuiApplication.init(VideoManagerGuiApplication.java:25)
+	at javafx.graphics@21.0.1/com.sun.javafx.application.LauncherImpl.launchApplication1(LauncherImpl.java:817)
+	at javafx.graphics@21.0.1/com.sun.javafx.application.LauncherImpl.lambda$launchApplication$2(LauncherImpl.java:196)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+Caused by: org.hibernate.AnnotationException: Association 'com.gamergeo.project.videomanager.model.Video.videoTags' targets an unknown entity named 'java.util.List'
+	at org.hibernate.boot.model.internal.ToOneFkSecondPass.doSecondPass(ToOneFkSecondPass.java:104)
+	at org.hibernate.boot.internal.InFlightMetadataCollectorImpl.processEndOfQueue(InFlightMetadataCollectorImpl.java:1910)
+	at org.hibernate.boot.internal.InFlightMetadataCollectorImpl.processFkSecondPassesInOrder(InFlightMetadataCollectorImpl.java:1859)
+	at org.hibernate.boot.internal.InFlightMetadataCollectorImpl.processSecondPasses(InFlightMetadataCollectorImpl.java:1768)
+	at org.hibernate.boot.model.process.spi.MetadataBuildingProcess.complete(MetadataBuildingProcess.java:332)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.metadata(EntityManagerFactoryBuilderImpl.java:1432)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1503)
+	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:75)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:376)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:409)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:396)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:352)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1820)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1769)
+	... 17 common frames omitted
+2024-01-24 13:11:11,552 INFO o.s.b.StartupInfoLogger [JavaFX-Launcher] Starting application using Java 21.0.1 with PID 20400 (started by gleva in C:\Projets\Repository\videoManager\videomanager-gui)
+2024-01-24 13:11:11,553 INFO o.s.b.SpringApplication [JavaFX-Launcher] The following 1 profile is active: "dev"
+2024-01-24 13:11:11,773 INFO o.s.d.r.c.RepositoryConfigurationDelegate [JavaFX-Launcher] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-01-24 13:11:11,810 INFO o.s.d.r.c.RepositoryConfigurationDelegate [JavaFX-Launcher] Finished Spring Data repository scanning in 33 ms. Found 2 JPA repository interfaces.
+2024-01-24 13:11:12,108 INFO o.h.j.i.u.LogHelper [JavaFX-Launcher] HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-01-24 13:11:12,145 INFO o.h.Version [JavaFX-Launcher] HHH000412: Hibernate ORM core version 6.4.1.Final
+2024-01-24 13:11:12,166 INFO o.h.c.i.RegionFactoryInitiator [JavaFX-Launcher] HHH000026: Second-level cache disabled
+2024-01-24 13:11:12,294 INFO o.s.o.j.p.SpringPersistenceUnitInfo [JavaFX-Launcher] No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-01-24 13:11:12,309 INFO c.z.h.HikariDataSource [JavaFX-Launcher] HikariPool-1 - Starting...
+2024-01-24 13:11:12,418 INFO c.z.h.p.HikariPool [JavaFX-Launcher] HikariPool-1 - Added connection conn0: url=jdbc:h2:file:/Projets/Environnements/Dev/data/videodata-dev user=ADMIN
+2024-01-24 13:11:12,420 INFO c.z.h.HikariDataSource [JavaFX-Launcher] HikariPool-1 - Start completed.
+2024-01-24 13:11:12,432 WARN o.h.e.j.d.i.DialectFactoryImpl [JavaFX-Launcher] HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-01-24 13:11:12,927 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [JavaFX-Launcher] HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-01-24 13:11:12,958 INFO o.s.o.j.AbstractEntityManagerFactoryBean [JavaFX-Launcher] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-01-24 13:11:13,423 INFO o.s.b.StartupInfoLogger [JavaFX-Launcher] Started application in 2.156 seconds (process running for 2.644)
+2024-01-24 13:11:13,428 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX-Launcher] Application VideoManager JavaFX started
+2024-01-24 13:11:13,451 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX Application Thread] Load FXML for: videoScene
+2024-01-24 13:11:13,452 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX Application Thread] Require FXML Loader for: videoScene
+2024-01-24 13:11:13,668 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX Application Thread] Load FXML for: videoTable
+2024-01-24 13:11:13,669 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX Application Thread] Require FXML Loader for: videoTable
+2024-01-24 13:11:13,710 INFO c.g.p.v.s.VideoServiceImpl [JavaFX Application Thread] Request video list
+2024-01-24 13:11:13,714 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX Application Thread] Load FXML for: videoView
+2024-01-24 13:11:13,714 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX Application Thread] Require FXML Loader for: videoView
+2024-01-24 13:11:13,731 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX Application Thread] Load FXML for: videoSearch
+2024-01-24 13:11:13,732 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX Application Thread] Require FXML Loader for: videoSearch
+2024-01-24 13:11:16,866 INFO c.g.p.v.g.c.VideoTableController [JavaFX Application Thread] Video selected: 2
+2024-01-24 13:11:16,869 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX Application Thread] Require FXML Loader for: videoTagComponent
+2024-01-24 13:11:18,297 INFO c.g.p.v.g.c.VideoTableController [JavaFX Application Thread] Video selected: null
+2024-01-24 13:11:18,297 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX Application Thread] Require FXML Loader for: videoTagComponent
+2024-01-24 13:11:18,302 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX Application Thread] Require FXML Loader for: videoTagComponent
+2024-01-24 13:11:20,496 INFO c.g.p.v.g.c.VideoTableController [JavaFX Application Thread] Video selected: 2
+2024-01-24 13:11:20,498 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX Application Thread] Require FXML Loader for: videoTagComponent
+2024-01-24 13:11:21,125 INFO c.g.p.v.g.c.VideoTableController [JavaFX Application Thread] Video selected: null
+2024-01-24 13:11:21,127 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX Application Thread] Require FXML Loader for: videoTagComponent
+2024-01-24 13:11:21,129 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX Application Thread] Require FXML Loader for: videoTagComponent
+2024-01-24 13:11:22,686 INFO c.g.p.v.g.c.VideoTableController [JavaFX Application Thread] Video selected: 2
+2024-01-24 13:11:22,687 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX Application Thread] Require FXML Loader for: videoTagComponent
+2024-01-24 13:11:23,118 INFO c.g.p.v.g.c.VideoTableController [JavaFX Application Thread] Video selected: null
+2024-01-24 13:11:23,119 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX Application Thread] Require FXML Loader for: videoTagComponent
+2024-01-24 13:11:23,122 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX Application Thread] Require FXML Loader for: videoTagComponent
+2024-01-24 13:11:24,106 INFO c.g.p.v.g.c.VideoTableController [JavaFX Application Thread] Video selected: 2
+2024-01-24 13:11:24,109 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX Application Thread] Require FXML Loader for: videoTagComponent
+2024-01-24 13:11:25,303 INFO c.g.p.v.g.c.VideoTableController [JavaFX Application Thread] Video selected: null
+2024-01-24 13:11:25,304 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX Application Thread] Require FXML Loader for: videoTagComponent
+2024-01-24 13:11:25,306 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX Application Thread] Require FXML Loader for: videoTagComponent
+2024-01-24 13:11:28,209 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX Application Thread] Application VideoManager is closing...
+2024-01-24 13:11:28,212 INFO o.s.o.j.AbstractEntityManagerFactoryBean [JavaFX Application Thread] Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-01-24 13:11:28,213 INFO c.z.h.HikariDataSource [JavaFX Application Thread] HikariPool-1 - Shutdown initiated...
+2024-01-24 13:11:28,234 INFO c.z.h.HikariDataSource [JavaFX Application Thread] HikariPool-1 - Shutdown completed.
+2024-01-24 13:11:28,234 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX Application Thread] Application VideoManager closed
+2024-01-24 13:11:28,236 INFO c.g.p.v.g.a.VideoManagerApplication [main] Application VideoManager started
+2024-01-24 13:13:57,076 INFO o.s.b.StartupInfoLogger [JavaFX-Launcher] Starting application using Java 21.0.1 with PID 22196 (started by gleva in C:\Projets\Repository\videoManager\videomanager-gui)
+2024-01-24 13:13:57,082 INFO o.s.b.SpringApplication [JavaFX-Launcher] The following 1 profile is active: "dev"
+2024-01-24 13:13:57,309 INFO o.s.d.r.c.RepositoryConfigurationDelegate [JavaFX-Launcher] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-01-24 13:13:57,343 INFO o.s.d.r.c.RepositoryConfigurationDelegate [JavaFX-Launcher] Finished Spring Data repository scanning in 29 ms. Found 2 JPA repository interfaces.
+2024-01-24 13:13:57,650 INFO o.h.j.i.u.LogHelper [JavaFX-Launcher] HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-01-24 13:13:57,714 INFO o.h.Version [JavaFX-Launcher] HHH000412: Hibernate ORM core version 6.4.1.Final
+2024-01-24 13:13:57,736 INFO o.h.c.i.RegionFactoryInitiator [JavaFX-Launcher] HHH000026: Second-level cache disabled
+2024-01-24 13:13:57,857 INFO o.s.o.j.p.SpringPersistenceUnitInfo [JavaFX-Launcher] No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-01-24 13:13:57,871 INFO c.z.h.HikariDataSource [JavaFX-Launcher] HikariPool-1 - Starting...
+2024-01-24 13:13:58,935 ERROR c.z.h.p.HikariPool [JavaFX-Launcher] HikariPool-1 - Exception during pool initialization.
+org.h2.jdbc.JdbcSQLNonTransientConnectionException: La base de données est peut-être en cours d'utilisation: "C:/Projets/Environnements/Dev/data/videodata-dev.mv.db". Solutions posibles: fermer toutes les autres connexions; utilisez le mode serveur
+Database may be already in use: "C:/Projets/Environnements/Dev/data/videodata-dev.mv.db". Possible solutions: close all other connection(s); use the server mode [90020-224]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:690)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at org.h2.message.DbException.get(DbException.java:212)
+	at org.h2.mvstore.db.Store.convertMVStoreException(Store.java:165)
+	at org.h2.mvstore.db.Store.<init>(Store.java:142)
+	at org.h2.engine.Database.<init>(Database.java:326)
+	at org.h2.engine.Engine.openSession(Engine.java:92)
+	at org.h2.engine.Engine.openSession(Engine.java:222)
+	at org.h2.engine.Engine.createSession(Engine.java:201)
+	at org.h2.engine.SessionRemote.connectEmbeddedOrServer(SessionRemote.java:343)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:125)
+	at org.h2.Driver.connect(Driver.java:59)
+	at com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:138)
+	at com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:359)
+	at com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:201)
+	at com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:470)
+	at com.zaxxer.hikari.pool.HikariPool.checkFailFast(HikariPool.java:561)
+	at com.zaxxer.hikari.pool.HikariPool.<init>(HikariPool.java:100)
+	at com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:112)
+	at org.hibernate.engine.jdbc.connections.internal.DatasourceConnectionProviderImpl.getConnection(DatasourceConnectionProviderImpl.java:122)
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess.obtainConnection(JdbcEnvironmentInitiator.java:428)
+	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcIsolationDelegate.delegateWork(JdbcIsolationDelegate.java:61)
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.getJdbcEnvironmentUsingJdbcMetadata(JdbcEnvironmentInitiator.java:276)
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.initiateService(JdbcEnvironmentInitiator.java:107)
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.initiateService(JdbcEnvironmentInitiator.java:68)
+	at org.hibernate.boot.registry.internal.StandardServiceRegistryImpl.initiateService(StandardServiceRegistryImpl.java:129)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.createService(AbstractServiceRegistryImpl.java:263)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.initializeService(AbstractServiceRegistryImpl.java:238)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.getService(AbstractServiceRegistryImpl.java:215)
+	at org.hibernate.boot.model.relational.Database.<init>(Database.java:45)
+	at org.hibernate.boot.internal.InFlightMetadataCollectorImpl.getDatabase(InFlightMetadataCollectorImpl.java:223)
+	at org.hibernate.boot.internal.InFlightMetadataCollectorImpl.<init>(InFlightMetadataCollectorImpl.java:191)
+	at org.hibernate.boot.model.process.spi.MetadataBuildingProcess.complete(MetadataBuildingProcess.java:170)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.metadata(EntityManagerFactoryBuilderImpl.java:1432)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1503)
+	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:75)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:376)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:409)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:396)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:352)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1820)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1769)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:599)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:521)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1231)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:949)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:624)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:334)
+	at org.springframework.boot.builder.SpringApplicationBuilder.run(SpringApplicationBuilder.java:149)
+	at com.gamergeo.project.videomanager.gui.application.VideoManagerGuiApplication.init(VideoManagerGuiApplication.java:25)
+	at javafx.graphics@21.0.1/com.sun.javafx.application.LauncherImpl.launchApplication1(LauncherImpl.java:817)
+	at javafx.graphics@21.0.1/com.sun.javafx.application.LauncherImpl.lambda$launchApplication$2(LauncherImpl.java:196)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+Caused by: org.h2.mvstore.MVStoreException: The file is locked: C:/Projets/Environnements/Dev/data/videodata-dev.mv.db [2.2.224/7]
+	at org.h2.mvstore.DataUtils.newMVStoreException(DataUtils.java:996)
+	at org.h2.mvstore.SingleFileStore.lockFileChannel(SingleFileStore.java:143)
+	at org.h2.mvstore.SingleFileStore.open(SingleFileStore.java:117)
+	at org.h2.mvstore.SingleFileStore.open(SingleFileStore.java:81)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:286)
+	at org.h2.mvstore.MVStore$Builder.open(MVStore.java:2035)
+	at org.h2.mvstore.db.Store.<init>(Store.java:133)
+	... 54 common frames omitted
+2024-01-24 13:13:58,937 WARN o.h.e.j.e.i.JdbcEnvironmentInitiator [JavaFX-Launcher] HHH000342: Could not obtain connection to query metadata
+java.lang.NullPointerException: Cannot invoke "org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(java.sql.SQLException, String)" because the return value of "org.hibernate.resource.transaction.backend.jdbc.internal.JdbcIsolationDelegate.sqlExceptionHelper()" is null
+	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcIsolationDelegate.delegateWork(JdbcIsolationDelegate.java:116)
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.getJdbcEnvironmentUsingJdbcMetadata(JdbcEnvironmentInitiator.java:276)
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.initiateService(JdbcEnvironmentInitiator.java:107)
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.initiateService(JdbcEnvironmentInitiator.java:68)
+	at org.hibernate.boot.registry.internal.StandardServiceRegistryImpl.initiateService(StandardServiceRegistryImpl.java:129)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.createService(AbstractServiceRegistryImpl.java:263)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.initializeService(AbstractServiceRegistryImpl.java:238)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.getService(AbstractServiceRegistryImpl.java:215)
+	at org.hibernate.boot.model.relational.Database.<init>(Database.java:45)
+	at org.hibernate.boot.internal.InFlightMetadataCollectorImpl.getDatabase(InFlightMetadataCollectorImpl.java:223)
+	at org.hibernate.boot.internal.InFlightMetadataCollectorImpl.<init>(InFlightMetadataCollectorImpl.java:191)
+	at org.hibernate.boot.model.process.spi.MetadataBuildingProcess.complete(MetadataBuildingProcess.java:170)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.metadata(EntityManagerFactoryBuilderImpl.java:1432)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1503)
+	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:75)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:376)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:409)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:396)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:352)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1820)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1769)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:599)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:521)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1231)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:949)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:624)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:334)
+	at org.springframework.boot.builder.SpringApplicationBuilder.run(SpringApplicationBuilder.java:149)
+	at com.gamergeo.project.videomanager.gui.application.VideoManagerGuiApplication.init(VideoManagerGuiApplication.java:25)
+	at javafx.graphics@21.0.1/com.sun.javafx.application.LauncherImpl.launchApplication1(LauncherImpl.java:817)
+	at javafx.graphics@21.0.1/com.sun.javafx.application.LauncherImpl.lambda$launchApplication$2(LauncherImpl.java:196)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+2024-01-24 13:13:58,949 WARN o.h.e.j.d.i.DialectFactoryImpl [JavaFX-Launcher] HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-01-24 13:13:59,428 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [JavaFX-Launcher] HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-01-24 13:13:59,436 INFO c.z.h.HikariDataSource [JavaFX-Launcher] HikariPool-1 - Starting...
+2024-01-24 13:14:00,443 ERROR c.z.h.p.HikariPool [JavaFX-Launcher] HikariPool-1 - Exception during pool initialization.
+org.h2.jdbc.JdbcSQLNonTransientConnectionException: La base de données est peut-être en cours d'utilisation: "C:/Projets/Environnements/Dev/data/videodata-dev.mv.db". Solutions posibles: fermer toutes les autres connexions; utilisez le mode serveur
+Database may be already in use: "C:/Projets/Environnements/Dev/data/videodata-dev.mv.db". Possible solutions: close all other connection(s); use the server mode [90020-224]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:690)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at org.h2.message.DbException.get(DbException.java:212)
+	at org.h2.mvstore.db.Store.convertMVStoreException(Store.java:165)
+	at org.h2.mvstore.db.Store.<init>(Store.java:142)
+	at org.h2.engine.Database.<init>(Database.java:326)
+	at org.h2.engine.Engine.openSession(Engine.java:92)
+	at org.h2.engine.Engine.openSession(Engine.java:222)
+	at org.h2.engine.Engine.createSession(Engine.java:201)
+	at org.h2.engine.SessionRemote.connectEmbeddedOrServer(SessionRemote.java:343)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:125)
+	at org.h2.Driver.connect(Driver.java:59)
+	at com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:138)
+	at com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:359)
+	at com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:201)
+	at com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:470)
+	at com.zaxxer.hikari.pool.HikariPool.checkFailFast(HikariPool.java:561)
+	at com.zaxxer.hikari.pool.HikariPool.<init>(HikariPool.java:100)
+	at com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:112)
+	at org.hibernate.engine.jdbc.connections.internal.DatasourceConnectionProviderImpl.getConnection(DatasourceConnectionProviderImpl.java:122)
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess.obtainConnection(JdbcEnvironmentInitiator.java:428)
+	at org.hibernate.resource.transaction.backend.jdbc.internal.DdlTransactionIsolatorNonJtaImpl.getIsolatedConnection(DdlTransactionIsolatorNonJtaImpl.java:46)
+	at org.hibernate.resource.transaction.backend.jdbc.internal.DdlTransactionIsolatorNonJtaImpl.getIsolatedConnection(DdlTransactionIsolatorNonJtaImpl.java:39)
+	at org.hibernate.tool.schema.internal.exec.ImprovedExtractionContextImpl.getJdbcConnection(ImprovedExtractionContextImpl.java:63)
+	at org.hibernate.tool.schema.extract.spi.ExtractionContext.getQueryResults(ExtractionContext.java:43)
+	at org.hibernate.tool.schema.extract.internal.SequenceInformationExtractorLegacyImpl.extractMetadata(SequenceInformationExtractorLegacyImpl.java:39)
+	at org.hibernate.tool.schema.extract.internal.DatabaseInformationImpl.initializeSequences(DatabaseInformationImpl.java:66)
+	at org.hibernate.tool.schema.extract.internal.DatabaseInformationImpl.<init>(DatabaseInformationImpl.java:60)
+	at org.hibernate.tool.schema.internal.Helper.buildDatabaseInformation(Helper.java:185)
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.doMigration(AbstractSchemaMigrator.java:98)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.performDatabaseAction(SchemaManagementToolCoordinator.java:286)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.lambda$process$5(SchemaManagementToolCoordinator.java:145)
+	at java.base/java.util.HashMap.forEach(HashMap.java:1429)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.process(SchemaManagementToolCoordinator.java:142)
+	at org.hibernate.boot.internal.SessionFactoryObserverForSchemaExport.sessionFactoryCreated(SessionFactoryObserverForSchemaExport.java:37)
+	at org.hibernate.internal.SessionFactoryObserverChain.sessionFactoryCreated(SessionFactoryObserverChain.java:35)
+	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:315)
+	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:450)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1507)
+	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:75)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:376)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:409)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:396)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:352)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1820)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1769)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:599)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:521)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1231)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:949)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:624)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:334)
+	at org.springframework.boot.builder.SpringApplicationBuilder.run(SpringApplicationBuilder.java:149)
+	at com.gamergeo.project.videomanager.gui.application.VideoManagerGuiApplication.init(VideoManagerGuiApplication.java:25)
+	at javafx.graphics@21.0.1/com.sun.javafx.application.LauncherImpl.launchApplication1(LauncherImpl.java:817)
+	at javafx.graphics@21.0.1/com.sun.javafx.application.LauncherImpl.lambda$launchApplication$2(LauncherImpl.java:196)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+Caused by: org.h2.mvstore.MVStoreException: The file is locked: C:/Projets/Environnements/Dev/data/videodata-dev.mv.db [2.2.224/7]
+	at org.h2.mvstore.DataUtils.newMVStoreException(DataUtils.java:996)
+	at org.h2.mvstore.SingleFileStore.lockFileChannel(SingleFileStore.java:143)
+	at org.h2.mvstore.SingleFileStore.open(SingleFileStore.java:117)
+	at org.h2.mvstore.SingleFileStore.open(SingleFileStore.java:81)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:286)
+	at org.h2.mvstore.MVStore$Builder.open(MVStore.java:2035)
+	at org.h2.mvstore.db.Store.<init>(Store.java:133)
+	... 58 common frames omitted
+2024-01-24 13:14:00,447 WARN o.h.e.j.s.SqlExceptionHelper [JavaFX-Launcher] SQL Error: 90020, SQLState: 90020
+2024-01-24 13:14:00,447 ERROR o.h.e.j.s.SqlExceptionHelper [JavaFX-Launcher] La base de données est peut-être en cours d'utilisation: "C:/Projets/Environnements/Dev/data/videodata-dev.mv.db". Solutions posibles: fermer toutes les autres connexions; utilisez le mode serveur
+Database may be already in use: "C:/Projets/Environnements/Dev/data/videodata-dev.mv.db". Possible solutions: close all other connection(s); use the server mode [90020-224]
+2024-01-24 13:14:00,450 ERROR o.s.o.j.AbstractEntityManagerFactoryBean [JavaFX-Launcher] Failed to initialize JPA EntityManagerFactory: [PersistenceUnit: default] Unable to build Hibernate SessionFactory; nested exception is org.hibernate.exception.JDBCConnectionException: Unable to open JDBC Connection for DDL execution [La base de données est peut-être en cours d'utilisation: "C:/Projets/Environnements/Dev/data/videodata-dev.mv.db". Solutions posibles: fermer toutes les autres connexions; utilisez le mode serveur
+Database may be already in use: "C:/Projets/Environnements/Dev/data/videodata-dev.mv.db". Possible solutions: close all other connection(s); use the server mode [90020-224]] [n/a]
+2024-01-24 13:14:00,452 WARN o.s.c.s.AbstractApplicationContext [JavaFX-Launcher] Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: [PersistenceUnit: default] Unable to build Hibernate SessionFactory; nested exception is org.hibernate.exception.JDBCConnectionException: Unable to open JDBC Connection for DDL execution [La base de données est peut-être en cours d'utilisation: "C:/Projets/Environnements/Dev/data/videodata-dev.mv.db". Solutions posibles: fermer toutes les autres connexions; utilisez le mode serveur
+Database may be already in use: "C:/Projets/Environnements/Dev/data/videodata-dev.mv.db". Possible solutions: close all other connection(s); use the server mode [90020-224]] [n/a]
+2024-01-24 13:14:00,456 INFO o.s.b.a.l.ConditionEvaluationReportLogger [JavaFX-Launcher] 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2024-01-24 13:14:00,466 ERROR o.s.b.SpringApplication [JavaFX-Launcher] Application run failed
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: [PersistenceUnit: default] Unable to build Hibernate SessionFactory; nested exception is org.hibernate.exception.JDBCConnectionException: Unable to open JDBC Connection for DDL execution [La base de données est peut-être en cours d'utilisation: "C:/Projets/Environnements/Dev/data/videodata-dev.mv.db". Solutions posibles: fermer toutes les autres connexions; utilisez le mode serveur
+Database may be already in use: "C:/Projets/Environnements/Dev/data/videodata-dev.mv.db". Possible solutions: close all other connection(s); use the server mode [90020-224]] [n/a]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1773)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:599)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:521)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1231)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:949)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:624)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:334)
+	at org.springframework.boot.builder.SpringApplicationBuilder.run(SpringApplicationBuilder.java:149)
+	at com.gamergeo.project.videomanager.gui.application.VideoManagerGuiApplication.init(VideoManagerGuiApplication.java:25)
+	at javafx.graphics@21.0.1/com.sun.javafx.application.LauncherImpl.launchApplication1(LauncherImpl.java:817)
+	at javafx.graphics@21.0.1/com.sun.javafx.application.LauncherImpl.lambda$launchApplication$2(LauncherImpl.java:196)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+Caused by: jakarta.persistence.PersistenceException: [PersistenceUnit: default] Unable to build Hibernate SessionFactory; nested exception is org.hibernate.exception.JDBCConnectionException: Unable to open JDBC Connection for DDL execution [La base de données est peut-être en cours d'utilisation: "C:/Projets/Environnements/Dev/data/videodata-dev.mv.db". Solutions posibles: fermer toutes les autres connexions; utilisez le mode serveur
+Database may be already in use: "C:/Projets/Environnements/Dev/data/videodata-dev.mv.db". Possible solutions: close all other connection(s); use the server mode [90020-224]] [n/a]
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:421)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:396)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:352)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1820)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1769)
+	... 17 common frames omitted
+Caused by: org.hibernate.exception.JDBCConnectionException: Unable to open JDBC Connection for DDL execution [La base de données est peut-être en cours d'utilisation: "C:/Projets/Environnements/Dev/data/videodata-dev.mv.db". Solutions posibles: fermer toutes les autres connexions; utilisez le mode serveur
+Database may be already in use: "C:/Projets/Environnements/Dev/data/videodata-dev.mv.db". Possible solutions: close all other connection(s); use the server mode [90020-224]] [n/a]
+	at org.hibernate.exception.internal.SQLExceptionTypeDelegate.convert(SQLExceptionTypeDelegate.java:51)
+	at org.hibernate.exception.internal.StandardSQLExceptionConverter.convert(StandardSQLExceptionConverter.java:58)
+	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:108)
+	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:94)
+	at org.hibernate.resource.transaction.backend.jdbc.internal.DdlTransactionIsolatorNonJtaImpl.getIsolatedConnection(DdlTransactionIsolatorNonJtaImpl.java:74)
+	at org.hibernate.resource.transaction.backend.jdbc.internal.DdlTransactionIsolatorNonJtaImpl.getIsolatedConnection(DdlTransactionIsolatorNonJtaImpl.java:39)
+	at org.hibernate.tool.schema.internal.exec.ImprovedExtractionContextImpl.getJdbcConnection(ImprovedExtractionContextImpl.java:63)
+	at org.hibernate.tool.schema.extract.spi.ExtractionContext.getQueryResults(ExtractionContext.java:43)
+	at org.hibernate.tool.schema.extract.internal.SequenceInformationExtractorLegacyImpl.extractMetadata(SequenceInformationExtractorLegacyImpl.java:39)
+	at org.hibernate.tool.schema.extract.internal.DatabaseInformationImpl.initializeSequences(DatabaseInformationImpl.java:66)
+	at org.hibernate.tool.schema.extract.internal.DatabaseInformationImpl.<init>(DatabaseInformationImpl.java:60)
+	at org.hibernate.tool.schema.internal.Helper.buildDatabaseInformation(Helper.java:185)
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.doMigration(AbstractSchemaMigrator.java:98)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.performDatabaseAction(SchemaManagementToolCoordinator.java:286)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.lambda$process$5(SchemaManagementToolCoordinator.java:145)
+	at java.base/java.util.HashMap.forEach(HashMap.java:1429)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.process(SchemaManagementToolCoordinator.java:142)
+	at org.hibernate.boot.internal.SessionFactoryObserverForSchemaExport.sessionFactoryCreated(SessionFactoryObserverForSchemaExport.java:37)
+	at org.hibernate.internal.SessionFactoryObserverChain.sessionFactoryCreated(SessionFactoryObserverChain.java:35)
+	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:315)
+	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:450)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1507)
+	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:75)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:376)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:409)
+	... 21 common frames omitted
+Caused by: org.h2.jdbc.JdbcSQLNonTransientConnectionException: La base de données est peut-être en cours d'utilisation: "C:/Projets/Environnements/Dev/data/videodata-dev.mv.db". Solutions posibles: fermer toutes les autres connexions; utilisez le mode serveur
+Database may be already in use: "C:/Projets/Environnements/Dev/data/videodata-dev.mv.db". Possible solutions: close all other connection(s); use the server mode [90020-224]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:690)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at org.h2.message.DbException.get(DbException.java:212)
+	at org.h2.mvstore.db.Store.convertMVStoreException(Store.java:165)
+	at org.h2.mvstore.db.Store.<init>(Store.java:142)
+	at org.h2.engine.Database.<init>(Database.java:326)
+	at org.h2.engine.Engine.openSession(Engine.java:92)
+	at org.h2.engine.Engine.openSession(Engine.java:222)
+	at org.h2.engine.Engine.createSession(Engine.java:201)
+	at org.h2.engine.SessionRemote.connectEmbeddedOrServer(SessionRemote.java:343)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:125)
+	at org.h2.Driver.connect(Driver.java:59)
+	at com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:138)
+	at com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:359)
+	at com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:201)
+	at com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:470)
+	at com.zaxxer.hikari.pool.HikariPool.checkFailFast(HikariPool.java:561)
+	at com.zaxxer.hikari.pool.HikariPool.<init>(HikariPool.java:100)
+	at com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:112)
+	at org.hibernate.engine.jdbc.connections.internal.DatasourceConnectionProviderImpl.getConnection(DatasourceConnectionProviderImpl.java:122)
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess.obtainConnection(JdbcEnvironmentInitiator.java:428)
+	at org.hibernate.resource.transaction.backend.jdbc.internal.DdlTransactionIsolatorNonJtaImpl.getIsolatedConnection(DdlTransactionIsolatorNonJtaImpl.java:46)
+	... 41 common frames omitted
+Caused by: org.h2.mvstore.MVStoreException: The file is locked: C:/Projets/Environnements/Dev/data/videodata-dev.mv.db [2.2.224/7]
+	at org.h2.mvstore.DataUtils.newMVStoreException(DataUtils.java:996)
+	at org.h2.mvstore.SingleFileStore.lockFileChannel(SingleFileStore.java:143)
+	at org.h2.mvstore.SingleFileStore.open(SingleFileStore.java:117)
+	at org.h2.mvstore.SingleFileStore.open(SingleFileStore.java:81)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:286)
+	at org.h2.mvstore.MVStore$Builder.open(MVStore.java:2035)
+	at org.h2.mvstore.db.Store.<init>(Store.java:133)
+	... 58 common frames omitted
+2024-01-24 13:14:14,363 INFO o.s.b.StartupInfoLogger [JavaFX-Launcher] Starting application using Java 21.0.1 with PID 21864 (started by gleva in C:\Projets\Repository\videoManager\videomanager-gui)
+2024-01-24 13:14:14,365 INFO o.s.b.SpringApplication [JavaFX-Launcher] The following 1 profile is active: "dev"
+2024-01-24 13:14:14,576 INFO o.s.d.r.c.RepositoryConfigurationDelegate [JavaFX-Launcher] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-01-24 13:14:14,611 INFO o.s.d.r.c.RepositoryConfigurationDelegate [JavaFX-Launcher] Finished Spring Data repository scanning in 32 ms. Found 2 JPA repository interfaces.
+2024-01-24 13:14:14,931 INFO o.h.j.i.u.LogHelper [JavaFX-Launcher] HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-01-24 13:14:14,972 INFO o.h.Version [JavaFX-Launcher] HHH000412: Hibernate ORM core version 6.4.1.Final
+2024-01-24 13:14:14,992 INFO o.h.c.i.RegionFactoryInitiator [JavaFX-Launcher] HHH000026: Second-level cache disabled
+2024-01-24 13:14:15,127 INFO o.s.o.j.p.SpringPersistenceUnitInfo [JavaFX-Launcher] No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-01-24 13:14:15,142 INFO c.z.h.HikariDataSource [JavaFX-Launcher] HikariPool-1 - Starting...
+2024-01-24 13:14:15,263 INFO c.z.h.p.HikariPool [JavaFX-Launcher] HikariPool-1 - Added connection conn0: url=jdbc:h2:file:/Projets/Environnements/Dev/data/videodata-dev user=ADMIN
+2024-01-24 13:14:15,264 INFO c.z.h.HikariDataSource [JavaFX-Launcher] HikariPool-1 - Start completed.
+2024-01-24 13:14:15,279 WARN o.h.e.j.d.i.DialectFactoryImpl [JavaFX-Launcher] HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-01-24 13:14:15,801 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [JavaFX-Launcher] HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-01-24 13:14:15,830 INFO o.s.o.j.AbstractEntityManagerFactoryBean [JavaFX-Launcher] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-01-24 13:14:16,263 INFO o.s.b.StartupInfoLogger [JavaFX-Launcher] Started application in 2.19 seconds (process running for 2.707)
+2024-01-24 13:14:16,267 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX-Launcher] Application VideoManager JavaFX started
+2024-01-24 13:14:16,280 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX Application Thread] Load FXML for: videoScene
+2024-01-24 13:14:16,281 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX Application Thread] Require FXML Loader for: videoScene
+2024-01-24 13:14:16,454 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX Application Thread] Load FXML for: videoTable
+2024-01-24 13:14:16,454 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX Application Thread] Require FXML Loader for: videoTable
+2024-01-24 13:14:16,499 INFO c.g.p.v.s.VideoServiceImpl [JavaFX Application Thread] Request video list
+2024-01-24 13:14:16,502 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX Application Thread] Load FXML for: videoView
+2024-01-24 13:14:16,503 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX Application Thread] Require FXML Loader for: videoView
+2024-01-24 13:14:16,520 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX Application Thread] Load FXML for: videoSearch
+2024-01-24 13:14:16,521 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX Application Thread] Require FXML Loader for: videoSearch
+2024-01-24 13:14:21,051 INFO c.g.p.v.g.c.VideoTableController [JavaFX Application Thread] Video selected: 2
+2024-01-24 13:14:21,054 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX Application Thread] Require FXML Loader for: videoTagComponent
+2024-01-24 13:14:21,711 INFO c.g.p.v.g.c.VideoTableController [JavaFX Application Thread] Video selected: null
+2024-01-24 13:14:21,713 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX Application Thread] Require FXML Loader for: videoTagComponent
+2024-01-24 13:14:21,716 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX Application Thread] Require FXML Loader for: videoTagComponent
+2024-01-24 13:23:33,676 INFO o.s.b.StartupInfoLogger [JavaFX-Launcher] Starting application using Java 21.0.1 with PID 22224 (started by gleva in C:\Projets\Repository\videoManager\videomanager-gui)
+2024-01-24 13:23:33,678 INFO o.s.b.SpringApplication [JavaFX-Launcher] The following 1 profile is active: "dev"
+2024-01-24 13:23:33,913 INFO o.s.d.r.c.RepositoryConfigurationDelegate [JavaFX-Launcher] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-01-24 13:23:33,953 INFO o.s.d.r.c.RepositoryConfigurationDelegate [JavaFX-Launcher] Finished Spring Data repository scanning in 35 ms. Found 2 JPA repository interfaces.
+2024-01-24 13:23:34,274 INFO o.h.j.i.u.LogHelper [JavaFX-Launcher] HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-01-24 13:23:34,313 INFO o.h.Version [JavaFX-Launcher] HHH000412: Hibernate ORM core version 6.4.1.Final
+2024-01-24 13:23:34,334 INFO o.h.c.i.RegionFactoryInitiator [JavaFX-Launcher] HHH000026: Second-level cache disabled
+2024-01-24 13:23:34,458 INFO o.s.o.j.p.SpringPersistenceUnitInfo [JavaFX-Launcher] No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-01-24 13:23:34,470 INFO c.z.h.HikariDataSource [JavaFX-Launcher] HikariPool-1 - Starting...
+2024-01-24 13:23:35,535 ERROR c.z.h.p.HikariPool [JavaFX-Launcher] HikariPool-1 - Exception during pool initialization.
+org.h2.jdbc.JdbcSQLNonTransientConnectionException: La base de données est peut-être en cours d'utilisation: "C:/Projets/Environnements/Dev/Data/videodata-dev.mv.db". Solutions posibles: fermer toutes les autres connexions; utilisez le mode serveur
+Database may be already in use: "C:/Projets/Environnements/Dev/Data/videodata-dev.mv.db". Possible solutions: close all other connection(s); use the server mode [90020-224]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:690)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at org.h2.message.DbException.get(DbException.java:212)
+	at org.h2.mvstore.db.Store.convertMVStoreException(Store.java:165)
+	at org.h2.mvstore.db.Store.<init>(Store.java:142)
+	at org.h2.engine.Database.<init>(Database.java:326)
+	at org.h2.engine.Engine.openSession(Engine.java:92)
+	at org.h2.engine.Engine.openSession(Engine.java:222)
+	at org.h2.engine.Engine.createSession(Engine.java:201)
+	at org.h2.engine.SessionRemote.connectEmbeddedOrServer(SessionRemote.java:343)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:125)
+	at org.h2.Driver.connect(Driver.java:59)
+	at com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:138)
+	at com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:359)
+	at com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:201)
+	at com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:470)
+	at com.zaxxer.hikari.pool.HikariPool.checkFailFast(HikariPool.java:561)
+	at com.zaxxer.hikari.pool.HikariPool.<init>(HikariPool.java:100)
+	at com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:112)
+	at org.hibernate.engine.jdbc.connections.internal.DatasourceConnectionProviderImpl.getConnection(DatasourceConnectionProviderImpl.java:122)
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess.obtainConnection(JdbcEnvironmentInitiator.java:428)
+	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcIsolationDelegate.delegateWork(JdbcIsolationDelegate.java:61)
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.getJdbcEnvironmentUsingJdbcMetadata(JdbcEnvironmentInitiator.java:276)
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.initiateService(JdbcEnvironmentInitiator.java:107)
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.initiateService(JdbcEnvironmentInitiator.java:68)
+	at org.hibernate.boot.registry.internal.StandardServiceRegistryImpl.initiateService(StandardServiceRegistryImpl.java:129)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.createService(AbstractServiceRegistryImpl.java:263)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.initializeService(AbstractServiceRegistryImpl.java:238)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.getService(AbstractServiceRegistryImpl.java:215)
+	at org.hibernate.boot.model.relational.Database.<init>(Database.java:45)
+	at org.hibernate.boot.internal.InFlightMetadataCollectorImpl.getDatabase(InFlightMetadataCollectorImpl.java:223)
+	at org.hibernate.boot.internal.InFlightMetadataCollectorImpl.<init>(InFlightMetadataCollectorImpl.java:191)
+	at org.hibernate.boot.model.process.spi.MetadataBuildingProcess.complete(MetadataBuildingProcess.java:170)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.metadata(EntityManagerFactoryBuilderImpl.java:1432)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1503)
+	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:75)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:376)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:409)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:396)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:352)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1820)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1769)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:599)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:521)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1231)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:949)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:624)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:334)
+	at org.springframework.boot.builder.SpringApplicationBuilder.run(SpringApplicationBuilder.java:149)
+	at com.gamergeo.project.videomanager.gui.application.VideoManagerGuiApplication.init(VideoManagerGuiApplication.java:25)
+	at javafx.graphics@21.0.1/com.sun.javafx.application.LauncherImpl.launchApplication1(LauncherImpl.java:817)
+	at javafx.graphics@21.0.1/com.sun.javafx.application.LauncherImpl.lambda$launchApplication$2(LauncherImpl.java:196)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+Caused by: org.h2.mvstore.MVStoreException: The file is locked: C:/Projets/Environnements/Dev/Data/videodata-dev.mv.db [2.2.224/7]
+	at org.h2.mvstore.DataUtils.newMVStoreException(DataUtils.java:996)
+	at org.h2.mvstore.SingleFileStore.lockFileChannel(SingleFileStore.java:143)
+	at org.h2.mvstore.SingleFileStore.open(SingleFileStore.java:117)
+	at org.h2.mvstore.SingleFileStore.open(SingleFileStore.java:81)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:286)
+	at org.h2.mvstore.MVStore$Builder.open(MVStore.java:2035)
+	at org.h2.mvstore.db.Store.<init>(Store.java:133)
+	... 54 common frames omitted
+2024-01-24 13:23:35,537 WARN o.h.e.j.e.i.JdbcEnvironmentInitiator [JavaFX-Launcher] HHH000342: Could not obtain connection to query metadata
+java.lang.NullPointerException: Cannot invoke "org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(java.sql.SQLException, String)" because the return value of "org.hibernate.resource.transaction.backend.jdbc.internal.JdbcIsolationDelegate.sqlExceptionHelper()" is null
+	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcIsolationDelegate.delegateWork(JdbcIsolationDelegate.java:116)
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.getJdbcEnvironmentUsingJdbcMetadata(JdbcEnvironmentInitiator.java:276)
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.initiateService(JdbcEnvironmentInitiator.java:107)
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.initiateService(JdbcEnvironmentInitiator.java:68)
+	at org.hibernate.boot.registry.internal.StandardServiceRegistryImpl.initiateService(StandardServiceRegistryImpl.java:129)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.createService(AbstractServiceRegistryImpl.java:263)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.initializeService(AbstractServiceRegistryImpl.java:238)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.getService(AbstractServiceRegistryImpl.java:215)
+	at org.hibernate.boot.model.relational.Database.<init>(Database.java:45)
+	at org.hibernate.boot.internal.InFlightMetadataCollectorImpl.getDatabase(InFlightMetadataCollectorImpl.java:223)
+	at org.hibernate.boot.internal.InFlightMetadataCollectorImpl.<init>(InFlightMetadataCollectorImpl.java:191)
+	at org.hibernate.boot.model.process.spi.MetadataBuildingProcess.complete(MetadataBuildingProcess.java:170)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.metadata(EntityManagerFactoryBuilderImpl.java:1432)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1503)
+	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:75)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:376)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:409)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:396)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:352)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1820)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1769)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:599)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:521)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1231)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:949)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:624)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:334)
+	at org.springframework.boot.builder.SpringApplicationBuilder.run(SpringApplicationBuilder.java:149)
+	at com.gamergeo.project.videomanager.gui.application.VideoManagerGuiApplication.init(VideoManagerGuiApplication.java:25)
+	at javafx.graphics@21.0.1/com.sun.javafx.application.LauncherImpl.launchApplication1(LauncherImpl.java:817)
+	at javafx.graphics@21.0.1/com.sun.javafx.application.LauncherImpl.lambda$launchApplication$2(LauncherImpl.java:196)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+2024-01-24 13:23:35,547 WARN o.h.e.j.d.i.DialectFactoryImpl [JavaFX-Launcher] HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-01-24 13:23:36,022 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [JavaFX-Launcher] HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-01-24 13:23:36,031 INFO c.z.h.HikariDataSource [JavaFX-Launcher] HikariPool-1 - Starting...
+2024-01-24 13:23:36,090 INFO c.z.h.p.HikariPool [JavaFX-Launcher] HikariPool-1 - Added connection conn0: url=jdbc:h2:file:/Projets/Environnements/Dev/data/videodata-dev user=ADMIN
+2024-01-24 13:23:36,091 INFO c.z.h.HikariDataSource [JavaFX-Launcher] HikariPool-1 - Start completed.
+2024-01-24 13:23:36,131 INFO o.s.o.j.AbstractEntityManagerFactoryBean [JavaFX-Launcher] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-01-24 13:23:36,578 INFO o.s.b.StartupInfoLogger [JavaFX-Launcher] Started application in 3.207 seconds (process running for 3.718)
+2024-01-24 13:23:36,582 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX-Launcher] Application VideoManager JavaFX started
+2024-01-24 13:23:36,601 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX Application Thread] Load FXML for: videoScene
+2024-01-24 13:23:36,601 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX Application Thread] Require FXML Loader for: videoScene
+2024-01-24 13:23:36,769 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX Application Thread] Load FXML for: videoTable
+2024-01-24 13:23:36,769 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX Application Thread] Require FXML Loader for: videoTable
+2024-01-24 13:23:36,805 INFO c.g.p.v.s.VideoServiceImpl [JavaFX Application Thread] Request video list
+2024-01-24 13:23:36,807 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX Application Thread] Load FXML for: videoView
+2024-01-24 13:23:36,808 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX Application Thread] Require FXML Loader for: videoView
+2024-01-24 13:23:36,824 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX Application Thread] Load FXML for: videoSearch
+2024-01-24 13:23:36,824 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX Application Thread] Require FXML Loader for: videoSearch
+2024-01-24 13:23:46,914 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX Application Thread] Application VideoManager is closing...
+2024-01-24 13:23:46,916 INFO o.s.o.j.AbstractEntityManagerFactoryBean [JavaFX Application Thread] Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-01-24 13:23:46,918 INFO c.z.h.HikariDataSource [JavaFX Application Thread] HikariPool-1 - Shutdown initiated...
+2024-01-24 13:23:46,929 INFO c.z.h.HikariDataSource [JavaFX Application Thread] HikariPool-1 - Shutdown completed.
+2024-01-24 13:23:46,930 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX Application Thread] Application VideoManager closed
+2024-01-24 13:23:46,933 INFO c.g.p.v.g.a.VideoManagerApplication [main] Application VideoManager started
+2024-01-24 14:02:54,777 INFO o.s.b.StartupInfoLogger [JavaFX-Launcher] Starting application using Java 21.0.1 with PID 20496 (started by gleva in C:\Projets\Repository\videoManager\videomanager-gui)
+2024-01-24 14:02:54,781 INFO o.s.b.SpringApplication [JavaFX-Launcher] The following 1 profile is active: "dev"
+2024-01-24 14:02:55,012 INFO o.s.d.r.c.RepositoryConfigurationDelegate [JavaFX-Launcher] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-01-24 14:02:55,046 INFO o.s.d.r.c.RepositoryConfigurationDelegate [JavaFX-Launcher] Finished Spring Data repository scanning in 30 ms. Found 2 JPA repository interfaces.
+2024-01-24 14:02:55,366 INFO o.h.j.i.u.LogHelper [JavaFX-Launcher] HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-01-24 14:02:55,406 INFO o.h.Version [JavaFX-Launcher] HHH000412: Hibernate ORM core version 6.4.1.Final
+2024-01-24 14:02:55,427 INFO o.h.c.i.RegionFactoryInitiator [JavaFX-Launcher] HHH000026: Second-level cache disabled
+2024-01-24 14:02:55,551 INFO o.s.o.j.p.SpringPersistenceUnitInfo [JavaFX-Launcher] No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-01-24 14:02:55,563 INFO c.z.h.HikariDataSource [JavaFX-Launcher] HikariPool-1 - Starting...
+2024-01-24 14:02:56,621 ERROR c.z.h.p.HikariPool [JavaFX-Launcher] HikariPool-1 - Exception during pool initialization.
+org.h2.jdbc.JdbcSQLNonTransientConnectionException: La base de données est peut-être en cours d'utilisation: "C:/Projets/Environnements/Dev/Data/videodata-dev.mv.db". Solutions posibles: fermer toutes les autres connexions; utilisez le mode serveur
+Database may be already in use: "C:/Projets/Environnements/Dev/Data/videodata-dev.mv.db". Possible solutions: close all other connection(s); use the server mode [90020-224]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:690)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at org.h2.message.DbException.get(DbException.java:212)
+	at org.h2.mvstore.db.Store.convertMVStoreException(Store.java:165)
+	at org.h2.mvstore.db.Store.<init>(Store.java:142)
+	at org.h2.engine.Database.<init>(Database.java:326)
+	at org.h2.engine.Engine.openSession(Engine.java:92)
+	at org.h2.engine.Engine.openSession(Engine.java:222)
+	at org.h2.engine.Engine.createSession(Engine.java:201)
+	at org.h2.engine.SessionRemote.connectEmbeddedOrServer(SessionRemote.java:343)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:125)
+	at org.h2.Driver.connect(Driver.java:59)
+	at com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:138)
+	at com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:359)
+	at com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:201)
+	at com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:470)
+	at com.zaxxer.hikari.pool.HikariPool.checkFailFast(HikariPool.java:561)
+	at com.zaxxer.hikari.pool.HikariPool.<init>(HikariPool.java:100)
+	at com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:112)
+	at org.hibernate.engine.jdbc.connections.internal.DatasourceConnectionProviderImpl.getConnection(DatasourceConnectionProviderImpl.java:122)
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess.obtainConnection(JdbcEnvironmentInitiator.java:428)
+	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcIsolationDelegate.delegateWork(JdbcIsolationDelegate.java:61)
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.getJdbcEnvironmentUsingJdbcMetadata(JdbcEnvironmentInitiator.java:276)
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.initiateService(JdbcEnvironmentInitiator.java:107)
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.initiateService(JdbcEnvironmentInitiator.java:68)
+	at org.hibernate.boot.registry.internal.StandardServiceRegistryImpl.initiateService(StandardServiceRegistryImpl.java:129)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.createService(AbstractServiceRegistryImpl.java:263)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.initializeService(AbstractServiceRegistryImpl.java:238)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.getService(AbstractServiceRegistryImpl.java:215)
+	at org.hibernate.boot.model.relational.Database.<init>(Database.java:45)
+	at org.hibernate.boot.internal.InFlightMetadataCollectorImpl.getDatabase(InFlightMetadataCollectorImpl.java:223)
+	at org.hibernate.boot.internal.InFlightMetadataCollectorImpl.<init>(InFlightMetadataCollectorImpl.java:191)
+	at org.hibernate.boot.model.process.spi.MetadataBuildingProcess.complete(MetadataBuildingProcess.java:170)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.metadata(EntityManagerFactoryBuilderImpl.java:1432)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1503)
+	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:75)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:376)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:409)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:396)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:352)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1820)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1769)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:599)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:521)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1231)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:949)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:624)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:334)
+	at org.springframework.boot.builder.SpringApplicationBuilder.run(SpringApplicationBuilder.java:149)
+	at com.gamergeo.project.videomanager.gui.application.VideoManagerGuiApplication.init(VideoManagerGuiApplication.java:25)
+	at javafx.graphics@21.0.1/com.sun.javafx.application.LauncherImpl.launchApplication1(LauncherImpl.java:817)
+	at javafx.graphics@21.0.1/com.sun.javafx.application.LauncherImpl.lambda$launchApplication$2(LauncherImpl.java:196)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+Caused by: org.h2.mvstore.MVStoreException: The file is locked: C:/Projets/Environnements/Dev/Data/videodata-dev.mv.db [2.2.224/7]
+	at org.h2.mvstore.DataUtils.newMVStoreException(DataUtils.java:996)
+	at org.h2.mvstore.SingleFileStore.lockFileChannel(SingleFileStore.java:143)
+	at org.h2.mvstore.SingleFileStore.open(SingleFileStore.java:117)
+	at org.h2.mvstore.SingleFileStore.open(SingleFileStore.java:81)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:286)
+	at org.h2.mvstore.MVStore$Builder.open(MVStore.java:2035)
+	at org.h2.mvstore.db.Store.<init>(Store.java:133)
+	... 54 common frames omitted
+2024-01-24 14:02:56,626 WARN o.h.e.j.e.i.JdbcEnvironmentInitiator [JavaFX-Launcher] HHH000342: Could not obtain connection to query metadata
+java.lang.NullPointerException: Cannot invoke "org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(java.sql.SQLException, String)" because the return value of "org.hibernate.resource.transaction.backend.jdbc.internal.JdbcIsolationDelegate.sqlExceptionHelper()" is null
+	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcIsolationDelegate.delegateWork(JdbcIsolationDelegate.java:116)
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.getJdbcEnvironmentUsingJdbcMetadata(JdbcEnvironmentInitiator.java:276)
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.initiateService(JdbcEnvironmentInitiator.java:107)
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.initiateService(JdbcEnvironmentInitiator.java:68)
+	at org.hibernate.boot.registry.internal.StandardServiceRegistryImpl.initiateService(StandardServiceRegistryImpl.java:129)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.createService(AbstractServiceRegistryImpl.java:263)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.initializeService(AbstractServiceRegistryImpl.java:238)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.getService(AbstractServiceRegistryImpl.java:215)
+	at org.hibernate.boot.model.relational.Database.<init>(Database.java:45)
+	at org.hibernate.boot.internal.InFlightMetadataCollectorImpl.getDatabase(InFlightMetadataCollectorImpl.java:223)
+	at org.hibernate.boot.internal.InFlightMetadataCollectorImpl.<init>(InFlightMetadataCollectorImpl.java:191)
+	at org.hibernate.boot.model.process.spi.MetadataBuildingProcess.complete(MetadataBuildingProcess.java:170)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.metadata(EntityManagerFactoryBuilderImpl.java:1432)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1503)
+	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:75)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:376)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:409)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:396)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:352)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1820)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1769)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:599)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:521)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1231)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:949)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:624)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:334)
+	at org.springframework.boot.builder.SpringApplicationBuilder.run(SpringApplicationBuilder.java:149)
+	at com.gamergeo.project.videomanager.gui.application.VideoManagerGuiApplication.init(VideoManagerGuiApplication.java:25)
+	at javafx.graphics@21.0.1/com.sun.javafx.application.LauncherImpl.launchApplication1(LauncherImpl.java:817)
+	at javafx.graphics@21.0.1/com.sun.javafx.application.LauncherImpl.lambda$launchApplication$2(LauncherImpl.java:196)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+2024-01-24 14:02:56,636 WARN o.h.e.j.d.i.DialectFactoryImpl [JavaFX-Launcher] HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-01-24 14:02:57,094 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [JavaFX-Launcher] HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-01-24 14:02:57,102 INFO c.z.h.HikariDataSource [JavaFX-Launcher] HikariPool-1 - Starting...
+2024-01-24 14:02:58,109 ERROR c.z.h.p.HikariPool [JavaFX-Launcher] HikariPool-1 - Exception during pool initialization.
+org.h2.jdbc.JdbcSQLNonTransientConnectionException: La base de données est peut-être en cours d'utilisation: "C:/Projets/Environnements/Dev/Data/videodata-dev.mv.db". Solutions posibles: fermer toutes les autres connexions; utilisez le mode serveur
+Database may be already in use: "C:/Projets/Environnements/Dev/Data/videodata-dev.mv.db". Possible solutions: close all other connection(s); use the server mode [90020-224]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:690)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at org.h2.message.DbException.get(DbException.java:212)
+	at org.h2.mvstore.db.Store.convertMVStoreException(Store.java:165)
+	at org.h2.mvstore.db.Store.<init>(Store.java:142)
+	at org.h2.engine.Database.<init>(Database.java:326)
+	at org.h2.engine.Engine.openSession(Engine.java:92)
+	at org.h2.engine.Engine.openSession(Engine.java:222)
+	at org.h2.engine.Engine.createSession(Engine.java:201)
+	at org.h2.engine.SessionRemote.connectEmbeddedOrServer(SessionRemote.java:343)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:125)
+	at org.h2.Driver.connect(Driver.java:59)
+	at com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:138)
+	at com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:359)
+	at com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:201)
+	at com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:470)
+	at com.zaxxer.hikari.pool.HikariPool.checkFailFast(HikariPool.java:561)
+	at com.zaxxer.hikari.pool.HikariPool.<init>(HikariPool.java:100)
+	at com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:112)
+	at org.hibernate.engine.jdbc.connections.internal.DatasourceConnectionProviderImpl.getConnection(DatasourceConnectionProviderImpl.java:122)
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess.obtainConnection(JdbcEnvironmentInitiator.java:428)
+	at org.hibernate.resource.transaction.backend.jdbc.internal.DdlTransactionIsolatorNonJtaImpl.getIsolatedConnection(DdlTransactionIsolatorNonJtaImpl.java:46)
+	at org.hibernate.resource.transaction.backend.jdbc.internal.DdlTransactionIsolatorNonJtaImpl.getIsolatedConnection(DdlTransactionIsolatorNonJtaImpl.java:39)
+	at org.hibernate.tool.schema.internal.exec.ImprovedExtractionContextImpl.getJdbcConnection(ImprovedExtractionContextImpl.java:63)
+	at org.hibernate.tool.schema.extract.spi.ExtractionContext.getQueryResults(ExtractionContext.java:43)
+	at org.hibernate.tool.schema.extract.internal.SequenceInformationExtractorLegacyImpl.extractMetadata(SequenceInformationExtractorLegacyImpl.java:39)
+	at org.hibernate.tool.schema.extract.internal.DatabaseInformationImpl.initializeSequences(DatabaseInformationImpl.java:66)
+	at org.hibernate.tool.schema.extract.internal.DatabaseInformationImpl.<init>(DatabaseInformationImpl.java:60)
+	at org.hibernate.tool.schema.internal.Helper.buildDatabaseInformation(Helper.java:185)
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.doMigration(AbstractSchemaMigrator.java:98)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.performDatabaseAction(SchemaManagementToolCoordinator.java:286)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.lambda$process$5(SchemaManagementToolCoordinator.java:145)
+	at java.base/java.util.HashMap.forEach(HashMap.java:1429)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.process(SchemaManagementToolCoordinator.java:142)
+	at org.hibernate.boot.internal.SessionFactoryObserverForSchemaExport.sessionFactoryCreated(SessionFactoryObserverForSchemaExport.java:37)
+	at org.hibernate.internal.SessionFactoryObserverChain.sessionFactoryCreated(SessionFactoryObserverChain.java:35)
+	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:315)
+	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:450)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1507)
+	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:75)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:376)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:409)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:396)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:352)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1820)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1769)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:599)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:521)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1231)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:949)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:624)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:334)
+	at org.springframework.boot.builder.SpringApplicationBuilder.run(SpringApplicationBuilder.java:149)
+	at com.gamergeo.project.videomanager.gui.application.VideoManagerGuiApplication.init(VideoManagerGuiApplication.java:25)
+	at javafx.graphics@21.0.1/com.sun.javafx.application.LauncherImpl.launchApplication1(LauncherImpl.java:817)
+	at javafx.graphics@21.0.1/com.sun.javafx.application.LauncherImpl.lambda$launchApplication$2(LauncherImpl.java:196)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+Caused by: org.h2.mvstore.MVStoreException: The file is locked: C:/Projets/Environnements/Dev/Data/videodata-dev.mv.db [2.2.224/7]
+	at org.h2.mvstore.DataUtils.newMVStoreException(DataUtils.java:996)
+	at org.h2.mvstore.SingleFileStore.lockFileChannel(SingleFileStore.java:143)
+	at org.h2.mvstore.SingleFileStore.open(SingleFileStore.java:117)
+	at org.h2.mvstore.SingleFileStore.open(SingleFileStore.java:81)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:286)
+	at org.h2.mvstore.MVStore$Builder.open(MVStore.java:2035)
+	at org.h2.mvstore.db.Store.<init>(Store.java:133)
+	... 58 common frames omitted
+2024-01-24 14:02:58,116 WARN o.h.e.j.s.SqlExceptionHelper [JavaFX-Launcher] SQL Error: 90020, SQLState: 90020
+2024-01-24 14:02:58,116 ERROR o.h.e.j.s.SqlExceptionHelper [JavaFX-Launcher] La base de données est peut-être en cours d'utilisation: "C:/Projets/Environnements/Dev/Data/videodata-dev.mv.db". Solutions posibles: fermer toutes les autres connexions; utilisez le mode serveur
+Database may be already in use: "C:/Projets/Environnements/Dev/Data/videodata-dev.mv.db". Possible solutions: close all other connection(s); use the server mode [90020-224]
+2024-01-24 14:02:58,119 ERROR o.s.o.j.AbstractEntityManagerFactoryBean [JavaFX-Launcher] Failed to initialize JPA EntityManagerFactory: [PersistenceUnit: default] Unable to build Hibernate SessionFactory; nested exception is org.hibernate.exception.JDBCConnectionException: Unable to open JDBC Connection for DDL execution [La base de données est peut-être en cours d'utilisation: "C:/Projets/Environnements/Dev/Data/videodata-dev.mv.db". Solutions posibles: fermer toutes les autres connexions; utilisez le mode serveur
+Database may be already in use: "C:/Projets/Environnements/Dev/Data/videodata-dev.mv.db". Possible solutions: close all other connection(s); use the server mode [90020-224]] [n/a]
+2024-01-24 14:02:58,119 WARN o.s.c.s.AbstractApplicationContext [JavaFX-Launcher] Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: [PersistenceUnit: default] Unable to build Hibernate SessionFactory; nested exception is org.hibernate.exception.JDBCConnectionException: Unable to open JDBC Connection for DDL execution [La base de données est peut-être en cours d'utilisation: "C:/Projets/Environnements/Dev/Data/videodata-dev.mv.db". Solutions posibles: fermer toutes les autres connexions; utilisez le mode serveur
+Database may be already in use: "C:/Projets/Environnements/Dev/Data/videodata-dev.mv.db". Possible solutions: close all other connection(s); use the server mode [90020-224]] [n/a]
+2024-01-24 14:02:58,123 INFO o.s.b.a.l.ConditionEvaluationReportLogger [JavaFX-Launcher] 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2024-01-24 14:02:58,135 ERROR o.s.b.SpringApplication [JavaFX-Launcher] Application run failed
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: [PersistenceUnit: default] Unable to build Hibernate SessionFactory; nested exception is org.hibernate.exception.JDBCConnectionException: Unable to open JDBC Connection for DDL execution [La base de données est peut-être en cours d'utilisation: "C:/Projets/Environnements/Dev/Data/videodata-dev.mv.db". Solutions posibles: fermer toutes les autres connexions; utilisez le mode serveur
+Database may be already in use: "C:/Projets/Environnements/Dev/Data/videodata-dev.mv.db". Possible solutions: close all other connection(s); use the server mode [90020-224]] [n/a]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1773)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:599)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:521)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1231)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:949)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:624)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:334)
+	at org.springframework.boot.builder.SpringApplicationBuilder.run(SpringApplicationBuilder.java:149)
+	at com.gamergeo.project.videomanager.gui.application.VideoManagerGuiApplication.init(VideoManagerGuiApplication.java:25)
+	at javafx.graphics@21.0.1/com.sun.javafx.application.LauncherImpl.launchApplication1(LauncherImpl.java:817)
+	at javafx.graphics@21.0.1/com.sun.javafx.application.LauncherImpl.lambda$launchApplication$2(LauncherImpl.java:196)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+Caused by: jakarta.persistence.PersistenceException: [PersistenceUnit: default] Unable to build Hibernate SessionFactory; nested exception is org.hibernate.exception.JDBCConnectionException: Unable to open JDBC Connection for DDL execution [La base de données est peut-être en cours d'utilisation: "C:/Projets/Environnements/Dev/Data/videodata-dev.mv.db". Solutions posibles: fermer toutes les autres connexions; utilisez le mode serveur
+Database may be already in use: "C:/Projets/Environnements/Dev/Data/videodata-dev.mv.db". Possible solutions: close all other connection(s); use the server mode [90020-224]] [n/a]
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:421)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:396)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:352)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1820)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1769)
+	... 17 common frames omitted
+Caused by: org.hibernate.exception.JDBCConnectionException: Unable to open JDBC Connection for DDL execution [La base de données est peut-être en cours d'utilisation: "C:/Projets/Environnements/Dev/Data/videodata-dev.mv.db". Solutions posibles: fermer toutes les autres connexions; utilisez le mode serveur
+Database may be already in use: "C:/Projets/Environnements/Dev/Data/videodata-dev.mv.db". Possible solutions: close all other connection(s); use the server mode [90020-224]] [n/a]
+	at org.hibernate.exception.internal.SQLExceptionTypeDelegate.convert(SQLExceptionTypeDelegate.java:51)
+	at org.hibernate.exception.internal.StandardSQLExceptionConverter.convert(StandardSQLExceptionConverter.java:58)
+	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:108)
+	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:94)
+	at org.hibernate.resource.transaction.backend.jdbc.internal.DdlTransactionIsolatorNonJtaImpl.getIsolatedConnection(DdlTransactionIsolatorNonJtaImpl.java:74)
+	at org.hibernate.resource.transaction.backend.jdbc.internal.DdlTransactionIsolatorNonJtaImpl.getIsolatedConnection(DdlTransactionIsolatorNonJtaImpl.java:39)
+	at org.hibernate.tool.schema.internal.exec.ImprovedExtractionContextImpl.getJdbcConnection(ImprovedExtractionContextImpl.java:63)
+	at org.hibernate.tool.schema.extract.spi.ExtractionContext.getQueryResults(ExtractionContext.java:43)
+	at org.hibernate.tool.schema.extract.internal.SequenceInformationExtractorLegacyImpl.extractMetadata(SequenceInformationExtractorLegacyImpl.java:39)
+	at org.hibernate.tool.schema.extract.internal.DatabaseInformationImpl.initializeSequences(DatabaseInformationImpl.java:66)
+	at org.hibernate.tool.schema.extract.internal.DatabaseInformationImpl.<init>(DatabaseInformationImpl.java:60)
+	at org.hibernate.tool.schema.internal.Helper.buildDatabaseInformation(Helper.java:185)
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.doMigration(AbstractSchemaMigrator.java:98)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.performDatabaseAction(SchemaManagementToolCoordinator.java:286)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.lambda$process$5(SchemaManagementToolCoordinator.java:145)
+	at java.base/java.util.HashMap.forEach(HashMap.java:1429)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.process(SchemaManagementToolCoordinator.java:142)
+	at org.hibernate.boot.internal.SessionFactoryObserverForSchemaExport.sessionFactoryCreated(SessionFactoryObserverForSchemaExport.java:37)
+	at org.hibernate.internal.SessionFactoryObserverChain.sessionFactoryCreated(SessionFactoryObserverChain.java:35)
+	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:315)
+	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:450)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1507)
+	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:75)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:376)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:409)
+	... 21 common frames omitted
+Caused by: org.h2.jdbc.JdbcSQLNonTransientConnectionException: La base de données est peut-être en cours d'utilisation: "C:/Projets/Environnements/Dev/Data/videodata-dev.mv.db". Solutions posibles: fermer toutes les autres connexions; utilisez le mode serveur
+Database may be already in use: "C:/Projets/Environnements/Dev/Data/videodata-dev.mv.db". Possible solutions: close all other connection(s); use the server mode [90020-224]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:690)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at org.h2.message.DbException.get(DbException.java:212)
+	at org.h2.mvstore.db.Store.convertMVStoreException(Store.java:165)
+	at org.h2.mvstore.db.Store.<init>(Store.java:142)
+	at org.h2.engine.Database.<init>(Database.java:326)
+	at org.h2.engine.Engine.openSession(Engine.java:92)
+	at org.h2.engine.Engine.openSession(Engine.java:222)
+	at org.h2.engine.Engine.createSession(Engine.java:201)
+	at org.h2.engine.SessionRemote.connectEmbeddedOrServer(SessionRemote.java:343)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:125)
+	at org.h2.Driver.connect(Driver.java:59)
+	at com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:138)
+	at com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:359)
+	at com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:201)
+	at com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:470)
+	at com.zaxxer.hikari.pool.HikariPool.checkFailFast(HikariPool.java:561)
+	at com.zaxxer.hikari.pool.HikariPool.<init>(HikariPool.java:100)
+	at com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:112)
+	at org.hibernate.engine.jdbc.connections.internal.DatasourceConnectionProviderImpl.getConnection(DatasourceConnectionProviderImpl.java:122)
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess.obtainConnection(JdbcEnvironmentInitiator.java:428)
+	at org.hibernate.resource.transaction.backend.jdbc.internal.DdlTransactionIsolatorNonJtaImpl.getIsolatedConnection(DdlTransactionIsolatorNonJtaImpl.java:46)
+	... 41 common frames omitted
+Caused by: org.h2.mvstore.MVStoreException: The file is locked: C:/Projets/Environnements/Dev/Data/videodata-dev.mv.db [2.2.224/7]
+	at org.h2.mvstore.DataUtils.newMVStoreException(DataUtils.java:996)
+	at org.h2.mvstore.SingleFileStore.lockFileChannel(SingleFileStore.java:143)
+	at org.h2.mvstore.SingleFileStore.open(SingleFileStore.java:117)
+	at org.h2.mvstore.SingleFileStore.open(SingleFileStore.java:81)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:286)
+	at org.h2.mvstore.MVStore$Builder.open(MVStore.java:2035)
+	at org.h2.mvstore.db.Store.<init>(Store.java:133)
+	... 58 common frames omitted
+2024-01-24 14:03:37,003 INFO o.s.b.StartupInfoLogger [JavaFX-Launcher] Starting application using Java 21.0.1 with PID 17208 (started by gleva in C:\Projets\Repository\videoManager\videomanager-gui)
+2024-01-24 14:03:37,006 INFO o.s.b.SpringApplication [JavaFX-Launcher] The following 1 profile is active: "dev"
+2024-01-24 14:03:37,222 INFO o.s.d.r.c.RepositoryConfigurationDelegate [JavaFX-Launcher] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-01-24 14:03:37,262 INFO o.s.d.r.c.RepositoryConfigurationDelegate [JavaFX-Launcher] Finished Spring Data repository scanning in 35 ms. Found 2 JPA repository interfaces.
+2024-01-24 14:03:37,548 INFO o.h.j.i.u.LogHelper [JavaFX-Launcher] HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-01-24 14:03:37,587 INFO o.h.Version [JavaFX-Launcher] HHH000412: Hibernate ORM core version 6.4.1.Final
+2024-01-24 14:03:37,608 INFO o.h.c.i.RegionFactoryInitiator [JavaFX-Launcher] HHH000026: Second-level cache disabled
+2024-01-24 14:03:37,729 INFO o.s.o.j.p.SpringPersistenceUnitInfo [JavaFX-Launcher] No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-01-24 14:03:37,742 INFO c.z.h.HikariDataSource [JavaFX-Launcher] HikariPool-1 - Starting...
+2024-01-24 14:03:37,857 INFO c.z.h.p.HikariPool [JavaFX-Launcher] HikariPool-1 - Added connection conn0: url=jdbc:h2:file:/Projets/Environnements/Dev/data/videodata-dev user=ADMIN
+2024-01-24 14:03:37,858 INFO c.z.h.HikariDataSource [JavaFX-Launcher] HikariPool-1 - Start completed.
+2024-01-24 14:03:37,871 WARN o.h.e.j.d.i.DialectFactoryImpl [JavaFX-Launcher] HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-01-24 14:03:38,359 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [JavaFX-Launcher] HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-01-24 14:03:38,387 INFO o.s.o.j.AbstractEntityManagerFactoryBean [JavaFX-Launcher] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-01-24 14:03:38,887 INFO o.s.b.StartupInfoLogger [JavaFX-Launcher] Started application in 2.184 seconds (process running for 2.649)
+2024-01-24 14:03:38,890 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX-Launcher] Application VideoManager JavaFX started
+2024-01-24 14:03:38,911 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX Application Thread] Load FXML for: videoScene
+2024-01-24 14:03:38,911 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX Application Thread] Require FXML Loader for: videoScene
+2024-01-24 14:03:39,084 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX Application Thread] Load FXML for: videoTable
+2024-01-24 14:03:39,084 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX Application Thread] Require FXML Loader for: videoTable
+2024-01-24 14:03:39,106 INFO c.g.p.v.s.VideoServiceImpl [JavaFX Application Thread] Request video list
+2024-01-24 14:03:39,108 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX Application Thread] Load FXML for: videoView
+2024-01-24 14:03:39,108 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX Application Thread] Require FXML Loader for: videoView
+2024-01-24 14:03:39,123 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX Application Thread] Load FXML for: videoSearch
+2024-01-24 14:03:39,124 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX Application Thread] Require FXML Loader for: videoSearch
+2024-01-24 14:04:00,238 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX Application Thread] Application VideoManager is closing...
+2024-01-24 14:04:00,239 INFO o.s.o.j.AbstractEntityManagerFactoryBean [JavaFX Application Thread] Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-01-24 14:04:00,241 INFO c.z.h.HikariDataSource [JavaFX Application Thread] HikariPool-1 - Shutdown initiated...
+2024-01-24 14:04:00,444 INFO c.z.h.HikariDataSource [JavaFX Application Thread] HikariPool-1 - Shutdown completed.
+2024-01-24 14:04:00,445 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX Application Thread] Application VideoManager closed
+2024-01-24 14:04:00,447 INFO c.g.p.v.g.a.VideoManagerApplication [main] Application VideoManager started
+2024-01-24 14:05:03,763 INFO o.s.b.StartupInfoLogger [JavaFX-Launcher] Starting application using Java 21.0.1 with PID 13300 (started by gleva in C:\Projets\Repository\videoManager\videomanager-gui)
+2024-01-24 14:05:03,765 INFO o.s.b.SpringApplication [JavaFX-Launcher] The following 1 profile is active: "dev"
+2024-01-24 14:05:03,969 INFO o.s.d.r.c.RepositoryConfigurationDelegate [JavaFX-Launcher] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-01-24 14:05:04,002 INFO o.s.d.r.c.RepositoryConfigurationDelegate [JavaFX-Launcher] Finished Spring Data repository scanning in 29 ms. Found 2 JPA repository interfaces.
+2024-01-24 14:05:04,254 INFO o.h.j.i.u.LogHelper [JavaFX-Launcher] HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-01-24 14:05:04,288 INFO o.h.Version [JavaFX-Launcher] HHH000412: Hibernate ORM core version 6.4.1.Final
+2024-01-24 14:05:04,308 INFO o.h.c.i.RegionFactoryInitiator [JavaFX-Launcher] HHH000026: Second-level cache disabled
+2024-01-24 14:05:04,434 INFO o.s.o.j.p.SpringPersistenceUnitInfo [JavaFX-Launcher] No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-01-24 14:05:04,447 INFO c.z.h.HikariDataSource [JavaFX-Launcher] HikariPool-1 - Starting...
+2024-01-24 14:05:04,556 INFO c.z.h.p.HikariPool [JavaFX-Launcher] HikariPool-1 - Added connection conn0: url=jdbc:h2:file:/Projets/Environnements/Dev/data/videodata-dev user=ADMIN
+2024-01-24 14:05:04,557 INFO c.z.h.HikariDataSource [JavaFX-Launcher] HikariPool-1 - Start completed.
+2024-01-24 14:05:04,569 WARN o.h.e.j.d.i.DialectFactoryImpl [JavaFX-Launcher] HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-01-24 14:05:05,064 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [JavaFX-Launcher] HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-01-24 14:05:05,129 INFO o.s.o.j.AbstractEntityManagerFactoryBean [JavaFX-Launcher] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-01-24 14:05:05,592 INFO o.s.b.StartupInfoLogger [JavaFX-Launcher] Started application in 2.117 seconds (process running for 2.625)
+2024-01-24 14:05:05,598 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX-Launcher] Application VideoManager JavaFX started
+2024-01-24 14:05:05,619 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX Application Thread] Load FXML for: videoScene
+2024-01-24 14:05:05,620 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX Application Thread] Require FXML Loader for: videoScene
+2024-01-24 14:05:05,822 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX Application Thread] Load FXML for: videoTable
+2024-01-24 14:05:05,823 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX Application Thread] Require FXML Loader for: videoTable
+2024-01-24 14:05:05,861 INFO c.g.p.v.s.VideoServiceImpl [JavaFX Application Thread] Request video list
+2024-01-24 14:05:05,862 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX Application Thread] Load FXML for: videoView
+2024-01-24 14:05:05,863 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX Application Thread] Require FXML Loader for: videoView
+2024-01-24 14:05:05,874 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX Application Thread] Load FXML for: videoSearch
+2024-01-24 14:05:05,874 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX Application Thread] Require FXML Loader for: videoSearch
+2024-01-24 14:05:09,886 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX Application Thread] Application VideoManager is closing...
+2024-01-24 14:05:09,889 INFO o.s.o.j.AbstractEntityManagerFactoryBean [JavaFX Application Thread] Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-01-24 14:05:09,890 INFO c.z.h.HikariDataSource [JavaFX Application Thread] HikariPool-1 - Shutdown initiated...
+2024-01-24 14:05:10,094 INFO c.z.h.HikariDataSource [JavaFX Application Thread] HikariPool-1 - Shutdown completed.
+2024-01-24 14:05:10,095 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX Application Thread] Application VideoManager closed
+2024-01-24 14:05:10,097 INFO c.g.p.v.g.a.VideoManagerApplication [main] Application VideoManager started
+2024-01-24 14:41:02,810 INFO o.s.b.StartupInfoLogger [JavaFX-Launcher] Starting application using Java 21.0.1 with PID 5584 (started by gleva in C:\Projets\Repository\videoManager\videomanager-gui)
+2024-01-24 14:41:02,812 INFO o.s.b.SpringApplication [JavaFX-Launcher] The following 1 profile is active: "dev"
+2024-01-24 14:41:03,034 INFO o.s.d.r.c.RepositoryConfigurationDelegate [JavaFX-Launcher] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-01-24 14:41:03,074 INFO o.s.d.r.c.RepositoryConfigurationDelegate [JavaFX-Launcher] Finished Spring Data repository scanning in 33 ms. Found 2 JPA repository interfaces.
+2024-01-24 14:41:03,400 INFO o.h.j.i.u.LogHelper [JavaFX-Launcher] HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-01-24 14:41:03,448 INFO o.h.Version [JavaFX-Launcher] HHH000412: Hibernate ORM core version 6.4.1.Final
+2024-01-24 14:41:03,469 INFO o.h.c.i.RegionFactoryInitiator [JavaFX-Launcher] HHH000026: Second-level cache disabled
+2024-01-24 14:41:03,590 INFO o.s.o.j.p.SpringPersistenceUnitInfo [JavaFX-Launcher] No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-01-24 14:41:03,603 INFO c.z.h.HikariDataSource [JavaFX-Launcher] HikariPool-1 - Starting...
+2024-01-24 14:41:03,726 INFO c.z.h.p.HikariPool [JavaFX-Launcher] HikariPool-1 - Added connection conn0: url=jdbc:h2:file:/Projets/Environnements/Dev/data/videodata-dev user=ADMIN
+2024-01-24 14:41:03,728 INFO c.z.h.HikariDataSource [JavaFX-Launcher] HikariPool-1 - Start completed.
+2024-01-24 14:41:03,741 WARN o.h.e.j.d.i.DialectFactoryImpl [JavaFX-Launcher] HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-01-24 14:41:04,281 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [JavaFX-Launcher] HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-01-24 14:41:04,309 INFO o.s.o.j.AbstractEntityManagerFactoryBean [JavaFX-Launcher] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-01-24 14:41:04,762 INFO o.s.b.StartupInfoLogger [JavaFX-Launcher] Started application in 2.244 seconds (process running for 2.737)
+2024-01-24 14:41:04,767 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX-Launcher] Application VideoManager JavaFX started
+2024-01-24 14:41:04,788 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX Application Thread] Load FXML for: videoScene
+2024-01-24 14:41:04,788 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX Application Thread] Require FXML Loader for: videoScene
+2024-01-24 14:41:04,983 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX Application Thread] Load FXML for: videoTable
+2024-01-24 14:41:04,984 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX Application Thread] Require FXML Loader for: videoTable
+2024-01-24 14:41:05,026 INFO c.g.p.v.s.VideoServiceImpl [JavaFX Application Thread] Request video list
+2024-01-24 14:41:05,029 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX Application Thread] Load FXML for: videoView
+2024-01-24 14:41:05,030 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX Application Thread] Require FXML Loader for: videoView
+2024-01-24 14:41:05,048 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX Application Thread] Load FXML for: videoSearch
+2024-01-24 14:41:05,048 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX Application Thread] Require FXML Loader for: videoSearch
+2024-01-24 14:41:08,662 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX Application Thread] Application VideoManager is closing...
+2024-01-24 14:41:08,664 INFO o.s.o.j.AbstractEntityManagerFactoryBean [JavaFX Application Thread] Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-01-24 14:41:08,665 INFO c.z.h.HikariDataSource [JavaFX Application Thread] HikariPool-1 - Shutdown initiated...
+2024-01-24 14:41:08,669 INFO c.z.h.HikariDataSource [JavaFX Application Thread] HikariPool-1 - Shutdown completed.
+2024-01-24 14:41:08,670 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX Application Thread] Application VideoManager closed
+2024-01-24 14:41:08,672 INFO c.g.p.v.g.a.VideoManagerApplication [main] Application VideoManager started
+2024-01-24 14:42:51,491 INFO o.s.b.StartupInfoLogger [JavaFX-Launcher] Starting application using Java 21.0.1 with PID 16804 (started by gleva in C:\Projets\Repository\videoManager\videomanager-gui)
+2024-01-24 14:42:51,492 INFO o.s.b.SpringApplication [JavaFX-Launcher] The following 1 profile is active: "dev"
+2024-01-24 14:42:51,715 INFO o.s.d.r.c.RepositoryConfigurationDelegate [JavaFX-Launcher] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-01-24 14:42:51,751 INFO o.s.d.r.c.RepositoryConfigurationDelegate [JavaFX-Launcher] Finished Spring Data repository scanning in 31 ms. Found 2 JPA repository interfaces.
+2024-01-24 14:42:52,058 INFO o.h.j.i.u.LogHelper [JavaFX-Launcher] HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-01-24 14:42:52,105 INFO o.h.Version [JavaFX-Launcher] HHH000412: Hibernate ORM core version 6.4.1.Final
+2024-01-24 14:42:52,128 INFO o.h.c.i.RegionFactoryInitiator [JavaFX-Launcher] HHH000026: Second-level cache disabled
+2024-01-24 14:42:52,249 INFO o.s.o.j.p.SpringPersistenceUnitInfo [JavaFX-Launcher] No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-01-24 14:42:52,261 INFO c.z.h.HikariDataSource [JavaFX-Launcher] HikariPool-1 - Starting...
+2024-01-24 14:42:52,373 INFO c.z.h.p.HikariPool [JavaFX-Launcher] HikariPool-1 - Added connection conn0: url=jdbc:h2:file:/Projets/Environnements/Dev/data/videodata-dev user=ADMIN
+2024-01-24 14:42:52,375 INFO c.z.h.HikariDataSource [JavaFX-Launcher] HikariPool-1 - Start completed.
+2024-01-24 14:42:52,388 WARN o.h.e.j.d.i.DialectFactoryImpl [JavaFX-Launcher] HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-01-24 14:42:52,903 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [JavaFX-Launcher] HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-01-24 14:42:52,934 INFO o.s.o.j.AbstractEntityManagerFactoryBean [JavaFX-Launcher] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-01-24 14:42:53,398 INFO o.s.b.StartupInfoLogger [JavaFX-Launcher] Started application in 2.204 seconds (process running for 2.694)
+2024-01-24 14:42:53,403 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX-Launcher] Application VideoManager JavaFX started
+2024-01-24 14:42:53,432 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX Application Thread] Load FXML for: videoScene
+2024-01-24 14:42:53,433 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX Application Thread] Require FXML Loader for: videoScene
+2024-01-24 14:42:53,628 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX Application Thread] Load FXML for: videoTable
+2024-01-24 14:42:53,629 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX Application Thread] Require FXML Loader for: videoTable
+2024-01-24 14:42:53,665 INFO c.g.p.v.s.VideoServiceImpl [JavaFX Application Thread] Request video list
+2024-01-24 14:42:53,668 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX Application Thread] Load FXML for: videoView
+2024-01-24 14:42:53,669 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX Application Thread] Require FXML Loader for: videoView
+2024-01-24 14:42:53,685 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX Application Thread] Load FXML for: videoSearch
+2024-01-24 14:42:53,685 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX Application Thread] Require FXML Loader for: videoSearch
+2024-01-24 14:42:55,105 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX Application Thread] Application VideoManager is closing...
+2024-01-24 14:42:55,108 INFO o.s.o.j.AbstractEntityManagerFactoryBean [JavaFX Application Thread] Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-01-24 14:42:55,110 INFO c.z.h.HikariDataSource [JavaFX Application Thread] HikariPool-1 - Shutdown initiated...
+2024-01-24 14:42:55,138 INFO c.z.h.HikariDataSource [JavaFX Application Thread] HikariPool-1 - Shutdown completed.
+2024-01-24 14:42:55,139 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX Application Thread] Application VideoManager closed
+2024-01-24 14:42:55,142 INFO c.g.p.v.g.a.VideoManagerApplication [main] Application VideoManager started
+2024-01-24 15:00:38,682 INFO o.s.b.StartupInfoLogger [JavaFX-Launcher] Starting application using Java 21.0.1 with PID 20656 (started by gleva in C:\Projets\Repository\videoManager\videomanager-gui)
+2024-01-24 15:00:38,683 INFO o.s.b.SpringApplication [JavaFX-Launcher] The following 1 profile is active: "dev"
+2024-01-24 15:00:38,902 INFO o.s.d.r.c.RepositoryConfigurationDelegate [JavaFX-Launcher] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-01-24 15:00:38,937 INFO o.s.d.r.c.RepositoryConfigurationDelegate [JavaFX-Launcher] Finished Spring Data repository scanning in 29 ms. Found 2 JPA repository interfaces.
+2024-01-24 15:00:39,229 INFO o.h.j.i.u.LogHelper [JavaFX-Launcher] HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-01-24 15:00:39,259 INFO o.h.Version [JavaFX-Launcher] HHH000412: Hibernate ORM core version 6.4.1.Final
+2024-01-24 15:00:39,283 INFO o.h.c.i.RegionFactoryInitiator [JavaFX-Launcher] HHH000026: Second-level cache disabled
+2024-01-24 15:00:39,415 INFO o.s.o.j.p.SpringPersistenceUnitInfo [JavaFX-Launcher] No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-01-24 15:00:39,428 INFO c.z.h.HikariDataSource [JavaFX-Launcher] HikariPool-1 - Starting...
+2024-01-24 15:00:39,540 INFO c.z.h.p.HikariPool [JavaFX-Launcher] HikariPool-1 - Added connection conn0: url=jdbc:h2:file:/Projets/Environnements/Dev/data/videodata-dev user=ADMIN
+2024-01-24 15:00:39,541 INFO c.z.h.HikariDataSource [JavaFX-Launcher] HikariPool-1 - Start completed.
+2024-01-24 15:00:39,553 WARN o.h.e.j.d.i.DialectFactoryImpl [JavaFX-Launcher] HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-01-24 15:00:40,058 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [JavaFX-Launcher] HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-01-24 15:00:40,086 INFO o.s.o.j.AbstractEntityManagerFactoryBean [JavaFX-Launcher] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-01-24 15:00:40,424 INFO o.s.b.StartupInfoLogger [JavaFX-Launcher] Started application in 2.041 seconds (process running for 2.531)
+2024-01-24 15:00:40,429 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX-Launcher] Application VideoManager JavaFX started
+2024-01-24 15:00:40,450 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX Application Thread] Load FXML for: videoScene
+2024-01-24 15:00:40,451 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX Application Thread] Require FXML Loader for: videoScene
+2024-01-24 15:00:40,607 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX Application Thread] Load FXML for: videoTable
+2024-01-24 15:00:40,608 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX Application Thread] Require FXML Loader for: videoTable
+2024-01-24 15:00:40,636 INFO c.g.p.v.s.VideoServiceImpl [JavaFX Application Thread] Request video list
+2024-01-24 15:00:40,638 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX Application Thread] Load FXML for: videoView
+2024-01-24 15:00:40,638 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX Application Thread] Require FXML Loader for: videoView
+2024-01-24 15:00:40,649 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX Application Thread] Load FXML for: videoSearch
+2024-01-24 15:00:40,650 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX Application Thread] Require FXML Loader for: videoSearch
+2024-01-24 15:00:42,384 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX Application Thread] Application VideoManager is closing...
+2024-01-24 15:00:42,386 INFO o.s.o.j.AbstractEntityManagerFactoryBean [JavaFX Application Thread] Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-01-24 15:00:42,388 INFO c.z.h.HikariDataSource [JavaFX Application Thread] HikariPool-1 - Shutdown initiated...
+2024-01-24 15:00:42,398 INFO c.z.h.HikariDataSource [JavaFX Application Thread] HikariPool-1 - Shutdown completed.
+2024-01-24 15:00:42,399 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX Application Thread] Application VideoManager closed
+2024-01-24 15:00:42,403 INFO c.g.p.v.g.a.VideoManagerApplication [main] Application VideoManager started
+2024-01-24 15:06:48,312 INFO o.s.b.StartupInfoLogger [JavaFX-Launcher] Starting application using Java 21.0.1 with PID 13932 (started by gleva in C:\Projets\Repository\videoManager\videomanager-gui)
+2024-01-24 15:06:48,313 INFO o.s.b.SpringApplication [JavaFX-Launcher] The following 1 profile is active: "dev"
+2024-01-24 15:06:48,528 INFO o.s.d.r.c.RepositoryConfigurationDelegate [JavaFX-Launcher] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-01-24 15:06:48,561 INFO o.s.d.r.c.RepositoryConfigurationDelegate [JavaFX-Launcher] Finished Spring Data repository scanning in 29 ms. Found 2 JPA repository interfaces.
+2024-01-24 15:06:48,841 INFO o.h.j.i.u.LogHelper [JavaFX-Launcher] HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-01-24 15:06:48,876 INFO o.h.Version [JavaFX-Launcher] HHH000412: Hibernate ORM core version 6.4.1.Final
+2024-01-24 15:06:48,902 INFO o.h.c.i.RegionFactoryInitiator [JavaFX-Launcher] HHH000026: Second-level cache disabled
+2024-01-24 15:06:49,022 INFO o.s.o.j.p.SpringPersistenceUnitInfo [JavaFX-Launcher] No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-01-24 15:06:49,034 INFO c.z.h.HikariDataSource [JavaFX-Launcher] HikariPool-1 - Starting...
+2024-01-24 15:06:49,134 INFO c.z.h.p.HikariPool [JavaFX-Launcher] HikariPool-1 - Added connection conn0: url=jdbc:h2:file:/Projets/Environnements/Dev/data/videodata-dev user=ADMIN
+2024-01-24 15:06:49,135 INFO c.z.h.HikariDataSource [JavaFX-Launcher] HikariPool-1 - Start completed.
+2024-01-24 15:06:49,149 WARN o.h.e.j.d.i.DialectFactoryImpl [JavaFX-Launcher] HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-01-24 15:06:49,646 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [JavaFX-Launcher] HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-01-24 15:06:49,685 INFO o.s.o.j.AbstractEntityManagerFactoryBean [JavaFX-Launcher] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-01-24 15:06:50,288 INFO o.s.b.StartupInfoLogger [JavaFX-Launcher] Started application in 2.278 seconds (process running for 2.772)
+2024-01-24 15:06:50,293 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX-Launcher] Application VideoManager JavaFX started
+2024-01-24 15:06:50,314 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX Application Thread] Load FXML for: videoScene
+2024-01-24 15:06:50,314 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX Application Thread] Require FXML Loader for: videoScene
+2024-01-24 15:06:50,440 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX Application Thread] Load FXML for: videoTable
+2024-01-24 15:06:50,441 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX Application Thread] Require FXML Loader for: videoTable
+2024-01-24 15:06:50,461 INFO c.g.p.v.s.VideoServiceImpl [JavaFX Application Thread] Request video list
+2024-01-24 15:06:50,463 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX Application Thread] Load FXML for: videoView
+2024-01-24 15:06:50,464 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX Application Thread] Require FXML Loader for: videoView
+2024-01-24 15:06:50,480 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX Application Thread] Load FXML for: videoSearch
+2024-01-24 15:06:50,480 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX Application Thread] Require FXML Loader for: videoSearch
+2024-01-24 15:06:54,428 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX Application Thread] Application VideoManager is closing...
+2024-01-24 15:06:54,430 INFO o.s.o.j.AbstractEntityManagerFactoryBean [JavaFX Application Thread] Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-01-24 15:06:54,431 INFO c.z.h.HikariDataSource [JavaFX Application Thread] HikariPool-1 - Shutdown initiated...
+2024-01-24 15:06:54,445 INFO c.z.h.HikariDataSource [JavaFX Application Thread] HikariPool-1 - Shutdown completed.
+2024-01-24 15:06:54,445 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX Application Thread] Application VideoManager closed
+2024-01-24 15:06:54,447 INFO c.g.p.v.g.a.VideoManagerApplication [main] Application VideoManager started

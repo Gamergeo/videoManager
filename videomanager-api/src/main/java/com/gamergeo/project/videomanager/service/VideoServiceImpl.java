@@ -20,6 +20,12 @@ public class VideoServiceImpl implements VideoService { //extends HibernateDatab
 	
 	@Autowired
 	VideoDao videoDao;
+	
+//	@Override
+//	public List<Video> getVideoList() {
+//		
+//		videoDao.findAll()
+//	}
 
 	@Override
 	public Video getVideo() {
@@ -54,14 +60,14 @@ public class VideoServiceImpl implements VideoService { //extends HibernateDatab
 		cats2.add(cat3);
 		
 		Video vid1 = new Video();
-//		vid1.setId(1);
+		vid1.setId(Long.valueOf(1));
 		vid1.setTitle("a");
 		vid1.setUrl("link a");
 		vid1.setAddedDate(LocalDate.now());
 		vid1.setVideoTags(cats1);
 		
 		Video vid2 = new Video();
-//		vid1.setId(2);
+		vid2.setId(Long.valueOf(2));
 		vid2.setTitle("b");
 		vid2.setUrl("link b");
 		vid2.setVideoTags(cats2);

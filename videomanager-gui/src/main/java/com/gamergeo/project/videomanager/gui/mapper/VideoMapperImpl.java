@@ -19,7 +19,6 @@ public class VideoMapperImpl extends AbstractMVMMapper<Video, VideoViewModel> im
 		videoViewModel.setId(video.getId());
 		videoViewModel.setTitle(video.getTitle());
 		videoViewModel.setUrl(video.getUrl());
-		// TODO
 		videoViewModel.setVideoTagList(videoTagMapper.getViewModels(video.getVideoTags()));
 		videoViewModel.setAddedDate(video.getAddedDate());
 		
