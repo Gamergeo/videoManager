@@ -1,6 +1,7 @@
-package com.gamergeo.project.videomanager.gui.application;
+package com.gamergeo.project.videomanager.gui;
 
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -14,6 +15,7 @@ import lombok.extern.slf4j.Slf4j;
 @ComponentScan(basePackages = "com.gamergeo.project.videomanager")
 @EntityScan("com.gamergeo.project.videomanager.model")
 @EnableJpaRepositories("com.gamergeo.project.videomanager.persistence")
+@SpringBootApplication
 @Slf4j
 public class VideoManagerApplication {
 

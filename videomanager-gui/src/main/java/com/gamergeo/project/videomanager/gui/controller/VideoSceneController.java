@@ -4,7 +4,7 @@ import java.io.IOException;
 
 import org.springframework.stereotype.Controller;
 
-import com.gamergeo.project.videomanager.gui.application.VideoManagerGuiApplication;
+import com.gamergeo.project.videomanager.gui.VideoManagerGuiApplication;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.TitledPane;

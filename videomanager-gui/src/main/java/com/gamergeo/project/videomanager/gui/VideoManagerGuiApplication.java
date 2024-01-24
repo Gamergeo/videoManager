@@ -1,4 +1,4 @@
-package com.gamergeo.project.videomanager.gui.application;
+package com.gamergeo.project.videomanager.gui;
 
 import java.io.IOException;
 

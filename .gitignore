@@ -6,4 +6,4 @@ dependency-reduced-pom.xml
 .flattened-pom.xml
 **.mv.db
 *.trace.db
-logs/*.log
+*.log
