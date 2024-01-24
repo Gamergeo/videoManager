@@ -9,7 +9,7 @@
 	<parent>
 		<groupId>com.gamergeo.project</groupId>
 		<artifactId>videomanager</artifactId>
-		<version>0.2.3</version>
+		<version>0.2.4</version>
 	</parent>
 
 	<artifactId>videomanager-gui</artifactId>
@@ -41,8 +41,8 @@
 	<build>
 		<finalName>videomanager</finalName>
 		
-		<!-- Plugin for local execution -->
 		<plugins>
+			<!-- Plugin for deployement -->
 		    <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
@@ -58,6 +58,8 @@
 				    </execution>
 				</executions>
             </plugin>
+            
+			<!-- Plugin for local execution -->
 			<plugin>
 				<groupId>org.openjfx</groupId>
 	    		<artifactId>javafx-maven-plugin</artifactId>
@@ -91,7 +93,7 @@
 		<!-- Gamergeo lib -->
 		<dependency>
 			<groupId>com.gamergeo.lib</groupId>
-			<artifactId>gamlib-mapper</artifactId>
+			<artifactId>gamlib</artifactId>
 		</dependency>
 		
 		<!-- https://mvnrepository.com/artifact/org.openjfx/javafx-controls -->

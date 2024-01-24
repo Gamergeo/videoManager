@@ -1,0 +1,43 @@
+2024-01-24 12:59:53,377 INFO o.s.b.StartupInfoLogger [JavaFX-Launcher] Starting application using Java 21.0.1 with PID 2144 (started by gleva in C:\Projets\Repository\videoManager\videomanager-gui)
+2024-01-24 12:59:53,378 INFO o.s.b.SpringApplication [JavaFX-Launcher] The following 1 profile is active: "dev"
+2024-01-24 12:59:53,597 INFO o.s.d.r.c.RepositoryConfigurationDelegate [JavaFX-Launcher] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-01-24 12:59:53,633 INFO o.s.d.r.c.RepositoryConfigurationDelegate [JavaFX-Launcher] Finished Spring Data repository scanning in 31 ms. Found 2 JPA repository interfaces.
+2024-01-24 12:59:53,916 INFO o.h.j.i.u.LogHelper [JavaFX-Launcher] HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-01-24 12:59:53,955 INFO o.h.Version [JavaFX-Launcher] HHH000412: Hibernate ORM core version 6.4.1.Final
+2024-01-24 12:59:53,977 INFO o.h.c.i.RegionFactoryInitiator [JavaFX-Launcher] HHH000026: Second-level cache disabled
+2024-01-24 12:59:54,100 INFO o.s.o.j.p.SpringPersistenceUnitInfo [JavaFX-Launcher] No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-01-24 12:59:54,112 INFO c.z.h.HikariDataSource [JavaFX-Launcher] HikariPool-1 - Starting...
+2024-01-24 12:59:54,221 INFO c.z.h.p.HikariPool [JavaFX-Launcher] HikariPool-1 - Added connection conn0: url=jdbc:h2:file:/Projets/Environnements/Dev/data/videodata-dev user=ADMIN
+2024-01-24 12:59:54,222 INFO c.z.h.HikariDataSource [JavaFX-Launcher] HikariPool-1 - Start completed.
+2024-01-24 12:59:54,235 WARN o.h.e.j.d.i.DialectFactoryImpl [JavaFX-Launcher] HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-01-24 12:59:54,705 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [JavaFX-Launcher] HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-01-24 12:59:54,729 INFO o.s.o.j.AbstractEntityManagerFactoryBean [JavaFX-Launcher] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-01-24 12:59:55,171 INFO o.s.b.StartupInfoLogger [JavaFX-Launcher] Started application in 2.098 seconds (process running for 2.586)
+2024-01-24 12:59:55,177 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX-Launcher] Application VideoManager JavaFX started
+2024-01-24 12:59:55,204 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX Application Thread] Loading FXML for: videoScene
+2024-01-24 12:59:55,204 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX Application Thread] Required FXML Loader for: videoScene
+2024-01-24 12:59:55,415 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX Application Thread] Loading FXML for: videoTable
+2024-01-24 12:59:55,415 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX Application Thread] Required FXML Loader for: videoTable
+2024-01-24 12:59:55,462 INFO c.g.p.v.s.VideoServiceImpl [JavaFX Application Thread] Requesting video list
+2024-01-24 12:59:55,464 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX Application Thread] Loading FXML for: videoView
+2024-01-24 12:59:55,464 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX Application Thread] Required FXML Loader for: videoView
+2024-01-24 12:59:55,487 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX Application Thread] Loading FXML for: videoSearch
+2024-01-24 12:59:55,487 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX Application Thread] Required FXML Loader for: videoSearch
+2024-01-24 13:00:00,055 INFO c.g.p.v.g.c.VideoTableController [JavaFX Application Thread] Video selected: null
+2024-01-24 13:00:00,057 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX Application Thread] Required FXML Loader for: videoTagComponent
+2024-01-24 13:00:02,994 INFO c.g.p.v.g.c.VideoTableController [JavaFX Application Thread] Video selected: null
+2024-01-24 13:00:02,995 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX Application Thread] Required FXML Loader for: videoTagComponent
+2024-01-24 13:00:02,998 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX Application Thread] Required FXML Loader for: videoTagComponent
+2024-01-24 13:00:04,712 INFO c.g.p.v.g.c.VideoTableController [JavaFX Application Thread] Video selected: null
+2024-01-24 13:00:04,714 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX Application Thread] Required FXML Loader for: videoTagComponent
+2024-01-24 13:00:05,376 INFO c.g.p.v.g.c.VideoTableController [JavaFX Application Thread] Video selected: null
+2024-01-24 13:00:05,377 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX Application Thread] Required FXML Loader for: videoTagComponent
+2024-01-24 13:00:05,381 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX Application Thread] Required FXML Loader for: videoTagComponent
+2024-01-24 13:00:05,871 INFO c.g.p.v.g.c.VideoTableController [JavaFX Application Thread] Video selected: null
+2024-01-24 13:00:05,873 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX Application Thread] Required FXML Loader for: videoTagComponent
+2024-01-24 13:00:09,566 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX Application Thread] Application VideoManager is closing...
+2024-01-24 13:00:09,567 INFO o.s.o.j.AbstractEntityManagerFactoryBean [JavaFX Application Thread] Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-01-24 13:00:09,569 INFO c.z.h.HikariDataSource [JavaFX Application Thread] HikariPool-1 - Shutdown initiated...
+2024-01-24 13:00:09,574 INFO c.z.h.HikariDataSource [JavaFX Application Thread] HikariPool-1 - Shutdown completed.
+2024-01-24 13:00:09,574 INFO c.g.p.v.g.a.VideoManagerGuiApplication [JavaFX Application Thread] Application VideoManager closed
+2024-01-24 13:00:09,578 INFO c.g.p.v.g.a.VideoManagerApplication [main] Application VideoManager started

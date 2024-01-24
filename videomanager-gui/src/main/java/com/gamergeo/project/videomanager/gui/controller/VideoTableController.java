@@ -16,8 +16,10 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import lombok.extern.slf4j.Slf4j;
 
 @Component
+@Slf4j
 public class VideoTableController {
 	
 	@Autowired
@@ -49,7 +51,7 @@ public class VideoTableController {
     @FXML
     private void initialize() {
     	List<VideoViewModel> videoList = videoMapper.getViewModels(videoService.getVideoList());
-    	videoList.add(videoMapper.getViewModel(videoService.getVideo()));
+//    	videoList.add(videoMapper.getViewModel(videoService.getVideo()));
     	videoTableModel.getVideoList().setAll(videoList);
     	videoTable.setItems(videoTableModel.getVideoList());
     	titleColumn.setCellValueFactory(new PropertyValueFactory<VideoViewModel, String>("title"));
@@ -87,6 +89,8 @@ public class VideoTableController {
      */
     public void selectVideo(MouseEvent event) throws IOException {
         if (event.isPrimaryButtonDown() && event.getClickCount() == 1) {
+        	VideoViewModel video = videoTable.getSelectionModel().getSelectedItem();
+        	log.info("Video selected: "+ video.getId());
         	videoViewController.setVideo(videoTable.getSelectionModel().getSelectedItem());
         	videoSceneController.openVideoView();
         }

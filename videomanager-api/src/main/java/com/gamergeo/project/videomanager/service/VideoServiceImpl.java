@@ -12,17 +12,15 @@ import com.gamergeo.project.videomanager.model.Video;
 import com.gamergeo.project.videomanager.model.VideoTag;
 import com.gamergeo.project.videomanager.persistence.VideoDao;
 
-@Service("videoService")
+import lombok.extern.slf4j.Slf4j;
+
+@Service
+@Slf4j
 public class VideoServiceImpl implements VideoService { //extends HibernateDatabaseServiceImpl<Video> 
 	
 	@Autowired
 	VideoDao videoDao;
-//
-//	@Override
-//	public HibernateDao<Video> getDao() {
-//		return videoDao;
-//	}
-	
+
 	@Override
 	public Video getVideo() {
 		Video vid1 = new Video();
@@ -39,6 +37,7 @@ public class VideoServiceImpl implements VideoService { //extends HibernateDatab
 
 	@Override
 	public List<Video> getVideoList() {
+		log.info("Request video list");
 		VideoTag cat1 = new VideoTag();
 		cat1.setText("cat 1");
 		

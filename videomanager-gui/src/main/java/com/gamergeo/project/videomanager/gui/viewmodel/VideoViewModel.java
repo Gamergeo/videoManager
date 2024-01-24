@@ -12,13 +12,23 @@ import javafx.collections.ObservableList;
 
 public class VideoViewModel {
 	
+	private Long id;
+	
     private final StringProperty title = new SimpleStringProperty();
     private final StringProperty url = new SimpleStringProperty();
     private final ObjectProperty<LocalDate> addedDate = new SimpleObjectProperty<LocalDate>();
     
 	private ObservableList<VideoTagViewModel> videoTagList = FXCollections.observableArrayList();
     
-    public StringProperty titleProperty() {
+    public Long getId() {
+		return id;
+	}
+    
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public StringProperty titleProperty() {
         return title;
     }
 

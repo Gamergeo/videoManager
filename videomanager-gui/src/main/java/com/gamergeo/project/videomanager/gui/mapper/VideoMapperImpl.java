@@ -16,10 +16,11 @@ public class VideoMapperImpl extends AbstractMVMMapper<Video, VideoViewModel> im
 	@Override
 	public VideoViewModel getViewModel(Video video) {
 		VideoViewModel videoViewModel = new VideoViewModel();
+		videoViewModel.setId(video.getId());
 		videoViewModel.setTitle(video.getTitle());
 		videoViewModel.setUrl(video.getUrl());
 		// TODO
-//		videoViewModel.setVideoTagList(videoTagMapper.getViewModels(video.getVideoTags()));
+		videoViewModel.setVideoTagList(videoTagMapper.getViewModels(video.getVideoTags()));
 		videoViewModel.setAddedDate(video.getAddedDate());
 		
 		return videoViewModel;
