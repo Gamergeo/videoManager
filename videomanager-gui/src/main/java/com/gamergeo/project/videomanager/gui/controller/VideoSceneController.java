@@ -73,7 +73,7 @@ public class VideoSceneController {
     }
     
     public void refreshVideoList() {
-    	List<VideoViewModel> videoList = videoService.getVideoList()
+    	List<VideoViewModel> videoList = videoService.findAll()
 													 .stream()
 													 .map((video) -> new VideoViewModel(video))
 													 .collect(Collectors.toList());
@@ -81,7 +81,7 @@ public class VideoSceneController {
     }
     
     public void refreshVideoList(String title) {
-    	List<VideoViewModel> videoList = videoService.getVideoList(title)
+    	List<VideoViewModel> videoList = videoService.findBy(title)
 				 .stream()
 				 .map((video) -> new VideoViewModel(video))
 				 .collect(Collectors.toList());
@@ -95,6 +95,11 @@ public class VideoSceneController {
     
     public void save(VideoViewModel video) {
     	videoService.save(video.getVideo());
+    }
+    
+    public void randomVideo(String title) {
+    	VideoViewModel randomVideo = new VideoViewModel(videoService.randomVideo(title));
+    	refreshVideoView(randomVideo);
     }
     	
 }

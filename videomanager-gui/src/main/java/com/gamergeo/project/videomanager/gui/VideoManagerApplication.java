@@ -12,6 +12,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import com.gamergeo.project.videomanager.gui.view.VideoSceneView;
 
 import javafx.application.Application;
+import javafx.application.HostServices;
 import javafx.scene.Scene;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Screen;
@@ -38,6 +39,9 @@ public class VideoManagerApplication extends Application {
     	log.info("Application VideoManager JavaFX is starting...");
 		SpringApplicationBuilder builder = new SpringApplicationBuilder(VideoManagerApplication.class);
 		applicationContext = builder.run(getParameters().getRaw().toArray(new String[0]));
+		
+		applicationContext.getBeanFactory().registerSingleton(VideoManagerApplication.class.getCanonicalName(), this);
+		
         log.info("Application VideoManager JavaFX started");
     }
     @Override

@@ -19,14 +19,23 @@ public class VideoSearchController {
 	@FXML
 	TextField titleSearchField;
 	
-	public void search() {
+	@FXML
+	private void search() {
 		log.info("Search for video");
 		
 		String searchTitle = titleSearchField.getText();
 		videoSceneView.getController().refreshVideoList(searchTitle);
 	}
 	
-	public void reset() {
+	@FXML
+	private void random() {
+		log.info("Random search");
+		String searchTitle = titleSearchField.getText();
+		videoSceneView.getController().randomVideo(searchTitle);
+	}
+	
+	@FXML
+	private void reset() {
 		log.info("Reset search");
 		videoSceneView.getController().refreshVideoList();
 	}

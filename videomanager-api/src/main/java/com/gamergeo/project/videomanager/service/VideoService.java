@@ -6,9 +6,14 @@ import com.gamergeo.project.videomanager.model.Video;
 
 public interface VideoService { //extends HibernateDatabaseService<Video> {
 	
-	List<Video> getVideoList();
+	List<Video> findAll();
 
-	List<Video> getVideoList(String title);
+	List<Video> findBy(String title);
 
 	void save(Video video);
+
+	/**
+	 * Find a random video
+	 */
+	Video randomVideo(String title);
 }

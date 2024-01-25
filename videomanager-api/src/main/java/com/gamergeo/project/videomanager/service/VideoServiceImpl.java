@@ -1,6 +1,8 @@
 	package com.gamergeo.project.videomanager.service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,7 +22,7 @@ public class VideoServiceImpl implements VideoService { //extends HibernateDatab
 
 	@Override
 	@Transactional
-	public List<Video> getVideoList() {
+	public List<Video> findAll() {
 		log.info("Require videos list");
 		List<Video> videos = videoDao.findAll();
 		log.info("Videos list loaded");
@@ -29,7 +31,7 @@ public class VideoServiceImpl implements VideoService { //extends HibernateDatab
 	
 	@Override
 	@Transactional
-	public List<Video> getVideoList(String title) {
+	public List<Video> findBy(String title) {
 		log.info("Require videos list");
 		List<Video> videos = videoDao.findByTitleContaining(title);
 		log.info("Videos list loaded");
@@ -42,5 +44,20 @@ public class VideoServiceImpl implements VideoService { //extends HibernateDatab
 	public void save(Video video) {
 		videoDao.save(video);
 	}
-
+	
+	/**
+	 * Find a random video
+	 */
+	@Override
+	@Transactional
+	public Video randomVideo(String title) {
+		int count =  (int) videoDao.count();
+        int randomNumber = new Random().nextInt(count) + 1;
+		
+		return videoDao.findById(randomNumber).orElseThrow(() -> {
+			String errorMessage = "Error: Video not found (id=" + randomNumber+")";
+			log.error(errorMessage);
+			throw new NoSuchElementException(errorMessage);
+		});
+	}
 }

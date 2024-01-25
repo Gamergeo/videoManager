@@ -12,7 +12,7 @@
       <HBox spacing="20.0">
          <children>
             <Button onAction="#search"  prefWidth="100" alignment="CENTER" text="Chercher" />
-            <Button prefWidth="100" alignment="CENTER" text="Aléatoire" />
+            <Button onAction="#random" prefWidth="100" alignment="CENTER" text="Aléatoire" />
             <Button onAction="#reset" prefWidth="100" alignment="CENTER" text="Reset" />
          </children>
       </HBox>

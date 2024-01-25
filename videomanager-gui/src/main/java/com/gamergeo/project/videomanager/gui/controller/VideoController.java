@@ -2,13 +2,16 @@ package com.gamergeo.project.videomanager.gui.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.Lazy;
 
 import com.gamergeo.lib.gamlib.javafx.controller.FXMLController;
+import com.gamergeo.project.videomanager.gui.VideoManagerApplication;
 import com.gamergeo.project.videomanager.gui.view.VideoSceneView;
 import com.gamergeo.project.videomanager.gui.view.VideoTagView;
 import com.gamergeo.project.videomanager.gui.viewmodel.VideoViewModel;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.FlowPane;
@@ -17,7 +20,11 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @FXMLController
-public class VideoViewController {
+public class VideoController {
+	
+	@Autowired
+	@Lazy
+	private VideoManagerApplication application;
 	
 	@Autowired
 	private VideoSceneView videoSceneView;
@@ -26,7 +33,10 @@ public class VideoViewController {
 	private TextField videoTitleField;
 	
 	@FXML
-	private TextField videoUrlField;
+	private Hyperlink videoUrl;
+	
+//	@FXML
+//	private TextField videoUrlField;
 	
 	@FXML
 	private Label addedDateLabel;
@@ -34,10 +44,15 @@ public class VideoViewController {
 	@FXML
 	private FlowPane videoTagsPane;
 	
+	private VideoViewModel selectedVideo;
+	
 	@Autowired
 	ApplicationContext applicationContext;
 	
-	private VideoViewModel selectedVideo;
+	@FXML
+	private void initialize() {
+		videoUrl.setOnAction(a->application.getHostServices().showDocument(videoUrl.getText()));
+	}
 	
 	public void setVideo(VideoViewModel video) {
 		log.info("Change video view infos: " + video.getId());
@@ -45,13 +60,15 @@ public class VideoViewController {
 		// Attention à bien unbind avant de changer la vidéo selectionné ou la table sera actualisé en conséquence
 		if (selectedVideo != null) {
 			videoTitleField.textProperty().unbindBidirectional(selectedVideo.titleProperty());
-			videoUrlField.textProperty().unbindBidirectional(selectedVideo.urlProperty());
+//			videoUrlField.textProperty().unbindBidirectional(selectedVideo.urlProperty());
+			videoUrl.textProperty().unbindBidirectional(selectedVideo.urlProperty());
 			addedDateLabel.textProperty().unbindBidirectional(selectedVideo.addedDateProperty());
 		}
 		
 		this.selectedVideo = video;
 		videoTitleField.textProperty().bindBidirectional(selectedVideo.titleProperty());
-		videoUrlField.textProperty().bindBidirectional(selectedVideo.urlProperty());
+//		videoUrlField.textProperty().bindBidirectional(selectedVideo.urlProperty());
+		videoUrl.textProperty().bindBidirectional(selectedVideo.urlProperty());
 		addedDateLabel.textProperty().bindBidirectional(selectedVideo.addedDateProperty(), new LocalDateStringConverter());
 		
 		videoTagsPane.getChildren().clear();
