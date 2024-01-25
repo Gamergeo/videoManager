@@ -1,9 +1,11 @@
 package com.gamergeo.project.videomanager.gui.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.gamergeo.lib.gamlib.javafx.controller.FXMLController;
-import com.gamergeo.project.videomanager.gui.viewmodel.ApplicationViewModel;
+import com.gamergeo.project.videomanager.gui.view.VideoSceneView;
 import com.gamergeo.project.videomanager.gui.viewmodel.VideoViewModel;
 
 import javafx.fxml.FXML;
@@ -16,12 +18,9 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @FXMLController
 public class VideoTableController {
-	
+
 	@Autowired
-	ApplicationViewModel applicationViewModel;
-	
-	@Autowired
-	VideoViewController videoViewController;
+	private VideoSceneView videoSceneView;
 
 	@FXML
     private TableView<VideoViewModel> videoTable;
@@ -36,7 +35,10 @@ public class VideoTableController {
     private void initialize() {
     	titleColumn.setCellValueFactory(new PropertyValueFactory<VideoViewModel, String>("title"));
     	tagsColumn.setCellValueFactory(new PropertyValueFactory<VideoViewModel, String>("videoTags"));
-    	videoTable.setItems(applicationViewModel.getVideoList());
+    }
+    
+    public void setVideoList(List<VideoViewModel> videoList) {
+    	videoTable.getItems().setAll(videoList);
     }
     
     /**
@@ -46,7 +48,7 @@ public class VideoTableController {
         if (event.isPrimaryButtonDown() && event.getClickCount() == 1) {
         	VideoViewModel video = videoTable.getSelectionModel().getSelectedItem();
         	log.info("Video selected: "+ video.getId());
-        	applicationViewModel.setSelectedVideo(video);
+        	videoSceneView.getController().refreshVideoView(video);
         }
     }
 }

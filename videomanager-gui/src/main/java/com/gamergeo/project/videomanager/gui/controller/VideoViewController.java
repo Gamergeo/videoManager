@@ -1,15 +1,13 @@
 package com.gamergeo.project.videomanager.gui.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 
 import com.gamergeo.lib.gamlib.javafx.controller.FXMLController;
+import com.gamergeo.project.videomanager.gui.view.VideoSceneView;
 import com.gamergeo.project.videomanager.gui.view.VideoTagView;
-import com.gamergeo.project.videomanager.gui.viewmodel.ApplicationViewModel;
-import com.gamergeo.project.videomanager.gui.viewmodel.VideoTagViewModel;
 import com.gamergeo.project.videomanager.gui.viewmodel.VideoViewModel;
-import com.gamergeo.project.videomanager.service.VideoService;
 
-import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -22,10 +20,7 @@ import lombok.extern.slf4j.Slf4j;
 public class VideoViewController {
 	
 	@Autowired
-	VideoService videoService;
-	
-	@Autowired
-	ApplicationViewModel applicationViewModel;
+	private VideoSceneView videoSceneView;
 	
 	@FXML
 	private TextField videoTitleField;
@@ -39,49 +34,40 @@ public class VideoViewController {
 	@FXML
 	private FlowPane videoTagsPane;
 	
-	@FXML
-	private void initialize() {
-		applicationViewModel.selectVideoProperty().addListener((o) -> unbind());
-		applicationViewModel.selectedVideoProperty().addListener((o) -> render());
-	}
+	@Autowired
+	ApplicationContext applicationContext;
 	
-	private void unbind() {
-		VideoViewModel selectedVideo = applicationViewModel.getSelectedVideo();
-		videoTitleField.textProperty().unbindBidirectional(selectedVideo.titleProperty());
-		videoUrlField.textProperty().unbindBidirectional(selectedVideo.urlProperty());
-		addedDateLabel.textProperty().unbindBidirectional(selectedVideo.addedDateProperty());
-	}
+	private VideoViewModel selectedVideo;
 	
-	private void render() {
-		VideoViewModel selectedVideo = applicationViewModel.getSelectedVideo();
-		VideoViewModel video = applicationViewModel.getVideo();
-		log.info("Render video: " + selectedVideo.getId());
-		
-		if (video != null) {
-			videoTitleField.textProperty().unbindBidirectional(video.titleProperty());
-			videoUrlField.textProperty().unbindBidirectional(video.urlProperty());
-			addedDateLabel.textProperty().unbindBidirectional(video.addedDateProperty());
+	public void setVideo(VideoViewModel video) {
+		log.info("Change video view infos: " + video.getId());
+
+		// Attention à bien unbind avant de changer la vidéo selectionné ou la table sera actualisé en conséquence
+		if (selectedVideo != null) {
+			videoTitleField.textProperty().unbindBidirectional(selectedVideo.titleProperty());
+			videoUrlField.textProperty().unbindBidirectional(selectedVideo.urlProperty());
+			addedDateLabel.textProperty().unbindBidirectional(selectedVideo.addedDateProperty());
 		}
 		
-		video = new VideoViewModel(selectedVideo.getVideo());
-		videoTitleField.textProperty().bindBidirectional(video.titleProperty());
-		videoUrlField.textProperty().bindBidirectional(video.urlProperty());
-		addedDateLabel.textProperty().bindBidirectional(video.addedDateProperty(), new LocalDateStringConverter());
+		this.selectedVideo = video;
+		videoTitleField.textProperty().bindBidirectional(selectedVideo.titleProperty());
+		videoUrlField.textProperty().bindBidirectional(selectedVideo.urlProperty());
+		addedDateLabel.textProperty().bindBidirectional(selectedVideo.addedDateProperty(), new LocalDateStringConverter());
 		
 		videoTagsPane.getChildren().clear();
 		
-//		for (VideoTagViewModel videoTag : videoView.getVideoTagList()) {
-//			VideoTagView videoTagView = applicationContext.getBean(VideoTagView.class);
-//			videoTagView.load();
-//			videoTagView.getController().setTag(videoTag);
-//			videoTagView.getRoot().getStyleClass().add("videoTagComponent");
-//			videoTagsPane.getChildren().add(videoTagView.getRoot());
-//		}
+		video.getVideoTagList().forEach((videoTag) -> {
+			VideoTagView videoTagView = applicationContext.getBean(VideoTagView.class);
+			videoTagView.load();
+			videoTagView.getController().setTag(videoTag);
+			videoTagView.getRoot().getStyleClass().add("videoTagComponent");
+			videoTagsPane.getChildren().add(videoTagView.getRoot());
+		});
 	}
 	
 	@FXML
 	private void save() {
-		videoService.save(applicationViewModel.getSelectedVideo().getVideo());
+		videoSceneView.getController().save(selectedVideo);
 	}
 }
 

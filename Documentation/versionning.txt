@@ -13,3 +13,5 @@
 	0.3.6 : Annotation FXMLView / Controller et intégration de 0.3.1 de gamlib
 	
 	0.3.7 : Amélioration générale architecture
+	
+	0.3.8 : Architecture rollback to 0.3.7

@@ -1,6 +1,7 @@
 package com.gamergeo.project.videomanager.gui.viewmodel;
 
 import java.time.LocalDate;
+import java.util.StringJoiner;
 
 import org.springframework.stereotype.Component;
 
@@ -46,16 +47,9 @@ public class VideoViewModel {
     }
 	
 	public String getVideoTags() {
-		String videoTags = "";
-		
-//		for (VideoTagViewModel videoTag : video.getVideoTags()) {
-//			if (videoTags.isEmpty()) {
-//				videoTags += videoTag.getText();
-//			} else {
-//				videoTags += " / " + videoTag.getText();
-//			}
-//		}
-		return "TODO";
+		StringJoiner joiner = new StringJoiner(" / ");
+		videoTagList.forEach((videoTag) -> joiner.add(videoTag.getText()));
+		return joiner.toString();
 	}
 
 	public final StringProperty urlProperty() {
@@ -114,5 +108,13 @@ public class VideoViewModel {
 	
 	public final Long getId() {
 		return video.getId();
+	}
+
+	public ObservableList<VideoTagViewModel> getVideoTagList() {
+		return videoTagList;
+	}
+
+	public void setVideoTagList(ObservableList<VideoTagViewModel> videoTagList) {
+		this.videoTagList = videoTagList;
 	}
 }

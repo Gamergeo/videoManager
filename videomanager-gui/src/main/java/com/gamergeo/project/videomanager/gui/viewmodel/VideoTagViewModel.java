@@ -17,6 +17,7 @@ public class VideoTagViewModel {
     	model = videoTag;
     	initialModel = videoTag;
 
+    	this.text.set(videoTag.getText());
     	this.text.addListener((x, oldValue, newValue) -> videoTag.setText(newValue));
     }
     

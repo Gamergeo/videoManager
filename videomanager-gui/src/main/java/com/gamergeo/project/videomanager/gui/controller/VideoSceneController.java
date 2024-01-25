@@ -1,12 +1,16 @@
 package com.gamergeo.project.videomanager.gui.controller;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.gamergeo.lib.gamlib.javafx.controller.FXMLController;
 import com.gamergeo.project.videomanager.gui.view.VideoSearchView;
 import com.gamergeo.project.videomanager.gui.view.VideoTableView;
 import com.gamergeo.project.videomanager.gui.view.VideoView;
-import com.gamergeo.project.videomanager.gui.viewmodel.ApplicationViewModel;
+import com.gamergeo.project.videomanager.gui.viewmodel.VideoViewModel;
+import com.gamergeo.project.videomanager.service.VideoService;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.TitledPane;
@@ -14,9 +18,9 @@ import javafx.scene.layout.GridPane;
 
 @FXMLController
 public class VideoSceneController {
-	
+
 	@Autowired
-	private ApplicationViewModel applicationViewModel;
+	private VideoService videoService;
 	
 	@FXML
 	private GridPane mainPane;
@@ -50,7 +54,7 @@ public class VideoSceneController {
     	videoViewPane.setContent(videoView.load().getRoot());
     	bindHeight(videoViewPane);
     	
-		applicationViewModel.selectedVideoProperty().addListener((o) -> openVideoView());
+    	refreshVideoList();
     }
     
     private void bindHeight(TitledPane pane) {
@@ -67,4 +71,30 @@ public class VideoSceneController {
     public void openVideoView() {
     	videoViewPane.setExpanded(true);
     }
+    
+    public void refreshVideoList() {
+    	List<VideoViewModel> videoList = videoService.getVideoList()
+													 .stream()
+													 .map((video) -> new VideoViewModel(video))
+													 .collect(Collectors.toList());
+    	videoTableView.getController().setVideoList(videoList);
+    }
+    
+    public void refreshVideoList(String title) {
+    	List<VideoViewModel> videoList = videoService.getVideoList(title)
+				 .stream()
+				 .map((video) -> new VideoViewModel(video))
+				 .collect(Collectors.toList());
+    	videoTableView.getController().setVideoList(videoList);
+    }
+    
+    public void refreshVideoView(VideoViewModel video) {
+    	openVideoView();
+    	videoView.getController().setVideo(video);
+    }
+    
+    public void save(VideoViewModel video) {
+    	videoService.save(video.getVideo());
+    }
+    	
 }
