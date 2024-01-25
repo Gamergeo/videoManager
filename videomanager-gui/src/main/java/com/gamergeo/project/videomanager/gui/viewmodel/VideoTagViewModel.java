@@ -1,12 +1,13 @@
 package com.gamergeo.project.videomanager.gui.viewmodel;
 
 import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 
 public class VideoTagViewModel {
 	
-    private final SimpleStringProperty text = new SimpleStringProperty();
+    private final StringProperty text = new SimpleStringProperty();
     
-	public final SimpleStringProperty textProperty() {
+	public final StringProperty textProperty() {
 		return this.text;
 	}
 	

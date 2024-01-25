@@ -9,7 +9,7 @@
 	<parent>
 		<groupId>com.gamergeo.project</groupId>
 		<artifactId>videomanager</artifactId>
-		<version>0.3.5</version>
+		<version>0.3.6</version>
 	</parent>
 
 	<artifactId>videomanager-api</artifactId>

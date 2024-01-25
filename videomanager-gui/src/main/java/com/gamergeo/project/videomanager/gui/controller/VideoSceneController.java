@@ -5,12 +5,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 
+import com.gamergeo.lib.gamlib.javafx.controller.AbstractFXMLController;
 import com.gamergeo.lib.gamlib.javafx.controller.FXMLController;
-import com.gamergeo.lib.gamlib.javafx.controller.SceneController;
-import com.gamergeo.lib.gamlib.javafx.view.FXMLView;
-import com.gamergeo.project.videomanager.gui.loader.VideoManagerLoader;
+import com.gamergeo.lib.gamlib.javafx.controller.FXMLSceneController;
 import com.gamergeo.project.videomanager.gui.mapper.VideoMapper;
-import com.gamergeo.project.videomanager.gui.view.VideoSceneView;
 import com.gamergeo.project.videomanager.gui.view.VideoSearchView;
 import com.gamergeo.project.videomanager.gui.view.VideoTableView;
 import com.gamergeo.project.videomanager.gui.view.VideoView;
@@ -21,11 +19,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TitledPane;
 import javafx.scene.layout.GridPane;
 
-@SceneController
-public class VideoSceneController implements FXMLController {
-	
-	@Autowired
-	VideoManagerLoader loader;
+@FXMLSceneController
+public class VideoSceneController extends AbstractFXMLController implements FXMLController {
 	
 	@Autowired
 	private VideoMapper videoMapper;
@@ -46,6 +41,15 @@ public class VideoSceneController implements FXMLController {
 	private TitledPane videoView;
 	
 	@Autowired
+	private VideoSearchView videoSearchView;
+	
+	@Autowired
+	private VideoTableView videoTableView;
+	
+	@Autowired
+	private VideoView videoViewView;
+	
+	@Autowired
 	@Lazy
 	private VideoSearchController videoSearchController;
 	
@@ -59,18 +63,19 @@ public class VideoSceneController implements FXMLController {
 	
     @FXML
     private void initialize() {
-    	
-    	FXMLView videoSearchView = loader.createView(VideoSearchView.class);
+    	loadView(VideoSearchView.class);
+    	videoSearchView.load();
     	videoSearch.setContent(videoSearchView.getRoot());
     	bindHeight(videoSearch);
-    	
-    	FXMLView videoTableView = loader.createView(VideoTableView.class);
+
+    	videoTableView.load();
     	videoTable.setContent(videoTableView.getRoot());
     	bindHeight(videoTable);
     	
-    	FXMLView videoViewView = loader.createView(VideoView.class);
+    	videoViewView.load();
     	videoView.setContent(videoViewView.getRoot());
     	bindHeight(videoView);
+    	
     	refreshVideoList();
     }
     

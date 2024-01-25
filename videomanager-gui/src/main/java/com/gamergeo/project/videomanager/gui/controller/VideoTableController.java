@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.gamergeo.lib.gamlib.javafx.controller.FXMLController;
-import com.gamergeo.lib.gamlib.javafx.controller.SceneChildController;
+import com.gamergeo.lib.gamlib.javafx.controller.FXMLSceneChildController;
 import com.gamergeo.project.videomanager.gui.viewmodel.VideoViewModel;
 
 import javafx.fxml.FXML;
@@ -15,7 +15,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import lombok.extern.slf4j.Slf4j;
 
-@SceneChildController
+@FXMLSceneChildController
 @Slf4j
 public class VideoTableController implements FXMLController {
 	
