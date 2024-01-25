@@ -1,0 +1,14 @@
+
+
+controller													// Controller for application
+	child													// Common child controller
+		XXX													// Specific child controller
+	scene													// Common Scene controller methods
+		XXX												    // Specific Scene controller methods
+		
+view														// View for application / All view are specific
+	child													
+		XXX													// Child view
+	scene													
+		XXX												    // Scene view
+		

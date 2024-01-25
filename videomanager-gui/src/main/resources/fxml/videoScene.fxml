@@ -6,11 +6,11 @@
 <?import javafx.scene.layout.*?>
 
 
-<GridPane fx:id="applicationContent" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gamergeo.project.videomanager.gui.controller.VideoSceneController">
+<GridPane fx:id="mainPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gamergeo.project.videomanager.gui.controller.VideoSceneController">
    <children>
-      <TitledPane fx:id="videoSearch" GridPane.rowIndex="1"/>
-      <TitledPane fx:id="videoTable" expanded="false" GridPane.rowIndex="2" />
-      <TitledPane fx:id="videoView" expanded="false" GridPane.rowIndex="3" />
+      <TitledPane fx:id="videoSearchPane" GridPane.rowIndex="1"/>
+      <TitledPane fx:id="videoTablePane" expanded="false" GridPane.rowIndex="2" />
+      <TitledPane fx:id="videoViewPane" expanded="false" GridPane.rowIndex="3" />
       <FlowPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowSpan="3" />
    </children>
 </GridPane>

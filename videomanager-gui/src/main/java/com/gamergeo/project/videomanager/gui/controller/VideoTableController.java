@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.gamergeo.lib.gamlib.javafx.controller.FXMLController;
-import com.gamergeo.lib.gamlib.javafx.controller.FXMLSceneChildController;
+import com.gamergeo.project.videomanager.gui.view.VideoSceneView;
 import com.gamergeo.project.videomanager.gui.viewmodel.VideoViewModel;
 
 import javafx.fxml.FXML;
@@ -15,12 +15,12 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import lombok.extern.slf4j.Slf4j;
 
-@FXMLSceneChildController
 @Slf4j
-public class VideoTableController implements FXMLController {
-	
+@FXMLController
+public class VideoTableController {
+
 	@Autowired
-	private VideoSceneController videoSceneController;
+	private VideoSceneView videoSceneView;
 
 	@FXML
     private TableView<VideoViewModel> videoTable;
@@ -48,7 +48,7 @@ public class VideoTableController implements FXMLController {
         if (event.isPrimaryButtonDown() && event.getClickCount() == 1) {
         	VideoViewModel video = videoTable.getSelectionModel().getSelectedItem();
         	log.info("Video selected: "+ video.getId());
-        	videoSceneController.refreshVideoView(video);
+        	videoSceneView.getController().refreshVideoView(video);
         }
     }
     

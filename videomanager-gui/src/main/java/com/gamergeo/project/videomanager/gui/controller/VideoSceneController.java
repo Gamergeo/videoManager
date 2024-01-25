@@ -3,11 +3,8 @@ package com.gamergeo.project.videomanager.gui.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Lazy;
 
-import com.gamergeo.lib.gamlib.javafx.controller.AbstractFXMLController;
 import com.gamergeo.lib.gamlib.javafx.controller.FXMLController;
-import com.gamergeo.lib.gamlib.javafx.controller.FXMLSceneController;
 import com.gamergeo.project.videomanager.gui.mapper.VideoMapper;
 import com.gamergeo.project.videomanager.gui.view.VideoSearchView;
 import com.gamergeo.project.videomanager.gui.view.VideoTableView;
@@ -19,8 +16,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TitledPane;
 import javafx.scene.layout.GridPane;
 
-@FXMLSceneController
-public class VideoSceneController extends AbstractFXMLController implements FXMLController {
+@FXMLController
+public class VideoSceneController {
 	
 	@Autowired
 	private VideoMapper videoMapper;
@@ -29,59 +26,43 @@ public class VideoSceneController extends AbstractFXMLController implements FXML
 	private VideoService videoService;
 	
 	@FXML
-	private GridPane applicationContent;
+	private GridPane mainPane;
 	
 	@FXML
-	private TitledPane videoSearch;
+	private TitledPane videoSearchPane;
 	
 	@FXML
-	private TitledPane videoTable;
+	private TitledPane videoTablePane;
 	
 	@FXML
-	private TitledPane videoView;
+	private TitledPane videoViewPane;
 	
 	@Autowired
-	private VideoSearchView videoSearchView;
+	VideoSearchView videoSearchView;
 	
 	@Autowired
-	private VideoTableView videoTableView;
+	VideoTableView videoTableView;
 	
 	@Autowired
-	private VideoView videoViewView;
-	
-	@Autowired
-	@Lazy
-	private VideoSearchController videoSearchController;
-	
-	@Autowired
-	@Lazy
-	private VideoTableController videoTableController;
-	
-	@Autowired
-	@Lazy
-	private VideoViewController videoViewController;
+	VideoView videoView;
 	
     @FXML
     private void initialize() {
-    	loadView(VideoSearchView.class);
-    	videoSearchView.load();
-    	videoSearch.setContent(videoSearchView.getRoot());
-    	bindHeight(videoSearch);
+    	videoSearchPane.setContent(videoSearchView.load().getRoot());
+    	bindHeight(videoSearchPane);
 
-    	videoTableView.load();
-    	videoTable.setContent(videoTableView.getRoot());
-    	bindHeight(videoTable);
-    	
-    	videoViewView.load();
-    	videoView.setContent(videoViewView.getRoot());
-    	bindHeight(videoView);
+    	videoTablePane.setContent(videoTableView.load().getRoot());
+    	bindHeight(videoTablePane);
+
+    	videoViewPane.setContent(videoView.load().getRoot());
+    	bindHeight(videoViewPane);
     	
     	refreshVideoList();
     }
     
     private void bindHeight(TitledPane pane) {
     	pane.heightProperty().addListener((obs, oldHeight, newHeight) -> {
-    		applicationContent.getScene().getWindow().sizeToScene();
+    		mainPane.getScene().getWindow().sizeToScene();
 //    		double totalHeight = videoTable.getHeight() + videoView.getHeight() + videoSearch.getHeight();
 //    		if (applicationContent.getScene().getHeight() > applicationContent.getScene().getWindow().getHeight()) {
 //    			applicationContent.getScene().getWindow().setHeight(applicationContent.getScene().getHeight());
@@ -91,49 +72,22 @@ public class VideoSceneController extends AbstractFXMLController implements FXML
     }
     
     public void openVideoView() {
-    	videoView.setExpanded(true);
+    	videoViewPane.setExpanded(true);
     }
     
     public void refreshVideoList() {
     	List<VideoViewModel> videoList = videoMapper.getViewModels(videoService.getVideoList());
-    	videoTableController.setVideoList(videoList);
+    	videoTableView.getController().setVideoList(videoList);
     }
     
     public void refreshVideoList(String title) {
     	List<VideoViewModel> videoList = videoMapper.getViewModels(videoService.getVideoList(title));
-    	videoTableController.setVideoList(videoList);
+    	videoTableView.getController().setVideoList(videoList);
     }
     
     public void refreshVideoView(VideoViewModel video) {
     	openVideoView();
-		videoViewController.setVideo(video);
+    	videoView.getController().setVideo(video);
     }
     	
-    	
-    	
-    	
-//    	videoView.setContent(new Label("Bah"));
-    	
-//    	GridPane personPane = (GridPane) loadElement("Person");
-//
-//        // Bind selected
-//        personScene.getSelectedPersonProperty().addListener((observable, oldValue, person)->{
-//        	// Premier passage, on ajoute l'enfant
-//    		if (oldValue == null) {
-//    			applicationContent.getChildren().add(personPane);
-//    		}
-//        });
-    
-//    private Node loadElement(String fxmlFile) throws IOException {
-//        FXMLLoader loader = new FXMLLoader(MainApplication.class.getResource("/fxml/" + fxmlFile + ".fxml"));
-//        Node node = loader.load();
-//        ((IPersonModuleController) loader.getController()).setPersonScene(personScene);
-//        return node;
-//    }
-//    
-//    private Node loadAndAddElement(String fxmlFile) throws IOException {
-//    	Node node = loadElement(fxmlFile);
-//        applicationContent.getChildren().add(node);
-//        return node;
-//    }
 }

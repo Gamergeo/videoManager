@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 
 import com.gamergeo.lib.gamlib.javafx.controller.FXMLController;
-import com.gamergeo.lib.gamlib.javafx.controller.FXMLSceneChildController;
 import com.gamergeo.project.videomanager.gui.view.VideoTagView;
 import com.gamergeo.project.videomanager.gui.viewmodel.VideoTagViewModel;
 import com.gamergeo.project.videomanager.gui.viewmodel.VideoViewModel;
@@ -16,9 +15,9 @@ import javafx.scene.layout.FlowPane;
 import javafx.util.converter.LocalDateStringConverter;
 import lombok.extern.slf4j.Slf4j;
 
-@FXMLSceneChildController
 @Slf4j
-public class VideoViewController implements FXMLController {
+@FXMLController
+public class VideoViewController {
 	
 	@FXML
 	private Label videoTitleLabel;
@@ -46,7 +45,7 @@ public class VideoViewController implements FXMLController {
 		for (VideoTagViewModel videoTag : videoView.getVideoTagList()) {
 			VideoTagView videoTagView = applicationContext.getBean(VideoTagView.class);
 			videoTagView.load();
-			((VideoTagController) videoTagView.getController()).setTag(videoTag);
+			videoTagView.getController().setTag(videoTag);
 			videoTagView.getRoot().getStyleClass().add("videoTagComponent");
 			videoTagsPane.getChildren().add(videoTagView.getRoot());
 		}
