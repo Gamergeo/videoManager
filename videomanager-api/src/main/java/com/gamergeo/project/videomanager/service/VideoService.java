@@ -9,4 +9,6 @@ public interface VideoService { //extends HibernateDatabaseService<Video> {
 	List<Video> getVideoList();
 
 	List<Video> getVideoList(String title);
+
+	void save(Video video);
 }

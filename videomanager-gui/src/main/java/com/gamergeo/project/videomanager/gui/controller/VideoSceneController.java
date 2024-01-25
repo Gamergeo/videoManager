@@ -1,16 +1,12 @@
 package com.gamergeo.project.videomanager.gui.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.gamergeo.lib.gamlib.javafx.controller.FXMLController;
-import com.gamergeo.project.videomanager.gui.mapper.VideoMapper;
 import com.gamergeo.project.videomanager.gui.view.VideoSearchView;
 import com.gamergeo.project.videomanager.gui.view.VideoTableView;
 import com.gamergeo.project.videomanager.gui.view.VideoView;
-import com.gamergeo.project.videomanager.gui.viewmodel.VideoViewModel;
-import com.gamergeo.project.videomanager.service.VideoService;
+import com.gamergeo.project.videomanager.gui.viewmodel.ApplicationViewModel;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.TitledPane;
@@ -20,10 +16,7 @@ import javafx.scene.layout.GridPane;
 public class VideoSceneController {
 	
 	@Autowired
-	private VideoMapper videoMapper;
-	
-	@Autowired
-	private VideoService videoService;
+	private ApplicationViewModel applicationViewModel;
 	
 	@FXML
 	private GridPane mainPane;
@@ -57,7 +50,7 @@ public class VideoSceneController {
     	videoViewPane.setContent(videoView.load().getRoot());
     	bindHeight(videoViewPane);
     	
-    	refreshVideoList();
+		applicationViewModel.selectedVideoProperty().addListener((o) -> openVideoView());
     }
     
     private void bindHeight(TitledPane pane) {
@@ -74,20 +67,4 @@ public class VideoSceneController {
     public void openVideoView() {
     	videoViewPane.setExpanded(true);
     }
-    
-    public void refreshVideoList() {
-    	List<VideoViewModel> videoList = videoMapper.getViewModels(videoService.getVideoList());
-    	videoTableView.getController().setVideoList(videoList);
-    }
-    
-    public void refreshVideoList(String title) {
-    	List<VideoViewModel> videoList = videoMapper.getViewModels(videoService.getVideoList(title));
-    	videoTableView.getController().setVideoList(videoList);
-    }
-    
-    public void refreshVideoView(VideoViewModel video) {
-    	openVideoView();
-    	videoView.getController().setVideo(video);
-    }
-    	
 }

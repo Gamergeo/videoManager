@@ -1,11 +1,9 @@
 package com.gamergeo.project.videomanager.gui.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.gamergeo.lib.gamlib.javafx.controller.FXMLController;
-import com.gamergeo.project.videomanager.gui.view.VideoSceneView;
+import com.gamergeo.project.videomanager.gui.viewmodel.ApplicationViewModel;
 import com.gamergeo.project.videomanager.gui.viewmodel.VideoViewModel;
 
 import javafx.fxml.FXML;
@@ -18,9 +16,12 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @FXMLController
 public class VideoTableController {
-
+	
 	@Autowired
-	private VideoSceneView videoSceneView;
+	ApplicationViewModel applicationViewModel;
+	
+	@Autowired
+	VideoViewController videoViewController;
 
 	@FXML
     private TableView<VideoViewModel> videoTable;
@@ -35,10 +36,7 @@ public class VideoTableController {
     private void initialize() {
     	titleColumn.setCellValueFactory(new PropertyValueFactory<VideoViewModel, String>("title"));
     	tagsColumn.setCellValueFactory(new PropertyValueFactory<VideoViewModel, String>("videoTags"));
-    }
-    
-    public void setVideoList(List<VideoViewModel> videoList) {
-    	videoTable.getItems().setAll(videoList);
+    	videoTable.setItems(applicationViewModel.getVideoList());
     }
     
     /**
@@ -48,35 +46,7 @@ public class VideoTableController {
         if (event.isPrimaryButtonDown() && event.getClickCount() == 1) {
         	VideoViewModel video = videoTable.getSelectionModel().getSelectedItem();
         	log.info("Video selected: "+ video.getId());
-        	videoSceneView.getController().refreshVideoView(video);
+        	applicationViewModel.setSelectedVideo(video);
         }
     }
-    
-//    
-//	/**
-//	 * Refresh les données de la table en fonction du paramètre
-//	 * @param searchText
-//	 */
-//    public void loadDataTable(String searchText) {
-//        Task<ObservableList<PersonView>> task = new Task<ObservableList<PersonView>>() {
-//            @Override
-//            protected ObservableList<PersonView> call() throws Exception {
-//                updateMessage("Loading data");
-//                return FXCollections.observableArrayList(personList
-//                        .stream()
-//                        .filter(value -> value.getName().toString().toLowerCase().contains(searchText))
-//                        .collect(Collectors.toList()));
-//            }
-//        };
-//        
-//        task.setOnSucceeded(event -> {
-//        	tableView.setItems(FXCollections.observableList(task.getValue()));
-//        });
-//        
-//        Thread th = new Thread(task);
-//        th.setDaemon(true);
-//        th.start();	
-//    }
-//    
-
 }

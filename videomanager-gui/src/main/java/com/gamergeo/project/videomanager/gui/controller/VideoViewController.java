@@ -1,13 +1,15 @@
 package com.gamergeo.project.videomanager.gui.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
 
 import com.gamergeo.lib.gamlib.javafx.controller.FXMLController;
 import com.gamergeo.project.videomanager.gui.view.VideoTagView;
+import com.gamergeo.project.videomanager.gui.viewmodel.ApplicationViewModel;
 import com.gamergeo.project.videomanager.gui.viewmodel.VideoTagViewModel;
 import com.gamergeo.project.videomanager.gui.viewmodel.VideoViewModel;
+import com.gamergeo.project.videomanager.service.VideoService;
 
+import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -19,8 +21,14 @@ import lombok.extern.slf4j.Slf4j;
 @FXMLController
 public class VideoViewController {
 	
+	@Autowired
+	VideoService videoService;
+	
+	@Autowired
+	ApplicationViewModel applicationViewModel;
+	
 	@FXML
-	private Label videoTitleLabel;
+	private TextField videoTitleField;
 	
 	@FXML
 	private TextField videoUrlField;
@@ -31,83 +39,49 @@ public class VideoViewController {
 	@FXML
 	private FlowPane videoTagsPane;
 	
-	@Autowired
-	ApplicationContext applicationContext;
+	@FXML
+	private void initialize() {
+		applicationViewModel.selectVideoProperty().addListener((o) -> unbind());
+		applicationViewModel.selectedVideoProperty().addListener((o) -> render());
+	}
 	
-	public void setVideo(VideoViewModel videoView) {
-		log.info("Change video view infos: " + videoView.getId());
-		videoTitleLabel.textProperty().bind(videoView.titleProperty());
-		videoUrlField.textProperty().bind(videoView.urlProperty());
-		addedDateLabel.textProperty().bindBidirectional(videoView.addedDateProperty(), new LocalDateStringConverter());
+	private void unbind() {
+		VideoViewModel selectedVideo = applicationViewModel.getSelectedVideo();
+		videoTitleField.textProperty().unbindBidirectional(selectedVideo.titleProperty());
+		videoUrlField.textProperty().unbindBidirectional(selectedVideo.urlProperty());
+		addedDateLabel.textProperty().unbindBidirectional(selectedVideo.addedDateProperty());
+	}
+	
+	private void render() {
+		VideoViewModel selectedVideo = applicationViewModel.getSelectedVideo();
+		VideoViewModel video = applicationViewModel.getVideo();
+		log.info("Render video: " + selectedVideo.getId());
+		
+		if (video != null) {
+			videoTitleField.textProperty().unbindBidirectional(video.titleProperty());
+			videoUrlField.textProperty().unbindBidirectional(video.urlProperty());
+			addedDateLabel.textProperty().unbindBidirectional(video.addedDateProperty());
+		}
+		
+		video = new VideoViewModel(selectedVideo.getVideo());
+		videoTitleField.textProperty().bindBidirectional(video.titleProperty());
+		videoUrlField.textProperty().bindBidirectional(video.urlProperty());
+		addedDateLabel.textProperty().bindBidirectional(video.addedDateProperty(), new LocalDateStringConverter());
 		
 		videoTagsPane.getChildren().clear();
 		
-		for (VideoTagViewModel videoTag : videoView.getVideoTagList()) {
-			VideoTagView videoTagView = applicationContext.getBean(VideoTagView.class);
-			videoTagView.load();
-			videoTagView.getController().setTag(videoTag);
-			videoTagView.getRoot().getStyleClass().add("videoTagComponent");
-			videoTagsPane.getChildren().add(videoTagView.getRoot());
-		}
+//		for (VideoTagViewModel videoTag : videoView.getVideoTagList()) {
+//			VideoTagView videoTagView = applicationContext.getBean(VideoTagView.class);
+//			videoTagView.load();
+//			videoTagView.getController().setTag(videoTag);
+//			videoTagView.getRoot().getStyleClass().add("videoTagComponent");
+//			videoTagsPane.getChildren().add(videoTagView.getRoot());
+//		}
 	}
-		
-//		((GridPane) VideoManagerApplication.load("videoTagView")).set
-		
-//		videoTagsPane.getChildren().add((GridPane) VideoManagerApplication.load("videoTagView"));
-		
-//		this.personScene = personScene;
-		
-        // Bind selected
-//        personScene.getSelectedPersonProperty().addListener((observable, oldValue, person)->{
-//        	idPerson.textProperty().bind(Bindings.selectInteger(person, "id").asString());
-//        	namePerson.textProperty().bind(Bindings.selectString(person, "name"));
-//        	employedPerson.textProperty().bind(Bindings.selectBoolean(person, "employed").asString());
-//        });
-    
-//    	personList.add(new PersonView(new Person(1, "jean_mi", true)));
-//    	personList.add(new PersonView(new Person(2, "jeannot", false)));
-//    	
-//    	tableView.setItems(personList);
-//    	
-//        idColumn.setCellValueFactory(new PropertyValueFactory<PersonView, Integer>("id"));
-//        nameColumn.setCellValueFactory(new PropertyValueFactory<PersonView, String>("name"));
-//        employedColumn.setCellValueFactory(new PropertyValueFactory<PersonView, Boolean>("isEmployed"));
-//    }
-//    
-//	/**
-//	 * Refresh les données de la table en fonction du paramètre
-//	 * @param searchText
-//	 */
-//    public void loadDataTable(String searchText) {
-//        Task<ObservableList<PersonView>> task = new Task<ObservableList<PersonView>>() {
-//            @Override
-//            protected ObservableList<PersonView> call() throws Exception {
-//                updateMessage("Loading data");
-//                return FXCollections.observableArrayList(personList
-//                        .stream()
-//                        .filter(value -> value.getName().toString().toLowerCase().contains(searchText))
-//                        .collect(Collectors.toList()));
-//            }
-//        };
-//        
-//        task.setOnSucceeded(event -> {
-//        	tableView.setItems(FXCollections.observableList(task.getValue()));
-//        });
-//        
-//        Thread th = new Thread(task);
-//        th.setDaemon(true);
-//        th.start();	
-//    }
-//    
-//	public void setPersonScene(PersonSceneView personScene) {
-//		this.personScene = personScene;
-//        
-//        // Bind search
-//		personScene.buttonPressedProperty().addListener((observable, oldValue, newValue)->{
-//			if (newValue) {
-//				loadDataTable(personScene.getSearchText());	
-//			}
-//        });
-//	}
+	
+	@FXML
+	private void save() {
+		videoService.save(applicationViewModel.getSelectedVideo().getVideo());
+	}
 }
 

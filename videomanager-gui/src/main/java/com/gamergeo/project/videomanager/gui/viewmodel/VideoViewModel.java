@@ -1,7 +1,10 @@
 package com.gamergeo.project.videomanager.gui.viewmodel;
 
 import java.time.LocalDate;
-import java.util.List;
+
+import org.springframework.stereotype.Component;
+
+import com.gamergeo.project.videomanager.model.Video;
 
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
@@ -10,55 +13,49 @@ import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+@Component
 public class VideoViewModel {
 	
-	private Long id;
+	private Video initialVideo;
+	
+	private Video video;
 	
     private final StringProperty title = new SimpleStringProperty();
     private final StringProperty url = new SimpleStringProperty();
     private final ObjectProperty<LocalDate> addedDate = new SimpleObjectProperty<LocalDate>();
-    
+	
 	private ObservableList<VideoTagViewModel> videoTagList = FXCollections.observableArrayList();
     
-    public Long getId() {
-		return id;
-	}
+    public VideoViewModel() {}
     
-	public void setId(Long id) {
-		this.id = id;
-	}
+    public VideoViewModel(Video video) {
+    	this.initialVideo = video;
+    	this.video = video;
+    	
+    	this.title.set(video.getTitle());
+    	this.title.addListener((x, oldValue, newValue) -> video.setTitle(newValue));
+    	
+    	this.url.set(video.getUrl());
+    	this.url.addListener((x, oldValue, newValue) -> video.setUrl(newValue));
 
-	public StringProperty titleProperty() {
-        return title;
+    	this.addedDate.set(video.getAddedDate());
+    	this.addedDate.addListener((x, oldValue, newValue) -> video.setAddedDate(newValue));
+    	
+    	videoTagList.clear();
+    	video.getVideoTags().forEach((videoTag) -> videoTagList.add(new VideoTagViewModel(videoTag)));
     }
-
-    public String getTitle() {
-        return title.get();
-    }
-
-    public void setTitle(String title) {
-        this.title.set(title);
-    }
-    
-	public ObservableList<VideoTagViewModel> getVideoTagList() {
-		return videoTagList;
-	}
-
-	public void setVideoTagList(List<VideoTagViewModel> videoTagList) {
-		this.videoTagList.addAll(videoTagList);
-	}
 	
 	public String getVideoTags() {
 		String videoTags = "";
 		
-		for (VideoTagViewModel videoTag : getVideoTagList()) {
-			if (videoTags.isEmpty()) {
-				videoTags += videoTag.getText();
-			} else {
-				videoTags += " / " + videoTag.getText();
-			}
-		}
-		return videoTags;
+//		for (VideoTagViewModel videoTag : video.getVideoTags()) {
+//			if (videoTags.isEmpty()) {
+//				videoTags += videoTag.getText();
+//			} else {
+//				videoTags += " / " + videoTag.getText();
+//			}
+//		}
+		return "TODO";
 	}
 
 	public final StringProperty urlProperty() {
@@ -83,5 +80,39 @@ public class VideoViewModel {
 	
 	public final void setAddedDate(final LocalDate addedDate) {
 		this.addedDateProperty().set(addedDate);
+	}
+
+
+	public Video getInitialVideo() {
+		return initialVideo;
+	}
+
+
+	public void setInitialVideo(Video initialVideo) {
+		this.initialVideo = initialVideo;
+	}
+
+	public Video getVideo() {
+		return video;
+	}
+
+	public void setVideo(Video video) {
+		this.video = video;
+	}
+
+	public final StringProperty titleProperty() {
+		return this.title;
+	}
+
+	public final String getTitle() {
+		return this.titleProperty().get();
+	}
+	
+	public final void setTitle(final String title) {
+		this.titleProperty().set(title);
+	}
+	
+	public final Long getId() {
+		return video.getId();
 	}
 }

@@ -35,5 +35,12 @@ public class VideoServiceImpl implements VideoService { //extends HibernateDatab
 		log.info("Videos list loaded");
 		return videos;
 	}
+	
+
+	@Override
+	@Transactional
+	public void save(Video video) {
+		videoDao.save(video);
+	}
 
 }
