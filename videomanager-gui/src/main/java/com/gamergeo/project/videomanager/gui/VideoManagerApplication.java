@@ -12,9 +12,8 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import com.gamergeo.project.videomanager.gui.view.VideoSceneView;
 
 import javafx.application.Application;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.GridPane;
-import javafx.stage.Screen;
 import javafx.stage.Stage;
 import lombok.extern.slf4j.Slf4j;
 
@@ -52,13 +51,25 @@ public class VideoManagerApplication extends Application {
 	
     @Override
     public void start(Stage primaryStage) throws Exception {
-        GridPane page = (GridPane) applicationContext.getBean(VideoSceneView.class).load().getRoot();
+        Parent page = (Parent) applicationContext.getBean(VideoSceneView.class).load().getRoot();
         Scene scene = new Scene(page);
-        scene.getStylesheets().add("/css/videomanager.css");
+        scene.getStylesheets().add("/presentation/videomanager.css");
+        
+        
+        // Principal screen size
+//        Screen screen = Screen.getPrimary();
+//        javafx.geometry.Rectangle2D bounds = screen.getVisualBounds();
+//
+//        // Set stage size to max screen size
+//        primaryStage.setX(bounds.getMinX());
+//        primaryStage.setY(bounds.getMinY());
+//        primaryStage.setWidth(bounds.getWidth());
+//        primaryStage.setHeight(bounds.getHeight());
 
-        primaryStage.setY(50);
-        primaryStage.setX(Screen.getPrimary().getBounds().getWidth()/2-300);
+//        primaryStage.setY(50);
+//        primaryStage.setX(Screen.getPrimary().getBounds().getWidth()/2-300);
         primaryStage.setTitle("Video manager");
+        primaryStage.setMaximized(true);
         primaryStage.setScene(scene);		
 //        primaryStage.sizeToScene();
         primaryStage.show();

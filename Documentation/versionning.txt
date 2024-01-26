@@ -11,7 +11,8 @@
 	
 Future versions:
 
-0.4 : App Improvement
+0.4 : App Layout Improvement
+	0.4.1
 
 	Tag management
 	General graphical improvement

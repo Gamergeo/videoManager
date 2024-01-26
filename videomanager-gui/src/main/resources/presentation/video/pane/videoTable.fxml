@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TitledPane?>
+
+
+<TitledPane fx:id="tableTitledPane" text="Video List" expanded="false" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gamergeo.project.videomanager.gui.controller.VideoTableController">
+   <content>
+      <TableView fx:id="videoTable" onMousePressed="#selectVideo" prefHeight="300.0">
+      	
+      	<columns>
+      	    <TableColumn fx:id="titleColumn" prefWidth="200" text="Title" />
+      	    <TableColumn fx:id="tagsColumn" prefWidth="400" text="Tags" />
+      	</columns>
+      	 <columnResizePolicy>
+      	    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+      	 </columnResizePolicy>
+      </TableView>
+   </content>
+</TitledPane>

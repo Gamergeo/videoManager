@@ -1,0 +1,9 @@
+.titled-pane > *.content {
+    -fx-border-color: transparent;
+}
+
+.searchTagFlowPane {
+	-fx-max-width: 200;
+    -fx-min-height: 50;
+    -fx-max-height: 100;
+}

@@ -8,31 +8,26 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.gamergeo.lib.gamlib.javafx.controller.FXMLController;
 import com.gamergeo.project.videomanager.gui.view.VideoSearchView;
 import com.gamergeo.project.videomanager.gui.view.VideoTableView;
+import com.gamergeo.project.videomanager.gui.view.VideoTagListView;
 import com.gamergeo.project.videomanager.gui.view.VideoView;
 import com.gamergeo.project.videomanager.gui.viewmodel.VideoViewModel;
 import com.gamergeo.project.videomanager.service.VideoService;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.TitledPane;
-import javafx.scene.layout.GridPane;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 
 @FXMLController
 public class VideoSceneController {
 
+	@FXML
+	private HBox videoSceneRoot;
+	
+	@FXML
+	private BorderPane videoBorderPane;
+
 	@Autowired
 	private VideoService videoService;
-	
-	@FXML
-	private GridPane mainPane;
-	
-	@FXML
-	private TitledPane videoSearchPane;
-	
-	@FXML
-	private TitledPane videoTablePane;
-	
-	@FXML
-	private TitledPane videoViewPane;
 	
 	@Autowired
 	VideoSearchView videoSearchView;
@@ -43,41 +38,26 @@ public class VideoSceneController {
 	@Autowired
 	VideoView videoView;
 	
+	@Autowired
+	VideoTagListView videoTagListView;
+	
     @FXML
     private void initialize() {
-    	videoSearchPane.setContent(videoSearchView.load().getRoot());
-    	bindHeight(videoSearchPane);
-
-    	videoTablePane.setContent(videoTableView.load().getRoot());
-    	bindHeight(videoTablePane);
-
-    	videoViewPane.setContent(videoView.load().getRoot());
-    	bindHeight(videoViewPane);
+    	videoBorderPane.setTop(videoSearchView.load().getRoot());
+    	videoBorderPane.setCenter(videoView.load().getRoot());
+    	videoBorderPane.setBottom(videoTableView.load().getRoot());
     	
-    	refreshVideoList();
+    	videoSceneRoot.getChildren().add(videoTagListView.load().getRoot());
+    	
+    	resetVideoList();
     }
     
-    private void bindHeight(TitledPane pane) {
-    	pane.heightProperty().addListener((obs, oldHeight, newHeight) -> {
-    		mainPane.getScene().getWindow().sizeToScene();
-//    		double totalHeight = videoTable.getHeight() + videoView.getHeight() + videoSearch.getHeight();
-//    		if (applicationContent.getScene().getHeight() > applicationContent.getScene().getWindow().getHeight()) {
-//    			applicationContent.getScene().getWindow().setHeight(applicationContent.getScene().getHeight());
-//    		}
-    	});
-//    				
-    }
-    
-    public void openVideoView() {
-    	videoViewPane.setExpanded(true);
-    }
-    
-    public void refreshVideoList() {
+    public void resetVideoList() {
     	List<VideoViewModel> videoList = videoService.findAll()
-													 .stream()
-													 .map((video) -> new VideoViewModel(video))
-													 .collect(Collectors.toList());
-    	videoTableView.getController().setVideoList(videoList);
+				 .stream()
+				 .map((video) -> new VideoViewModel(video))
+				 .collect(Collectors.toList());
+		videoTableView.getController().setVideoList(videoList);
     }
     
     public void refreshVideoList(String title) {
@@ -86,10 +66,10 @@ public class VideoSceneController {
 				 .map((video) -> new VideoViewModel(video))
 				 .collect(Collectors.toList());
     	videoTableView.getController().setVideoList(videoList);
+    	videoTableView.getController().openView();
     }
     
     public void refreshVideoView(VideoViewModel video) {
-    	openVideoView();
     	videoView.getController().setVideo(video);
     }
     

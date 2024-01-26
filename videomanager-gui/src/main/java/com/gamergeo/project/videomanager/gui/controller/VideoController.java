@@ -13,7 +13,6 @@ import com.gamergeo.project.videomanager.gui.viewmodel.VideoViewModel;
 import javafx.fxml.FXML;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.FlowPane;
 import javafx.util.converter.LocalDateStringConverter;
 import lombok.extern.slf4j.Slf4j;
@@ -28,9 +27,12 @@ public class VideoController {
 	
 	@Autowired
 	private VideoSceneView videoSceneView;
-	
+
 	@FXML
-	private TextField videoTitleField;
+	private Label videoTitleLabel;
+	
+//	@FXML
+//	private TextField videoTitleField;
 	
 	@FXML
 	private Hyperlink videoUrl;
@@ -59,14 +61,14 @@ public class VideoController {
 
 		// Attention à bien unbind avant de changer la vidéo selectionné ou la table sera actualisé en conséquence
 		if (selectedVideo != null) {
-			videoTitleField.textProperty().unbindBidirectional(selectedVideo.titleProperty());
+			videoTitleLabel.textProperty().unbindBidirectional(selectedVideo.titleProperty());
 //			videoUrlField.textProperty().unbindBidirectional(selectedVideo.urlProperty());
 			videoUrl.textProperty().unbindBidirectional(selectedVideo.urlProperty());
 			addedDateLabel.textProperty().unbindBidirectional(selectedVideo.addedDateProperty());
 		}
 		
 		this.selectedVideo = video;
-		videoTitleField.textProperty().bindBidirectional(selectedVideo.titleProperty());
+		videoTitleLabel.textProperty().bindBidirectional(selectedVideo.titleProperty());
 //		videoUrlField.textProperty().bindBidirectional(selectedVideo.urlProperty());
 		videoUrl.textProperty().bindBidirectional(selectedVideo.urlProperty());
 		addedDateLabel.textProperty().bindBidirectional(selectedVideo.addedDateProperty(), new LocalDateStringConverter());

@@ -4,7 +4,7 @@ import com.gamergeo.lib.gamlib.javafx.view.AbstractFXMLView;
 import com.gamergeo.lib.gamlib.javafx.view.FXMLView;
 import com.gamergeo.project.videomanager.gui.controller.VideoController;
 
-@FXMLView("fxml/video.fxml")
+@FXMLView(value = "presentation/video/pane/video.fxml", css = "presentation/video/pane/video.css")
 public class VideoView extends AbstractFXMLView<VideoController> {
 
 }

@@ -37,7 +37,7 @@ public class VideoSearchController {
 	@FXML
 	private void reset() {
 		log.info("Reset search");
-		videoSceneView.getController().refreshVideoList();
+		videoSceneView.getController().resetVideoList();
 	}
 	
 }

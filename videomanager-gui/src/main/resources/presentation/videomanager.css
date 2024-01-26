@@ -1,0 +1,48 @@
+/*.root, .pane, .titled-pane > *.content {
+    -fx-background-color: black;
+}*/
+
+.root {
+	-fx-font-size: 16;
+}
+
+.button {
+	-fx-pref-width: 120;
+    -fx-pref-height: 30;
+}
+
+.titled-pane > .title
+{
+    /*-fx-background-color: rgba(0, 60, 136, 0.5);
+    -fx-border-color: rgba(0, 60, 136, 0.8);
+    -fx-font-family: 'Lucida Grande',Verdana,Geneva,Lucida,Arial,Helvetica,sans-serif;
+    -fx-font-size: 16px;*/
+    -fx-font-weight: bold;
+}
+
+.textField {
+    -fx-pref-height: 25;
+}
+
+.buttonLine {
+	-fx-spacing: 20;
+    -fx-padding: 0 20 0 20;
+}
+
+
+.default-spacing {
+	spacing: 10;
+}
+
+
+
+.videoTagComponent {
+    -fx-border-color: black;
+    -fx-border-width: 1; 
+    -fx-border-radius: 15;
+    -fx-background-color: green;
+  	-fx-background-radius: 15;
+}
+
+
+

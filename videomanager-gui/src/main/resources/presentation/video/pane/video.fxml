@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gamergeo.project.videomanager.gui.controller.VideoController">
+   <bottom>
+      <HBox alignment="BASELINE_RIGHT" styleClass="buttonLine" BorderPane.alignment="CENTER">
+         <children>
+            <Button defaultButton="true" onAction="#save" text="Save" />
+            <Button cancelButton="true" onAction="#save" text="Reset" />
+         </children>
+      </HBox>
+   </bottom>
+   <right>
+      <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER" />
+   </right>
+   <center>
+      <VBox styleClass="video" maxHeight="-Infinity" maxWidth="-Infinity" spacing="20.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label fx:id="videoTitleLabel" />
+            <Hyperlink fx:id="videoUrl" />
+            <Label fx:id="addedDateLabel" />
+            <Label text="rate test lioreum ipsem de mes couilles">
+               <font>
+                  <Font/>
+               </font>
+            </Label>
+            <FlowPane fx:id="videoTagsPane" hgap="5.0" vgap="5.0" />
+         </children>
+      </VBox>
+   </center>
+   <padding>
+      <Insets bottom="50.0" left="20.0" />
+   </padding>
+</BorderPane>

@@ -23,7 +23,9 @@ This work is in progress. Architecture, code, functionnalities will change a lot
   - 0.3.7: General architecture improvement
   - 0.3.8: Architecture rollback to 0.3.7
   - 0.3.9: Random video and clickable link
-- *0.4 : App Improvement*
+- 0.4 : Layout Improvement
+  - 0.4.1 : Layout general improvements, add css management
+
   - *Tag management*
   - *General graphical improvement*
   - *Search enhancement...*

@@ -11,6 +11,7 @@ import com.gamergeo.project.videomanager.gui.viewmodel.VideoViewModel;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TitledPane;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import lombok.extern.slf4j.Slf4j;
@@ -21,6 +22,9 @@ public class VideoTableController {
 
 	@Autowired
 	private VideoSceneView videoSceneView;
+	
+	@FXML
+	TitledPane tableTitledPane;
 
 	@FXML
     private TableView<VideoViewModel> videoTable;
@@ -51,4 +55,8 @@ public class VideoTableController {
         	videoSceneView.getController().refreshVideoView(video);
         }
     }
+	
+	public void openView() {
+		tableTitledPane.setExpanded(true);
+	}
 }
