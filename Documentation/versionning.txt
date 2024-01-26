@@ -1,19 +1,18 @@
-0.3 : Link BDD / App et amélioration architecture JavaFX
+0.3: Linking Database / App and Improving JavaFX Architecture
+	0.3.1: Link all videos with the app
+	0.3.2: Integration Test
+	0.3.3: Basic Title Search
+	0.3.4: Annotation, simplification, improvement of lazy dependencies
+	0.3.5: Architecture trial
+	0.3.6: FXMLView / Controller annotation and integration of 0.3.1 from gamlib
+	0.3.7: General architecture improvement
+	0.3.8: Architecture rollback to 0.3.7
+	0.3.9: Random video and clickable link
+	
+Future versions:
 
-	0.3.1 : Link all videos with app
-	
-	0.3.2 : Integration Test
-	
-	0.3.3 : Basic Title Search
-	
-	0.3.4 : Annotation, simplification, amélioration des dépendences lazy
-	
-	0.3.5 : Essai architecture
-	
-	0.3.6 : Annotation FXMLView / Controller et intégration de 0.3.1 de gamlib
-	
-	0.3.7 : Amélioration générale architecture
-	
-	0.3.8 : Architecture rollback to 0.3.7
-	
-	0.3.9 : Random video and clickable link
+0.4 : App Improvement
+
+	Tag management
+	General graphical improvement
+	Search enhancement...

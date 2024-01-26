@@ -12,7 +12,6 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import com.gamergeo.project.videomanager.gui.view.VideoSceneView;
 
 import javafx.application.Application;
-import javafx.application.HostServices;
 import javafx.scene.Scene;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Screen;
