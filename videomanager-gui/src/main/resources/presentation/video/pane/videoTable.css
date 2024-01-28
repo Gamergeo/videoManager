@@ -1,0 +1,28 @@
+/* TableView */
+#videoTable {
+    -fx-background-color: #181818;
+    -fx-table-cell-border-color: transparent;
+    -fx-table-header-border-color: transparent;
+}
+
+#videoTable .column-header-background {
+    -fx-background-color: #282828;
+}
+
+#videoTable .table-row-cell {
+    -fx-background-color: #181818;
+    -fx-text-fill: white; /* Couleur du texte en blanc pour toutes les cellules */
+}
+
+#videoTable .table-row-cell:filled:selected, .table-view .table-row-cell:filled:selected .text {
+    -fx-background-color: #282828;
+    -fx-text-fill: white;
+}
+
+#videoTable .table-row-cell:even {
+    -fx-background-color: #202020; /* Couleur pour les lignes alternées */
+}
+
+#videoTable .cell {
+    -fx-text-fill: white; /* Assure que le texte de chaque cellule est blanc */
+}

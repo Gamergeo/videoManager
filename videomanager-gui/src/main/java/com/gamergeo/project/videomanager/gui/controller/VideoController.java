@@ -37,9 +37,6 @@ public class VideoController {
 	@FXML
 	private Hyperlink videoUrl;
 	
-//	@FXML
-//	private TextField videoUrlField;
-	
 	@FXML
 	private Label addedDateLabel;
 	
@@ -53,7 +50,7 @@ public class VideoController {
 	
 	@FXML
 	private void initialize() {
-		videoUrl.setOnAction(a->application.getHostServices().showDocument(videoUrl.getText()));
+		videoUrl.setOnAction(a->application.getHostServices().showDocument(selectedVideo.getUrl()));
 	}
 	
 	public void setVideo(VideoViewModel video) {
@@ -62,15 +59,13 @@ public class VideoController {
 		// Attention à bien unbind avant de changer la vidéo selectionné ou la table sera actualisé en conséquence
 		if (selectedVideo != null) {
 			videoTitleLabel.textProperty().unbindBidirectional(selectedVideo.titleProperty());
-//			videoUrlField.textProperty().unbindBidirectional(selectedVideo.urlProperty());
-			videoUrl.textProperty().unbindBidirectional(selectedVideo.urlProperty());
+//			videoUrl.textProperty().unbindBidirectional(selectedVideo.urlProperty());
 			addedDateLabel.textProperty().unbindBidirectional(selectedVideo.addedDateProperty());
 		}
 		
 		this.selectedVideo = video;
 		videoTitleLabel.textProperty().bindBidirectional(selectedVideo.titleProperty());
-//		videoUrlField.textProperty().bindBidirectional(selectedVideo.urlProperty());
-		videoUrl.textProperty().bindBidirectional(selectedVideo.urlProperty());
+//		videoUrl.textProperty().bindBidirectional(selectedVideo.urlProperty());
 		addedDateLabel.textProperty().bindBidirectional(selectedVideo.addedDateProperty(), new LocalDateStringConverter());
 		
 		videoTagsPane.getChildren().clear();

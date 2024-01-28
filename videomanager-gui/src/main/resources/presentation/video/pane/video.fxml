@@ -28,7 +28,7 @@
       <VBox styleClass="video" maxHeight="-Infinity" maxWidth="-Infinity" spacing="20.0" BorderPane.alignment="CENTER">
          <children>
             <Label fx:id="videoTitleLabel" />
-            <Hyperlink fx:id="videoUrl" />
+            <Hyperlink fx:id="videoUrl" text="Access to video"/>
             <Label fx:id="addedDateLabel" />
             <Label text="rate test lioreum ipsem de mes couilles">
                <font>

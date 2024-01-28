@@ -4,7 +4,7 @@ import com.gamergeo.lib.gamlib.javafx.view.AbstractFXMLView;
 import com.gamergeo.lib.gamlib.javafx.view.FXMLView;
 import com.gamergeo.project.videomanager.gui.controller.VideoSceneController;
 
-@FXMLView("presentation/video/scene/videoScene.fxml")
+@FXMLView(folder = "presentation/video/scene")
 public class VideoSceneView extends AbstractFXMLView<VideoSceneController> {
 
 }

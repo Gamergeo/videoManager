@@ -7,3 +7,14 @@
     -fx-min-height: 50;
     -fx-max-height: 100;
 }
+
+/* SplitPane */
+.split-pane {
+    -fx-background-color: #121212;
+}
+
+.split-pane .split-pane-divider {
+    -fx-background-color: #282828;
+    -fx-pref-width: 1px; /* Épaisseur réduite du séparateur */
+    -fx-pref-height: 1px;
+}

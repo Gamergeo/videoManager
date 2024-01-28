@@ -5,7 +5,7 @@ import com.gamergeo.lib.gamlib.javafx.view.FXMLComponent;
 import com.gamergeo.lib.gamlib.javafx.view.FXMLView;
 import com.gamergeo.project.videomanager.gui.controller.VideoTagController;
 
-@FXMLView("presentation/video/component/videoTag.fxml")
+@FXMLView(folder = "presentation/video/component")
 @FXMLComponent
 public class VideoTagView extends AbstractFXMLView<VideoTagController> {
 

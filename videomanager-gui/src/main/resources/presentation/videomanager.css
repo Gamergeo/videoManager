@@ -1,48 +1,58 @@
-/*.root, .pane, .titled-pane > *.content {
-    -fx-background-color: black;
-}*/
-
+/* Style de base */
 .root {
-	-fx-font-size: 16;
+    -fx-font-family: 'Arial', sans-serif;
+    -fx-base: #121212; /* Couleur de fond principale de Spotify */
+    -fx-background-color: #121212;
+    -fx-font-size: 16;
 }
 
+.label {
+    -fx-font-size: 16px;
+    -fx-text-fill: white; /* Couleur du texte */
+}
+
+/* Boutons */
 .button {
-	-fx-pref-width: 120;
+    -fx-background-color: #1db954; /* Couleur verte de Spotify */
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-pref-width: 120;
     -fx-pref-height: 30;
 }
 
-.titled-pane > .title
-{
-    /*-fx-background-color: rgba(0, 60, 136, 0.5);
-    -fx-border-color: rgba(0, 60, 136, 0.8);
-    -fx-font-family: 'Lucida Grande',Verdana,Geneva,Lucida,Arial,Helvetica,sans-serif;
-    -fx-font-size: 16px;*/
-    -fx-font-weight: bold;
+.button:hover {
+    -fx-background-color: #1ed760;
 }
 
-.textField {
+/* Zones de texte */
+.text-field {
+    -fx-background-color: #535353;
+    -fx-text-fill: white;
+    -fx-prompt-text-fill: #818181;
     -fx-pref-height: 25;
 }
 
+/* TitledPane */
+.titled-pane {
+    -fx-background-color: #282828;
+    -fx-text-fill: white;
+}
+
+.titled-pane > .title {
+    -fx-background-color: #1c1c1c;
+    -fx-font-weight: bold;
+}
+
+.titled-pane .content {
+    -fx-background-color: #121212;
+}
+
+/* Styles supplémentaires */
 .buttonLine {
-	-fx-spacing: 20;
+    -fx-spacing: 20;
     -fx-padding: 0 20 0 20;
 }
 
-
 .default-spacing {
-	spacing: 10;
+    spacing: 10;
 }
-
-
-
-.videoTagComponent {
-    -fx-border-color: black;
-    -fx-border-width: 1; 
-    -fx-border-radius: 15;
-    -fx-background-color: green;
-  	-fx-background-radius: 15;
-}
-
-
-
