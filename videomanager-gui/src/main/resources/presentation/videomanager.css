@@ -11,19 +11,6 @@
     -fx-text-fill: white; /* Couleur du texte */
 }
 
-/* Boutons */
-.button {
-    -fx-background-color: #1db954; /* Couleur verte de Spotify */
-    -fx-text-fill: white;
-    -fx-font-weight: bold;
-    -fx-pref-width: 120;
-    -fx-pref-height: 30;
-}
-
-.button:hover {
-    -fx-background-color: #1ed760;
-}
-
 /* Zones de texte */
 .text-field {
     -fx-background-color: #535353;
@@ -51,6 +38,19 @@
 .buttonLine {
     -fx-spacing: 20;
     -fx-padding: 0 20 0 20;
+}
+
+/* Boutons */
+.buttonLine .button {
+    -fx-background-color: #1db954; /* Couleur verte de Spotify */
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-pref-width: 120;
+    -fx-pref-height: 30;
+}
+
+.buttonLine .button:hover {
+    -fx-background-color: #1ed760;
 }
 
 .default-spacing {

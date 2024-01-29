@@ -18,13 +18,13 @@ import lombok.extern.slf4j.Slf4j;
 public class VideoServiceImpl implements VideoService { //extends HibernateDatabaseServiceImpl<Video> 
 	
 	@Autowired
-	VideoDao videoDao;
+	VideoDao dao;
 
 	@Override
 	@Transactional
 	public List<Video> findAll() {
 		log.info("Require videos list");
-		List<Video> videos = videoDao.findAll();
+		List<Video> videos = dao.findAll();
 		log.info("Videos list loaded");
 		return videos;
 	}
@@ -33,7 +33,7 @@ public class VideoServiceImpl implements VideoService { //extends HibernateDatab
 	@Transactional
 	public List<Video> findBy(String title) {
 		log.info("Require videos list");
-		List<Video> videos = videoDao.findByTitleContaining(title);
+		List<Video> videos = dao.findByTitleContaining(title);
 		log.info("Videos list loaded");
 		return videos;
 	}
@@ -42,7 +42,7 @@ public class VideoServiceImpl implements VideoService { //extends HibernateDatab
 	@Override
 	@Transactional
 	public void save(Video video) {
-		videoDao.save(video);
+		dao.save(video);
 	}
 	
 	/**
@@ -51,10 +51,10 @@ public class VideoServiceImpl implements VideoService { //extends HibernateDatab
 	@Override
 	@Transactional
 	public Video randomVideo(String title) {
-		int count =  (int) videoDao.count();
+		int count =  (int) dao.count();
         int randomNumber = new Random().nextInt(count) + 1;
 		
-		return videoDao.findById(randomNumber).orElseThrow(() -> {
+		return dao.findById((long) randomNumber).orElseThrow(() -> {
 			String errorMessage = "Error: Video not found (id=" + randomNumber+")";
 			log.error(errorMessage);
 			throw new NoSuchElementException(errorMessage);

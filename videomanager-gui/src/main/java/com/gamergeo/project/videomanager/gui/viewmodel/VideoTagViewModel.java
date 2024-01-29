@@ -1,12 +1,16 @@
 package com.gamergeo.project.videomanager.gui.viewmodel;
 
+import java.io.Serializable;
+
 import com.gamergeo.project.videomanager.model.VideoTag;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
-public class VideoTagViewModel {
+public class VideoTagViewModel implements Serializable {
 	
+	private static final long serialVersionUID = 3009196317499043074L;
+
 	private VideoTag initialModel;
 	
 	private VideoTag model;
@@ -47,5 +51,9 @@ public class VideoTagViewModel {
 
 	public void setModel(VideoTag model) {
 		this.model = model;
+	}
+	
+	public Long getId() {
+		return model.getId();
 	}
 }

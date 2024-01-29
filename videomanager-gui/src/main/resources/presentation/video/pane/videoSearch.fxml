@@ -19,16 +19,16 @@
                   <TextField fx:id="titleSearchField" promptText="Search Title..." />
                   <SplitPane>
                     <items>
-                        <VBox>
+                        <VBox onDragOver="#dragOver" onDragDropped="#dropTagWith">
                            <children>
                               <Label text="With :" />
-                              <FlowPane styleClass="searchTagFlowPane" />
+                              <FlowPane fx:id="withFlowPane" styleClass="searchTagFlowPane" />
                            </children>
                         </VBox>
-                        <VBox>
+                        <VBox onDragOver="#dragOver" onDragDropped="#dropTagWithout">
                            <children>
                               <Label text="Without :" />
-                              <FlowPane styleClass="searchTagFlowPane"/>
+                              <FlowPane fx:id="withoutFlowPane" styleClass="searchTagFlowPane"/>
                            </children>
                         </VBox>
                     </items>

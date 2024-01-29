@@ -1,0 +1,30 @@
+/* Style pour le Tag (BorderPane) */
+.tag-border-pane {
+    -fx-background-color: #1db954; /* Couleur de fond verte de Spotify */
+    -fx-background-radius: 15; /* Bords arrondis */
+    -fx-padding: 3 10 3 10; /* Ajustement de l'espacement autour du texte et du bouton */
+    -fx-pref-height: 15;
+    -fx-pref-width: 110;
+}
+
+/* Style pour le Label dans le tag */
+.tag-border-pane .label {
+    -fx-text-fill: white; /* Couleur de texte blanc */
+    -fx-font-size: 12px; /* Taille de police ajustée */
+}
+
+/* Style pour le bouton 'x' dans le tag */
+.tag-border-pane .button {
+    -fx-background-color: transparent; /* Fond transparent */
+    -fx-text-fill: white; /* Texte blanc */
+    -fx-font-weight: bold; /* Texte en gras */
+    -fx-background-radius: 15; /* Bords arrondis */
+    -fx-border-color: transparent; /* Pas de bordure */
+    -fx-padding: 0; /* Pas d'espacement supplémentaire */
+}
+
+/* Style pour le bouton 'x' au survol */
+.tag-border-pane .button:hover {
+    -fx-background-color: #1ed760; /* Changement de couleur au survol */
+    -fx-text-fill: white;
+}
