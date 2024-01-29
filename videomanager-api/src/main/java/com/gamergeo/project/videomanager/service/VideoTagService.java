@@ -10,5 +10,6 @@ public interface VideoTagService { //extends HibernateDatabaseService<Video> {
 
 	VideoTag findById(Long id);
 
-//	List<Video> findBy(String text);
+	List<VideoTag> findAllById(List<Long> ids);
+
 }

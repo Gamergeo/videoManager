@@ -5,11 +5,11 @@
 <?import javafx.scene.layout.BorderPane?>
 
 
-<BorderPane fx:id="videoTagPane" onDragDetected="#dragTag" styleClass="tag-border-pane" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gamergeo.project.videomanager.gui.controller.VideoTagController">
+<BorderPane fx:id="tagPane" onMouseClicked="#onClick" onDragDetected="#dragTag" styleClass="tag-border-pane" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gamergeo.project.videomanager.gui.controller.VideoTagController">
    <right>
       <Button mnemonicParsing="false" text="x" BorderPane.alignment="CENTER" />
    </right>
    <center>
-      <Label fx:id="videoTagLabel" alignment="CENTER" BorderPane.alignment="CENTER" />
+      <Label fx:id="tagLabel" alignment="CENTER" BorderPane.alignment="CENTER" />
    </center>
 </BorderPane>

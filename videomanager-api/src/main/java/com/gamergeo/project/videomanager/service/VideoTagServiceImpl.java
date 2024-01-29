@@ -36,7 +36,13 @@ public class VideoTagServiceImpl implements VideoTagService { //extends Hibernat
 			log.error(errorMessage);
 			throw new NoSuchElementException(errorMessage);
 		});
-		
 	}
-	
+
+
+	@Override
+	@Transactional
+	public List<VideoTag> findAllById(List<Long> ids) {
+		return (List<VideoTag>) dao.findAllById(ids);
+	}
+
 }

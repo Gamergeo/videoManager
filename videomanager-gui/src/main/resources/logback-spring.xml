@@ -43,7 +43,7 @@
     </root>
 
     <!-- LOG "com.baeldung*" at TRACE level -->
-    <logger name="com.project.gamergeo.videomanager" level="trace" additivity="false">
+    <logger name="com.gamergeo.project.videomanager" level="trace" additivity="false">
         <appender-ref ref="RollingFile" />
         <appender-ref ref="Console" />
     </logger>

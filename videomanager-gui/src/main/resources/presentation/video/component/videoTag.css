@@ -28,3 +28,8 @@
     -fx-background-color: #1ed760; /* Changement de couleur au survol */
     -fx-text-fill: white;
 }
+
+/* Style pour le Tag lorsqu'il est sélectionné */
+.tag-border-pane-selected {
+    -fx-background-color: #12824C; /* Une couleur plus foncée que la couleur originale */
+}
