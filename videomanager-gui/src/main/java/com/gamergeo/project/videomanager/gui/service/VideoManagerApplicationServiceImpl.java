@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import org.controlsfx.control.Rating;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
@@ -80,6 +81,19 @@ public class VideoManagerApplicationServiceImpl implements VideoManagerApplicati
 		return videoList.stream()
 				 .map((video) -> new VideoViewModel(video))
 				 .collect(Collectors.toList());
+	}
+
+	/**
+	 * Allow only demi value for rating
+	 */
+	@Override
+	public void semiValueRating(Rating rating) {
+		rating.ratingProperty().addListener((obs, oldVal, newVal) -> {
+		    double roundedValue = Math.round(newVal.doubleValue() * 2) / 2.0;
+		    if (!newVal.equals(roundedValue)) { 
+		    	rating.setRating(roundedValue); 
+		    }
+		});
 	}
 }
 

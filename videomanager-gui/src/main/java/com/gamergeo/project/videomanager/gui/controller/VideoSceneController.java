@@ -71,7 +71,7 @@ public class VideoSceneController {
     }
     
     public void save(VideoViewModel video) {
-    	videoService.save(video.getVideo());
+    	videoService.save(video.getModel());
     }
     
     public void randomVideo(String title) {

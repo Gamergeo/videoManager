@@ -23,7 +23,7 @@ public class TagServiceImpl implements TagService { //extends HibernateDatabaseS
 	@Override
 	@Transactional
 	public List<Tag> findAll() {
-		log.info("Require videos tag list");
+		log.info("Load all tag list");
 		List<Tag> tags = dao.findAll();
 		log.info("Videos tag list loaded");
 		return tags;

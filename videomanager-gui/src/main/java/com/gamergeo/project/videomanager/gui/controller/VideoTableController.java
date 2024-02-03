@@ -6,9 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.gamergeo.lib.gamlib.javafx.controller.FXMLController;
 import com.gamergeo.project.videomanager.gui.cell.RatingCellFactory;
+import com.gamergeo.project.videomanager.gui.cell.TagListCellFactory;
 import com.gamergeo.project.videomanager.gui.view.VideoSceneView;
+import com.gamergeo.project.videomanager.gui.viewmodel.TagViewModel;
 import com.gamergeo.project.videomanager.gui.viewmodel.VideoViewModel;
 
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -34,7 +37,7 @@ public class VideoTableController {
     private TableColumn<VideoViewModel, String> titleColumn;
     
     @FXML
-    private TableColumn<VideoViewModel, String> tagsColumn;
+    private TableColumn<VideoViewModel, ObservableList<TagViewModel>> tagsColumn;
     
     @FXML
     private TableColumn<VideoViewModel, Number> ratingColumn;
@@ -42,13 +45,18 @@ public class VideoTableController {
     @FXML
     private void initialize() {
     	titleColumn.setCellValueFactory(new PropertyValueFactory<VideoViewModel, String>("title"));
-    	tagsColumn.setCellValueFactory(new PropertyValueFactory<VideoViewModel, String>("tags"));
-    	ratingColumn.setCellValueFactory(new PropertyValueFactory<VideoViewModel, Number>("rating"));
+    	tagsColumn.setCellValueFactory(cellData -> cellData.getValue().tagsProperty());
+    	tagsColumn.setCellFactory(new TagListCellFactory());
+    	ratingColumn.setCellValueFactory(cellData -> cellData.getValue().ratingProperty());
     	ratingColumn.setCellFactory(new RatingCellFactory());
+    	videoTable.getSortOrder().add(titleColumn);
+    	titleColumn.setSortType(TableColumn.SortType.ASCENDING);
+    	videoTable.sort();
     }
     
     public void setVideoList(List<VideoViewModel> videoList) {
     	videoTable.getItems().setAll(videoList);
+    	videoTable.sort();
     }
     
     /**

@@ -1,4 +1,4 @@
-package com.gamergeo.project.videomanager.gui.controller;
+	package com.gamergeo.project.videomanager.gui.controller;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,6 +50,7 @@ public class VideoSearchController {
 	@FXML
 	private void initialize() {
 		searchRating.setRating(0d);
+		applicationService.semiValueRating(searchRating);
 	}
 	
 	@FXML
@@ -83,7 +84,6 @@ public class VideoSearchController {
 	
 	@FXML
 	private void dragOver(DragEvent event) {
-//        if (event.getGestureSource() != circle2 && event.getDragboard().hasString()) {
         if (event.getDragboard().hasString()) {
             event.acceptTransferModes(TransferMode.COPY_OR_MOVE);
         }
@@ -104,7 +104,7 @@ public class VideoSearchController {
 	private void dropTags(boolean isWithPane, DragEvent event) {
         if (event.getDragboard().hasString()) {
         	String content = event.getDragboard().getString();
-	        log.info("Dropped: " + content);
+	        log.info("Dropped on search: " + content);
 	        
 	        List<Long> idList = applicationService.getIdFromData(content);
 	        

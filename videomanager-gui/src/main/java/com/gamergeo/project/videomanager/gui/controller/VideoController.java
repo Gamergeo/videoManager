@@ -1,5 +1,7 @@
 package com.gamergeo.project.videomanager.gui.controller;
 
+import java.util.List;
+
 import org.controlsfx.control.Rating;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
@@ -8,12 +10,17 @@ import com.gamergeo.lib.gamlib.javafx.controller.FXMLController;
 import com.gamergeo.project.videomanager.gui.VideoManagerApplication;
 import com.gamergeo.project.videomanager.gui.service.VideoManagerApplicationService;
 import com.gamergeo.project.videomanager.gui.view.VideoSceneView;
+import com.gamergeo.project.videomanager.gui.viewmodel.TagViewModel;
 import com.gamergeo.project.videomanager.gui.viewmodel.VideoViewModel;
+import com.gamergeo.project.videomanager.service.TagService;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
-import javafx.scene.layout.FlowPane;
+import javafx.scene.control.TextField;
+import javafx.scene.input.DragEvent;
+import javafx.scene.input.TransferMode;
+import javafx.scene.layout.TilePane;
 import javafx.util.converter.LocalDateStringConverter;
 import lombok.extern.slf4j.Slf4j;
 
@@ -27,6 +34,9 @@ public class VideoController {
 	
 	@Autowired
 	private VideoSceneView videoSceneView;
+	
+	@Autowired
+	private TagService tagService;
 	
 	@Autowired
 	private VideoManagerApplicationService applicationService;
@@ -44,7 +54,7 @@ public class VideoController {
 	private Rating videoRating;
 	
 	@FXML
-	private FlowPane tagsPane;
+	private TilePane tagsPane;
 	
 	private VideoViewModel selectedVideo;
 	
@@ -53,6 +63,8 @@ public class VideoController {
 		videoUrl.setOnAction(a->application.getHostServices().showDocument(selectedVideo.getUrl()));
 		videoUrl.setVisible(false);
 		videoRating.setVisible(false);
+		
+		applicationService.semiValueRating(videoRating);
 	}
 	
 	public void setVideo(VideoViewModel video) {
@@ -73,12 +85,44 @@ public class VideoController {
 		
 		tagsPane.getChildren().clear();
 		
-		applicationService.addTagsToNode(tagsPane, video.getTagList());
+		applicationService.addTagsToNode(tagsPane, video.getTags());
 	}
 	
 	@FXML
 	private void save() {
 		videoSceneView.getController().save(selectedVideo);
+	}
+	
+	@FXML
+	private void dragOver(DragEvent event) {
+        if (event.getDragboard().hasString()) {
+            event.acceptTransferModes(TransferMode.COPY_OR_MOVE);
+        }
+
+        event.consume();
+	}
+
+	@FXML
+	private void dropTags(DragEvent event) {
+        if (event.getDragboard().hasString()) {
+        	String content = event.getDragboard().getString();
+	        log.info("Dropped on video: " + content);
+	        
+	        List<Long> idList = applicationService.getIdFromData(content);
+	        
+	        idList.forEach((id) -> {
+	        	if (!selectedVideo.getTagListIds().contains(id)) {
+	        		TagViewModel tag = new TagViewModel(tagService.findById(id));
+	        		selectedVideo.getTags().add(tag);
+	        		applicationService.addTagToNode(tagsPane, tag);
+	        	}
+	        });
+	        videoSceneView.getController().unselectAllTag();
+            event.setDropCompleted(true);
+        } else {
+            event.setDropCompleted(false);
+        }
+        event.consume();
 	}
 }
 

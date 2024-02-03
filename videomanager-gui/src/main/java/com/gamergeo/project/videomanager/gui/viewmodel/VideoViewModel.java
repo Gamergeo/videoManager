@@ -1,40 +1,45 @@
 package com.gamergeo.project.videomanager.gui.viewmodel;
 
 import java.time.LocalDate;
-import java.util.StringJoiner;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Component;
 
+import com.gamergeo.project.videomanager.model.Tag;
 import com.gamergeo.project.videomanager.model.Video;
 
 import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.ListProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleListProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 
 @Component
 public class VideoViewModel {
 	
-	private Video initialVideo;
+	private Video initial;
 	
-	private Video video;
+	private Video model;
 	
     private final StringProperty title = new SimpleStringProperty();
     private final StringProperty url = new SimpleStringProperty();
     private final DoubleProperty rating = new SimpleDoubleProperty();
     private final ObjectProperty<LocalDate> addedDate = new SimpleObjectProperty<LocalDate>();
 	
-	private ObservableList<TagViewModel> tagList = FXCollections.observableArrayList();
+    private final ListProperty<TagViewModel> tags = new SimpleListProperty<TagViewModel>(FXCollections.observableArrayList());
     
     public VideoViewModel() {}
     
     public VideoViewModel(Video video) {
-    	this.initialVideo = video;
-    	this.video = video;
+    	this.initial = video;
+    	this.model = video;
     	
     	this.title.set(video.getTitle());
     	this.title.addListener((x, oldValue, newValue) -> video.setTitle(newValue));
@@ -50,16 +55,27 @@ public class VideoViewModel {
     	}
     	this.rating.addListener((x, oldValue, newValue) -> video.setRating(newValue.doubleValue()));
     	
-    	tagList.clear();
-    	video.getTags().forEach((tag) -> tagList.add(new TagViewModel(tag)));
+    	tags.clear();
+    	video.getTags().forEach((tag) -> tags.add(new TagViewModel(tag)));
+    	
+    	tags.addListener((ListChangeListener.Change<? extends TagViewModel> change) -> {
+    	    while (change.next()) { 
+    	        if (change.wasAdded()) { 
+    	            List<? extends TagViewModel> addedSubList = change.getAddedSubList();
+    	            for (TagViewModel addedItem : addedSubList) {
+    	            	video.getTags().add(addedItem.getModel());
+    	            }
+    	        }
+    	        if (change.wasRemoved()) {
+    	            List<? extends TagViewModel> removedSubList = change.getRemoved();
+    	            for (TagViewModel removedItem : removedSubList) {
+    	            	video.getTags().remove(removedItem.getModel());
+    	            }
+    	        }
+    	    }
+    	});
     }
 	
-	public String getTags() {
-		StringJoiner joiner = new StringJoiner(" / ");
-		tagList.forEach((videoTag) -> joiner.add(videoTag.getText()));
-		return joiner.toString();
-	}
-
 	public final StringProperty urlProperty() {
 		return this.url;
 	}
@@ -83,23 +99,21 @@ public class VideoViewModel {
 	public final void setAddedDate(final LocalDate addedDate) {
 		this.addedDateProperty().set(addedDate);
 	}
-
-
-	public Video getInitialVideo() {
-		return initialVideo;
+	
+	public Video getInitial() {
+		return initial;
 	}
 
-
-	public void setInitialVideo(Video initialVideo) {
-		this.initialVideo = initialVideo;
+	public void setInitial(Video initial) {
+		this.initial = initial;
 	}
 
-	public Video getVideo() {
-		return video;
+	public Video getModel() {
+		return model;
 	}
 
-	public void setVideo(Video video) {
-		this.video = video;
+	public void setModel(Video model) {
+		this.model = model;
 	}
 
 	public final StringProperty titleProperty() {
@@ -115,16 +129,16 @@ public class VideoViewModel {
 	}
 	
 	public final Long getId() {
-		return video.getId();
+		return model.getId();
 	}
 
-	public ObservableList<TagViewModel> getTagList() {
-		return tagList;
-	}
+    public ObservableList<TagViewModel> getTags() {
+        return tags.get();
+    }
 
-	public void setTagList(ObservableList<TagViewModel> tagList) {
-		this.tagList = tagList;
-	}
+    public ListProperty<TagViewModel> tagsProperty() {
+        return tags;
+    }
 
 	public final DoubleProperty ratingProperty() {
 		return this.rating;
@@ -136,6 +150,10 @@ public class VideoViewModel {
 	
 	public final void setRating(final double rating) {
 		this.ratingProperty().set(rating);
+	}
+	
+	public List<Long> getTagListIds() {
+		return this.model.getTags().stream().map(Tag::getId).collect(Collectors.toList());
 	}
 	
 }

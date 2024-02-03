@@ -10,7 +10,7 @@
       <TableView fx:id="videoTable" onMousePressed="#selectVideo" prefHeight="300.0">
       	
       	<columns>
-      	    <TableColumn fx:id="titleColumn" prefWidth="200" text="Title" />
+      	    <TableColumn fx:id="titleColumn" prefWidth="300" text="Title" />
       	    <TableColumn fx:id="ratingColumn" prefWidth="40" text="Rating" />
       	    <TableColumn fx:id="tagsColumn" prefWidth="400" text="Tags" />
       	</columns>

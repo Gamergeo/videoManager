@@ -2,6 +2,8 @@ package com.gamergeo.project.videomanager.gui.service;
 
 import java.util.List;
 
+import org.controlsfx.control.Rating;
+
 import com.gamergeo.project.videomanager.gui.view.TagView;
 import com.gamergeo.project.videomanager.gui.viewmodel.TagViewModel;
 import com.gamergeo.project.videomanager.gui.viewmodel.VideoViewModel;
@@ -26,5 +28,10 @@ public interface VideoManagerApplicationService {
 	List<Long> getIdFromData(String data);
 
 	List<VideoViewModel> getVideoViewModel(List<Video> videoList);
+
+	/**
+	 * Allow only demi value for rating
+	 */
+	void semiValueRating(Rating rating);
 
 }

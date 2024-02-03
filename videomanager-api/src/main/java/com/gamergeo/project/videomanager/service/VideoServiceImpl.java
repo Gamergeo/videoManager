@@ -3,6 +3,7 @@
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,7 +27,7 @@ public class VideoServiceImpl implements VideoService { //extends HibernateDatab
 	@Override
 	@Transactional
 	public List<Video> findAll() {
-		log.info("Require videos list");
+		log.info("Load all videos list");
 		List<Video> videos = dao.findAll();
 		log.info("Videos list loaded");
 		return videos;
@@ -35,21 +36,14 @@ public class VideoServiceImpl implements VideoService { //extends HibernateDatab
 	@Override
 	@Transactional
 	public List<Video> findBy(String title, Double minimalRating, List<Long> searchWithTagIds, List<Long> searchWithoutTagIds) {
-		log.info("Require videos list");
+		log.info("Load videos list (title=" + title + ", rating=" + minimalRating + ", with:" + searchWithTagIds.toString() +  ", without:" + searchWithoutTagIds.toString());
 		
-		if (searchWithTagIds.isEmpty()) {
-			searchWithTagIds = tagService.findAllIds();
-		}
-		
-		if (searchWithoutTagIds.isEmpty()) {
-			searchWithoutTagIds.add((long) 0);
-		}
-		
-		List<Video> videos = dao.findByTitleContainingAndTagsIncludedAndExcluded(title, minimalRating, searchWithTagIds, searchWithoutTagIds);
-		log.info("Videos list loaded");
-		return videos;
-	}
-	
+	    return dao.findByTitleContaining(title).stream()
+	            .filter(video -> minimalRating == 0 || (video.getRating() != null && video.getRating() >= minimalRating)) // Filtrage par note minimale
+	            .filter(video -> searchWithTagIds.isEmpty() || video.getTags().stream().anyMatch(tag -> searchWithTagIds.contains(tag.getId()))) // Vérifie la présence d'au moins un tag recherché
+	            .filter(video -> searchWithoutTagIds.isEmpty() || video.getTags().stream().noneMatch(tag -> searchWithoutTagIds.contains(tag.getId()))) // Exclut les vidéos avec des tags non désirés
+	            .collect(Collectors.toList()); // Collecte les résultats correspondants
+    }
 
 	@Override
 	@Transactional

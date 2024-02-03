@@ -25,13 +25,16 @@ public class RatingCellFactory implements Callback<TableColumn<VideoViewModel, N
     }
 
     private String convertRatingToStars(double rating) {
-    	if (rating == 0d) {
-    		return "";
-    	}
-    	
-    	int intRating = (int) rating;
-        String stars = "★".repeat(Math.max(0, intRating));
-        String noStars = "☆".repeat(Math.max(0, 5 - intRating));
-        return stars + noStars;
+        if (rating == 0d) {
+            return "";
+        }
+
+        int fullStars = (int) rating;
+        double fraction = rating - fullStars;
+        String stars = "★".repeat(Math.max(0, fullStars));
+        
+        String halfStar = fraction >= 0.5 ? "½" : "";
+        
+        return stars + halfStar;
     }
 }
