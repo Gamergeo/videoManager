@@ -9,14 +9,16 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.TilePane?>
 <?import javafx.scene.layout.VBox?>
+<?import org.controlsfx.control.Rating?>
 
 <VBox styleClass="default-spacing" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gamergeo.project.videomanager.gui.controller.VideoSearchController">
    <children>
       <TitledPane expanded="false" text="Search">
          <content>
-            <VBox>
+            <VBox spacing="5">
                <children>
                   <TextField fx:id="titleSearchField" promptText="Search Title..." />
+            	  <Rating fx:id="searchRating" max="5" partialRating="true" />
                   <SplitPane dividerPositions="0.5">
                     <items>
                         <VBox onDragDropped="#dropTagWith" onDragOver="#dragOver">

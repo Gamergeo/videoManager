@@ -32,7 +32,7 @@ public class Video {//, HibernateModel {
 	
 	protected LocalDate addedDate;
 	
-	protected Long rate;
+	protected Double rating;
 	
 	@ManyToMany(fetch = FetchType.EAGER)
 	protected List<Tag> tags;

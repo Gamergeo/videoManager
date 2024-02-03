@@ -1,5 +1,6 @@
 package com.gamergeo.project.videomanager.gui.controller;
 
+import org.controlsfx.control.Rating;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 
@@ -37,7 +38,10 @@ public class VideoController {
 	private Hyperlink videoUrl;
 	
 	@FXML
-	private Label addedDateLabel;
+	private Label videoAddedDateLabel;
+	
+	@FXML
+	private Rating videoRating;
 	
 	@FXML
 	private FlowPane tagsPane;
@@ -47,6 +51,8 @@ public class VideoController {
 	@FXML
 	private void initialize() {
 		videoUrl.setOnAction(a->application.getHostServices().showDocument(selectedVideo.getUrl()));
+		videoUrl.setVisible(false);
+		videoRating.setVisible(false);
 	}
 	
 	public void setVideo(VideoViewModel video) {
@@ -55,12 +61,15 @@ public class VideoController {
 		// Attention à bien unbind avant de changer la vidéo selectionné ou la table sera actualisé en conséquence
 		if (selectedVideo != null) {
 			videoTitleLabel.textProperty().unbindBidirectional(selectedVideo.titleProperty());
-			addedDateLabel.textProperty().unbindBidirectional(selectedVideo.addedDateProperty());
+			videoAddedDateLabel.textProperty().unbindBidirectional(selectedVideo.addedDateProperty());
 		}
 		
 		this.selectedVideo = video;
 		videoTitleLabel.textProperty().bindBidirectional(selectedVideo.titleProperty());
-		addedDateLabel.textProperty().bindBidirectional(selectedVideo.addedDateProperty(), new LocalDateStringConverter());
+		videoAddedDateLabel.textProperty().bindBidirectional(selectedVideo.addedDateProperty(), new LocalDateStringConverter());
+		videoRating.ratingProperty().bindBidirectional(selectedVideo.ratingProperty());
+		videoUrl.setVisible(true);
+		videoRating.setVisible(true);
 		
 		tagsPane.getChildren().clear();
 		

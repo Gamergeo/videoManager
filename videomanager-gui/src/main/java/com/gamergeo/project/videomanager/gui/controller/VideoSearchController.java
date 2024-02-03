@@ -3,6 +3,7 @@ package com.gamergeo.project.videomanager.gui.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.controlsfx.control.Rating;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.gamergeo.lib.gamlib.javafx.controller.FXMLController;
@@ -34,6 +35,9 @@ public class VideoSearchController {
 	TextField titleSearchField;
 	
 	@FXML
+	Rating searchRating;
+	
+	@FXML
 	TilePane withFlowPane;
 	
 	@FXML
@@ -44,11 +48,17 @@ public class VideoSearchController {
 	private List<Long> searchWithoutTagIds  = new ArrayList<Long>();
 	
 	@FXML
+	private void initialize() {
+		searchRating.setRating(0d);
+	}
+	
+	@FXML
 	private void search() {
 		log.info("Search for video");
 		
 		String searchTitle = titleSearchField.getText();
-		videoSceneView.getController().refreshVideoList(searchTitle, searchWithTagIds, searchWithoutTagIds);
+		Double rating = searchRating.getRating();
+		videoSceneView.getController().refreshVideoList(searchTitle, rating, searchWithTagIds, searchWithoutTagIds);
 	}
 	
 	@FXML
@@ -66,6 +76,7 @@ public class VideoSearchController {
 		withoutFlowPane.getChildren().clear();
 		searchWithTagIds = new ArrayList<Long>();
 		searchWithoutTagIds  = new ArrayList<Long>();
+		searchRating.setRating(0d);
 		
 		videoSceneView.getController().resetVideoList();
 	}

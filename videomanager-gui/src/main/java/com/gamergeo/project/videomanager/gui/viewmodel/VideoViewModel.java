@@ -7,7 +7,9 @@ import org.springframework.stereotype.Component;
 
 import com.gamergeo.project.videomanager.model.Video;
 
+import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
@@ -23,6 +25,7 @@ public class VideoViewModel {
 	
     private final StringProperty title = new SimpleStringProperty();
     private final StringProperty url = new SimpleStringProperty();
+    private final DoubleProperty rating = new SimpleDoubleProperty();
     private final ObjectProperty<LocalDate> addedDate = new SimpleObjectProperty<LocalDate>();
 	
 	private ObservableList<TagViewModel> tagList = FXCollections.observableArrayList();
@@ -41,6 +44,11 @@ public class VideoViewModel {
 
     	this.addedDate.set(video.getAddedDate());
     	this.addedDate.addListener((x, oldValue, newValue) -> video.setAddedDate(newValue));
+
+    	if (video.getRating() != null) {
+    		this.rating.set(video.getRating());
+    	}
+    	this.rating.addListener((x, oldValue, newValue) -> video.setRating(newValue.doubleValue()));
     	
     	tagList.clear();
     	video.getTags().forEach((tag) -> tagList.add(new TagViewModel(tag)));
@@ -117,4 +125,17 @@ public class VideoViewModel {
 	public void setTagList(ObservableList<TagViewModel> tagList) {
 		this.tagList = tagList;
 	}
+
+	public final DoubleProperty ratingProperty() {
+		return this.rating;
+	}
+	
+	public final double getRating() {
+		return this.ratingProperty().get();
+	}
+	
+	public final void setRating(final double rating) {
+		this.ratingProperty().set(rating);
+	}
+	
 }

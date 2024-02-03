@@ -60,8 +60,8 @@ public class VideoSceneController {
 		videoTableView.getController().setVideoList(videoList);
     }
     
-    public void refreshVideoList(String title, List<Long> searchWithTagIds, List<Long> searchWithoutTagIds) {
-    	List<VideoViewModel> videoList = applicationService.getVideoViewModel(videoService.findBy(title, searchWithTagIds, searchWithoutTagIds));
+    public void refreshVideoList(String title, Double minimalRating, List<Long> searchWithTagIds, List<Long> searchWithoutTagIds) {
+    	List<VideoViewModel> videoList = applicationService.getVideoViewModel(videoService.findBy(title, minimalRating, searchWithTagIds, searchWithoutTagIds));
     	videoTableView.getController().setVideoList(videoList);
     	videoTableView.getController().openView();
     }

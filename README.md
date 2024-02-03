@@ -29,7 +29,5 @@ This work is in progress. Architecture, code, functionnalities will change a lot
   - 0.4.3 : Drag & drop skeleton
   - 0.4.4 : Multi drag & drop and search (gui only)
   - 0.4.5 : Tag search ok
-
-  - *Tag management*
-  - *General graphical improvement*
-  - *Search enhancement...*
+- 0.5 : Rate and Tag Integration
+  - 0.5.1 : Video Rating

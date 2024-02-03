@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.gamergeo.lib.gamlib.javafx.controller.FXMLController;
+import com.gamergeo.project.videomanager.gui.cell.RatingCellFactory;
 import com.gamergeo.project.videomanager.gui.view.VideoSceneView;
 import com.gamergeo.project.videomanager.gui.viewmodel.VideoViewModel;
 
@@ -36,9 +37,14 @@ public class VideoTableController {
     private TableColumn<VideoViewModel, String> tagsColumn;
     
     @FXML
+    private TableColumn<VideoViewModel, Number> ratingColumn;
+    
+    @FXML
     private void initialize() {
     	titleColumn.setCellValueFactory(new PropertyValueFactory<VideoViewModel, String>("title"));
     	tagsColumn.setCellValueFactory(new PropertyValueFactory<VideoViewModel, String>("tags"));
+    	ratingColumn.setCellValueFactory(new PropertyValueFactory<VideoViewModel, Number>("rating"));
+    	ratingColumn.setCellFactory(new RatingCellFactory());
     }
     
     public void setVideoList(List<VideoViewModel> videoList) {

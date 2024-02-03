@@ -19,10 +19,12 @@ public interface VideoDao extends CrudRepository<Video, Long> {
             "JOIN video_tags vt ON v.id = vt.video_id " +
             "JOIN tag t ON vt.tags_id = t.id " +
             "WHERE v.title LIKE %:title% " +
+            "AND v.rating >= :rating " +
             "AND t.id IN :includeTags " +
             "AND t.id NOT IN :excludeTags", nativeQuery = true)
 	List<Video> findByTitleContainingAndTagsIncludedAndExcluded(@Param("title") String title, 
-	                                                          @Param("includeTags") List<Long> includeTags, 
-	                                                          @Param("excludeTags") List<Long> excludeTags);
+																@Param("rating") Double minimalRating, 
+	                                                            @Param("includeTags") List<Long> includeTags, 
+	                                                            @Param("excludeTags") List<Long> excludeTags);
 	
 }

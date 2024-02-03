@@ -34,7 +34,7 @@ public class VideoServiceImpl implements VideoService { //extends HibernateDatab
 	
 	@Override
 	@Transactional
-	public List<Video> findBy(String title, List<Long> searchWithTagIds, List<Long> searchWithoutTagIds) {
+	public List<Video> findBy(String title, Double minimalRating, List<Long> searchWithTagIds, List<Long> searchWithoutTagIds) {
 		log.info("Require videos list");
 		
 		if (searchWithTagIds.isEmpty()) {
@@ -45,7 +45,7 @@ public class VideoServiceImpl implements VideoService { //extends HibernateDatab
 			searchWithoutTagIds.add((long) 0);
 		}
 		
-		List<Video> videos = dao.findByTitleContainingAndTagsIncludedAndExcluded(title, searchWithTagIds, searchWithoutTagIds);
+		List<Video> videos = dao.findByTitleContainingAndTagsIncludedAndExcluded(title, minimalRating, searchWithTagIds, searchWithoutTagIds);
 		log.info("Videos list loaded");
 		return videos;
 	}
