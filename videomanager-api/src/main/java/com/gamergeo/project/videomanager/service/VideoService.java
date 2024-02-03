@@ -10,10 +10,12 @@ public interface VideoService { //extends HibernateDatabaseService<Video> {
 
 	void save(Video video);
 
+	List<Video> findBy(String title, Double minimalRating, List<Long> searchWithTagIds, List<Long> searchWithoutTagIds);
+
+	Video findById(Long id);
+
 	/**
 	 * Find a random video
 	 */
-	Video randomVideo(String title);
-
-	List<Video> findBy(String title, Double minimalRating, List<Long> searchWithTagIds, List<Long> searchWithoutTagIds);
+	Video randomVideo(String title, Double minimalRating, List<Long> searchWithTagIds, List<Long> searchWithoutTagIds);
 }

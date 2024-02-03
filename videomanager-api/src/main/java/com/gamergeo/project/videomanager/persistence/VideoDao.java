@@ -2,9 +2,7 @@ package com.gamergeo.project.videomanager.persistence;
 
 import java.util.List;
 
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
-import org.springframework.data.repository.query.Param;
 
 import com.gamergeo.project.videomanager.model.Video;
 
@@ -13,7 +11,9 @@ public interface VideoDao extends CrudRepository<Video, Long> {
 	
 	List<Video> findAll();
 	
-	List<Video> findByTitleContaining(String title);
+	List<Video> findByDisabled(boolean disabled);
+	
+	List<Video> findByDisabledAndTitleContaining(boolean disabled, String title);
 	
 //    @Query(value = "SELECT DISTINCT v.* FROM video v " +
 //            "JOIN video_tags vt ON v.id = vt.video_id " +

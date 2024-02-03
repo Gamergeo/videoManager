@@ -16,10 +16,11 @@
 
 <BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gamergeo.project.videomanager.gui.controller.VideoController">
    <bottom>
-      <HBox alignment="BASELINE_RIGHT" styleClass="buttonLine" BorderPane.alignment="CENTER">
+      <HBox fx:id="videoButtons" alignment="BASELINE_RIGHT" styleClass="buttonLine" BorderPane.alignment="CENTER">
          <children>
             <Button defaultButton="true" onAction="#save" text="Save" />
-            <Button cancelButton="true" onAction="#save" text="Reset" />
+            <Button cancelButton="true" onAction="#reset" text="Reset" />
+            <Button onAction="#disable" text="Disable" />
          </children>
       </HBox>
    </bottom>
@@ -38,6 +39,6 @@
       </VBox>
    </center>
    <padding>
-      <Insets bottom="50.0" left="20.0" />
+      <Insets bottom="30.0" left="20.0" />
    </padding>
 </BorderPane>

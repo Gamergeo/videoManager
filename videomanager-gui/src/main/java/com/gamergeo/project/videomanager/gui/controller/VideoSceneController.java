@@ -6,11 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.gamergeo.lib.gamlib.javafx.controller.FXMLController;
 import com.gamergeo.project.videomanager.gui.service.VideoManagerApplicationService;
+import com.gamergeo.project.videomanager.gui.view.TagListView;
 import com.gamergeo.project.videomanager.gui.view.VideoSearchView;
 import com.gamergeo.project.videomanager.gui.view.VideoTableView;
-import com.gamergeo.project.videomanager.gui.view.TagListView;
 import com.gamergeo.project.videomanager.gui.view.VideoView;
 import com.gamergeo.project.videomanager.gui.viewmodel.VideoViewModel;
+import com.gamergeo.project.videomanager.model.Video;
 import com.gamergeo.project.videomanager.service.VideoService;
 
 import javafx.fxml.FXML;
@@ -74,9 +75,26 @@ public class VideoSceneController {
     	videoService.save(video.getModel());
     }
     
-    public void randomVideo(String title) {
-    	VideoViewModel randomVideo = new VideoViewModel(videoService.randomVideo(title));
-    	refreshVideoView(randomVideo);
+    public void reset(VideoViewModel video) {
+    	Video model = videoService.findById(video.getId());
+    	video.setVideo(model);
+    }
+    
+    public void disable(VideoViewModel video) {
+    	video.getModel().setDisabled(true);
+    	videoService.save(video.getModel());
+    	videoView.getController().clear();
+    	videoTableView.getController().disable(video);
+    }
+    
+    public void randomVideo(String title, Double minimalRating, List<Long> searchWithTagIds, List<Long> searchWithoutTagIds) {
+    	Video randomVideo = videoService.randomVideo(title, minimalRating, searchWithTagIds, searchWithoutTagIds);
+    	
+    	if (randomVideo != null) {
+        	refreshVideoView(new VideoViewModel(randomVideo));
+    	} else {
+    		videoView.getController().clear();
+    	}
     }
     
     public void unselectAllTag() {

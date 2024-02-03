@@ -73,4 +73,8 @@ public class VideoTableController {
 	public void openView() {
 		tableTitledPane.setExpanded(true);
 	}
+	
+	public void disable(VideoViewModel video) {
+		videoTable.getItems().remove(video);
+	}
 }

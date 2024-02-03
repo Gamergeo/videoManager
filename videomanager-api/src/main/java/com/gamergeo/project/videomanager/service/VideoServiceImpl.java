@@ -23,12 +23,23 @@ public class VideoServiceImpl implements VideoService { //extends HibernateDatab
 	
 	@Autowired
 	TagService tagService;
-
+	
+	@Override
+	@Transactional
+	public Video findById(Long id) {
+		log.info("Load video: " + id);
+		return dao.findById(id).orElseThrow(() -> {
+			String errorMessage = "Error: Video not found (id=" + id+")";
+			log.error(errorMessage);
+			throw new NoSuchElementException(errorMessage);
+		});
+	}
+	
 	@Override
 	@Transactional
 	public List<Video> findAll() {
 		log.info("Load all videos list");
-		List<Video> videos = dao.findAll();
+		List<Video> videos = dao.findByDisabled(false);
 		log.info("Videos list loaded");
 		return videos;
 	}
@@ -38,7 +49,7 @@ public class VideoServiceImpl implements VideoService { //extends HibernateDatab
 	public List<Video> findBy(String title, Double minimalRating, List<Long> searchWithTagIds, List<Long> searchWithoutTagIds) {
 		log.info("Load videos list (title=" + title + ", rating=" + minimalRating + ", with:" + searchWithTagIds.toString() +  ", without:" + searchWithoutTagIds.toString());
 		
-	    return dao.findByTitleContaining(title).stream()
+	    return dao.findByDisabledAndTitleContaining(false, title).stream()
 	            .filter(video -> minimalRating == 0 || (video.getRating() != null && video.getRating() >= minimalRating)) // Filtrage par note minimale
 	            .filter(video -> searchWithTagIds.isEmpty() || video.getTags().stream().anyMatch(tag -> searchWithTagIds.contains(tag.getId()))) // Vérifie la présence d'au moins un tag recherché
 	            .filter(video -> searchWithoutTagIds.isEmpty() || video.getTags().stream().noneMatch(tag -> searchWithoutTagIds.contains(tag.getId()))) // Exclut les vidéos avec des tags non désirés
@@ -56,14 +67,16 @@ public class VideoServiceImpl implements VideoService { //extends HibernateDatab
 	 */
 	@Override
 	@Transactional
-	public Video randomVideo(String title) {
-		int count =  (int) dao.count();
-        int randomNumber = new Random().nextInt(count) + 1;
+	public Video randomVideo(String title, Double minimalRating, List<Long> searchWithTagIds, List<Long> searchWithoutTagIds) {
+		log.info("Random video");
 		
-		return dao.findById((long) randomNumber).orElseThrow(() -> {
-			String errorMessage = "Error: Video not found (id=" + randomNumber+")";
-			log.error(errorMessage);
-			throw new NoSuchElementException(errorMessage);
-		});
+		List<Video> videos = findBy(title, minimalRating, searchWithTagIds, searchWithoutTagIds);
+		
+	    if (videos.isEmpty()) {
+	        return null;
+	    }
+	    
+	    int randomNumber = new Random().nextInt(videos.size());
+	    return videos.get(randomNumber);
 	}
 }

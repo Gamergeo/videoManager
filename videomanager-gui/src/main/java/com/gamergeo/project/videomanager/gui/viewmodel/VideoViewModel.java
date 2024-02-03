@@ -24,8 +24,6 @@ import javafx.collections.ObservableList;
 @Component
 public class VideoViewModel {
 	
-	private Video initial;
-	
 	private Video model;
 	
     private final StringProperty title = new SimpleStringProperty();
@@ -38,44 +36,39 @@ public class VideoViewModel {
     public VideoViewModel() {}
     
     public VideoViewModel(Video video) {
-    	this.initial = video;
-    	this.model = video;
-    	
-    	this.title.set(video.getTitle());
-    	this.title.addListener((x, oldValue, newValue) -> video.setTitle(newValue));
-    	
-    	this.url.set(video.getUrl());
-    	this.url.addListener((x, oldValue, newValue) -> video.setUrl(newValue));
-
-    	this.addedDate.set(video.getAddedDate());
-    	this.addedDate.addListener((x, oldValue, newValue) -> video.setAddedDate(newValue));
-
-    	if (video.getRating() != null) {
-    		this.rating.set(video.getRating());
-    	}
-    	this.rating.addListener((x, oldValue, newValue) -> video.setRating(newValue.doubleValue()));
-    	
-    	tags.clear();
-    	video.getTags().forEach((tag) -> tags.add(new TagViewModel(tag)));
-    	
+    	setVideo(video);
+    	this.title.addListener((x, oldValue, newValue) -> model.setTitle(newValue));
+    	this.url.addListener((x, oldValue, newValue) -> model.setUrl(newValue));
+    	this.addedDate.addListener((x, oldValue, newValue) -> model.setAddedDate(newValue));
+    	this.rating.addListener((x, oldValue, newValue) -> model.setRating(newValue.doubleValue()));
     	tags.addListener((ListChangeListener.Change<? extends TagViewModel> change) -> {
     	    while (change.next()) { 
     	        if (change.wasAdded()) { 
     	            List<? extends TagViewModel> addedSubList = change.getAddedSubList();
     	            for (TagViewModel addedItem : addedSubList) {
-    	            	video.getTags().add(addedItem.getModel());
+    	            	model.getTags().add(addedItem.getModel());
     	            }
     	        }
     	        if (change.wasRemoved()) {
     	            List<? extends TagViewModel> removedSubList = change.getRemoved();
     	            for (TagViewModel removedItem : removedSubList) {
-    	            	video.getTags().remove(removedItem.getModel());
+    	            	model.getTags().remove(removedItem.getModel());
     	            }
     	        }
     	    }
     	});
     }
-	
+    
+    public void setVideo(Video video) {
+    	this.title.set(video.getTitle());
+    	this.url.set(video.getUrl());
+    	this.addedDate.set(video.getAddedDate());
+		this.rating.set(video.getRating());
+    	tags.clear();
+    	video.getTags().forEach((tag) -> tags.add(new TagViewModel(tag)));
+    	this.model = video;
+    }
+    
 	public final StringProperty urlProperty() {
 		return this.url;
 	}
@@ -100,14 +93,6 @@ public class VideoViewModel {
 		this.addedDateProperty().set(addedDate);
 	}
 	
-	public Video getInitial() {
-		return initial;
-	}
-
-	public void setInitial(Video initial) {
-		this.initial = initial;
-	}
-
 	public Video getModel() {
 		return model;
 	}

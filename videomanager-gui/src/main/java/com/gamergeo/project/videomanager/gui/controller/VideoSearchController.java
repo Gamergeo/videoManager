@@ -56,17 +56,13 @@ public class VideoSearchController {
 	@FXML
 	private void search() {
 		log.info("Search for video");
-		
-		String searchTitle = titleSearchField.getText();
-		Double rating = searchRating.getRating();
-		videoSceneView.getController().refreshVideoList(searchTitle, rating, searchWithTagIds, searchWithoutTagIds);
+		videoSceneView.getController().refreshVideoList(titleSearchField.getText(), searchRating.getRating(), searchWithTagIds, searchWithoutTagIds);
 	}
 	
 	@FXML
 	private void random() {
 		log.info("Random search");
-		String searchTitle = titleSearchField.getText();
-		videoSceneView.getController().randomVideo(searchTitle);
+		videoSceneView.getController().randomVideo(titleSearchField.getText(), searchRating.getRating(), searchWithTagIds, searchWithoutTagIds);
 	}
 	
 	@FXML

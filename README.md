@@ -32,3 +32,4 @@ This work is in progress. Architecture, code, functionnalities will change a lot
 - 0.5 : Rate and Tag Integration
   - 0.5.1 : Video Rating
   - 0.5.2 : Properly Link rating / tag between video pane and table view. Search looks ok
+  - 0.5.3 : Reset video / disable video
