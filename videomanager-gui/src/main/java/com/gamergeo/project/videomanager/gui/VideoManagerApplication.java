@@ -45,7 +45,8 @@ public class VideoManagerApplication extends Application {
     @Override
     public void stop() {
     	log.info("Application VideoManager is closing...");
-    	applicationContext.close();    
+    	applicationContext.getBean(VideoSceneView.class).load().getController().stop();
+    	applicationContext.close();
         log.info("Application VideoManager closed");
     }
 	
@@ -74,4 +75,6 @@ public class VideoManagerApplication extends Application {
 //        primaryStage.sizeToScene();
         primaryStage.show();
     }
+    
+    
 }

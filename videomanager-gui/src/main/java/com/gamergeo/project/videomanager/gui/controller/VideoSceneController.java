@@ -3,8 +3,10 @@ package com.gamergeo.project.videomanager.gui.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 
 import com.gamergeo.lib.gamlib.javafx.controller.FXMLController;
+import com.gamergeo.project.videomanager.gui.VideoManagerApplication;
 import com.gamergeo.project.videomanager.gui.service.VideoManagerApplicationService;
 import com.gamergeo.project.videomanager.gui.view.TagListView;
 import com.gamergeo.project.videomanager.gui.view.VideoSearchView;
@@ -12,17 +14,26 @@ import com.gamergeo.project.videomanager.gui.view.VideoTableView;
 import com.gamergeo.project.videomanager.gui.view.VideoView;
 import com.gamergeo.project.videomanager.gui.viewmodel.VideoViewModel;
 import com.gamergeo.project.videomanager.model.Video;
+import com.gamergeo.project.videomanager.service.UrlPatternService;
 import com.gamergeo.project.videomanager.service.VideoService;
 
 import javafx.fxml.FXML;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.stage.Stage;
 
 @FXMLController
 public class VideoSceneController {
+	
+	@Autowired
+	@Lazy
+	private VideoManagerApplication application;
 
 	@Autowired
 	private VideoService videoService;
+	
+	@Autowired
+	private UrlPatternService urlPatternService;
 	
 	@Autowired
 	private VideoManagerApplicationService applicationService;
@@ -82,8 +93,7 @@ public class VideoSceneController {
     
     public void disable(VideoViewModel video) {
     	video.getModel().setDisabled(true);
-    	videoService.save(video.getModel());
-    	videoView.getController().clear();
+		videoView.getController().clear();
     	videoTableView.getController().disable(video);
     }
     
@@ -99,5 +109,26 @@ public class VideoSceneController {
     
     public void unselectAllTag() {
         tagListView.getController().unselectAllTag();
+    }
+    
+    public void clickOnLink(VideoViewModel video, boolean googleSearch) {
+    	if (!googleSearch) {
+    		application.getHostServices().showDocument(video.getUrl());
+    	} else {
+	    	String googleUrl = urlPatternService.getGoogleUrl(video.getModel().getTitle());
+    		application.getHostServices().showDocument(googleUrl);
+    	}
+    }
+    
+    public void setIconified(boolean iconify) {
+        Stage stage = (Stage) videoSceneRoot.getScene().getWindow();
+        stage.setIconified(true);
+    }
+    
+    /**
+     * Method called when application end
+     */
+    public void stop() {
+    	videoView.getController().clear(); // Save current video
     }
 }

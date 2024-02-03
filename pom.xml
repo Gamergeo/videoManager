@@ -4,7 +4,7 @@
 
 	<groupId>com.gamergeo.project</groupId>
 	<artifactId>videomanager</artifactId>
-	<version>0.5.3</version>
+	<version>0.5.4</version>
 	<packaging>pom</packaging>
 	
 	<parent>

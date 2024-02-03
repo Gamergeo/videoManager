@@ -4,14 +4,14 @@ import java.util.List;
 
 import org.controlsfx.control.Rating;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Lazy;
+import org.springframework.util.SerializationUtils;
 
 import com.gamergeo.lib.gamlib.javafx.controller.FXMLController;
-import com.gamergeo.project.videomanager.gui.VideoManagerApplication;
 import com.gamergeo.project.videomanager.gui.service.VideoManagerApplicationService;
 import com.gamergeo.project.videomanager.gui.view.VideoSceneView;
 import com.gamergeo.project.videomanager.gui.viewmodel.TagViewModel;
 import com.gamergeo.project.videomanager.gui.viewmodel.VideoViewModel;
+import com.gamergeo.project.videomanager.model.Video;
 import com.gamergeo.project.videomanager.service.TagService;
 
 import javafx.collections.ListChangeListener;
@@ -19,6 +19,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.input.DragEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.TilePane;
@@ -28,10 +29,6 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @FXMLController
 public class VideoController {
-	
-	@Autowired
-	@Lazy
-	private VideoManagerApplication application;
 	
 	@Autowired
 	private VideoSceneView videoSceneView;
@@ -62,6 +59,8 @@ public class VideoController {
 	
 	private VideoViewModel selectedVideo;
 	
+	private Video initialVideo;
+	
 	private ListChangeListener<TagViewModel> tagListChangeListener = change -> {
 	    tagsPane.getChildren().clear();
 	    applicationService.addTagsToNode(tagsPane, selectedVideo.getTags());
@@ -69,7 +68,9 @@ public class VideoController {
 	
 	@FXML
 	private void initialize() {
-		videoUrl.setOnAction(a->application.getHostServices().showDocument(selectedVideo.getUrl()));
+		videoUrl.addEventFilter(MouseEvent.MOUSE_CLICKED, event -> 
+									videoSceneView.getController().clickOnLink(selectedVideo, event.isControlDown()));
+		
 		videoUrl.setVisible(false);
 		videoRating.setVisible(false);
 		
@@ -82,6 +83,7 @@ public class VideoController {
 		// Attention à bien unbind avant de changer la vidéo selectionné ou la table sera actualisé en conséquence
 		clear();
 		
+		this.initialVideo = (Video) SerializationUtils.clone(video.getModel());
 		this.selectedVideo = video;
 		videoTitleLabel.textProperty().bindBidirectional(selectedVideo.titleProperty());
 		videoAddedDateLabel.textProperty().bindBidirectional(selectedVideo.addedDateProperty(), new LocalDateStringConverter());
@@ -97,6 +99,7 @@ public class VideoController {
 	public void clear() {
 		// Attention à bien unbind avant de changer la vidéo selectionné ou la table sera actualisé en conséquence
 		if (selectedVideo != null) {
+			videoSceneView.getController().save(selectedVideo);
 			videoTitleLabel.textProperty().unbindBidirectional(selectedVideo.titleProperty());
 			videoAddedDateLabel.textProperty().unbindBidirectional(selectedVideo.addedDateProperty());
 			videoRating.ratingProperty().unbindBidirectional(selectedVideo.ratingProperty());
@@ -108,6 +111,8 @@ public class VideoController {
 		videoTitleLabel.setText("");
 		videoAddedDateLabel.setText("");
 		tagsPane.getChildren().clear();
+		
+		this.initialVideo = null;
 	}
 	
 	private void setVisible(boolean visible) {
@@ -117,13 +122,12 @@ public class VideoController {
 	}
 	
 	@FXML
-	private void save() {
-		videoSceneView.getController().save(selectedVideo);
-	}
-	
-	@FXML
 	private void reset() {
-		videoSceneView.getController().reset(selectedVideo);
+		if (initialVideo == null) {
+			log.error("Reset impossible !");
+		} else {
+			selectedVideo.setVideo(initialVideo);
+		}
 	}
 	
 	@FXML

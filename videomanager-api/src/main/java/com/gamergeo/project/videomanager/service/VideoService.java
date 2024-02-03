@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.gamergeo.project.videomanager.model.Video;
 
-public interface VideoService { //extends HibernateDatabaseService<Video> {
+public interface VideoService {
 	
 	List<Video> findAll();
 
@@ -18,4 +18,5 @@ public interface VideoService { //extends HibernateDatabaseService<Video> {
 	 * Find a random video
 	 */
 	Video randomVideo(String title, Double minimalRating, List<Long> searchWithTagIds, List<Long> searchWithoutTagIds);
+
 }

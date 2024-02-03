@@ -12,7 +12,7 @@ import lombok.Data;
 @Entity
 @Table
 @Data
-public class Tag implements Serializable {
+public class UrlPattern implements Serializable {
 
 	private static final long serialVersionUID = 6257375419629830569L;
 	

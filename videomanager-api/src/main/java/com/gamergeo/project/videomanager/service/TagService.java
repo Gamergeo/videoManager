@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.gamergeo.project.videomanager.model.Tag;
 
-public interface TagService { //extends HibernateDatabaseService<Video> {
+public interface TagService {
 	
 	List<Tag> findAll();
 

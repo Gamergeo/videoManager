@@ -1,5 +1,6 @@
 package com.gamergeo.project.videomanager.model;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -13,12 +14,12 @@ import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 import lombok.Data;
 
-@Entity(name = DatabaseName.VIDEO.TABLE)
-@Table(name = DatabaseName.VIDEO.TABLE)
+@Entity
+@Table
 @Data
-public class Video {//, HibernateModel {
+public class Video implements Serializable {
 
-//	private static final long serialVersionUID = -2649188449485629485L;
+	private static final long serialVersionUID = -2649188449485629485L;
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)

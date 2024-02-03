@@ -18,7 +18,6 @@
    <bottom>
       <HBox fx:id="videoButtons" alignment="BASELINE_RIGHT" styleClass="buttonLine" BorderPane.alignment="CENTER">
          <children>
-            <Button defaultButton="true" onAction="#save" text="Save" />
             <Button cancelButton="true" onAction="#reset" text="Reset" />
             <Button onAction="#disable" text="Disable" />
          </children>

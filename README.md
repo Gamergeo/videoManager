@@ -29,7 +29,8 @@ This work is in progress. Architecture, code, functionnalities will change a lot
   - 0.4.3 : Drag & drop skeleton
   - 0.4.4 : Multi drag & drop and search (gui only)
   - 0.4.5 : Tag search ok
-- 0.5 : Rate and Tag Integration
+- 0.5 : Features
   - 0.5.1 : Video Rating
   - 0.5.2 : Properly Link rating / tag between video pane and table view. Search looks ok
   - 0.5.3 : Reset video / disable video
+  - 0.5.4 : UrlPattern / crtl click on link
