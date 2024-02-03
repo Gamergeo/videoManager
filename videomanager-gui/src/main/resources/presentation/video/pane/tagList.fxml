@@ -4,8 +4,8 @@
 <?import javafx.scene.layout.TilePane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="CENTER" fillWidth="false" maxHeight="-Infinity" maxWidth="300.0" minWidth="100.0" prefWidth="250.0" spacing="30" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gamergeo.project.videomanager.gui.controller.VideoTagListController">
-   <children>
+<VBox alignment="CENTER" fillWidth="false" maxHeight="-Infinity" maxWidth="300.0" minWidth="100.0" prefWidth="250.0" spacing="30" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gamergeo.project.videomanager.gui.controller.TagListController">
+ <children>
       <TextField fx:id="tagSearchField" alignment="CENTER" promptText="Video tags..." />
       <TilePane fx:id="tagListPane" alignment="TOP_CENTER" hgap="10.0" prefColumns="2" prefRows="10" vgap="5.0" />
    </children>

@@ -2,10 +2,9 @@
     -fx-border-color: transparent;
 }
 
-.searchTagFlowPane {
-	-fx-max-width: 200;
+.searchTagPane {
     -fx-min-height: 50;
-    -fx-max-height: 100;
+    -fx-max-height: 200;
 }
 
 /* SplitPane */

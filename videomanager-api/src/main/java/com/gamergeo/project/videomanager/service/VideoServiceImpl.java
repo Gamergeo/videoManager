@@ -19,6 +19,9 @@ public class VideoServiceImpl implements VideoService { //extends HibernateDatab
 	
 	@Autowired
 	VideoDao dao;
+	
+	@Autowired
+	TagService tagService;
 
 	@Override
 	@Transactional
@@ -31,9 +34,18 @@ public class VideoServiceImpl implements VideoService { //extends HibernateDatab
 	
 	@Override
 	@Transactional
-	public List<Video> findBy(String title) {
+	public List<Video> findBy(String title, List<Long> searchWithTagIds, List<Long> searchWithoutTagIds) {
 		log.info("Require videos list");
-		List<Video> videos = dao.findByTitleContaining(title);
+		
+		if (searchWithTagIds.isEmpty()) {
+			searchWithTagIds = tagService.findAllIds();
+		}
+		
+		if (searchWithoutTagIds.isEmpty()) {
+			searchWithoutTagIds.add((long) 0);
+		}
+		
+		List<Video> videos = dao.findByTitleContainingAndTagsIncludedAndExcluded(title, searchWithTagIds, searchWithoutTagIds);
 		log.info("Videos list loaded");
 		return videos;
 	}

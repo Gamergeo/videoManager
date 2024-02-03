@@ -35,7 +35,7 @@
                   <Font/>
                </font>
             </Label>
-            <FlowPane fx:id="videoTagsPane" hgap="5.0" vgap="5.0" />
+            <FlowPane fx:id="tagsPane" hgap="5.0" vgap="5.0" />
          </children>
       </VBox>
    </center>

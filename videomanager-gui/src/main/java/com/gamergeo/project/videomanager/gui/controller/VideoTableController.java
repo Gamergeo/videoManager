@@ -38,7 +38,7 @@ public class VideoTableController {
     @FXML
     private void initialize() {
     	titleColumn.setCellValueFactory(new PropertyValueFactory<VideoViewModel, String>("title"));
-    	tagsColumn.setCellValueFactory(new PropertyValueFactory<VideoViewModel, String>("videoTags"));
+    	tagsColumn.setCellValueFactory(new PropertyValueFactory<VideoViewModel, String>("tags"));
     }
     
     public void setVideoList(List<VideoViewModel> videoList) {

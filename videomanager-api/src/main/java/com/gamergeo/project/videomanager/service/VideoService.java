@@ -15,5 +15,5 @@ public interface VideoService { //extends HibernateDatabaseService<Video> {
 	 */
 	Video randomVideo(String title);
 
-	List<Video> findBy(String title);
+	List<Video> findBy(String title, List<Long> searchWithTagIds, List<Long> searchWithoutTagIds);
 }

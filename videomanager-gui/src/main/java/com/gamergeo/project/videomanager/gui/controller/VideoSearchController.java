@@ -8,14 +8,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.gamergeo.lib.gamlib.javafx.controller.FXMLController;
 import com.gamergeo.project.videomanager.gui.service.VideoManagerApplicationService;
 import com.gamergeo.project.videomanager.gui.view.VideoSceneView;
-import com.gamergeo.project.videomanager.gui.view.VideoTagListView;
-import com.gamergeo.project.videomanager.service.VideoTagService;
+import com.gamergeo.project.videomanager.service.TagService;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.TransferMode;
-import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.TilePane;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -26,22 +25,19 @@ public class VideoSearchController {
 	private VideoSceneView videoSceneView;
 	
 	@Autowired
-	private VideoTagListView videoTagListView;
-	
-	@Autowired
 	private VideoManagerApplicationService applicationService;
 	
 	@Autowired
-	private VideoTagService videoTagService;
+	private TagService tagService;
 	
 	@FXML
 	TextField titleSearchField;
 	
 	@FXML
-	FlowPane withFlowPane;
+	TilePane withFlowPane;
 	
 	@FXML
-	FlowPane withoutFlowPane;
+	TilePane withoutFlowPane;
 	
 	private List<Long> searchWithTagIds = new ArrayList<Long>();
 	
@@ -52,7 +48,7 @@ public class VideoSearchController {
 		log.info("Search for video");
 		
 		String searchTitle = titleSearchField.getText();
-		videoSceneView.getController().refreshVideoList(searchTitle);
+		videoSceneView.getController().refreshVideoList(searchTitle, searchWithTagIds, searchWithoutTagIds);
 	}
 	
 	@FXML
@@ -65,6 +61,12 @@ public class VideoSearchController {
 	@FXML
 	private void reset() {
 		log.info("Reset search");
+		titleSearchField.setText("");
+		withFlowPane.getChildren().clear();
+		withoutFlowPane.getChildren().clear();
+		searchWithTagIds = new ArrayList<Long>();
+		searchWithoutTagIds  = new ArrayList<Long>();
+		
 		videoSceneView.getController().resetVideoList();
 	}
 	
@@ -97,11 +99,11 @@ public class VideoSearchController {
 	        
 	        idList.forEach((id) -> {
 	        	if (!getSearchVideoTagIds(isWithPane).contains(id)) {
-	        		applicationService.addTagToNode(getPane(isWithPane), videoTagService.findById(id));
+	        		applicationService.addTagToNode(getPane(isWithPane), tagService.findById(id));
 	        		getSearchVideoTagIds(isWithPane).add(id);
 	        	}
 	        });
-	        videoTagListView.getController().unselectAllTag();
+	        videoSceneView.getController().unselectAllTag();
             event.setDropCompleted(true);
         } else {
             event.setDropCompleted(false);
@@ -109,7 +111,7 @@ public class VideoSearchController {
         event.consume();
 	}
 	
-	private FlowPane getPane(boolean isWithPane) {
+	private TilePane getPane(boolean isWithPane) {
 		return isWithPane ? withFlowPane : withoutFlowPane;
 	}
 	

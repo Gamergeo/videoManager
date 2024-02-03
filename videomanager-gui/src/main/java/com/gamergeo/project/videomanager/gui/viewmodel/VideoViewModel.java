@@ -25,7 +25,7 @@ public class VideoViewModel {
     private final StringProperty url = new SimpleStringProperty();
     private final ObjectProperty<LocalDate> addedDate = new SimpleObjectProperty<LocalDate>();
 	
-	private ObservableList<VideoTagViewModel> videoTagList = FXCollections.observableArrayList();
+	private ObservableList<TagViewModel> tagList = FXCollections.observableArrayList();
     
     public VideoViewModel() {}
     
@@ -42,13 +42,13 @@ public class VideoViewModel {
     	this.addedDate.set(video.getAddedDate());
     	this.addedDate.addListener((x, oldValue, newValue) -> video.setAddedDate(newValue));
     	
-    	videoTagList.clear();
-    	video.getVideoTags().forEach((videoTag) -> videoTagList.add(new VideoTagViewModel(videoTag)));
+    	tagList.clear();
+    	video.getTags().forEach((tag) -> tagList.add(new TagViewModel(tag)));
     }
 	
-	public String getVideoTags() {
+	public String getTags() {
 		StringJoiner joiner = new StringJoiner(" / ");
-		videoTagList.forEach((videoTag) -> joiner.add(videoTag.getText()));
+		tagList.forEach((videoTag) -> joiner.add(videoTag.getText()));
 		return joiner.toString();
 	}
 
@@ -110,11 +110,11 @@ public class VideoViewModel {
 		return video.getId();
 	}
 
-	public ObservableList<VideoTagViewModel> getVideoTagList() {
-		return videoTagList;
+	public ObservableList<TagViewModel> getTagList() {
+		return tagList;
 	}
 
-	public void setVideoTagList(ObservableList<VideoTagViewModel> videoTagList) {
-		this.videoTagList = videoTagList;
+	public void setTagList(ObservableList<TagViewModel> tagList) {
+		this.tagList = tagList;
 	}
 }

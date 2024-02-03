@@ -10,9 +10,11 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
 
 import com.gamergeo.project.videomanager.gui.ApplicationConstant;
-import com.gamergeo.project.videomanager.gui.view.VideoTagView;
-import com.gamergeo.project.videomanager.gui.viewmodel.VideoTagViewModel;
-import com.gamergeo.project.videomanager.model.VideoTag;
+import com.gamergeo.project.videomanager.gui.view.TagView;
+import com.gamergeo.project.videomanager.gui.viewmodel.TagViewModel;
+import com.gamergeo.project.videomanager.gui.viewmodel.VideoViewModel;
+import com.gamergeo.project.videomanager.model.Video;
+import com.gamergeo.project.videomanager.model.Tag;
 
 import javafx.collections.ObservableList;
 import javafx.scene.layout.Pane;
@@ -24,8 +26,8 @@ public class VideoManagerApplicationServiceImpl implements VideoManagerApplicati
 	private ApplicationContext applicationContext;
 	
 	@Override
-	public VideoTagView addTagToNode(Pane node, VideoTagViewModel tag) {
-   		VideoTagView tagView = applicationContext.getBean(VideoTagView.class);
+	public TagView addTagToNode(Pane node, TagViewModel tag) {
+   		TagView tagView = applicationContext.getBean(TagView.class);
 		tagView.load();
 		tagView.getController().setTag(tag);
 		
@@ -35,14 +37,14 @@ public class VideoManagerApplicationServiceImpl implements VideoManagerApplicati
 	}
 
 	@Override
-	public VideoTagView addTagToNode(Pane node, VideoTag tag) {
-		VideoTagViewModel tagModel = new VideoTagViewModel(tag);
+	public TagView addTagToNode(Pane node, Tag tag) {
+		TagViewModel tagModel = new TagViewModel(tag);
 		return addTagToNode(node, tagModel);
 	}
 
 	@Override
-	public List<VideoTagView> addTagsToNode(Pane node, Iterable<VideoTag> tags) {
-		List<VideoTagView> views = new ArrayList<VideoTagView>();
+	public List<TagView> addTagsToNode(Pane node, Iterable<Tag> tags) {
+		List<TagView> views = new ArrayList<TagView>();
 		
 		tags.forEach((tag) -> {
 			views.add(addTagToNode(node, tag));
@@ -52,8 +54,8 @@ public class VideoManagerApplicationServiceImpl implements VideoManagerApplicati
 	}
 	
 	@Override
-	public List<VideoTagView> addTagsToNode(Pane node, ObservableList<VideoTagViewModel> tags) {
-		List<VideoTagView> views = new ArrayList<VideoTagView>();
+	public List<TagView> addTagsToNode(Pane node, ObservableList<TagViewModel> tags) {
+		List<TagView> views = new ArrayList<TagView>();
 		
 		tags.forEach((tag) -> {
 			views.add(addTagToNode(node, tag));
@@ -71,6 +73,13 @@ public class VideoManagerApplicationServiceImpl implements VideoManagerApplicati
 	public List<Long> getIdFromData(String data) {
         Stream<String> stringStream = Stream.of(data.split(ApplicationConstant.SEPARATOR));
         return stringStream.map((id) -> Long.valueOf(id.replace(ApplicationConstant.ID_DATA, ""))).collect(Collectors.toList());
+	}
+	
+	@Override
+	public List<VideoViewModel> getVideoViewModel(List<Video> videoList) {
+		return videoList.stream()
+				 .map((video) -> new VideoViewModel(video))
+				 .collect(Collectors.toList());
 	}
 }
 

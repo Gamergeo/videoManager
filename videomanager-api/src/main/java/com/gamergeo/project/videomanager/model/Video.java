@@ -35,7 +35,7 @@ public class Video {//, HibernateModel {
 	protected Long rate;
 	
 	@ManyToMany(fetch = FetchType.EAGER)
-	protected List<VideoTag> videoTags;
+	protected List<Tag> tags;
 	
 	protected Boolean disabled;
 }

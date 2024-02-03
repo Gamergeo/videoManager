@@ -40,7 +40,7 @@ public class VideoController {
 	private Label addedDateLabel;
 	
 	@FXML
-	private FlowPane videoTagsPane;
+	private FlowPane tagsPane;
 	
 	private VideoViewModel selectedVideo;
 	
@@ -62,9 +62,9 @@ public class VideoController {
 		videoTitleLabel.textProperty().bindBidirectional(selectedVideo.titleProperty());
 		addedDateLabel.textProperty().bindBidirectional(selectedVideo.addedDateProperty(), new LocalDateStringConverter());
 		
-		videoTagsPane.getChildren().clear();
+		tagsPane.getChildren().clear();
 		
-		applicationService.addTagsToNode(videoTagsPane, video.getVideoTagList());
+		applicationService.addTagsToNode(tagsPane, video.getTagList());
 	}
 	
 	@FXML

@@ -2,25 +2,29 @@ package com.gamergeo.project.videomanager.gui.service;
 
 import java.util.List;
 
-import com.gamergeo.project.videomanager.gui.view.VideoTagView;
-import com.gamergeo.project.videomanager.gui.viewmodel.VideoTagViewModel;
-import com.gamergeo.project.videomanager.model.VideoTag;
+import com.gamergeo.project.videomanager.gui.view.TagView;
+import com.gamergeo.project.videomanager.gui.viewmodel.TagViewModel;
+import com.gamergeo.project.videomanager.gui.viewmodel.VideoViewModel;
+import com.gamergeo.project.videomanager.model.Video;
+import com.gamergeo.project.videomanager.model.Tag;
 
 import javafx.collections.ObservableList;
 import javafx.scene.layout.Pane;
 
 public interface VideoManagerApplicationService {
 
-	VideoTagView addTagToNode(Pane node, VideoTagViewModel tag);
+	TagView addTagToNode(Pane node, TagViewModel tag);
 
-	VideoTagView addTagToNode(Pane node, VideoTag tag);
+	TagView addTagToNode(Pane node, Tag tag);
 
-	List<VideoTagView> addTagsToNode(Pane node, Iterable<VideoTag> tags);
+	List<TagView> addTagsToNode(Pane node, Iterable<Tag> tags);
 
-	List<VideoTagView> addTagsToNode(Pane node, ObservableList<VideoTagViewModel> tags);
+	List<TagView> addTagsToNode(Pane node, ObservableList<TagViewModel> tags);
 
 	String getIdData(Long id);
 
 	List<Long> getIdFromData(String data);
+
+	List<VideoViewModel> getVideoViewModel(List<Video> videoList);
 
 }

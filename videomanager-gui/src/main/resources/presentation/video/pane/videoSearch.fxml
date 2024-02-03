@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.SplitPane?>
@@ -8,6 +7,7 @@
 <?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.TilePane?>
 <?import javafx.scene.layout.VBox?>
 
 <VBox styleClass="default-spacing" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gamergeo.project.videomanager.gui.controller.VideoSearchController">
@@ -17,18 +17,18 @@
             <VBox>
                <children>
                   <TextField fx:id="titleSearchField" promptText="Search Title..." />
-                  <SplitPane>
+                  <SplitPane dividerPositions="0.5">
                     <items>
-                        <VBox onDragOver="#dragOver" onDragDropped="#dropTagWith">
+                        <VBox onDragDropped="#dropTagWith" onDragOver="#dragOver">
                            <children>
                               <Label text="With :" />
-                              <FlowPane fx:id="withFlowPane" styleClass="searchTagFlowPane" />
+                              <TilePane fx:id="withFlowPane" hgap="10.0" prefColumns="4" vgap="5.0" styleClass="searchTagPane" />
                            </children>
                         </VBox>
-                        <VBox onDragOver="#dragOver" onDragDropped="#dropTagWithout">
+                        <VBox onDragDropped="#dropTagWithout" onDragOver="#dragOver">
                            <children>
                               <Label text="Without :" />
-                              <FlowPane fx:id="withoutFlowPane" styleClass="searchTagFlowPane"/>
+                              <TilePane fx:id="withoutFlowPane" hgap="10.0" prefColumns="4" vgap="5.0" styleClass="searchTagPane" />
                            </children>
                         </VBox>
                     </items>
