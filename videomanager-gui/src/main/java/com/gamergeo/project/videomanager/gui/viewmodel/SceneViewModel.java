@@ -1,55 +1,60 @@
 package com.gamergeo.project.videomanager.gui.viewmodel;
 
 import java.util.List;
+import java.util.Random;
 import java.util.stream.Collectors;
 
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
-import com.gamergeo.lib.gamlib.javafx.viewmodel.AbstractViewModel;
-import com.gamergeo.project.videomanager.gui.view.SceneView;
-import com.gamergeo.project.videomanager.model.Video;
 import com.gamergeo.project.videomanager.service.VideoService;
 
+import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @Component
-@RequiredArgsConstructor(onConstructor_ ={@Lazy})
-public class SceneViewModel extends AbstractViewModel<SceneView> {
+@Slf4j
+public class SceneViewModel {
 	
-	private final VideoService videoService;
-	
-	private final SearchViewModel search; 
-	private final TableViewModel table;
-	private final ScreenViewModel screen;
-	
-	private List<Video> allVideos;
+//	private final VideoService videoService;
+//	private final SearchViewModel search; 
+//	private final TableViewModel table;
+//	private final ScreenViewModel screen;
+//	
+//	private List<VideoViewModel> allVideos;
     
-	@Override
-    public void init() {
-    	super.init();
-    	
-    	view.main.setTop(search.getRoot());
-    	view.main.setBottom(table.getRoot());
-    	view.main.setCenter(screen.getRoot());
-    	
-    	allVideos = videoService.findAll();
-    	table.setVideos(toViewModels(allVideos));
-    	
-    	// Bind screen video with table selected one
-    	screen.video().bind(table.selectedVideo());
-    }
-    
-//    public void random(String title, Double minimalRating, List<Tag> searchWithTagIds, List<Tag> searchWithoutTagIds) {
-//    	filter(title, minimalRating, searchWithTagIds, searchWithoutTagIds);
+//	@PostConstruct
+//    public void init() {
+//    	allVideos = videoService.findAll().stream().map(VideoViewModel::new).collect(Collectors.toList());
+//    	table.load(allVideos);
 //    	
-//	    if (!filteredVideos.isEmpty()) {
-//		    int randomNumber = new Random().nextInt(filteredVideos.size());
-//		    selectedVideo.set(filteredVideos.get(randomNumber));
-//	    }
+//    	// Bind screen video with table selected one
+//    	screen.video().bind(table.selectedVideo());
+//		
+//    	// On search critera change, filter table
+//    	search.titleProperty().addListener((observable, oldValue, newValue) -> filter());
+//    	search.ratingProperty().addListener((observable, oldValue, newValue) -> filter());
+//
+//		search.setOnRandomAction((e) -> random());
 //    }
-    
-    private List<VideoViewModel> toViewModels(List<Video> models) {
-    	return models.stream().map(VideoViewModel::new).collect(Collectors.toList());
-    }
+	
+//    public void random() {
+//    	filter();
+//    	
+//    	Integer tableSize = table.getSize();
+//    	
+//    	if (tableSize > 0) {
+//		    int randomNumber = new Random().nextInt(tableSize);
+////		    selectedVideo.set(filteredVideos.get(randomNumber));
+//    	}
+//    	
+//    	
+////    	filter(title, minimalRating, searchWithTagIds, searchWithoutTagIds);
+////    	
+////	    if (!filteredVideos.isEmpty()) {
+////		    int randomNumber = new Random().nextInt(filteredVideos.size());
+////		    selectedVideo.set(filteredVideos.get(randomNumber));
+////	    }
+//    }
 }

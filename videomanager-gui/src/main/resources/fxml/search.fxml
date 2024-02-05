@@ -44,8 +44,7 @@
       </TitledPane>
       <HBox alignment="CENTER_RIGHT" styleClass="buttonLine">
          <children>
-            <Button alignment="CENTER" fx:id="search" text="Search" />
-            <Button alignment="CENTER" onAction="#clear" text="Reset" />
+            <Button alignment="CENTER" onAction="#reset" text="Reset" />
             <Button alignment="CENTER" onAction="#random" text="Random" />
          </children>
       </HBox>

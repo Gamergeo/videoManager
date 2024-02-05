@@ -1,7 +1,7 @@
 	package com.gamergeo.project.videomanager.gui.view;
 
-import com.gamergeo.lib.gamlib.javafx.view.AbstractView;
-import com.gamergeo.lib.gamlib.javafx.view.View;
+import org.springframework.stereotype.Component;
+
 import com.gamergeo.project.videomanager.model.Tag;
 
 import javafx.fxml.FXML;
@@ -10,8 +10,8 @@ import javafx.scene.layout.BorderPane;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-@View
-public class TagViewModel extends AbstractView {
+@Component
+public class TagViewModel {
 	
 	@FXML
 	private BorderPane root;

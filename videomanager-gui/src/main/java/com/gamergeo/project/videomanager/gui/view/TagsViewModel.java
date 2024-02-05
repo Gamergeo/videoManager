@@ -4,9 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
-
-import com.gamergeo.lib.gamlib.javafx.view.AbstractView;
-import com.gamergeo.lib.gamlib.javafx.view.View;
+import org.springframework.stereotype.Component;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
@@ -14,8 +12,8 @@ import javafx.scene.layout.TilePane;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-@View
-public class TagsViewModel extends AbstractView {
+@Component
+public class TagsViewModel {
 	
 	@Autowired
 	@Lazy

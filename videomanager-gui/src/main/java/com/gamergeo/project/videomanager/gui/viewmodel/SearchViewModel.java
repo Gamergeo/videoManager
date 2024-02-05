@@ -1,50 +1,39 @@
 package com.gamergeo.project.videomanager.gui.viewmodel;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
-import com.gamergeo.lib.gamlib.javafx.viewmodel.AbstractViewModel;
-import com.gamergeo.project.videomanager.gui.view.SearchView;
-import com.gamergeo.project.videomanager.model.Tag;
-
-import javafx.event.ActionEvent;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 
 @Component
-@Slf4j
-@RequiredArgsConstructor(onConstructor_ ={@Lazy})
-public class SearchViewModel extends AbstractViewModel<SearchView> {
+public class SearchViewModel {
 	
-	@Lazy
-	TableViewModel table;
+	private final StringProperty title = new SimpleStringProperty();
+	private final DoubleProperty rating = new SimpleDoubleProperty();
 	
-	@Override
-	public void init() {
-		super.init();
-		view.search.setOnAction(this::filter);
-	}	
+	public final StringProperty titleProperty() {
+		return this.title;
+	}
 	
-	/**
-	 * Filter a video list from criteria
-	 * @param videos
-	 */
-	@Lazy
-    public void filter(ActionEvent ActionEvent) {
-    	String title = view.title.getText();
-    	Double rating = view.rating.getRating();
-    	List<Tag> withTags = new ArrayList<Tag>();
-    	List<Tag> withoutTags = new ArrayList<Tag>();
-    	
-		log.info("Filter with params (title=" + title + ", rating=" + rating + ", with: " + withTags.toString() + ", without" + withoutTags.toString());
-		
-		table.getVideos().filtered(video -> title ==  null || title.isBlank() || video.getTitle().contains(title))
-	            .filtered(video -> rating == null || rating == 0 || video.getRating() >= rating); // Filtrage par note minimale
-//	            .filter(video -> withTags.isEmpty() || video.getTags().stream().anyMatch(tag -> withTags.contains(tag))) // Vérifie la présence d'au moins un tag recherché
-//	            .filter(video -> withoutTags.isEmpty() || video.getTags().stream().noneMatch(tag -> withoutTags.contains(tag))) // Exclut les vidéos avec des tags non désirés
-    }
-
+	public final String getTitle() {
+		return this.titleProperty().get();
+	}
+	
+	public final void setTitle(final String title) {
+		this.titleProperty().set(title);
+	}
+	
+	public final DoubleProperty ratingProperty() {
+		return this.rating;
+	}
+	
+	public final double getRating() {
+		return this.ratingProperty().get();
+	}
+	
+	public final void setRating(final double rating) {
+		this.ratingProperty().set(rating);
+	}
 }

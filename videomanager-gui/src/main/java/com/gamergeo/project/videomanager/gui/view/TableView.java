@@ -1,20 +1,26 @@
-	package com.gamergeo.project.videomanager.gui.view;
+package com.gamergeo.project.videomanager.gui.view;
 
 import java.util.List;
 
-import com.gamergeo.lib.gamlib.javafx.view.AbstractView;
-import com.gamergeo.lib.gamlib.javafx.view.View;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.gamergeo.lib.gamlib.javafx.view.AbstractFXMLView;
+import com.gamergeo.lib.gamlib.javafx.view.FXMLView;
 import com.gamergeo.project.videomanager.gui.cell.RatingCellFactory;
+import com.gamergeo.project.videomanager.gui.viewmodel.ScreenViewModel;
+import com.gamergeo.project.videomanager.gui.viewmodel.SearchViewModel;
+import com.gamergeo.project.videomanager.gui.viewmodel.TableViewModel;
 import com.gamergeo.project.videomanager.gui.viewmodel.VideoViewModel;
 import com.gamergeo.project.videomanager.model.Tag;
 
+import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TitledPane;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-@View
-public class TableView extends AbstractView {
+@FXMLView
+public class TableView extends AbstractFXMLView<TableViewModel> {
 	
 	@FXML
 	private TitledPane root;
@@ -30,7 +36,13 @@ public class TableView extends AbstractView {
     
     @FXML
     private TableColumn<VideoViewModel, Double> ratingColumn;
+    
+    @Autowired
+    private SearchViewModel search;
 	
+	@Autowired
+	private ScreenViewModel screen;
+    
     @FXML
     public void initialize() {
 		titleColumn.setCellValueFactory(new PropertyValueFactory<VideoViewModel, String>("title"));
@@ -47,17 +59,19 @@ public class TableView extends AbstractView {
       	table.getSortOrder().add(titleColumn);
       	titleColumn.setSortType(TableColumn.SortType.ASCENDING);
       	table.sort();
+      	
+      	viewModel.getVideos().addListener((ListChangeListener.Change<? extends VideoViewModel> change) -> table.getItems().setAll(change.getList()));
+		
+		// On search change, filter table
+      	search.titleProperty().addListener((observable, oldValue, newValue) -> filterTable());
+      	search.ratingProperty().addListener((observable, oldValue, newValue) -> filterTable());
+      	filterTable();
+      	
+      	// Bind selected table item and selected item
+      	table.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> screen.setSelectedVideo(newValue));
     }
-    
-    public javafx.scene.control.TableView<VideoViewModel> table() {
-    	return table;
-    }
-    
-    /**
-     * Refresh table
-     * We do not utilize properties in our models, therefore table item values cannot be updated without refreshing the table
-     */
-//    public void refresh() {
-//    	table.refresh();
-//    }
+	
+	private void filterTable() {
+		viewModel.filter(search.getTitle(), search.getRating());
+	}
 }

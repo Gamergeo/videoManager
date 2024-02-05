@@ -53,7 +53,7 @@ public class VideoManagerApplication extends Application {
 	
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent page = (Parent) applicationContext.getBean(SceneViewModel.class).getRoot();
+        Parent page = (Parent) applicationContext.getBean(SceneView.class).load().getRoot();
         Scene scene = new Scene(page);
         scene.getStylesheets().add("/css/application.css");
         

@@ -1,24 +1,20 @@
-	package com.gamergeo.project.videomanager.gui.view;
-
-import java.util.ArrayList;
+package com.gamergeo.project.videomanager.gui.view;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.gamergeo.lib.gamlib.javafx.view.AbstractView;
-import com.gamergeo.lib.gamlib.javafx.view.View;
+import com.gamergeo.lib.gamlib.javafx.view.AbstractFXMLView;
+import com.gamergeo.lib.gamlib.javafx.view.FXMLView;
 import com.gamergeo.project.videomanager.gui.component.SemiRating;
-import com.gamergeo.project.videomanager.gui.viewmodel.SceneViewModel;
-import com.gamergeo.project.videomanager.model.Tag;
+import com.gamergeo.project.videomanager.gui.viewmodel.ScreenViewModel;
+import com.gamergeo.project.videomanager.gui.viewmodel.SearchViewModel;
+import com.gamergeo.project.videomanager.gui.viewmodel.TableViewModel;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.TilePane;
-import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
-@View
-public class SearchView extends AbstractView {
+@FXMLView
+public class SearchView extends AbstractFXMLView<SearchViewModel> {
 
 	@FXML
 	public TextField title;
@@ -32,16 +28,20 @@ public class SearchView extends AbstractView {
 	@FXML
 	public TilePane withoutTags;
 	
-	@FXML
-	public Button search;
+	@Autowired
+	public ScreenViewModel screen;
+	
+	@Autowired
+	public TableViewModel table;
 	
 	@FXML
 	private void initialize() {
-		rating.setRating(0d);
+		title.textProperty().bindBidirectional(viewModel.titleProperty());
+		rating.ratingProperty().bindBidirectional(viewModel.ratingProperty());
 	}
 	
 	@FXML
-	private void clear() {
+	private void reset() {
 		title.setText("");
 		rating.setRating(0);
 		withTags.getChildren().clear();
@@ -50,7 +50,7 @@ public class SearchView extends AbstractView {
 	
 	@FXML
 	private void random() {
-		log.info("Random request");
-//		scene.random(title.getText(), rating.getRating(), new ArrayList<Tag>(), new ArrayList<Tag>());
+//		log.info("Random request");
+		screen.setSelectedVideo(table.random());
 	}
 }

@@ -1,22 +1,25 @@
 package com.gamergeo.project.videomanager.gui.viewmodel;
 
-import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
-
-import com.gamergeo.lib.gamlib.javafx.viewmodel.AbstractViewModel;
-import com.gamergeo.project.videomanager.gui.view.ScreenView;
 
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
-import lombok.RequiredArgsConstructor;
 
 @Component
-@RequiredArgsConstructor(onConstructor_ ={@Lazy})
-public class ScreenViewModel extends AbstractViewModel<ScreenView> {
+public class ScreenViewModel {
+	
+    private final ObjectProperty<VideoViewModel> selectedVideo = new SimpleObjectProperty<VideoViewModel>();
+
+	public final ObjectProperty<VideoViewModel> selectedVideoProperty() {
+		return this.selectedVideo;
+	}
+
+	public final VideoViewModel getSelectedVideo() {
+		return this.selectedVideoProperty().get();
+	}
+
+	public final void setSelectedVideo(final VideoViewModel selectedVideo) {
+		this.selectedVideoProperty().set(selectedVideo);
+	}
     
-    private final ObjectProperty<VideoViewModel> video = new SimpleObjectProperty<VideoViewModel>();
-    
-    public ObjectProperty<VideoViewModel> video() {
-    	return video;
-    }
 }
