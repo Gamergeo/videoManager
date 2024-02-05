@@ -13,7 +13,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Component
-public class TagsViewModel {
+public class TagsView {
 	
 	@Autowired
 	@Lazy
@@ -25,6 +25,6 @@ public class TagsViewModel {
 	@FXML
 	private TilePane list;
 	
-	private List<TagViewModel> tags;
+	private List<TagView> tags;
 
 }

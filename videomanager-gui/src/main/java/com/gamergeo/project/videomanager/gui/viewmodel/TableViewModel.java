@@ -1,5 +1,6 @@
 package com.gamergeo.project.videomanager.gui.viewmodel;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
@@ -10,6 +11,8 @@ import org.springframework.stereotype.Component;
 import com.gamergeo.project.videomanager.service.VideoService;
 
 import jakarta.annotation.PostConstruct;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -19,13 +22,16 @@ public class TableViewModel {
 	@Autowired
 	private VideoService videoService;
 	
-	private ObservableList<VideoViewModel> filteredVideos = FXCollections.observableArrayList();
+	private final ObservableList<VideoViewModel> filteredVideos = FXCollections.observableArrayList();
 	
-	private List<VideoViewModel> allVideos;
+	private final ObjectProperty<VideoViewModel> selectedVideo = new SimpleObjectProperty<VideoViewModel>();
+	
+	private final List<VideoViewModel> allVideos = new ArrayList<VideoViewModel>();
 	
 	@PostConstruct
 	private void init() {
-		allVideos = videoService.findAll().stream().map(VideoViewModel::new).collect(Collectors.toList());
+		allVideos.addAll(videoService.findAll().stream().map(VideoViewModel::new).collect(Collectors.toList()));
+		filteredVideos.setAll(allVideos);
 	}
 
 	public void filter(String title, Double rating) {
@@ -50,5 +56,17 @@ public class TableViewModel {
 		}
 		
 		return null;
+	}
+
+	public final ObjectProperty<VideoViewModel> selectedVideoProperty() {
+		return this.selectedVideo;
+	}
+
+	public final VideoViewModel getSelectedVideo() {
+		return this.selectedVideoProperty().get();
+	}
+
+	public final void setSelectedVideo(final VideoViewModel selectedVideo) {
+		this.selectedVideoProperty().set(selectedVideo);
 	}
 }

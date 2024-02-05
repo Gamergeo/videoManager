@@ -5,7 +5,7 @@
 <?import javafx.scene.control.TitledPane?>
 
 
-<TitledPane fx:id="root" text="Video List" expanded="false" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gamergeo.project.videomanager.gui.view.TableView">
+<TitledPane fx:id="root" expanded="false" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gamergeo.project.videomanager.gui.view.TableView">
    <content>
       <TableView fx:id="table" prefHeight="300.0">
       	

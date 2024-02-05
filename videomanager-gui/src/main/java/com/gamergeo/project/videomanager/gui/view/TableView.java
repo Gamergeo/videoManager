@@ -2,18 +2,15 @@ package com.gamergeo.project.videomanager.gui.view;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
 import com.gamergeo.lib.gamlib.javafx.view.AbstractFXMLView;
 import com.gamergeo.lib.gamlib.javafx.view.FXMLView;
 import com.gamergeo.project.videomanager.gui.cell.RatingCellFactory;
-import com.gamergeo.project.videomanager.gui.viewmodel.ScreenViewModel;
-import com.gamergeo.project.videomanager.gui.viewmodel.SearchViewModel;
 import com.gamergeo.project.videomanager.gui.viewmodel.TableViewModel;
 import com.gamergeo.project.videomanager.gui.viewmodel.VideoViewModel;
 import com.gamergeo.project.videomanager.model.Tag;
 
 import javafx.collections.ListChangeListener;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TitledPane;
@@ -37,12 +34,6 @@ public class TableView extends AbstractFXMLView<TableViewModel> {
     @FXML
     private TableColumn<VideoViewModel, Double> ratingColumn;
     
-    @Autowired
-    private SearchViewModel search;
-	
-	@Autowired
-	private ScreenViewModel screen;
-    
     @FXML
     public void initialize() {
 		titleColumn.setCellValueFactory(new PropertyValueFactory<VideoViewModel, String>("title"));
@@ -55,23 +46,28 @@ public class TableView extends AbstractFXMLView<TableViewModel> {
 //      	titleColumn.setCellValueFactory(new PropertyValueFactory<VideoViewModelOld, String>("title"));
 //      	tagsColumn.setCellValueFactory(cellData -> cellData.getValue().tagsProperty());
 //      	tagsColumn.setCellFactory(new TagListCellFactory());
+      	
+	  	setItems(viewModel.getVideos());
 	  	
       	table.getSortOrder().add(titleColumn);
       	titleColumn.setSortType(TableColumn.SortType.ASCENDING);
-      	table.sort();
       	
-      	viewModel.getVideos().addListener((ListChangeListener.Change<? extends VideoViewModel> change) -> table.getItems().setAll(change.getList()));
-		
-		// On search change, filter table
-      	search.titleProperty().addListener((observable, oldValue, newValue) -> filterTable());
-      	search.ratingProperty().addListener((observable, oldValue, newValue) -> filterTable());
-      	filterTable();
+      	// Bind items
+      	viewModel.getVideos().addListener((ListChangeListener.Change<? extends VideoViewModel> change) -> setItems(viewModel.getVideos()));
       	
-      	// Bind selected table item and selected item
-      	table.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> screen.setSelectedVideo(newValue));
+      	// Bind selected item
+      	table.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> viewModel.setSelectedVideo(newValue));
+      	viewModel.selectedVideoProperty().addListener((observable, oldValue, newValue) -> {
+      		if (table.getSelectionModel().getSelectedItem() != newValue) {
+          		table.getSelectionModel().select(newValue);
+          		table.scrollTo(newValue);
+      		}
+      	});
     }
-	
-	private void filterTable() {
-		viewModel.filter(search.getTitle(), search.getRating());
-	}
+    
+    private void setItems(ObservableList<VideoViewModel> videos) {
+  		table.getItems().setAll(videos);
+  		table.sort();
+  		root.setText(videos.size() + " videos found");
+    }
 }

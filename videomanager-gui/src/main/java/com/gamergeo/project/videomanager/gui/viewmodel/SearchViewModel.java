@@ -1,5 +1,7 @@
 package com.gamergeo.project.videomanager.gui.viewmodel;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
 import javafx.beans.property.DoubleProperty;
@@ -10,8 +12,16 @@ import javafx.beans.property.StringProperty;
 @Component
 public class SearchViewModel {
 	
+	@Autowired
+	@Lazy
+	private SceneViewModel scene;
+	
 	private final StringProperty title = new SimpleStringProperty();
 	private final DoubleProperty rating = new SimpleDoubleProperty();
+	
+	public void random() {
+		scene.random();
+	}
 	
 	public final StringProperty titleProperty() {
 		return this.title;

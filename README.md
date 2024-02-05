@@ -35,11 +35,9 @@ This work is in progress. Architecture, code, functionnalities will change a lot
   - 0.5.3 : Reset video / disable video
   - 0.5.4 : UrlPattern / crtl click on link
 - 0.6 : MVVM Refactoring
-		Refactoring to properly implement MVVM pattern. Delete Controller / View class : now view are only fxml / css
-		ViewModel are the bridge between View and API (model)
-			SceneViewModel is the main one between the API and the interface. It also instructs each element on how to behave. 
-			The other ViewModels are responsible for capturing user interactions and notifying the scene accordingly.
+		Refactoring to properly implement MVVM pattern.
   - 0.6.1 : New skeleton, match with gamlib-0.4.1. Lot of features are not ready yet
   - 0.6.2 : Test architecture
+  - 0.6.3 : MVVM pattern
 
 

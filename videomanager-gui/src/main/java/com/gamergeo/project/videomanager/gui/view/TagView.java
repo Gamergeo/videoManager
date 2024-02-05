@@ -11,7 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Component
-public class TagViewModel {
+public class TagView {
 	
 	@FXML
 	private BorderPane root;

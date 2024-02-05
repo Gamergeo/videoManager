@@ -1,21 +1,41 @@
 package com.gamergeo.project.videomanager.gui.viewmodel;
 
-import java.util.List;
-import java.util.Random;
-import java.util.stream.Collectors;
-
-import org.springframework.context.annotation.Lazy;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.gamergeo.project.videomanager.service.VideoService;
-
 import jakarta.annotation.PostConstruct;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @Component
 @Slf4j
 public class SceneViewModel {
+	
+	@Autowired
+	private SearchViewModel search;
+	
+	@Autowired
+	private ScreenViewModel screen;
+
+	@Autowired
+	private TableViewModel table;
+	
+	@PostConstruct
+	public void init() {
+		// On search change, filter table
+      	search.titleProperty().addListener((observable, oldValue, newValue) -> filter());
+      	search.ratingProperty().addListener((observable, oldValue, newValue) -> filter());
+      	
+      	// Bind screen and table
+      	table.selectedVideoProperty().bindBidirectional(screen.selectedVideoProperty());
+	}
+	
+	private void filter() {
+		table.filter(search.getTitle(), search.getRating());
+	}
+	
+	public void random() {
+		screen.setSelectedVideo(table.random());
+	}
 	
 //	private final VideoService videoService;
 //	private final SearchViewModel search; 

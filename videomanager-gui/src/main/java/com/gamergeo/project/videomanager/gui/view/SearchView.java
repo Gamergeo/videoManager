@@ -1,13 +1,9 @@
 package com.gamergeo.project.videomanager.gui.view;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
 import com.gamergeo.lib.gamlib.javafx.view.AbstractFXMLView;
 import com.gamergeo.lib.gamlib.javafx.view.FXMLView;
 import com.gamergeo.project.videomanager.gui.component.SemiRating;
-import com.gamergeo.project.videomanager.gui.viewmodel.ScreenViewModel;
 import com.gamergeo.project.videomanager.gui.viewmodel.SearchViewModel;
-import com.gamergeo.project.videomanager.gui.viewmodel.TableViewModel;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
@@ -28,12 +24,6 @@ public class SearchView extends AbstractFXMLView<SearchViewModel> {
 	@FXML
 	public TilePane withoutTags;
 	
-	@Autowired
-	public ScreenViewModel screen;
-	
-	@Autowired
-	public TableViewModel table;
-	
 	@FXML
 	private void initialize() {
 		title.textProperty().bindBidirectional(viewModel.titleProperty());
@@ -50,7 +40,7 @@ public class SearchView extends AbstractFXMLView<SearchViewModel> {
 	
 	@FXML
 	private void random() {
+		viewModel.random();
 //		log.info("Random request");
-		screen.setSelectedVideo(table.random());
 	}
 }
