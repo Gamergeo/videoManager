@@ -1,144 +1,106 @@
-package com.gamergeo.project.videomanager.gui.viewmodel;
+	package com.gamergeo.project.videomanager.gui.viewmodel;
 
-import java.time.LocalDate;
-import java.util.List;
-import java.util.stream.Collectors;
+import org.controlsfx.control.Rating;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 
-import org.springframework.stereotype.Component;
-
-import com.gamergeo.project.videomanager.model.Tag;
+import com.gamergeo.lib.gamlib.javafx.viewmodel.AbstractViewModel;
+import com.gamergeo.lib.gamlib.javafx.viewmodel.ViewModel;
 import com.gamergeo.project.videomanager.model.Video;
 
-import javafx.beans.property.DoubleProperty;
-import javafx.beans.property.ListProperty;
 import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SimpleDoubleProperty;
-import javafx.beans.property.SimpleListProperty;
 import javafx.beans.property.SimpleObjectProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
-import javafx.collections.FXCollections;
-import javafx.collections.ListChangeListener;
-import javafx.collections.ObservableList;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.fxml.FXML;
+import javafx.scene.control.Hyperlink;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.TilePane;
+import lombok.extern.slf4j.Slf4j;
 
-@Component
-public class VideoViewModel {
+@Slf4j
+@ViewModel
+public class VideoViewModel extends AbstractViewModel {
 	
-	private Video model;
+	@Autowired
+	@Lazy
+	protected SceneViewModel scene;
 	
-    private final StringProperty title = new SimpleStringProperty();
-    private final StringProperty url = new SimpleStringProperty();
-    private final DoubleProperty rating = new SimpleDoubleProperty();
-    private final ObjectProperty<LocalDate> addedDate = new SimpleObjectProperty<LocalDate>();
+	@FXML
+	private BorderPane root;
 	
-    private final ListProperty<TagViewModel> tags = new SimpleListProperty<TagViewModel>(FXCollections.observableArrayList());
-    
-    public VideoViewModel() {}
-    
-    public VideoViewModel(Video video) {
-    	setVideo(video);
-    	this.title.addListener((x, oldValue, newValue) -> model.setTitle(newValue));
-    	this.url.addListener((x, oldValue, newValue) -> model.setUrl(newValue));
-    	this.addedDate.addListener((x, oldValue, newValue) -> model.setAddedDate(newValue));
-    	this.rating.addListener((x, oldValue, newValue) -> model.setRating(newValue.doubleValue()));
-    	tags.addListener((ListChangeListener.Change<? extends TagViewModel> change) -> {
-    	    while (change.next()) { 
-    	        if (change.wasAdded()) { 
-    	            List<? extends TagViewModel> addedSubList = change.getAddedSubList();
-    	            for (TagViewModel addedItem : addedSubList) {
-    	            	model.getTags().add(addedItem.getModel());
-    	            }
-    	        }
-    	        if (change.wasRemoved()) {
-    	            List<? extends TagViewModel> removedSubList = change.getRemoved();
-    	            for (TagViewModel removedItem : removedSubList) {
-    	            	model.getTags().remove(removedItem.getModel());
-    	            }
-    	        }
-    	    }
-    	});
-    }
-    
-    public void setVideo(Video video) {
-    	this.title.set(video.getTitle());
-    	this.url.set(video.getUrl());
-    	this.addedDate.set(video.getAddedDate());
-		this.rating.set(video.getRating());
-    	tags.clear();
-    	video.getTags().forEach((tag) -> tags.add(new TagViewModel(tag)));
-    	this.model = video;
-    }
-    
-	public final StringProperty urlProperty() {
-		return this.url;
+	@FXML
+	private Label title;
+	
+	@FXML
+	private TextField titleedit;
+	
+	@FXML
+	private Hyperlink url;
+	
+	@FXML
+	private Label date;
+	
+	@FXML
+	private Rating rating;
+	
+	@FXML
+	private TilePane tags;
+	
+	private ObjectProperty<Video> selectedVideo = new SimpleObjectProperty<Video>();
+	
+	private ChangeListener<? super Video> updateListener = this::update;
+	private ChangeListener<? super String> updateTitleListener = this::updateTitle;
+	private ChangeListener<? super Number> updateRatingListener = this::updateRating;
+	
+	public void initialize() {
+		selectedVideo.addListener(updateListener);
 	}
 	
-	public final String getUrl() {
-		return this.urlProperty().get();
+	public void setData(Video video) {
+		selectedVideo.set(video);
 	}
 	
-	public final void setUrl(final String url) {
-		this.urlProperty().set(url);
-	}
-
-	public final ObjectProperty<LocalDate> addedDateProperty() {
-		return this.addedDate;
-	}
-
-	public final String getAddedDate() {
-		return this.addedDateProperty().get().toString();
+	public Video getData() {
+		return selectedVideo.get();
 	}
 	
-	public final void setAddedDate(final LocalDate addedDate) {
-		this.addedDateProperty().set(addedDate);
+	private void clear() {
+		log.info("Clear video view infos");
+		titleedit.textProperty().removeListener(updateTitleListener);
+		rating.ratingProperty().removeListener(updateRatingListener);
+		title.setText("");
+		date.setText("");
+		rating.setRating(0);
 	}
 	
-	public Video getModel() {
-		return model;
-	}
-
-	public void setModel(Video model) {
-		this.model = model;
-	}
-
-	public final StringProperty titleProperty() {
-		return this.title;
-	}
-
-	public final String getTitle() {
-		return this.titleProperty().get();
+	private void update(ObservableValue<? extends Video> observable, Video oldValue, Video newValue) {
+		clear();
+		if (newValue != null) {
+			log.info("Change video view infos: " + newValue.getId());
+			title.setText(newValue.getTitle());
+			date.setText(newValue.getAddedDate().toString());
+			rating.setRating(newValue.getRating());
+			titleedit.textProperty().addListener(updateTitleListener);
+			rating.ratingProperty().addListener(updateRatingListener);
+		}
 	}
 	
-	public final void setTitle(final String title) {
-		this.titleProperty().set(title);
+	private void updateRating(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+	    Video video = selectedVideo.get();
+	    if (video != null) {
+	        video.setRating(newValue.doubleValue());
+	        scene.save();
+	    }
 	}
 	
-	public final Long getId() {
-		return model.getId();
+	private void updateTitle(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+	    Video video = selectedVideo.get();
+	    if (video != null) {
+	        video.setTitle(newValue);
+	        scene.save();
+	    }
 	}
-
-    public ObservableList<TagViewModel> getTags() {
-        return tags.get();
-    }
-
-    public ListProperty<TagViewModel> tagsProperty() {
-        return tags;
-    }
-
-	public final DoubleProperty ratingProperty() {
-		return this.rating;
-	}
-	
-	public final double getRating() {
-		return this.ratingProperty().get();
-	}
-	
-	public final void setRating(final double rating) {
-		this.ratingProperty().set(rating);
-	}
-	
-	public List<Long> getTagListIds() {
-		return this.model.getTags().stream().map(Tag::getId).collect(Collectors.toList());
-	}
-	
 }

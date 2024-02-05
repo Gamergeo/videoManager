@@ -1,24 +1,24 @@
 package com.gamergeo.project.videomanager.gui.cell;
 
-import com.gamergeo.project.videomanager.gui.viewmodel.VideoViewModel;
+import com.gamergeo.project.videomanager.model.Video;
 
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.util.Callback;
 
-public class RatingCellFactory implements Callback<TableColumn<VideoViewModel, Number>, TableCell<VideoViewModel, Number>> {
+public class RatingCellFactory implements Callback<TableColumn<Video, Double>, TableCell<Video, Double>> {
 	
     @Override
-    public TableCell<VideoViewModel, Number> call(TableColumn<VideoViewModel, Number> param) {
-        return new TableCell<VideoViewModel, Number>() {
+    public TableCell<Video, Double> call(TableColumn<Video, Double> param) {
+        return new TableCell<Video, Double>() {
             @Override
-            protected void updateItem(Number item, boolean empty) {
+            protected void updateItem(Double item, boolean empty) {
                 super.updateItem(item, empty);
                 if (empty || item == null) {
                     setText(null);
                     setGraphic(null);
                 } else {
-                    setText(convertRatingToStars(item.doubleValue()));
+                    setText(convertRatingToStars(item));
                 }
             }
         };
@@ -38,3 +38,4 @@ public class RatingCellFactory implements Callback<TableColumn<VideoViewModel, N
         return stars + halfStar;
     }
 }
+

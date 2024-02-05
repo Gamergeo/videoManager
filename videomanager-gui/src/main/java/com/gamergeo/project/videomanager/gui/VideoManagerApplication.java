@@ -9,7 +9,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
-import com.gamergeo.project.videomanager.gui.view.VideoSceneView;
+import com.gamergeo.project.videomanager.gui.viewmodel.SceneViewModel;
 
 import javafx.application.Application;
 import javafx.scene.Parent;
@@ -45,16 +45,16 @@ public class VideoManagerApplication extends Application {
     @Override
     public void stop() {
     	log.info("Application VideoManager is closing...");
-    	applicationContext.getBean(VideoSceneView.class).load().getController().stop();
+    	applicationContext.getBean(SceneViewModel.class).stop();
     	applicationContext.close();
         log.info("Application VideoManager closed");
     }
 	
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent page = (Parent) applicationContext.getBean(VideoSceneView.class).load().getRoot();
+        Parent page = (Parent) applicationContext.getBean(SceneViewModel.class).load().getRoot();
         Scene scene = new Scene(page);
-        scene.getStylesheets().add("/presentation/videomanager.css");
+        scene.getStylesheets().add("/css/application.css");
         
         
         // Principal screen size

@@ -2,6 +2,7 @@ package com.gamergeo.project.videomanager.service;
 
 import java.util.List;
 
+import com.gamergeo.project.videomanager.model.Tag;
 import com.gamergeo.project.videomanager.model.Video;
 
 public interface VideoService {
@@ -10,13 +11,17 @@ public interface VideoService {
 
 	void save(Video video);
 
-	List<Video> findBy(String title, Double minimalRating, List<Long> searchWithTagIds, List<Long> searchWithoutTagIds);
-
 	Video findById(Long id);
+	
+	/**
+	 * Filter a videos list from search criteria
+	 */
+	List<Video> filter(List<Video> videos, String title, Double minimalRating, List<Tag> searchWithTagIds,
+			List<Tag> searchWithoutTagIds);
 
 	/**
-	 * Find a random video
+	 * Find a random video in list
 	 */
-	Video randomVideo(String title, Double minimalRating, List<Long> searchWithTagIds, List<Long> searchWithoutTagIds);
+	Video randomVideo(List<Video> videos);
 
 }

@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.gamergeo.project.videomanager.model.Tag;
 import com.gamergeo.project.videomanager.model.Video;
 import com.gamergeo.project.videomanager.persistence.VideoDao;
 
@@ -44,17 +45,19 @@ public class VideoServiceImpl implements VideoService {
 		return videos;
 	}
 	
+	/**
+	 * Filter a videos list from search criteria
+	 */
 	@Override
-	@Transactional
-	public List<Video> findBy(String title, Double minimalRating, List<Long> searchWithTagIds, List<Long> searchWithoutTagIds) {
-		log.info("Load videos list (title=" + title + ", rating=" + minimalRating + ", with:" + searchWithTagIds.toString() +  ", without:" + searchWithoutTagIds.toString());
-		
-	    return dao.findByDisabledAndTitleContaining(false, title).stream()
-	            .filter(video -> minimalRating == 0 || (video.getRating() != null && video.getRating() >= minimalRating)) // Filtrage par note minimale
-	            .filter(video -> searchWithTagIds.isEmpty() || video.getTags().stream().anyMatch(tag -> searchWithTagIds.contains(tag.getId()))) // Vérifie la présence d'au moins un tag recherché
-	            .filter(video -> searchWithoutTagIds.isEmpty() || video.getTags().stream().noneMatch(tag -> searchWithoutTagIds.contains(tag.getId()))) // Exclut les vidéos avec des tags non désirés
+	public List<Video> filter(List<Video> videos, 
+								String title, Double minimalRating, List<Tag> searchWithTagIds, List<Tag> searchWithoutTagIds) {
+		return videos.stream()
+				.filter(video -> title ==  null || title.isBlank() || video.getTitle().contains(title))
+	            .filter(video -> minimalRating == null || minimalRating == 0 || (video.getRating() != null && video.getRating() >= minimalRating)) // Filtrage par note minimale
+	            .filter(video -> searchWithTagIds.isEmpty() || video.getTags().stream().anyMatch(tag -> searchWithTagIds.contains(tag))) // Vérifie la présence d'au moins un tag recherché
+	            .filter(video -> searchWithoutTagIds.isEmpty() || video.getTags().stream().noneMatch(tag -> searchWithoutTagIds.contains(tag))) // Exclut les vidéos avec des tags non désirés
 	            .collect(Collectors.toList()); // Collecte les résultats correspondants
-    }
+	}
 
 	@Override
 	@Transactional
@@ -63,15 +66,10 @@ public class VideoServiceImpl implements VideoService {
 	}
 	
 	/**
-	 * Find a random video
+	 * Find a random video in list
 	 */
 	@Override
-	@Transactional
-	public Video randomVideo(String title, Double minimalRating, List<Long> searchWithTagIds, List<Long> searchWithoutTagIds) {
-		log.info("Random video");
-		
-		List<Video> videos = findBy(title, minimalRating, searchWithTagIds, searchWithoutTagIds);
-		
+	public Video randomVideo(List<Video> videos) {
 	    if (videos.isEmpty()) {
 	        return null;
 	    }

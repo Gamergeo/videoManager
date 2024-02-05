@@ -5,9 +5,9 @@
 <?import javafx.scene.control.TitledPane?>
 
 
-<TitledPane fx:id="tableTitledPane" text="Video List" expanded="false" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gamergeo.project.videomanager.gui.controller.VideoTableController">
+<TitledPane fx:id="root" text="Video List" expanded="false" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gamergeo.project.videomanager.gui.viewmodel.TableViewModel">
    <content>
-      <TableView fx:id="videoTable" onMousePressed="#selectVideo" prefHeight="300.0">
+      <TableView fx:id="table" onMousePressed="#select" prefHeight="300.0">
       	
       	<columns>
       	    <TableColumn fx:id="titleColumn" prefWidth="300" text="Title" />

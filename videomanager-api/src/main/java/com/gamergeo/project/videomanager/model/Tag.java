@@ -20,5 +20,5 @@ public class Tag implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	protected Long id;
 	
-	protected String text;
+	protected String label;
 }

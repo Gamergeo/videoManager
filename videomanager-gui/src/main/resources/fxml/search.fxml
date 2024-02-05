@@ -10,27 +10,30 @@
 <?import javafx.scene.layout.TilePane?>
 <?import javafx.scene.layout.VBox?>
 <?import org.controlsfx.control.Rating?>
+<?import com.gamergeo.project.videomanager.gui.component.SemiRating?>
 
-<VBox styleClass="default-spacing" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gamergeo.project.videomanager.gui.controller.VideoSearchController">
+<VBox styleClass="default-spacing" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gamergeo.project.videomanager.gui.viewmodel.SearchViewModel">
    <children>
       <TitledPane expanded="false" text="Search">
          <content>
             <VBox spacing="5">
                <children>
-                  <TextField fx:id="titleSearchField" promptText="Search Title..." />
-            	  <Rating fx:id="searchRating" max="5" partialRating="true" />
+                  <TextField fx:id="title" promptText="Search Title..." />
+            	  <SemiRating fx:id="rating" max="5" partialRating="true" />
                   <SplitPane dividerPositions="0.5">
                     <items>
-                        <VBox onDragDropped="#dropTagWith" onDragOver="#dragOver">
+                        <VBox>
+<!--                         <VBox onDragDropped="#dropTagWith" onDragOver="#dragOver"> -->
                            <children>
                               <Label text="With :" />
-                              <TilePane fx:id="withFlowPane" hgap="10.0" prefColumns="4" vgap="5.0" styleClass="searchTagPane" />
+                              <TilePane fx:id="withTags" hgap="10.0" prefColumns="4" vgap="5.0" styleClass="searchTagPane" />
                            </children>
                         </VBox>
-                        <VBox onDragDropped="#dropTagWithout" onDragOver="#dragOver">
+                        <VBox>
+<!--                         <VBox onDragDropped="#dropTagWithout" onDragOver="#dragOver"> -->
                            <children>
                               <Label text="Without :" />
-                              <TilePane fx:id="withoutFlowPane" hgap="10.0" prefColumns="4" vgap="5.0" styleClass="searchTagPane" />
+                              <TilePane fx:id="withoutTags" hgap="10.0" prefColumns="4" vgap="5.0" styleClass="searchTagPane" />
                            </children>
                         </VBox>
                     </items>
