@@ -1,105 +1,55 @@
 package com.gamergeo.project.videomanager.gui.viewmodel;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
+import org.springframework.stereotype.Component;
 
 import com.gamergeo.lib.gamlib.javafx.viewmodel.AbstractViewModel;
-import com.gamergeo.lib.gamlib.javafx.viewmodel.ViewModel;
-import com.gamergeo.project.videomanager.model.Tag;
+import com.gamergeo.project.videomanager.gui.view.SceneView;
 import com.gamergeo.project.videomanager.model.Video;
-import com.gamergeo.project.videomanager.service.UrlPatternService;
 import com.gamergeo.project.videomanager.service.VideoService;
 
-import javafx.fxml.FXML;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
+import lombok.RequiredArgsConstructor;
 
-@ViewModel
-public class SceneViewModel extends AbstractViewModel {
+@Component
+@RequiredArgsConstructor(onConstructor_ ={@Lazy})
+public class SceneViewModel extends AbstractViewModel<SceneView> {
 	
-//	private VideoManagerApplication application;
-
-	/** 
-	 * Api services 
-	 **/
-	@Autowired
-	private VideoService videoService;
+	private final VideoService videoService;
 	
-	@Autowired
-	private UrlPatternService urlPatternService;
-	
-	/**
-	 * View Models
-	 */
-	@Autowired
-	private SearchViewModel search;
-	
-	@Autowired
-	private VideoViewModel selectedVideo;
-	
-	@Autowired
-	private TableViewModel table;
-	
-	@Autowired
-	private TagsViewModel tags;
-	
-	/** 
-	 * Java FX Elements 
-	 **/
-	@FXML 
-	private HBox root;
-	
-	@FXML
-	private BorderPane main;
+	private final SearchViewModel search; 
+	private final TableViewModel table;
+	private final ScreenViewModel screen;
 	
 	private List<Video> allVideos;
-	
-    @FXML
-    private void initialize() {
+    
+	@Override
+    public void init() {
+    	super.init();
+    	
+    	view.main.setTop(search.getRoot());
+    	view.main.setBottom(table.getRoot());
+    	view.main.setCenter(screen.getRoot());
+    	
     	allVideos = videoService.findAll();
+    	table.setVideos(toViewModels(allVideos));
     	
-    	main.setTop(search.load().getRoot());
-    	main.setCenter(selectedVideo.load().getRoot());
-    	main.setBottom(table.load().getRoot());
-    	root.getChildren().add(tags.load().getRoot());
-    	
-    	filter();
+    	// Bind screen video with table selected one
+    	screen.video().bind(table.selectedVideo());
     }
     
-    public void filter() {
-    	String title = search.getTitle();
-    	Double rating = search.getRating();
-    	List<Tag> withTags = search.getWithTags();
-    	List<Tag> withoutTags = search.getWithoutTags();
-    	
-    	List<Video> filteredVideos = videoService.filter(allVideos, title, rating, withTags, withoutTags);
-    	table.setData(filteredVideos);
+//    public void random(String title, Double minimalRating, List<Tag> searchWithTagIds, List<Tag> searchWithoutTagIds) {
+//    	filter(title, minimalRating, searchWithTagIds, searchWithoutTagIds);
+//    	
+//	    if (!filteredVideos.isEmpty()) {
+//		    int randomNumber = new Random().nextInt(filteredVideos.size());
+//		    selectedVideo.set(filteredVideos.get(randomNumber));
+//	    }
+//    }
+    
+    private List<VideoViewModel> toViewModels(List<Video> models) {
+    	return models.stream().map(VideoViewModel::new).collect(Collectors.toList());
     }
-    
-    public void select(Video video) {
-    	selectedVideo.setData(video);
-    }
-    
-    public void random() {
-    	String title = search.getTitle();
-    	Double rating = search.getRating();
-    	List<Tag> withTags = search.getWithTags();
-    	List<Tag> withoutTags = search.getWithoutTags();
-    	
-    	List<Video> filteredVideos = videoService.filter(allVideos, title, rating, withTags, withoutTags);
-    	
-    	select(videoService.randomVideo(filteredVideos));
-    }
-    
-    
-    public void save() {
-    	table.refresh();
-    	videoService.save(selectedVideo.getData());
-    }
-    
-    public void stop() {
-    	
-    }
-    
 }

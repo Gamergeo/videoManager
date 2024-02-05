@@ -1,16 +1,16 @@
 package com.gamergeo.project.videomanager.gui.cell;
 
-import com.gamergeo.project.videomanager.model.Video;
+import com.gamergeo.project.videomanager.gui.viewmodel.VideoViewModel;
 
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.util.Callback;
 
-public class RatingCellFactory implements Callback<TableColumn<Video, Double>, TableCell<Video, Double>> {
+public class RatingCellFactory implements Callback<TableColumn<VideoViewModel, Double>, TableCell<VideoViewModel, Double>> {
 	
     @Override
-    public TableCell<Video, Double> call(TableColumn<Video, Double> param) {
-        return new TableCell<Video, Double>() {
+    public TableCell<VideoViewModel, Double> call(TableColumn<VideoViewModel, Double> param) {
+        return new TableCell<VideoViewModel, Double>() {
             @Override
             protected void updateItem(Double item, boolean empty) {
                 super.updateItem(item, empty);

@@ -1,106 +1,83 @@
-	package com.gamergeo.project.videomanager.gui.viewmodel;
+package com.gamergeo.project.videomanager.gui.viewmodel;
 
-import org.controlsfx.control.Rating;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Lazy;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
-import com.gamergeo.lib.gamlib.javafx.viewmodel.AbstractViewModel;
-import com.gamergeo.lib.gamlib.javafx.viewmodel.ViewModel;
 import com.gamergeo.project.videomanager.model.Video;
+import com.gamergeo.project.videomanager.service.VideoService;
 
-import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SimpleObjectProperty;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.fxml.FXML;
-import javafx.scene.control.Hyperlink;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.TilePane;
-import lombok.extern.slf4j.Slf4j;
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 
-@Slf4j
-@ViewModel
-public class VideoViewModel extends AbstractViewModel {
+@Component
+@Scope("prototype")
+public class VideoViewModel {
 	
 	@Autowired
-	@Lazy
-	protected SceneViewModel scene;
+	private VideoService videoService;
 	
-	@FXML
-	private BorderPane root;
+	private Video model;
+
+	private final DoubleProperty rating = new SimpleDoubleProperty();
+	private final StringProperty url = new SimpleStringProperty();
 	
-	@FXML
-	private Label title;
-	
-	@FXML
-	private TextField titleedit;
-	
-	@FXML
-	private Hyperlink url;
-	
-	@FXML
-	private Label date;
-	
-	@FXML
-	private Rating rating;
-	
-	@FXML
-	private TilePane tags;
-	
-	private ObjectProperty<Video> selectedVideo = new SimpleObjectProperty<Video>();
-	
-	private ChangeListener<? super Video> updateListener = this::update;
-	private ChangeListener<? super String> updateTitleListener = this::updateTitle;
-	private ChangeListener<? super Number> updateRatingListener = this::updateRating;
-	
-	public void initialize() {
-		selectedVideo.addListener(updateListener);
+	public VideoViewModel(Video video) {
+		model = video;
+		
+		rating.set(video.getRating());
+    	rating.addListener((x, oldValue, newValue) -> {
+    		model.setRating(newValue.doubleValue());
+    		save();
+    	});
+    	
+    	url.set(video.getUrl());
+    	url.addListener((x, oldValue, newValue) -> {
+    		model.setUrl(newValue);
+    		save();
+    	});
 	}
 	
-	public void setData(Video video) {
-		selectedVideo.set(video);
+	private void save() {
+		videoService.save(model);
 	}
 	
-	public Video getData() {
-		return selectedVideo.get();
+	public String getTitle() {
+		return model.getTitle();
 	}
 	
-	private void clear() {
-		log.info("Clear video view infos");
-		titleedit.textProperty().removeListener(updateTitleListener);
-		rating.ratingProperty().removeListener(updateRatingListener);
-		title.setText("");
-		date.setText("");
-		rating.setRating(0);
+	public String getDate() {
+		return model.getAddedDate().toString();
 	}
 	
-	private void update(ObservableValue<? extends Video> observable, Video oldValue, Video newValue) {
-		clear();
-		if (newValue != null) {
-			log.info("Change video view infos: " + newValue.getId());
-			title.setText(newValue.getTitle());
-			date.setText(newValue.getAddedDate().toString());
-			rating.setRating(newValue.getRating());
-			titleedit.textProperty().addListener(updateTitleListener);
-			rating.ratingProperty().addListener(updateRatingListener);
-		}
+	public Long getId() {
+		return model.getId();
+	}
+
+	public final DoubleProperty ratingProperty() {
+		return this.rating;
 	}
 	
-	private void updateRating(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-	    Video video = selectedVideo.get();
-	    if (video != null) {
-	        video.setRating(newValue.doubleValue());
-	        scene.save();
-	    }
+	public final double getRating() {
+		return this.ratingProperty().get();
 	}
 	
-	private void updateTitle(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-	    Video video = selectedVideo.get();
-	    if (video != null) {
-	        video.setTitle(newValue);
-	        scene.save();
-	    }
+	public final void setRating(final double rating) {
+		this.ratingProperty().set(rating);
 	}
+	
+	public final StringProperty urlProperty() {
+		return this.url;
+	}
+	
+	public final String getUrl() {
+		return this.urlProperty().get();
+	}
+	
+	public final void setUrl(final String url) {
+		this.urlProperty().set(url);
+	}
+	
 }

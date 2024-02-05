@@ -11,14 +11,13 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-<?import org.controlsfx.control.Rating?>
+<?import com.gamergeo.project.videomanager.gui.component.SemiRating?>
 
 
-<BorderPane fx:id="root" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gamergeo.project.videomanager.gui.viewmodel.VideoViewModel">
+<BorderPane fx:id="root" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gamergeo.project.videomanager.gui.view.ScreenView">
    <bottom>
       <HBox alignment="BASELINE_RIGHT" styleClass="buttonLine" BorderPane.alignment="CENTER">
          <children>
-<!--             <Button cancelButton="true" onAction="#reset" text="Reset" /> -->
 <!--             <Button onAction="#disable" text="Disable" /> -->
          </children>
       </HBox>
@@ -31,10 +30,9 @@
 <!--       <VBox styleClass="video" maxHeight="-Infinity" maxWidth="-Infinity" spacing="20.0" BorderPane.alignment="CENTER" onDragDropped="#dropTags" onDragOver="#dragOver"> -->
          <children>
             <Label fx:id="title" />
-            <TextField fx:id="titleedit" />
             <Hyperlink fx:id="url" text="Access to video"/>
             <Label fx:id="date" />
-            <Rating fx:id="rating" max="5" partialRating="true" />
+            <SemiRating fx:id="rating" max="5" partialRating="true" />
             <TilePane fx:id="tags" hgap="10.0" prefColumns="4" vgap="5.0"/>
          </children>
       </VBox>

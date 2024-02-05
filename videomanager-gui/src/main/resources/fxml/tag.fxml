@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.BorderPane?>
 
 
-<BorderPane fx:id="root" onMouseClicked="#onClick" onDragDetected="#dragTag" styleClass="tag-border-pane" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gamergeo.project.videomanager.gui.viewmodel.TagViewModel">
+<BorderPane fx:id="root" onMouseClicked="#onClick" onDragDetected="#dragTag" styleClass="tag-border-pane" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gamergeo.project.videomanager.gui.view.TagView">
  <right>
       <Button mnemonicParsing="false" text="x" BorderPane.alignment="CENTER" />
    </right>

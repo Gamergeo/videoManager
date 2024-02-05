@@ -12,7 +12,7 @@
 <?import org.controlsfx.control.Rating?>
 <?import com.gamergeo.project.videomanager.gui.component.SemiRating?>
 
-<VBox styleClass="default-spacing" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gamergeo.project.videomanager.gui.viewmodel.SearchViewModel">
+<VBox styleClass="default-spacing" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gamergeo.project.videomanager.gui.view.SearchView">
    <children>
       <TitledPane expanded="false" text="Search">
          <content>
@@ -44,8 +44,8 @@
       </TitledPane>
       <HBox alignment="CENTER_RIGHT" styleClass="buttonLine">
          <children>
-            <Button alignment="CENTER" onAction="#search" text="Search" />
-            <Button alignment="CENTER" onAction="#reset" text="Reset" />
+            <Button alignment="CENTER" fx:id="search" text="Search" />
+            <Button alignment="CENTER" onAction="#clear" text="Reset" />
             <Button alignment="CENTER" onAction="#random" text="Random" />
          </children>
       </HBox>

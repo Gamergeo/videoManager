@@ -1,88 +1,50 @@
-	package com.gamergeo.project.videomanager.gui.viewmodel;
+package com.gamergeo.project.videomanager.gui.viewmodel;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import org.controlsfx.control.Rating;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
+import org.springframework.stereotype.Component;
 
 import com.gamergeo.lib.gamlib.javafx.viewmodel.AbstractViewModel;
-import com.gamergeo.lib.gamlib.javafx.viewmodel.ViewModel;
+import com.gamergeo.project.videomanager.gui.view.SearchView;
 import com.gamergeo.project.videomanager.model.Tag;
 
-import javafx.fxml.FXML;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.TilePane;
+import javafx.event.ActionEvent;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
+@Component
 @Slf4j
-@ViewModel
-public class SearchViewModel extends AbstractViewModel {
+@RequiredArgsConstructor(onConstructor_ ={@Lazy})
+public class SearchViewModel extends AbstractViewModel<SearchView> {
 	
-	@Autowired
 	@Lazy
-	private SceneViewModel scene;
+	TableViewModel table;
 	
-	/** 
-	 * Java FX Elements 
-	 **/
-	@FXML
-	private TextField title;
+	@Override
+	public void init() {
+		super.init();
+		view.search.setOnAction(this::filter);
+	}	
 	
-	@FXML
-	private Rating rating;
-	
-	@FXML
-	private TilePane withTags;
-	
-	@FXML
-	private TilePane withoutTags;
-	
-	@FXML
-	private void initialize() {
-		rating.setRating(0d);
-	}
-	
-	@FXML
-	private void search() {
-		log.info("Search for video");
-		scene.filter();
-	}
-	
-	@FXML
-	private void reset() {
-		log.info("Reset search");
-		title.setText("");
-		rating.setRating(0);
-		withTags.getChildren().clear();
-		withoutTags.getChildren().clear();
+	/**
+	 * Filter a video list from criteria
+	 * @param videos
+	 */
+	@Lazy
+    public void filter(ActionEvent ActionEvent) {
+    	String title = view.title.getText();
+    	Double rating = view.rating.getRating();
+    	List<Tag> withTags = new ArrayList<Tag>();
+    	List<Tag> withoutTags = new ArrayList<Tag>();
+    	
+		log.info("Filter with params (title=" + title + ", rating=" + rating + ", with: " + withTags.toString() + ", without" + withoutTags.toString());
 		
-		scene.filter();
-	}
-	
-	@FXML
-	private void random() {
-		log.info("Random request");
-		scene.random();
-	}
-	
-	public String getTitle() {
-		return title.getText();
-	}
-	
-	public Double getRating() {
-		return rating.getRating();
-	}
-	
-	public List<Tag> getWithTags() {
-		return new ArrayList<Tag>();
-		// todo
-	}
-	
-	public List<Tag> getWithoutTags() {
-		return new ArrayList<Tag>();
-		// todo
-	}
-	
+		table.getVideos().filtered(video -> title ==  null || title.isBlank() || video.getTitle().contains(title))
+	            .filtered(video -> rating == null || rating == 0 || video.getRating() >= rating); // Filtrage par note minimale
+//	            .filter(video -> withTags.isEmpty() || video.getTags().stream().anyMatch(tag -> withTags.contains(tag))) // Vérifie la présence d'au moins un tag recherché
+//	            .filter(video -> withoutTags.isEmpty() || video.getTags().stream().noneMatch(tag -> withoutTags.contains(tag))) // Exclut les vidéos avec des tags non désirés
+    }
+
 }

@@ -51,6 +51,8 @@ public class VideoServiceImpl implements VideoService {
 	@Override
 	public List<Video> filter(List<Video> videos, 
 								String title, Double minimalRating, List<Tag> searchWithTagIds, List<Tag> searchWithoutTagIds) {
+		log.info("Filter with params (title=" + title + ", rating=" + minimalRating + ", with: " + searchWithTagIds.toString() + ", without" + searchWithoutTagIds.toString());
+		
 		return videos.stream()
 				.filter(video -> title ==  null || title.isBlank() || video.getTitle().contains(title))
 	            .filter(video -> minimalRating == null || minimalRating == 0 || (video.getRating() != null && video.getRating() >= minimalRating)) // Filtrage par note minimale
