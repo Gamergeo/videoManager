@@ -9,6 +9,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
+import com.gamergeo.lib.gamlib.javafx.view.AbstractFXMLView;
 import com.gamergeo.project.videomanager.gui.view.SceneView;
 import com.gamergeo.project.videomanager.gui.viewmodel.SceneViewModel;
 
@@ -53,7 +54,8 @@ public class VideoManagerApplication extends Application {
 	
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent page = (Parent) applicationContext.getBean(SceneView.class).load().getRoot();
+    	
+        Parent page = AbstractFXMLView.getRoot(applicationContext, SceneView.class);
         Scene scene = new Scene(page);
         scene.getStylesheets().add("/css/application.css");
         

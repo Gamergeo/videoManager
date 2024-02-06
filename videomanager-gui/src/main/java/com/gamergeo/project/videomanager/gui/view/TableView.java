@@ -9,8 +9,7 @@ import com.gamergeo.project.videomanager.gui.viewmodel.TableViewModel;
 import com.gamergeo.project.videomanager.gui.viewmodel.VideoViewModel;
 import com.gamergeo.project.videomanager.model.Tag;
 
-import javafx.collections.ListChangeListener;
-import javafx.collections.ObservableList;
+import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TitledPane;
@@ -47,13 +46,16 @@ public class TableView extends AbstractFXMLView<TableViewModel> {
 //      	tagsColumn.setCellValueFactory(cellData -> cellData.getValue().tagsProperty());
 //      	tagsColumn.setCellFactory(new TagListCellFactory());
       	
-	  	setItems(viewModel.getVideos());
-	  	
       	table.getSortOrder().add(titleColumn);
       	titleColumn.setSortType(TableColumn.SortType.ASCENDING);
       	
-      	// Bind items
-      	viewModel.getVideos().addListener((ListChangeListener.Change<? extends VideoViewModel> change) -> setItems(viewModel.getVideos()));
+      	// Bind items and sort
+      	SortedList<VideoViewModel> sortedItems = new SortedList<VideoViewModel>(viewModel.getFilteredVideos());
+      	sortedItems.comparatorProperty().bind(table.comparatorProperty());
+      	table.setItems(sortedItems);
+      	
+      	// Bind video count
+      	root.textProperty().bind(viewModel.headerMessageProperty());
       	
       	// Bind selected item
       	table.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> viewModel.setSelectedVideo(newValue));
@@ -63,11 +65,5 @@ public class TableView extends AbstractFXMLView<TableViewModel> {
           		table.scrollTo(newValue);
       		}
       	});
-    }
-    
-    private void setItems(ObservableList<VideoViewModel> videos) {
-  		table.getItems().setAll(videos);
-  		table.sort();
-  		root.setText(videos.size() + " videos found");
     }
 }

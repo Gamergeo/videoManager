@@ -39,5 +39,6 @@ This work is in progress. Architecture, code, functionnalities will change a lot
   - 0.6.1 : New skeleton, match with gamlib-0.4.1. Lot of features are not ready yet
   - 0.6.2 : Test architecture
   - 0.6.3 : MVVM pattern
+  - 0.6.4 : Minor improvements
 
 
