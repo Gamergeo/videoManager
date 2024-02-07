@@ -1,11 +1,18 @@
-package com.gamergeo.project.videomanager.gui.viewmodel;
+package com.gamergeo.project.videomanager.gui.viewmodel.view;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
+import com.gamergeo.project.videomanager.VideoManagerException;
+import com.gamergeo.project.videomanager.gui.viewmodel.model.VideoViewModel;
+import com.gamergeo.project.videomanager.model.Video;
 import com.gamergeo.project.videomanager.service.VideoService;
 
 import jakarta.annotation.PostConstruct;
@@ -16,28 +23,50 @@ import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
+import lombok.extern.slf4j.Slf4j;
 
 @Component
 public class TableViewModel {
 	
 	@Autowired
+	private ApplicationContext applicationContext;
+	
+	@Autowired
 	private VideoService videoService;
+	
+	private SceneViewModel scene;
 	
 	private final ObservableList<VideoViewModel> filteredVideos = FXCollections.observableArrayList();
 	
-	private final ObjectProperty<VideoViewModel> selectedVideo = new SimpleObjectProperty<VideoViewModel>();
-	
-	private final ObservableList<VideoViewModel> allVideos = FXCollections.observableArrayList();
+	private final List<VideoViewModel> allVideos = new ArrayList<VideoViewModel>();
 	
 	private final StringProperty headerMessage = new SimpleStringProperty();
 	
 	@PostConstruct
 	private void init() {
-		allVideos.addAll(videoService.findAll().stream().map(VideoViewModel::new).collect(Collectors.toList()));
+		allVideos.addAll(videoService.findAll().stream().map(this::createVideo).collect(Collectors.toList()));
 		
 		filteredVideos.addListener((ListChangeListener.Change<? extends VideoViewModel> change) -> headerMessage.set(filteredVideos.size() + " videos found"));
 		
 		filteredVideos.setAll(allVideos);
+	}
+	
+	public VideoViewModel createVideo(Video video) {
+		return applicationContext.getBean(VideoViewModel.class, video);
+	}
+	
+	public VideoViewModel findVideo(Video model) {
+		return allVideos.stream().filter((video) -> video.getId().equals(model.getId())).findAny().orElse(null);
+	}
+	
+	public void refreshVideo(Video model) {
+		VideoViewModel viewModel = findVideo(model);
+		
+		if (viewModel == null) {
+			throw new VideoManagerException("viewModel not found for id=" + model.getId());
+		}
+		
+		viewModel.refresh(model);
 	}
 
 	public void filter(String title,Double rating) {
@@ -62,7 +91,7 @@ public class TableViewModel {
 	}
 
 	public final ObjectProperty<VideoViewModel> selectedVideoProperty() {
-		return this.selectedVideo;
+		return scene.selectedVideoProperty();
 	}
 
 	public final VideoViewModel getSelectedVideo() {
@@ -87,5 +116,9 @@ public class TableViewModel {
 
 	public ObservableList<VideoViewModel> getFilteredVideos() {
 		return filteredVideos;
+	}	
+	
+	public void setScene(SceneViewModel scene) {
+		this.scene = scene;
 	}
 }

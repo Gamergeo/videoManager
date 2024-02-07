@@ -9,7 +9,7 @@
 	<parent>
 		<groupId>com.gamergeo.project</groupId>
 		<artifactId>videomanager</artifactId>
-		<version>0.6.3</version>
+		<version>0.6.5</version>
 	</parent>
 
 	<artifactId>videomanager-gui</artifactId>
@@ -88,12 +88,6 @@
 		<dependency>
 			<groupId>com.gamergeo.project</groupId>
 			<artifactId>videomanager-api</artifactId>
-		</dependency>
-		
-		<!-- Gamergeo lib -->
-		<dependency>
-			<groupId>com.gamergeo.lib</groupId>
-			<artifactId>gamlib</artifactId>
 		</dependency>
 		
 		<!-- https://mvnrepository.com/artifact/org.openjfx/javafx-controls -->

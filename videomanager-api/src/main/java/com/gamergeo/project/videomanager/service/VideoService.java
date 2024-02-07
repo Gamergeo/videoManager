@@ -2,17 +2,16 @@ package com.gamergeo.project.videomanager.service;
 
 import java.util.List;
 
+import com.gamergeo.lib.gamlib.javafx.service.ModelService;
 import com.gamergeo.project.videomanager.model.Tag;
 import com.gamergeo.project.videomanager.model.Video;
 
-public interface VideoService {
+public interface VideoService extends ModelService<Video> {
 	
 	List<Video> findAll();
 
-	void save(Video video);
-
 	Video findById(Long id);
-	
+
 	/**
 	 * Filter a videos list from search criteria
 	 */

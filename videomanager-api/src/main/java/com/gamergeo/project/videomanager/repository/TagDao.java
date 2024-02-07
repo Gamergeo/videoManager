@@ -1,4 +1,4 @@
-package com.gamergeo.project.videomanager.persistence;
+package com.gamergeo.project.videomanager.repository;
 
 import java.util.List;
 

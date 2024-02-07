@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.gamergeo.project.videomanager.model.Tag;
-import com.gamergeo.project.videomanager.persistence.TagDao;
+import com.gamergeo.project.videomanager.repository.TagDao;
 
 import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;

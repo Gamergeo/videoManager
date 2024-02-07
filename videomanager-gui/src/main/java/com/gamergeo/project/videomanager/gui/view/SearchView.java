@@ -3,7 +3,7 @@ package com.gamergeo.project.videomanager.gui.view;
 import com.gamergeo.lib.gamlib.javafx.view.AbstractFXMLView;
 import com.gamergeo.lib.gamlib.javafx.view.FXMLView;
 import com.gamergeo.project.videomanager.gui.component.SemiRating;
-import com.gamergeo.project.videomanager.gui.viewmodel.SearchViewModel;
+import com.gamergeo.project.videomanager.gui.viewmodel.view.SearchViewModel;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;

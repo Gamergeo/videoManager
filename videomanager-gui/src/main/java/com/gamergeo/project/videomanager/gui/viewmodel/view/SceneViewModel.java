@@ -1,13 +1,16 @@
-package com.gamergeo.project.videomanager.gui.viewmodel;
+package com.gamergeo.project.videomanager.gui.viewmodel.view;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.gamergeo.project.videomanager.gui.viewmodel.model.VideoViewModel;
+import com.gamergeo.project.videomanager.model.Video;
+
 import jakarta.annotation.PostConstruct;
-import lombok.extern.slf4j.Slf4j;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
 
 @Component
-@Slf4j
 public class SceneViewModel {
 	
 	@Autowired
@@ -19,14 +22,20 @@ public class SceneViewModel {
 	@Autowired
 	private TableViewModel table;
 	
+	private final ObjectProperty<VideoViewModel> selectedVideo = new SimpleObjectProperty<VideoViewModel>();
+	
 	@PostConstruct
 	public void init() {
 		// On search change, filter table
       	search.titleProperty().addListener((observable, oldValue, newValue) -> filter());
       	search.ratingProperty().addListener((observable, oldValue, newValue) -> filter());
       	
+      	search.setScene(this);
+      	screen.setScene(this);
+      	table.setScene(this);
+      	
       	// Bind screen and table
-      	table.selectedVideoProperty().bindBidirectional(screen.selectedVideoProperty());
+//      	table.selectedVideoProperty().bindBidirectional(screen.selectedVideoProperty());
 	}
 	
 	private void filter() {
@@ -34,8 +43,26 @@ public class SceneViewModel {
 	}
 	
 	public void random() {
-		screen.setSelectedVideo(table.random());
+		setSelectedVideo(table.random());
 	}
+	
+	public void refreshVideo(Video model) {
+//		selectedVideo.get().setRating(model.getRating());
+		table.refreshVideo(model);
+	}
+	
+	public final ObjectProperty<VideoViewModel> selectedVideoProperty() {
+		return this.selectedVideo;
+	}
+
+	public final VideoViewModel getSelectedVideo() {
+		return this.selectedVideoProperty().get();
+	}
+
+	public final void setSelectedVideo(final VideoViewModel selectedVideo) {
+		this.selectedVideoProperty().set(selectedVideo);
+	}
+	
 	
 //	private final VideoService videoService;
 //	private final SearchViewModel search; 

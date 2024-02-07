@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.gamergeo.project.videomanager.model.UrlPattern;
-import com.gamergeo.project.videomanager.persistence.UrlPatternDao;
+import com.gamergeo.project.videomanager.repository.UrlPatternDao;
 
 import lombok.extern.slf4j.Slf4j;
 

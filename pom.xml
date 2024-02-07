@@ -4,7 +4,7 @@
 
 	<groupId>com.gamergeo.project</groupId>
 	<artifactId>videomanager</artifactId>
-	<version>0.6.3</version>
+	<version>0.6.5</version>
 	<packaging>pom</packaging>
 	
 	<parent>
@@ -24,8 +24,12 @@
 	    <encoding>UTF-8</encoding>
     	<project.build.sourceEncoding>${encoding}</project.build.sourceEncoding>
     	
-    	 <!-- Bom version -->
-    	<gambom.version>1.0</gambom.version>
+    	<!-- Gamergeo projects -->
+    	<gamlib.version>0.4.2</gamlib.version>
+    	
+    	<!-- Dependency version -->
+		<javafx.version>21.0.1</javafx.version>
+	    <controlsfx.version>11.2.0</controlsfx.version>
 	</properties>
 	
 	<!-- Dependencies Management (No import their, check module instead) -->
@@ -37,15 +41,36 @@
 				<artifactId>videomanager-api</artifactId>
 				<version>${project.version}</version>
 			</dependency>
-
-			<!-- Gamergeo BOM -->
+			
+			<!-- Gamergeo lib -->
 			<dependency>
 				<groupId>com.gamergeo.lib</groupId>
-				<artifactId>bom</artifactId>
-				<version>${gambom.version}</version>
-				<type>pom</type>
-				<scope>import</scope>
+				<artifactId>gamlib</artifactId>
+				<version>${gamlib.version}</version>
 			</dependency>
+			
+			<!-- Javafx -->
+			<dependency>
+			    <groupId>org.openjfx</groupId>
+			    <artifactId>javafx-controls</artifactId>
+			    <version>${javafx.version}</version>
+			</dependency>
+			<dependency>
+			    <groupId>org.openjfx</groupId>
+			    <artifactId>javafx-graphics</artifactId>
+			    <version>${javafx.version}</version>
+			</dependency>
+			<dependency>
+			    <groupId>org.openjfx</groupId>
+			    <artifactId>javafx-fxml</artifactId>
+			    <version>${javafx.version}</version>
+			</dependency>
+			<dependency>
+			    <groupId>org.controlsfx</groupId>
+			    <artifactId>controlsfx</artifactId>
+			    <version>${controlsfx.version}</version>
+			</dependency>
+
 		</dependencies>
 	</dependencyManagement>
 	

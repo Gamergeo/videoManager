@@ -5,8 +5,8 @@ import java.util.List;
 import com.gamergeo.lib.gamlib.javafx.view.AbstractFXMLView;
 import com.gamergeo.lib.gamlib.javafx.view.FXMLView;
 import com.gamergeo.project.videomanager.gui.cell.RatingCellFactory;
-import com.gamergeo.project.videomanager.gui.viewmodel.TableViewModel;
-import com.gamergeo.project.videomanager.gui.viewmodel.VideoViewModel;
+import com.gamergeo.project.videomanager.gui.viewmodel.model.VideoViewModel;
+import com.gamergeo.project.videomanager.gui.viewmodel.view.TableViewModel;
 import com.gamergeo.project.videomanager.model.Tag;
 
 import javafx.collections.transformation.SortedList;

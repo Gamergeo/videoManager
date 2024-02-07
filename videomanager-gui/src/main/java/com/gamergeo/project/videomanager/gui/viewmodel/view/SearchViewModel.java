@@ -1,4 +1,4 @@
-package com.gamergeo.project.videomanager.gui.viewmodel;
+package com.gamergeo.project.videomanager.gui.viewmodel.view;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
@@ -12,8 +12,6 @@ import javafx.beans.property.StringProperty;
 @Component
 public class SearchViewModel {
 	
-	@Autowired
-	@Lazy
 	private SceneViewModel scene;
 	
 	private final StringProperty title = new SimpleStringProperty();
@@ -46,4 +44,9 @@ public class SearchViewModel {
 	public final void setRating(final double rating) {
 		this.ratingProperty().set(rating);
 	}
+
+	public void setScene(SceneViewModel scene) {
+		this.scene = scene;
+	}
+	
 }

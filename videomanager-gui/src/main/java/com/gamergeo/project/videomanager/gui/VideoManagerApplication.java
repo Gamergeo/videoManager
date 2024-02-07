@@ -11,7 +11,6 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 import com.gamergeo.lib.gamlib.javafx.view.AbstractFXMLView;
 import com.gamergeo.project.videomanager.gui.view.SceneView;
-import com.gamergeo.project.videomanager.gui.viewmodel.SceneViewModel;
 
 import javafx.application.Application;
 import javafx.scene.Parent;
@@ -23,7 +22,7 @@ import lombok.extern.slf4j.Slf4j;
 @EnableAutoConfiguration
 @ComponentScan(basePackages = "com.gamergeo.project.videomanager")
 @EntityScan("com.gamergeo.project.videomanager.model")
-@EnableJpaRepositories("com.gamergeo.project.videomanager.persistence")
+@EnableJpaRepositories("com.gamergeo.project.videomanager.repository")
 @SpringBootApplication
 @Slf4j
 public class VideoManagerApplication extends Application {

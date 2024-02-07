@@ -40,5 +40,6 @@ This work is in progress. Architecture, code, functionnalities will change a lot
   - 0.6.2 : Test architecture
   - 0.6.3 : MVVM pattern
   - 0.6.4 : Minor improvements
+  - 0.6.5 : Test architecture. May revert all 0.6
 
 

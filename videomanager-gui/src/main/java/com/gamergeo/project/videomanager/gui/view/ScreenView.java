@@ -3,7 +3,7 @@ package com.gamergeo.project.videomanager.gui.view;
 import com.gamergeo.lib.gamlib.javafx.view.AbstractFXMLView;
 import com.gamergeo.lib.gamlib.javafx.view.FXMLView;
 import com.gamergeo.project.videomanager.gui.component.SemiRating;
-import com.gamergeo.project.videomanager.gui.viewmodel.ScreenViewModel;
+import com.gamergeo.project.videomanager.gui.viewmodel.view.ScreenViewModel;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Hyperlink;
@@ -42,6 +42,8 @@ public class ScreenView extends AbstractFXMLView<ScreenViewModel> {
 		// Update info on video selection 
 		viewModel.selectedVideoProperty().addListener((observable, oldValue, newValue) -> {
 
+	    	log.info("Change info");
+	    	
 			// Unbind old selected video
 			if (oldValue != null) {
 				rating.ratingProperty().unbindBidirectional(oldValue.ratingProperty());
@@ -53,8 +55,15 @@ public class ScreenView extends AbstractFXMLView<ScreenViewModel> {
 				log.info("Change video view infos: " + newValue.getId());
 				title.setText(newValue.getTitle());
 				date.setText(newValue.getDate());
-				rating.ratingProperty().bindBidirectional(viewModel.selectedVideoProperty().get().ratingProperty());
-				rating.setRating(newValue.getRating());
+				viewModel.ratingProperty().addListener((e,a,b) -> {
+					log.error("from model " + a + " " + b);
+					rating.setRating(b.doubleValue());
+				});
+				rating.ratingProperty().addListener((e,a,b) -> {
+					log.error("to model " + a + " " + b);
+					viewModel.setRating(b.doubleValue());
+				});
+//				rating.ratingProperty().bindBidirectional(viewModel.ratingProperty());
 				setVisible(true);
 			}
 		});

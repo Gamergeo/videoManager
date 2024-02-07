@@ -1,9 +1,9 @@
-package com.gamergeo.project.videomanager.gui.viewmodel;
+package com.gamergeo.project.videomanager.gui.viewmodel.model;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import com.gamergeo.lib.gamlib.javafx.viewmodel.AbstractModelBindable;
 import com.gamergeo.project.videomanager.model.Video;
 import com.gamergeo.project.videomanager.service.VideoService;
 
@@ -11,39 +11,31 @@ import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import lombok.extern.slf4j.Slf4j;
 
 @Component
 @Scope("prototype")
-public class VideoViewModel {
+@Slf4j
+public class VideoViewModel extends AbstractModelBindable<Video, VideoService> {
 	
-	@Autowired
-	private VideoService videoService;
-	
-	private Video model;
-
 	private final DoubleProperty rating = new SimpleDoubleProperty();
-	private final StringProperty url = new SimpleStringProperty();
+	private final StringProperty url = new SimpleStringProperty();;
 	
 	public VideoViewModel(Video video) {
-		model = video;
-		
-		rating.set(video.getRating());
-    	rating.addListener((x, oldValue, newValue) -> {
-    		model.setRating(newValue.doubleValue());
-    		save();
-    	});
-    	
-    	url.set(video.getUrl());
-    	url.addListener((x, oldValue, newValue) -> {
-    		model.setUrl(newValue);
-    		save();
-    	});
+		super(video);
+		addBind(url, model::setUrl);
+		addBind(rating, model::setRating);
 	}
 	
-	private void save() {
-		videoService.save(model);
+	/**
+	 * Refresh information from model. Does not trigger any save, so do not use for update from viewmodel, only from model
+	 */
+	@Override
+	protected void refreshViewModel() {
+		setUrl(model.getUrl());
+		setRating(model.getRating());
 	}
-	
+
 	public String getTitle() {
 		return model.getTitle();
 	}
@@ -61,11 +53,13 @@ public class VideoViewModel {
 	}
 	
 	public final double getRating() {
+		log.info("get rating video");
 		return this.ratingProperty().get();
 	}
 	
 	public final void setRating(final double rating) {
-		this.ratingProperty().set(rating);
+		log.info("Change rating video model" + rating);
+		this.rating.set(rating);
 	}
 	
 	public final StringProperty urlProperty() {
