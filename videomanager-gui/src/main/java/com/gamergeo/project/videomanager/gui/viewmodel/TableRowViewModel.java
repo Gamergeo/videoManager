@@ -1,8 +1,9 @@
-package com.gamergeo.project.videomanager.gui.viewmodel.view;
+package com.gamergeo.project.videomanager.gui.viewmodel;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import com.gamergeo.lib.gamlib.javafx.viewmodel.AbstractChildViewModel;
 import com.gamergeo.project.videomanager.model.Video;
 
 import javafx.beans.property.DoubleProperty;
@@ -12,7 +13,7 @@ import javafx.beans.property.StringProperty;
 
 @Component
 @Scope("prototype")
-public class TableRowViewModel {
+public class TableRowViewModel extends AbstractChildViewModel<TableViewModel> {
 
 	private Video video;
 	

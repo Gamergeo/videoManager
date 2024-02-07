@@ -12,7 +12,7 @@
 <?import org.controlsfx.control.Rating?>
 <?import com.gamergeo.project.videomanager.gui.component.SemiRating?>
 
-<VBox styleClass="default-spacing" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gamergeo.project.videomanager.gui.view.SearchView">
+<VBox styleClass="default-spacing" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <TitledPane expanded="false" text="Search">
          <content>

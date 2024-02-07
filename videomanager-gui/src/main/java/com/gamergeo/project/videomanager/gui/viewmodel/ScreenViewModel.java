@@ -1,10 +1,13 @@
-package com.gamergeo.project.videomanager.gui.viewmodel.view;
+package com.gamergeo.project.videomanager.gui.viewmodel;
 
 import org.springframework.stereotype.Component;
 
+import com.gamergeo.lib.gamlib.javafx.viewmodel.AbstractChildViewModel;
 import com.gamergeo.project.videomanager.model.Video;
 
+import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
@@ -12,25 +15,26 @@ import lombok.extern.slf4j.Slf4j;
 
 @Component
 @Slf4j
-public class ScreenViewModel extends SceneElementViewModel {
+public class ScreenViewModel extends AbstractChildViewModel<SceneViewModel> {
 
 	private Video video;
 
 	private final StringProperty title = new SimpleStringProperty();
 	private final DoubleProperty rating = new SimpleDoubleProperty();
 	
+	private final BooleanProperty visible = new SimpleBooleanProperty();
+
 	@Override
-	public void setScene(SceneViewModel scene) {
-		super.setScene(scene);
-		
+	public void init() {
 		// We need to update listener on video change
-		scene.selectedVideoProperty().addListener((observable, oldValue, newValue) -> {
+		parent.selectedVideoProperty().addListener((observable, oldValue, newValue) -> {
 	    		log.info("Selected video changed");
 	    		
 				// Unbind old selected video
 				if (oldValue != null) {
 					title.unbindBidirectional(oldValue.titleProperty());
 					rating.unbindBidirectional(oldValue.ratingProperty());
+					visible.set(false);
 				}
 
 				this.video = newValue;
@@ -41,6 +45,7 @@ public class ScreenViewModel extends SceneElementViewModel {
 				} else {
 					title.bindBidirectional(video.titleProperty());
 					rating.bindBidirectional(video.ratingProperty());
+					visible.set(true);
 				}
 	    });
 	}
@@ -68,6 +73,19 @@ public class ScreenViewModel extends SceneElementViewModel {
 	public final void setRating(final double rating) {
 		this.ratingProperty().set(rating);
 	}
+
+	public final BooleanProperty visibleProperty() {
+		return this.visible;
+	}
+	
+	public final boolean isVisible() {
+		return this.visibleProperty().get();
+	}
+	
+	public final void setVisible(final boolean visible) {
+		this.visibleProperty().set(visible);
+	}
+	
 	
 	
 	

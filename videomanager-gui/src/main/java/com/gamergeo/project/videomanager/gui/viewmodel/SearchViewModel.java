@@ -1,6 +1,8 @@
-package com.gamergeo.project.videomanager.gui.viewmodel.view;
+package com.gamergeo.project.videomanager.gui.viewmodel;
 
 import org.springframework.stereotype.Component;
+
+import com.gamergeo.lib.gamlib.javafx.viewmodel.AbstractChildViewModel;
 
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
@@ -8,13 +10,18 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 @Component
-public class SearchViewModel extends SceneElementViewModel {
+public class SearchViewModel extends AbstractChildViewModel<SceneViewModel> {
 	
 	private final StringProperty title = new SimpleStringProperty();
 	private final DoubleProperty rating = new SimpleDoubleProperty();
 	
 	public void random() {
-		scene.random();
+		parent.random();
+	}
+	
+	public void reset() {
+		title.set("");
+		rating.set(0);
 	}
 	
 	public final StringProperty titleProperty() {

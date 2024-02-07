@@ -2,11 +2,13 @@ package com.gamergeo.project.videomanager.gui.view;
 
 import java.util.List;
 
+import org.springframework.context.ApplicationContext;
+
 import com.gamergeo.lib.gamlib.javafx.view.AbstractFXMLView;
 import com.gamergeo.lib.gamlib.javafx.view.FXMLView;
 import com.gamergeo.project.videomanager.gui.cell.RatingCellFactory;
-import com.gamergeo.project.videomanager.gui.viewmodel.view.TableRowViewModel;
-import com.gamergeo.project.videomanager.gui.viewmodel.view.TableViewModel;
+import com.gamergeo.project.videomanager.gui.viewmodel.TableRowViewModel;
+import com.gamergeo.project.videomanager.gui.viewmodel.TableViewModel;
 import com.gamergeo.project.videomanager.model.Tag;
 
 import javafx.collections.transformation.SortedList;
@@ -32,6 +34,10 @@ public class TableView extends AbstractFXMLView<TableViewModel> {
     
     @FXML
     private TableColumn<TableRowViewModel, Double> ratingColumn;
+    
+	public TableView(ApplicationContext applicationContext, TableViewModel viewModel) {
+		super(applicationContext, viewModel);
+	}
     
     @FXML
     public void initialize() {

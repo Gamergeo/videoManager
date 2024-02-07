@@ -1,31 +1,29 @@
-package com.gamergeo.project.videomanager.gui.viewmodel.view;
+package com.gamergeo.project.videomanager.gui.viewmodel;
 
 import org.springframework.stereotype.Component;
 
+import com.gamergeo.lib.gamlib.javafx.viewmodel.ViewModel;
 import com.gamergeo.project.videomanager.model.Video;
 
-import jakarta.annotation.PostConstruct;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 
 @Component
-public class SceneViewModel {
+public class SceneViewModel implements ViewModel {
 	
 	private final SearchViewModel search;
 	private final ScreenViewModel screen;
 	private final TableViewModel table;
+	private final TagListViewModel tagList;
 	
 	private final ObjectProperty<Video> selectedVideo = new SimpleObjectProperty<Video>();
 	
-	public SceneViewModel(SearchViewModel search, ScreenViewModel screen, TableViewModel table) {
+	public SceneViewModel(SearchViewModel search, ScreenViewModel screen, TableViewModel table, TagListViewModel tagList) {
 		this.search = search;
 		this.screen = screen;
 		this.table = table;
+		this.tagList = tagList;
 		
-      	search.setScene(this);
-      	screen.setScene(this);
-      	table.setScene(this);
-      	
       	filter();
       	search.titleProperty().addListener((observable, oldValue, newValue) -> filter());
       	search.ratingProperty().addListener((observable, oldValue, newValue) -> filter());

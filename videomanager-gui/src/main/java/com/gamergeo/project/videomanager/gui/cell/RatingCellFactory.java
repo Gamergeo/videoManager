@@ -1,6 +1,6 @@
 package com.gamergeo.project.videomanager.gui.cell;
 
-import com.gamergeo.project.videomanager.gui.viewmodel.view.TableRowViewModel;
+import com.gamergeo.project.videomanager.gui.viewmodel.TableRowViewModel;
 
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;

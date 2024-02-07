@@ -1,4 +1,4 @@
-package com.gamergeo.project.videomanager.gui.viewmodel.view;
+package com.gamergeo.project.videomanager.gui.viewmodel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Component;
 
+import com.gamergeo.lib.gamlib.javafx.viewmodel.AbstractChildViewModel;
 import com.gamergeo.project.videomanager.model.Video;
 import com.gamergeo.project.videomanager.service.VideoService;
 
@@ -19,16 +20,13 @@ import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 
 @Component
-public class TableViewModel extends SceneElementViewModel {
+public class TableViewModel extends AbstractChildViewModel<SceneViewModel> {
 	
 	private VideoService videoService;
 	
 	private final ObservableList<TableRowViewModel> rows = FXCollections.observableArrayList();
-	
 	private final List<Video> allVideos = new ArrayList<Video>();
-	
 	private final StringProperty headerMessage = new SimpleStringProperty();
-	
 	private final ObjectProperty<TableRowViewModel> selectedRow = new SimpleObjectProperty<TableRowViewModel>();
 	
 	public TableViewModel(VideoService videoService) {
@@ -36,7 +34,7 @@ public class TableViewModel extends SceneElementViewModel {
 	}
 	
 	@Override
-	public void setScene(SceneViewModel scene) {
+	public void init() {
 		allVideos.addAll(videoService.findAll());
 		rows.addListener((ListChangeListener.Change<? extends TableRowViewModel> change) -> headerMessage.set(rows.size() + " videos found"));
 		rows.setAll(allVideos.stream().map(TableRowViewModel::new).collect(Collectors.toList()));

@@ -1,23 +1,51 @@
 package com.gamergeo.project.videomanager.model;
 
-import java.io.Serializable;
-
+import jakarta.persistence.Access;
+import jakarta.persistence.AccessType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import lombok.Data;
+import javafx.beans.property.LongProperty;
+import javafx.beans.property.SimpleLongProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 
 @Entity
 @Table
-@Data
-public class Tag implements Serializable {
-
-	private static final long serialVersionUID = 6257375419629830569L;
+@Access(AccessType.PROPERTY)
+public class Tag {
+	
+	private LongProperty id = new SimpleLongProperty();
+	private StringProperty title = new SimpleStringProperty();
+	
+	public LongProperty idProperty() {
+		return this.id;
+	}
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	protected Long id;
+	public long getId() {
+		return this.idProperty().get();
+	}
 	
-	protected String label;
+	public void setId(final long id) {
+		this.idProperty().set(id);
+	}
+	
+	public StringProperty titleProperty() {
+		return this.title;
+	}
+	
+	public String getTitle() {
+		return this.titleProperty().get();
+	}
+	
+	public void setTitle(final String title) {
+		this.titleProperty().set(title);
+	}
+	
+	
+	
 }
