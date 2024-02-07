@@ -4,7 +4,7 @@
 
 	<groupId>com.gamergeo.project</groupId>
 	<artifactId>videomanager</artifactId>
-	<version>0.6.5</version>
+	<version>0.7.1</version>
 	<packaging>pom</packaging>
 	
 	<parent>
@@ -25,7 +25,7 @@
     	<project.build.sourceEncoding>${encoding}</project.build.sourceEncoding>
     	
     	<!-- Gamergeo projects -->
-    	<gamlib.version>0.4.2</gamlib.version>
+    	<gamlib.version>0.5.1</gamlib.version>
     	
     	<!-- Dependency version -->
 		<javafx.version>21.0.1</javafx.version>
@@ -50,6 +50,11 @@
 			</dependency>
 			
 			<!-- Javafx -->
+			<dependency>
+		   		<groupId>org.openjfx</groupId>
+		    	<artifactId>javafx-base</artifactId>
+			    <version>${javafx.version}</version>
+			</dependency>
 			<dependency>
 			    <groupId>org.openjfx</groupId>
 			    <artifactId>javafx-controls</artifactId>

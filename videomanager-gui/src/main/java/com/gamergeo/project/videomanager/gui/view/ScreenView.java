@@ -13,7 +13,6 @@ import javafx.scene.layout.TilePane;
 import lombok.extern.slf4j.Slf4j;
 
 @FXMLView
-@Slf4j
 public class ScreenView extends AbstractFXMLView<ScreenViewModel> {
 	
 	@FXML
@@ -37,47 +36,21 @@ public class ScreenView extends AbstractFXMLView<ScreenViewModel> {
 	@FXML
 	private void initialize() {
 		
-		setVisible(false);
+//		setVisible(false);
 		
-		// Update info on video selection 
-		viewModel.selectedVideoProperty().addListener((observable, oldValue, newValue) -> {
-
-	    	log.info("Change info");
-	    	
-			// Unbind old selected video
-			if (oldValue != null) {
-				rating.ratingProperty().unbindBidirectional(oldValue.ratingProperty());
-			}
-			
-			if (newValue == null) {
-				clear();
-			} else {
-				log.info("Change video view infos: " + newValue.getId());
-				title.setText(newValue.getTitle());
-				date.setText(newValue.getDate());
-				viewModel.ratingProperty().addListener((e,a,b) -> {
-					log.error("from model " + a + " " + b);
-					rating.setRating(b.doubleValue());
-				});
-				rating.ratingProperty().addListener((e,a,b) -> {
-					log.error("to model " + a + " " + b);
-					viewModel.setRating(b.doubleValue());
-				});
-//				rating.ratingProperty().bindBidirectional(viewModel.ratingProperty());
-				setVisible(true);
-			}
-		});
+		title.textProperty().bindBidirectional(viewModel.titleProperty());
+		rating.ratingProperty().bindBidirectional(viewModel.ratingProperty());
 	}
-	
-	private void clear() {
-		title.setText("");
-		date.setText("");
-		rating.setRating(0);
-		setVisible(false);
-	}
-	
-	private void setVisible(boolean visible) {
-		url.setVisible(visible);
-		rating.setVisible(visible);
-	}
+//	
+//	private void clear() {
+//		title.setText("");
+//		date.setText("");
+//		rating.setRating(0);
+//		setVisible(false);
+//	}
+//	
+//	private void setVisible(boolean visible) {
+//		url.setVisible(visible);
+//		rating.setVisible(visible);
+//	}
 }

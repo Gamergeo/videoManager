@@ -8,7 +8,9 @@ Video bookmarks management application. The goal is to have a simple application
   - Lombok
   - Maven
 
-This work is in progress. Architecture, code, functionnalities will change a lot from one version to another. This is for personal use but everyone can't fort it and enhance it at will.
+This work is in progress. Architecture, code, functionnalities will change a lot from one version to another. This is for personal use but everyone can't fork it and enhance it at will.
+
+I am not a JavaFX expert. Coming from the world of web development, I will try my best to adapt my principles to create a complete and simple project, with a clear and extensible architecture.
 
 # Versionning
 *Future versions*
@@ -41,5 +43,8 @@ This work is in progress. Architecture, code, functionnalities will change a lot
   - 0.6.3 : MVVM pattern
   - 0.6.4 : Minor improvements
   - 0.6.5 : Test architecture. May revert all 0.6
+- 0.7 : MVVM Pattern witrh java fx properties in model
+		Oh god i've tried... But it seems that it's far too complicated to avoid having JavaFX properties in the model at all costs. Doing so 		requires creating (or using an existing library for) mapping between the model's properties and the ViewModel's, but this leads to 		unnecessary complexity of the process, numerous problems, and very redundant code. I have therefore decided to stick with the strict MVVM 		pattern (in the sense that views do not have direct access to the model, other than through a ViewModel), but I am now using JavaFX 		properties directly in the API part. Unfortunately, this means that this API would not be usable without JavaFX. A solution to this 		problem, unnecessary here, would be to have an interface for the model and two defining classes, one with the JavaFX properties and the other without.
+ - 0.7.1 : Simplicity
 
 

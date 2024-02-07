@@ -1,9 +1,7 @@
 package com.gamergeo.project.videomanager.gui.viewmodel.view;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.gamergeo.project.videomanager.gui.viewmodel.model.VideoViewModel;
 import com.gamergeo.project.videomanager.model.Video;
 
 import jakarta.annotation.PostConstruct;
@@ -13,29 +11,28 @@ import javafx.beans.property.SimpleObjectProperty;
 @Component
 public class SceneViewModel {
 	
-	@Autowired
-	private SearchViewModel search;
+	private final SearchViewModel search;
+	private final ScreenViewModel screen;
+	private final TableViewModel table;
 	
-	@Autowired
-	private ScreenViewModel screen;
-
-	@Autowired
-	private TableViewModel table;
+	private final ObjectProperty<Video> selectedVideo = new SimpleObjectProperty<Video>();
 	
-	private final ObjectProperty<VideoViewModel> selectedVideo = new SimpleObjectProperty<VideoViewModel>();
-	
-	@PostConstruct
-	public void init() {
-		// On search change, filter table
-      	search.titleProperty().addListener((observable, oldValue, newValue) -> filter());
-      	search.ratingProperty().addListener((observable, oldValue, newValue) -> filter());
-      	
+	public SceneViewModel(SearchViewModel search, ScreenViewModel screen, TableViewModel table) {
+		this.search = search;
+		this.screen = screen;
+		this.table = table;
+		
       	search.setScene(this);
       	screen.setScene(this);
       	table.setScene(this);
       	
-      	// Bind screen and table
-//      	table.selectedVideoProperty().bindBidirectional(screen.selectedVideoProperty());
+      	filter();
+      	search.titleProperty().addListener((observable, oldValue, newValue) -> filter());
+      	search.ratingProperty().addListener((observable, oldValue, newValue) -> filter());
+      	
+      	// Bind selected video and row
+      	selectedVideo.addListener((observable, oldValue, newValue) -> table.setSelectedRow(selectedVideo.get()));
+      	table.selectedRowProperty().addListener((observable, oldValue, newValue) ->  selectedVideo.set(table.getSelectedRow().getVideo()));
 	}
 	
 	private void filter() {
@@ -46,20 +43,15 @@ public class SceneViewModel {
 		setSelectedVideo(table.random());
 	}
 	
-	public void refreshVideo(Video model) {
-//		selectedVideo.get().setRating(model.getRating());
-		table.refreshVideo(model);
-	}
-	
-	public final ObjectProperty<VideoViewModel> selectedVideoProperty() {
+	public final ObjectProperty<Video> selectedVideoProperty() {
 		return this.selectedVideo;
 	}
 
-	public final VideoViewModel getSelectedVideo() {
+	public final Video getSelectedVideo() {
 		return this.selectedVideoProperty().get();
 	}
 
-	public final void setSelectedVideo(final VideoViewModel selectedVideo) {
+	public final void setSelectedVideo(final Video selectedVideo) {
 		this.selectedVideoProperty().set(selectedVideo);
 	}
 	

@@ -2,11 +2,12 @@ package com.gamergeo.project.videomanager.repository;
 
 import java.util.List;
 
-import com.gamergeo.lib.gamlib.javafx.repository.ModelRepository;
+import org.springframework.data.repository.CrudRepository;
+
 import com.gamergeo.project.videomanager.model.Video;
 
 //@Repository("videoDao")
-public interface VideoRepository extends ModelRepository<Video> {
+public interface VideoRepository extends CrudRepository<Video, Long> {
 	
 	List<Video> findAll();
 	

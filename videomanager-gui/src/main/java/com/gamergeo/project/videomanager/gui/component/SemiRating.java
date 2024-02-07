@@ -21,13 +21,13 @@ public class SemiRating extends Rating {
             throw new RuntimeException(exception);
         }
         
-//		ratingProperty().addListener((obs, oldVal, newVal) -> {
-//
-//			log.info("Change rating semirating");
-//		    double roundedValue = Math.round(newVal.doubleValue() * 2) / 2.0;
-//		    if (!newVal.equals(roundedValue)) {
-//		    	setRating(roundedValue);
-//		    }
-//		});
+		ratingProperty().addListener((obs, oldVal, newVal) -> {
+
+			log.info("Change rating semirating");
+		    double roundedValue = Math.round(newVal.doubleValue() * 2) / 2.0;
+		    if (!newVal.equals(roundedValue)) {
+		    	setRating(roundedValue);
+		    }
+		});
     }
 }

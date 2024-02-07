@@ -5,7 +5,7 @@ import java.util.List;
 import com.gamergeo.lib.gamlib.javafx.view.AbstractFXMLView;
 import com.gamergeo.lib.gamlib.javafx.view.FXMLView;
 import com.gamergeo.project.videomanager.gui.cell.RatingCellFactory;
-import com.gamergeo.project.videomanager.gui.viewmodel.model.VideoViewModel;
+import com.gamergeo.project.videomanager.gui.viewmodel.view.TableRowViewModel;
 import com.gamergeo.project.videomanager.gui.viewmodel.view.TableViewModel;
 import com.gamergeo.project.videomanager.model.Tag;
 
@@ -22,21 +22,21 @@ public class TableView extends AbstractFXMLView<TableViewModel> {
 	private TitledPane root;
 	
 	@FXML
-	public javafx.scene.control.TableView<VideoViewModel> table;
+	public javafx.scene.control.TableView<TableRowViewModel> table;
 	
     @FXML
-    private TableColumn<VideoViewModel, String> titleColumn;
+    private TableColumn<TableRowViewModel, String> titleColumn;
     
     @FXML
-    private TableColumn<VideoViewModel, List<Tag>> tagsColumn;
+    private TableColumn<TableRowViewModel, List<Tag>> tagsColumn;
     
     @FXML
-    private TableColumn<VideoViewModel, Double> ratingColumn;
+    private TableColumn<TableRowViewModel, Double> ratingColumn;
     
     @FXML
     public void initialize() {
-		titleColumn.setCellValueFactory(new PropertyValueFactory<VideoViewModel, String>("title"));
-	  	ratingColumn.setCellValueFactory(new PropertyValueFactory<VideoViewModel, Double>("rating"));
+		titleColumn.setCellValueFactory(new PropertyValueFactory<TableRowViewModel, String>("title"));
+	  	ratingColumn.setCellValueFactory(new PropertyValueFactory<TableRowViewModel, Double>("rating"));
 	  	ratingColumn.setCellFactory(new RatingCellFactory());
 		
 //      	tagsColumn.setCellValueFactory(cellData -> cellData.getValue().tagsProperty());
@@ -50,7 +50,7 @@ public class TableView extends AbstractFXMLView<TableViewModel> {
       	titleColumn.setSortType(TableColumn.SortType.ASCENDING);
       	
       	// Bind items and sort
-      	SortedList<VideoViewModel> sortedItems = new SortedList<VideoViewModel>(viewModel.getFilteredVideos());
+      	SortedList<TableRowViewModel> sortedItems = new SortedList<TableRowViewModel>(viewModel.getRows());
       	sortedItems.comparatorProperty().bind(table.comparatorProperty());
       	table.setItems(sortedItems);
       	
@@ -58,8 +58,8 @@ public class TableView extends AbstractFXMLView<TableViewModel> {
       	root.textProperty().bind(viewModel.headerMessageProperty());
       	
       	// Bind selected item
-      	table.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> viewModel.setSelectedVideo(newValue));
-      	viewModel.selectedVideoProperty().addListener((observable, oldValue, newValue) -> {
+      	table.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> viewModel.setSelectedRow(newValue));
+      	viewModel.selectedRowProperty().addListener((observable, oldValue, newValue) -> {
       		if (table.getSelectionModel().getSelectedItem() != newValue) {
           		table.getSelectionModel().select(newValue);
           		table.scrollTo(newValue);
