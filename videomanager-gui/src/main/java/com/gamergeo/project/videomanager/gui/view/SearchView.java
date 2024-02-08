@@ -1,10 +1,10 @@
 package com.gamergeo.project.videomanager.gui.view;
 
+import org.controlsfx.control.Rating;
 import org.springframework.context.ApplicationContext;
 
 import com.gamergeo.lib.gamlib.javafx.view.AbstractFXMLView;
 import com.gamergeo.lib.gamlib.javafx.view.FXMLView;
-import com.gamergeo.project.videomanager.gui.component.SemiRating;
 import com.gamergeo.project.videomanager.gui.viewmodel.SearchViewModel;
 
 import javafx.fxml.FXML;
@@ -18,7 +18,7 @@ public class SearchView extends AbstractFXMLView<SearchViewModel> {
 	public TextField title;
 	
 	@FXML
-	public SemiRating rating;
+	public Rating rating;
 	
 	@FXML
 	public TilePane withTags;

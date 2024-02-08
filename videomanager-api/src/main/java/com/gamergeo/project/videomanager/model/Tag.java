@@ -18,7 +18,7 @@ import javafx.beans.property.StringProperty;
 public class Tag {
 	
 	private LongProperty id = new SimpleLongProperty();
-	private StringProperty title = new SimpleStringProperty();
+	private StringProperty label = new SimpleStringProperty();
 	
 	public LongProperty idProperty() {
 		return this.id;
@@ -33,19 +33,21 @@ public class Tag {
 	public void setId(final long id) {
 		this.idProperty().set(id);
 	}
-	
-	public StringProperty titleProperty() {
-		return this.title;
+
+	public StringProperty labelProperty() {
+		return this.label;
 	}
 	
-	public String getTitle() {
-		return this.titleProperty().get();
+	public String getLabel() {
+		return this.labelProperty().get();
 	}
 	
-	public void setTitle(final String title) {
-		this.titleProperty().set(title);
+	public void setLabel(final String label) {
+		this.labelProperty().set(label);
 	}
 	
-	
-	
+	@Override
+	public String toString() {
+		return "Tag " + getId() + " (" + getLabel() + " )";
+	}
 }

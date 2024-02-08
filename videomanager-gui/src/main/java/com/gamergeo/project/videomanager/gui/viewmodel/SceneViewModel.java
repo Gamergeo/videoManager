@@ -2,14 +2,20 @@ package com.gamergeo.project.videomanager.gui.viewmodel;
 
 import org.springframework.stereotype.Component;
 
-import com.gamergeo.lib.gamlib.javafx.viewmodel.ViewModel;
+import com.gamergeo.lib.gamlib.javafx.viewmodel.AbstractViewModel;
+import com.gamergeo.project.videomanager.gui.viewmodel.tag.TagListViewModel;
+import com.gamergeo.project.videomanager.model.Tag;
 import com.gamergeo.project.videomanager.model.Video;
 
+import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleObjectProperty;
+import javafx.collections.ObservableList;
+import javafx.scene.Cursor;
 
 @Component
-public class SceneViewModel implements ViewModel {
+public class SceneViewModel extends AbstractViewModel {
 	
 	private final SearchViewModel search;
 	private final ScreenViewModel screen;
@@ -17,6 +23,8 @@ public class SceneViewModel implements ViewModel {
 	private final TagListViewModel tagList;
 	
 	private final ObjectProperty<Video> selectedVideo = new SimpleObjectProperty<Video>();
+	private final ObjectProperty<Cursor> cursor = new SimpleObjectProperty<Cursor>();
+	private final BooleanProperty droppable = new SimpleBooleanProperty(); 
 	
 	public SceneViewModel(SearchViewModel search, ScreenViewModel screen, TableViewModel table, TagListViewModel tagList) {
 		this.search = search;
@@ -24,13 +32,42 @@ public class SceneViewModel implements ViewModel {
 		this.table = table;
 		this.tagList = tagList;
 		
-      	filter();
-      	search.titleProperty().addListener((observable, oldValue, newValue) -> filter());
-      	search.ratingProperty().addListener((observable, oldValue, newValue) -> filter());
+		// Filter table through search property
+      	addEmptyChangeListener(search.titleProperty(), this::filter);
+      	addEmptyChangeListener(search.ratingProperty(), this::filter);
       	
       	// Bind selected video and row
-      	selectedVideo.addListener((observable, oldValue, newValue) -> table.setSelectedRow(newValue));
-      	table.selectedRowProperty().addListener((observable, oldValue, newValue) ->  selectedVideo.set(newValue.getVideo()));
+      	addSimpleChangeListener(selectedVideo, table::setSelectedRow);
+      	addSimpleChangeListener(table.selectedRowProperty(), (newValue) -> rowSelected(newValue));
+      	
+      	// Bind droppable and cursor
+      	addSimpleChangeListener(droppable.asObject(), this::onDragOver);
+	}
+	
+	public void onDragDetected() {
+		setCursor(Cursor.CLOSED_HAND);
+	}
+	
+	public void onDragOver(Boolean droppable) {
+		if (droppable) {
+			setCursor(Cursor.OPEN_HAND);
+		} else {
+			setCursor(Cursor.CLOSED_HAND);
+		}
+	}
+	
+	public void onDragDropped() {
+		setCursor(Cursor.DEFAULT);
+	}
+	
+	private void rowSelected(final TableRowViewModel selectedRow) {
+  		if (selectedVideo != null) {
+  			selectedVideo.set(selectedRow.getVideo());
+  		}
+	}
+	
+	public ObservableList<Tag> getSelectedTags() {
+		return tagList.getSelectedTags();
 	}
 	
 	private void filter() {
@@ -52,46 +89,29 @@ public class SceneViewModel implements ViewModel {
 	public final void setSelectedVideo(final Video selectedVideo) {
 		this.selectedVideoProperty().set(selectedVideo);
 	}
+
+	public final ObjectProperty<Cursor> cursorProperty() {
+		return this.cursor;
+	}
 	
+	public final Cursor getCursor() {
+		return this.cursorProperty().get();
+	}
 	
-//	private final VideoService videoService;
-//	private final SearchViewModel search; 
-//	private final TableViewModel table;
-//	private final ScreenViewModel screen;
-//	
-//	private List<VideoViewModel> allVideos;
-    
-//	@PostConstruct
-//    public void init() {
-//    	allVideos = videoService.findAll().stream().map(VideoViewModel::new).collect(Collectors.toList());
-//    	table.load(allVideos);
-//    	
-//    	// Bind screen video with table selected one
-//    	screen.video().bind(table.selectedVideo());
-//		
-//    	// On search critera change, filter table
-//    	search.titleProperty().addListener((observable, oldValue, newValue) -> filter());
-//    	search.ratingProperty().addListener((observable, oldValue, newValue) -> filter());
-//
-//		search.setOnRandomAction((e) -> random());
-//    }
+	public final void setCursor(final Cursor cursor) {
+		this.cursorProperty().set(cursor);
+	}
+
+	public final BooleanProperty droppableProperty() {
+		return this.droppable;
+	}
+
+	public final boolean isDroppable() {
+		return this.droppableProperty().get();
+	}
+
+	public final void setDroppable(final boolean droppable) {
+		this.droppableProperty().set(droppable);
+	}
 	
-//    public void random() {
-//    	filter();
-//    	
-//    	Integer tableSize = table.getSize();
-//    	
-//    	if (tableSize > 0) {
-//		    int randomNumber = new Random().nextInt(tableSize);
-////		    selectedVideo.set(filteredVideos.get(randomNumber));
-//    	}
-//    	
-//    	
-////    	filter(title, minimalRating, searchWithTagIds, searchWithoutTagIds);
-////    	
-////	    if (!filteredVideos.isEmpty()) {
-////		    int randomNumber = new Random().nextInt(filteredVideos.size());
-////		    selectedVideo.set(filteredVideos.get(randomNumber));
-////	    }
-//    }
 }

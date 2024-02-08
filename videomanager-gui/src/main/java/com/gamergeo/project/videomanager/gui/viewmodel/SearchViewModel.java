@@ -14,6 +14,12 @@ public class SearchViewModel extends AbstractChildViewModel<SceneViewModel> {
 	
 	private final StringProperty title = new SimpleStringProperty();
 	private final DoubleProperty rating = new SimpleDoubleProperty();
+
+	@Override
+	public void init() {
+		// Semi rating
+		rating.addListener((observable, oldValue, newValue) -> setRoundedRating(oldValue.doubleValue(), newValue.doubleValue()));
+	}
 	
 	public void random() {
 		parent.random();
@@ -23,6 +29,21 @@ public class SearchViewModel extends AbstractChildViewModel<SceneViewModel> {
 		title.set("");
 		rating.set(0);
 	}
+	
+	/**
+	 * Round rating to 0.5
+	 */
+	private void setRoundedRating(Double oldValue, Double newValue) {
+	    double roundedValue = Math.round(newValue * 2) / 2.0;
+		if (oldValue != newValue && !newValue.equals(roundedValue)) {
+	    	setRating(roundedValue);
+		}
+	}
+
+	
+	
+	
+	
 	
 	public final StringProperty titleProperty() {
 		return this.title;

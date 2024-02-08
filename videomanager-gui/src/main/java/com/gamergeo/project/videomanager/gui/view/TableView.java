@@ -63,13 +63,16 @@ public class TableView extends AbstractFXMLView<TableViewModel> {
       	// Bind video count
       	root.textProperty().bind(viewModel.headerMessageProperty());
       	
-      	// Bind selected item
-      	table.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> viewModel.setSelectedRow(newValue));
-      	viewModel.selectedRowProperty().addListener((observable, oldValue, newValue) -> {
-      		if (table.getSelectionModel().getSelectedItem() != newValue) {
-          		table.getSelectionModel().select(newValue);
-          		table.scrollTo(newValue);
-      		}
-      	});
+      	// On table selection, change viewModel
+      	addSimpleChangeListener(table.getSelectionModel().selectedItemProperty(), viewModel::setSelectedRow);
+      	// On view model change, change table selected and scroll
+      	addSimpleChangeListener(viewModel.selectedRowProperty(), this::select);
+    }
+    
+    private void select(TableRowViewModel row) {
+  		if (table.getSelectionModel().getSelectedItem() != row) {
+      		table.getSelectionModel().select(row);
+      		table.scrollTo(row);
+  		}
     }
 }

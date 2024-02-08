@@ -4,6 +4,7 @@ import org.springframework.context.ApplicationContext;
 
 import com.gamergeo.lib.gamlib.javafx.view.AbstractFXMLView;
 import com.gamergeo.lib.gamlib.javafx.view.FXMLView;
+import com.gamergeo.project.videomanager.gui.view.tag.TagListView;
 import com.gamergeo.project.videomanager.gui.viewmodel.SceneViewModel;
 
 import javafx.fxml.FXML;
@@ -29,5 +30,7 @@ public class SceneView extends AbstractFXMLView<SceneViewModel> {
     	main.setBottom(getRoot(TableView.class));
     	main.setCenter(getRoot(ScreenView.class));
     	root.getChildren().add(getRoot(TagListView.class));
+    	
+    	root.cursorProperty().bind(viewModel.cursorProperty());
 	}
 }

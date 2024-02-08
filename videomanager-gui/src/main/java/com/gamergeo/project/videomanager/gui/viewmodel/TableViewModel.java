@@ -16,7 +16,6 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
-import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 
 @Component
@@ -36,7 +35,8 @@ public class TableViewModel extends AbstractChildViewModel<SceneViewModel> {
 	@Override
 	public void init() {
 		allVideos.addAll(videoService.findAll());
-		rows.addListener((ListChangeListener.Change<? extends TableRowViewModel> change) -> headerMessage.set(rows.size() + " videos found"));
+		
+		addSimpleListChangeListener(rows, (rows) -> headerMessage.set(rows.size() + " videos found"));
 		rows.setAll(allVideos.stream().map(TableRowViewModel::new).collect(Collectors.toList()));
 	}
 
