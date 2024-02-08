@@ -27,7 +27,6 @@ public class TagListView extends AbstractFXMLView<TagListViewModel> {
 	
 	@FXML
 	private void initialize() {
-		
 		viewModel.tags().addListener((ListChangeListener.Change<? extends Tag> change) -> {
 			addTags();
 		});

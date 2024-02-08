@@ -29,8 +29,8 @@ public class SceneViewModel implements ViewModel {
       	search.ratingProperty().addListener((observable, oldValue, newValue) -> filter());
       	
       	// Bind selected video and row
-      	selectedVideo.addListener((observable, oldValue, newValue) -> table.setSelectedRow(selectedVideo.get()));
-      	table.selectedRowProperty().addListener((observable, oldValue, newValue) ->  selectedVideo.set(table.getSelectedRow().getVideo()));
+      	selectedVideo.addListener((observable, oldValue, newValue) -> table.setSelectedRow(newValue));
+      	table.selectedRowProperty().addListener((observable, oldValue, newValue) ->  selectedVideo.set(newValue.getVideo()));
 	}
 	
 	private void filter() {

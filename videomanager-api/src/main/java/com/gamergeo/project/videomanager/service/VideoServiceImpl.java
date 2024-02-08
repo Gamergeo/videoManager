@@ -77,6 +77,7 @@ public class VideoServiceImpl implements VideoService {
 	}
 	
 	@Override
+	@Transactional
 	public Video save(Video video) {
 		return videoRepository.save(video);
 	}

@@ -3,7 +3,9 @@ package com.gamergeo.project.videomanager.gui.viewmodel;
 import org.springframework.stereotype.Component;
 
 import com.gamergeo.lib.gamlib.javafx.viewmodel.AbstractChildViewModel;
+import com.gamergeo.project.videomanager.model.Tag;
 import com.gamergeo.project.videomanager.model.Video;
+import com.gamergeo.project.videomanager.service.VideoService;
 
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.DoubleProperty;
@@ -11,44 +13,64 @@ import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import lombok.extern.slf4j.Slf4j;
 
 @Component
 @Slf4j
 public class ScreenViewModel extends AbstractChildViewModel<SceneViewModel> {
-
+	
+	private final VideoService videoService;
 	private Video video;
 
 	private final StringProperty title = new SimpleStringProperty();
 	private final DoubleProperty rating = new SimpleDoubleProperty();
-	
 	private final BooleanProperty visible = new SimpleBooleanProperty();
+	private final ObservableList<Tag> videoTags = FXCollections.observableArrayList();
+	
+	public ScreenViewModel(VideoService videoService) {
+		this.videoService = videoService;
+	}
 
 	@Override
 	public void init() {
+		visible.set(false);
+		rating.addListener((observable, oldValue, newValue) -> {
+			if (oldValue != newValue) {
+				save();
+			}
+		});
+		
 		// We need to update listener on video change
 		parent.selectedVideoProperty().addListener((observable, oldValue, newValue) -> {
 	    		log.info("Selected video changed");
 	    		
 				// Unbind old selected video
 				if (oldValue != null) {
-					title.unbindBidirectional(oldValue.titleProperty());
-					rating.unbindBidirectional(oldValue.ratingProperty());
-					visible.set(false);
+					title.unbindBidirectional(video.titleProperty());
+					rating.unbindBidirectional(video.ratingProperty());
 				}
 
 				this.video = newValue;
-				
 				if (newValue == null) {
 					title.set("");
 					rating.set(0);
+					videoTags.clear();
+					visible.set(false);
 				} else {
 					title.bindBidirectional(video.titleProperty());
 					rating.bindBidirectional(video.ratingProperty());
 					visible.set(true);
+					videoTags.setAll(video.getTags());
 				}
 	    });
 	}
+	
+	private void save() {
+		videoService.save(video);
+	}
+	
 	
 	public final StringProperty titleProperty() {
 		return this.title;
@@ -86,14 +108,8 @@ public class ScreenViewModel extends AbstractChildViewModel<SceneViewModel> {
 		this.visibleProperty().set(visible);
 	}
 	
+	public ObservableList<Tag> videoTags() {
+		return videoTags;
+	}
 	
-	
-	
-//	public final ObjectProperty<VideoViewModel> selectedVideoProperty() {
-//		return scene.selectedVideoProperty();
-//	}
-//	
-//	public final DoubleProperty ratingProperty() {
-//		return selectedVideoProperty().get().ratingProperty();
-//	}
 }

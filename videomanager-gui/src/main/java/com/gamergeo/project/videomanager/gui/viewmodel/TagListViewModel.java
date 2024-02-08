@@ -29,8 +29,6 @@ public class TagListViewModel extends AbstractChildViewModel<SceneViewModel> {
 		allTags.addAll(tagService.findAll());
 		tags.setAll(allTags);
 	}
-	
-	
 
 	public ObservableList<Tag> tags() {
 		return tags;
