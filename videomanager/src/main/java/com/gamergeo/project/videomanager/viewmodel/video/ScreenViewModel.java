@@ -1,10 +1,10 @@
-package com.gamergeo.project.videomanager.viewmodel;
+package com.gamergeo.project.videomanager.viewmodel.video;
 
 import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Component;
 
-import com.gamergeo.project.videomanager.FXUtils;
+import com.gamergeo.lib.viewmodelfx.view.FXUtils;
 import com.gamergeo.project.videomanager.model.Tag;
 import com.gamergeo.project.videomanager.model.Video;
 import com.gamergeo.project.videomanager.service.UrlPatternService;
@@ -50,9 +50,6 @@ public class ScreenViewModel implements ViewModel {
 		
 		// Save on tag change
 		FXUtils.addSimpleListChangeListener(videoTags, this::saveTag);
-//
-//		// Render on video change
-//		parent.selectedVideoProperty().addListener((observable, oldValue, newValue) -> render(oldValue, newValue));
 	}
 	
 	public void openUrl(MouseEvent event) {

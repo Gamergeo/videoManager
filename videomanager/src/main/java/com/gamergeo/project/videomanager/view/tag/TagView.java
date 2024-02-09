@@ -1,38 +1,48 @@
-//	package com.gamergeo.project.videomanager.gui.view.tag;
-//
-//import org.springframework.context.annotation.Scope;
-//import org.springframework.stereotype.Component;
-//
-//import com.gamergeo.lib.viewmodelfx.view.FXMLView;
-//import com.gamergeo.project.videomanager.gui.viewmodel.tag.TagViewModel;
-//
-//import javafx.fxml.FXML;
-//import javafx.scene.control.Label;
-//import javafx.scene.layout.BorderPane;
-//
-//@Component
-//@Scope("prototype")
-//public class TagView extends FXMLView<TagViewModel>{
-//	
-//	@FXML
-//	private BorderPane root;
-//	
-//	@FXML
-//	private Label label;
-//	
-//	@FXML
-//	private void initialize() { 
-//		label.textProperty().bindBidirectional(viewModel.labelProperty());
-//		root.setOnMouseClicked((event) -> viewModel.onClick());
-//		
-//		addSimpleChangeListener(viewModel.selectedProperty(), this::select);
-//	}
-//	
-//	private void select(boolean isSelected) {
-//		if (isSelected) {
-//			root.getStyleClass().add("tag-border-pane-selected");
-//		} else {
-//			root.getStyleClass().remove("tag-border-pane-selected");
-//		}
-//	}
-//}
+	package com.gamergeo.project.videomanager.view.tag;
+
+import java.net.URL;
+import java.util.ResourceBundle;
+
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
+
+import com.gamergeo.lib.viewmodelfx.view.FXUtils;
+import com.gamergeo.project.videomanager.viewmodel.tag.TagViewModel;
+
+import de.saxsys.mvvmfx.FxmlView;
+import de.saxsys.mvvmfx.InjectViewModel;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
+import javafx.scene.layout.BorderPane;
+
+@Component
+@Scope("prototype")
+public class TagView implements FxmlView<TagViewModel>, Initializable {
+	
+	@FXML
+	private BorderPane root;
+	
+	@FXML
+	private Label label;
+
+    @InjectViewModel
+    private TagViewModel viewModel;
+
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+		label.textProperty().bindBidirectional(viewModel.labelProperty());
+		root.setOnMouseClicked((event) -> viewModel.setClicked(true));
+		FXUtils.addSimpleChangeListener(viewModel.clickedProperty(), this::select);
+	}
+	
+	private void select(boolean isSelected) {
+		if (viewModel.isSelectable()) {
+			if (isSelected) {
+				root.getStyleClass().add("tag-border-pane-selected");
+			} else {
+				root.getStyleClass().remove("tag-border-pane-selected");
+			}
+		}
+	}
+}

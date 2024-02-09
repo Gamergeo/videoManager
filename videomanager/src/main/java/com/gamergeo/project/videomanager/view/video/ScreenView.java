@@ -1,4 +1,4 @@
-package com.gamergeo.project.videomanager.view;
+package com.gamergeo.project.videomanager.view.video;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -6,8 +6,8 @@ import java.util.ResourceBundle;
 import org.controlsfx.control.Rating;
 import org.springframework.stereotype.Component;
 
-import com.gamergeo.project.videomanager.FXUtils;
-import com.gamergeo.project.videomanager.viewmodel.ScreenViewModel;
+import com.gamergeo.lib.viewmodelfx.view.FXUtils;
+import com.gamergeo.project.videomanager.viewmodel.video.ScreenViewModel;
 
 import de.saxsys.mvvmfx.FxmlView;
 import de.saxsys.mvvmfx.InjectViewModel;

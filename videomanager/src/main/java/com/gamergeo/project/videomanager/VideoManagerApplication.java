@@ -7,6 +7,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
+import com.gamergeo.lib.viewmodelfx.view.FXUtils;
 import com.gamergeo.project.videomanager.view.SceneView;
 
 import de.saxsys.mvvmfx.spring.MvvmfxSpringApplication;
@@ -44,7 +45,7 @@ public class VideoManagerApplication extends MvvmfxSpringApplication {
 	
 	@Override
 	public void startMvvmfx(Stage stage) throws Exception {
-    	Parent page =  FXUtils.getRoot(SceneView.class);
+    	Parent page =  FXUtils.load(SceneView.class).getView();
         Scene scene = new Scene(page);
         scene.getStylesheets().add(FXUtils.classPackageToResourcePath(this.getClass()));
         stage.setTitle("Video manager");

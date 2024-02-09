@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import org.controlsfx.control.Rating?>
 
-<VBox styleClass="default-spacing" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gamergeo.project.videomanager.view.SearchView">
+<VBox styleClass="default-spacing" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gamergeo.project.videomanager.view.video.SearchView">
    <children>
       <TitledPane expanded="false" text="Search">
          <content>
@@ -43,8 +43,8 @@
       </TitledPane>
       <HBox alignment="CENTER_RIGHT" styleClass="buttonLine">
          <children>
-            <Button alignment="CENTER" onAction="#reset" text="Reset" />
-            <Button alignment="CENTER" onAction="#random" text="Random" />
+            <Button alignment="CENTER" fx:id="reset" text="Reset" />
+            <Button alignment="CENTER" fx:id="random" text="Random" />
          </children>
       </HBox>
    </children>

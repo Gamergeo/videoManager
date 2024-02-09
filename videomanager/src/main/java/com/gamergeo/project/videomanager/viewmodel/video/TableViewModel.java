@@ -1,4 +1,4 @@
-package com.gamergeo.project.videomanager.viewmodel;
+package com.gamergeo.project.videomanager.viewmodel.video;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Component;
 
-import com.gamergeo.project.videomanager.FXUtils;
+import com.gamergeo.lib.viewmodelfx.view.FXUtils;
 import com.gamergeo.project.videomanager.model.Video;
 import com.gamergeo.project.videomanager.service.VideoService;
 

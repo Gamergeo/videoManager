@@ -1,4 +1,4 @@
-package com.gamergeo.project.videomanager.viewmodel;
+package com.gamergeo.project.videomanager.viewmodel.video;
 
 import java.util.List;
 import java.util.StringJoiner;
@@ -6,7 +6,7 @@ import java.util.StringJoiner;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-import com.gamergeo.project.videomanager.FXUtils;
+import com.gamergeo.lib.viewmodelfx.view.FXUtils;
 import com.gamergeo.project.videomanager.model.Tag;
 import com.gamergeo.project.videomanager.model.Video;
 

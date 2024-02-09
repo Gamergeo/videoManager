@@ -1,13 +1,13 @@
-package com.gamergeo.project.videomanager.view;
+package com.gamergeo.project.videomanager.view.video;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 import org.springframework.stereotype.Component;
 
-import com.gamergeo.project.videomanager.FXUtils;
-import com.gamergeo.project.videomanager.viewmodel.TableRowViewModel;
-import com.gamergeo.project.videomanager.viewmodel.TableViewModel;
+import com.gamergeo.lib.viewmodelfx.view.FXUtils;
+import com.gamergeo.project.videomanager.viewmodel.video.TableRowViewModel;
+import com.gamergeo.project.videomanager.viewmodel.video.TableViewModel;
 
 import de.saxsys.mvvmfx.FxmlView;
 import de.saxsys.mvvmfx.InjectViewModel;

@@ -58,5 +58,5 @@ Not ok yet, there is some architecture problems. We need to have proper interfac
 - 0.8 : Well i'm done, mvvmfx
 	- 0.8.1 : Integrating mvvmfx
 Its was interesting to try to adapt mvvm pattern alone but it seems far too time consuming just to have basic features. So i'm integrating mvvmfx. As my lib was finall;y close to mvvmfx, integration seems easy
-
+	- 0.8.2 : Continue mvvmfx integration
 
