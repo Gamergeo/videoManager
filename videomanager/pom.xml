@@ -1,0 +1,138 @@
+<?xml version="1.0"?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>com.gamergeo.project</groupId>
+		<artifactId>videomanager-parent</artifactId>
+		<version>0.8.1</version>
+	</parent>
+
+	<artifactId>videomanager</artifactId>
+	<packaging>jar</packaging>
+	
+	<properties>
+    	<javafx.maven.plugin.version>0.0.8</javafx.maven.plugin.version>
+    	<start-class>com.gamergeo.project.videomanager.Application</start-class>
+	</properties>
+	
+	<profiles>
+        <profile>
+            <id>dev</id>
+            <properties>
+                <springProfile>dev</springProfile>
+            </properties>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+        </profile>
+        <profile>
+            <id>prod</id>
+            <properties>
+                <springProfile>prod</springProfile>
+            </properties>
+        </profile>
+	</profiles>
+	
+	<build>
+		<finalName>videomanager</finalName>
+		
+		<plugins>
+			<!-- Plugin for deployement -->
+		    <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+            		<mainClass>${start-class}</mainClass>
+                    <executable>true</executable>
+                </configuration>
+                <executions>
+				    <execution>
+				        <goals>
+				            <goal>repackage</goal>
+				        </goals>
+				    </execution>
+				</executions>
+            </plugin>
+            
+			<!-- Plugin for local execution -->
+			<plugin>
+				<groupId>org.openjfx</groupId>
+	    		<artifactId>javafx-maven-plugin</artifactId>
+	    		<version>${javafx.maven.plugin.version}</version>
+			    <configuration>
+	      			<mainClass>${start-class}</mainClass>
+	    		</configuration>
+	    		<executions>
+					<execution>
+	                    <!-- Configuration for debugging -->
+	                    <id>debug</id>
+	                    <configuration>
+	                        <options>
+	                            <option>-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=*:8001</option>
+	                        </options>
+	                        <mainClass>${start-class}</mainClass>
+	                    </configuration>
+	                </execution>
+	           </executions>
+	  		</plugin>
+		</plugins>
+	</build>
+	
+	<dependencies>
+		<!-- Project dependency -->
+		<dependency>
+			<groupId>com.gamergeo.project</groupId>
+			<artifactId>videomanager-api</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.gamergeo.lib</groupId>
+			<artifactId>fxutils</artifactId>
+		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/org.openjfx/javafx-controls -->
+		<dependency>
+		    <groupId>org.openjfx</groupId>
+		    <artifactId>javafx-graphics</artifactId>
+		</dependency>
+		<dependency>
+		    <groupId>org.openjfx</groupId>
+		    <artifactId>javafx-controls</artifactId>
+		</dependency>
+		<dependency>
+		    <groupId>org.openjfx</groupId>
+		    <artifactId>javafx-fxml</artifactId>
+		</dependency>
+		<dependency>
+		    <groupId>org.controlsfx</groupId>
+		    <artifactId>controlsfx</artifactId>
+		</dependency>
+		
+		<dependency>
+		    <groupId>org.springframework.boot</groupId>
+		    <artifactId>spring-boot-starter-test</artifactId>
+		    <scope>test</scope>
+		</dependency>
+		
+		<dependency>
+		    <groupId>com.h2database</groupId>
+		    <artifactId>h2</artifactId>
+		    <scope>runtime</scope>
+		</dependency>
+		
+		<dependency>
+		    <groupId>de.saxsys</groupId>
+		    <artifactId>mvvmfx</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>de.saxsys</groupId>
+			<artifactId>mvvmfx-spring-boot</artifactId>
+		</dependency>
+
+	</dependencies>
+</project>

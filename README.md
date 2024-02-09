@@ -55,5 +55,8 @@ So, View are forced into 1-1 relation with ViewModel. Not all viewmodels have to
 Not ok yet, there is some architecture problems. We need to have proper interface for each viewmodel to simplify
     - 0.7.5 : CrudService / Refactoring
     - 0.7.6 : Drag&drop tag on video
+- 0.8 : Well i'm done, mvvmfx
+	- 0.8.1 : Integrating mvvmfx
+Its was interesting to try to adapt mvvm pattern alone but it seems far too time consuming just to have basic features. So i'm integrating mvvmfx. As my lib was finall;y close to mvvmfx, integration seems easy
 
 

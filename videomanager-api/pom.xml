@@ -8,8 +8,8 @@
 
 	<parent>
 		<groupId>com.gamergeo.project</groupId>
-		<artifactId>videomanager</artifactId>
-		<version>0.7.6</version>
+		<artifactId>videomanager-parent</artifactId>
+		<version>0.8.1</version>
 	</parent>
 
 	<artifactId>videomanager-api</artifactId>
@@ -33,9 +33,9 @@
 		</dependency>
 		
 		<!-- Gamergeo lib -->
-		<dependency>
-			<groupId>com.gamergeo.lib</groupId>
-			<artifactId>viewmodelfx</artifactId>
-		</dependency>
+<!--		<dependency>-->
+<!--			<groupId>com.gamergeo.lib</groupId>-->
+<!--			<artifactId>viewmodelfx</artifactId>-->
+<!--		</dependency>-->
 	</dependencies>
 </project>

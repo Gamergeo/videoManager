@@ -3,8 +3,8 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.gamergeo.project</groupId>
-	<artifactId>videomanager</artifactId>
-	<version>0.7.6</version>
+	<artifactId>videomanager-parent</artifactId>
+	<version>0.8.1</version>
 	<packaging>pom</packaging>
 	
 	<parent>
@@ -14,7 +14,7 @@
 	</parent>
   
 	<modules>
-		<module>videomanager-gui</module>
+		<module>videomanager</module>
 		<module>videomanager-api</module>
 	</modules>
 	
@@ -24,12 +24,11 @@
 	    <encoding>UTF-8</encoding>
     	<project.build.sourceEncoding>${encoding}</project.build.sourceEncoding>
     	
-    	<!-- Gamergeo projects -->
-    	<viewmodelfx.version>0.7.3</viewmodelfx.version>
-    	
     	<!-- Dependency version -->
 		<javafx.version>21.0.1</javafx.version>
 	    <controlsfx.version>11.2.0</controlsfx.version>
+    	<mvvmfx.version>1.8.0</mvvmfx.version>
+    	<viewmodelfx.version>0.7.3</viewmodelfx.version>
 	</properties>
 	
 	<!-- Dependencies Management (No import their, check module instead) -->
@@ -42,10 +41,9 @@
 				<version>${project.version}</version>
 			</dependency>
 			
-			<!-- Gamergeo MVVM lib -->
 			<dependency>
 				<groupId>com.gamergeo.lib</groupId>
-				<artifactId>viewmodelfx</artifactId>
+				<artifactId>fxutils</artifactId>
 				<version>${viewmodelfx.version}</version>
 			</dependency>
 			
@@ -75,7 +73,18 @@
 			    <artifactId>controlsfx</artifactId>
 			    <version>${controlsfx.version}</version>
 			</dependency>
-
+			
+			<!-- https://mvnrepository.com/artifact/de.saxsys/mvvmfx -->
+			<dependency>
+			    <groupId>de.saxsys</groupId>
+			    <artifactId>mvvmfx</artifactId>
+			    <version>${mvvmfx.version}</version>
+			</dependency>		
+			<dependency>
+				<groupId>de.saxsys</groupId>
+				<artifactId>mvvmfx-spring-boot</artifactId>
+				<version>${mvvmfx.version}</version>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 	
