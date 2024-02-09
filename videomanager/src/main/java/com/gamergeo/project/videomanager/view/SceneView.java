@@ -21,7 +21,6 @@ import de.saxsys.mvvmfx.InjectViewModel;
 import de.saxsys.mvvmfx.ViewTuple;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 
@@ -55,12 +54,7 @@ public class SceneView implements FxmlView<SceneViewModel>, Initializable {
     	viewModel.initTagList(tagList.getViewModel());
     	root.getChildren().add(tagList.getView());
     	
-//    	root.cursorProperty().bind(viewModel.cursorProperty());
-    	
-//    	root.setOnMouseDragReleased(this::onDragDropped);
-	}
-	
-	private void onDragDropped(MouseEvent e) {
-//		viewModel.onDragDropped();
+    	root.cursorProperty().bind(viewModel.cursorProperty());
+    	root.setOnMouseDragReleased((event) -> viewModel.setDragReleased(true));
 	}
 }

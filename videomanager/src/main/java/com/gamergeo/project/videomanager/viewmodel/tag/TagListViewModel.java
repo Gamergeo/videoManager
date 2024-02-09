@@ -5,62 +5,66 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
+import com.gamergeo.lib.viewmodelfx.view.FXUtils;
 import com.gamergeo.project.videomanager.model.Tag;
 import com.gamergeo.project.videomanager.service.TagService;
 
 import de.saxsys.mvvmfx.ViewModel;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 @Component
-public class TagListViewModel implements ViewModel {
+public class TagListViewModel implements ViewModel, TagParentViewModel {
 
-	private final TagService tagService;
-	
-	private final List<TagViewModel> tagViewModels = new ArrayList<TagViewModel>();
-	
+	protected final List<TagViewModel> tagViewModels = new ArrayList<TagViewModel>();
 	private final List<Tag> allTags = new ArrayList<Tag>();
-	private final ObservableList<Tag> displayedTags = FXCollections.observableArrayList();
+	protected final ObservableList<Tag> renderedTags = FXCollections.observableArrayList();
 	private final ObservableList<Tag> selectedTags = FXCollections.observableArrayList();
-	
-//	private final List<TagViewModel> tagViewModel = new ArrayList<TagViewModel>();
+	private final BooleanProperty dragDetected = new SimpleBooleanProperty();
 	
 	public TagListViewModel(TagService tagService) {
-		this.tagService = tagService;
 		allTags.addAll(tagService.findAll());
-		displayedTags.setAll(allTags);
+		renderedTags.setAll(allTags);
 	}
 	
-	public ObservableList<Tag> getDisplayedTags() {
-		return displayedTags;
-	}
-	
-	public void addTag(TagViewModel tagViewModel, Tag tag) {
+	/**
+	 * Init child view model list / bind 
+	 */
+	@Override
+	public void initTagViewModel(TagViewModel tagViewModel, Tag tag) {
 		tagViewModels.add(tagViewModel);
 		tagViewModel.setTag(tag);
 		tagViewModel.setSelectable(true);
+		FXUtils.addSimpleChangeListener(tagViewModel.clickedProperty(), (isClicked) -> selectTag(tag, isClicked));
 	}
 	
-//	public void onDragDetected() {
-//		parent.onDragDetected();
-//	}
-	
-//	/**
-//	 * Select / Unselect a tag
-//	 * @return true if tag is selected, false if unselected
-//	 */
-//	@Override
-//	public boolean onTagClick(Tag tag) {
-//		if (selectedTags.contains(tag)) {
-//			selectedTags.remove(tag);
-//			return false;
-//		} else {
-//			selectedTags.add(tag);
-//			return true;
-//		}
-//	}
+	private void selectTag(Tag tag, Boolean isClicked) {
+		if (isClicked) {
+			selectedTags.add(tag);
+		} else {
+			selectedTags.remove(tag);
+		}
+	}
 	
 	public ObservableList<Tag> getSelectedTags() {
 		return selectedTags;
+	}
+
+	public final BooleanProperty dragDetectedProperty() {
+		return this.dragDetected;
+	}
+
+	public final boolean isDragDetected() {
+		return this.dragDetectedProperty().get();
+	}
+
+	public final void setDragDetected(final boolean dragDetected) {
+		this.dragDetectedProperty().set(dragDetected);
+	}
+	
+	public ObservableList<Tag> getRenderedTags() {
+		return renderedTags;
 	}
 }

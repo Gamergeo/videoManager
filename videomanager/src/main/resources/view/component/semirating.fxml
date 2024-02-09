@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
-<?import org.controlsfx.control.Rating?>
-
-<fx:root type="org.controlsfx.control.Rating" xmlns:fx="http://javafx.com/fxml" />

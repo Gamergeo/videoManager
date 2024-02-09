@@ -5,20 +5,15 @@ import java.util.ResourceBundle;
 
 import org.springframework.stereotype.Component;
 
-import com.gamergeo.lib.viewmodelfx.view.FXUtils;
-import com.gamergeo.project.videomanager.model.Tag;
-import com.gamergeo.project.videomanager.view.video.SearchView;
+import com.gamergeo.project.videomanager.helper.TagParentHelper;
 import com.gamergeo.project.videomanager.viewmodel.tag.TagListViewModel;
-import com.gamergeo.project.videomanager.viewmodel.tag.TagViewModel;
-import com.gamergeo.project.videomanager.viewmodel.video.SearchViewModel;
 
 import de.saxsys.mvvmfx.FxmlView;
 import de.saxsys.mvvmfx.InjectViewModel;
-import de.saxsys.mvvmfx.ViewTuple;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.TilePane;
 
 @Component
@@ -32,30 +27,22 @@ public class TagListView implements FxmlView<TagListViewModel>, Initializable {
 
     @InjectViewModel
     private TagListViewModel viewModel;
+    
+    private final TagParentHelper tagParentHelper;
+    
+	public TagListView(TagParentHelper tagParentHelper) {
+		this.tagParentHelper = tagParentHelper;
+	}
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		renderTags(viewModel.getDisplayedTags());
-		FXUtils.addSimpleListChangeListener(viewModel.getDisplayedTags(), this::renderTags);
+		tagParentHelper.initTags(list, viewModel);
+		list.setOnDragDetected(this::onDragDetected);
 	}
 	
-	private void renderTags(ObservableList<Tag> tags) {
-		tags.forEach(this::renderTag);
+	private void onDragDetected(MouseEvent event) {
+		list.startFullDrag();
+		viewModel.setDragDetected(true);
+		event.consume();
 	}
-	
-	private void renderTag(Tag tag) {
-		ViewTuple<TagView, TagViewModel> tuple = FXUtils.load(TagView.class);
-		viewModel.addTag(tuple.getViewModel(), tag);
-		list.getChildren().add(tuple.getView());
-	}
-
-//	@Override
-//	protected ObservableList<Tag> getTags() {
-//		return viewModel.getDisplayedTags();
-//	}
-
-//	private void onDragDetected(MouseEvent event) {
-//		list.startFullDrag();
-//		viewModel.onDragDetected();
-//	}
 }
