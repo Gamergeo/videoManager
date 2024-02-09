@@ -1,11 +1,9 @@
 package com.gamergeo.project.videomanager.gui.view;
 
 import org.controlsfx.control.Rating;
-import org.springframework.context.ApplicationContext;
+import org.springframework.stereotype.Component;
 
-import com.gamergeo.lib.gamlib.javafx.view.FXMLView;
-import com.gamergeo.lib.gamlib.javafx.view.ViewUtils;
-import com.gamergeo.project.videomanager.gui.VideoManagerParameters;
+import com.gamergeo.lib.viewmodelfx.view.ViewUtils;
 import com.gamergeo.project.videomanager.gui.view.tag.AbstractTagDroppableView;
 import com.gamergeo.project.videomanager.gui.viewmodel.ScreenViewModel;
 import com.gamergeo.project.videomanager.model.Tag;
@@ -18,7 +16,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
 
-@FXMLView
+@Component
 public class ScreenView extends AbstractTagDroppableView<ScreenViewModel> {
 	
 	@FXML
@@ -38,10 +36,6 @@ public class ScreenView extends AbstractTagDroppableView<ScreenViewModel> {
 	
 	@FXML
 	private TilePane tags;
-	
-	public ScreenView(ApplicationContext applicationContext, ScreenViewModel viewModel, VideoManagerParameters applicationParameters) {
-		super(applicationContext, viewModel, applicationParameters);
-	}
 	
 	@FXML
 	protected void initialize() {

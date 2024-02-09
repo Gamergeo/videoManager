@@ -2,7 +2,7 @@ package com.gamergeo.project.videomanager.gui.viewmodel;
 
 import org.springframework.stereotype.Component;
 
-import com.gamergeo.lib.gamlib.javafx.viewmodel.AbstractChildViewModel;
+import com.gamergeo.lib.viewmodelfx.viewmodel.DefaultChildViewModel;
 
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
@@ -10,7 +10,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 @Component
-public class SearchViewModel extends AbstractChildViewModel<SceneViewModel> {
+public class SearchViewModel extends DefaultChildViewModel<SceneViewModel> {
 	
 	private final StringProperty title = new SimpleStringProperty();
 	private final DoubleProperty rating = new SimpleDoubleProperty();

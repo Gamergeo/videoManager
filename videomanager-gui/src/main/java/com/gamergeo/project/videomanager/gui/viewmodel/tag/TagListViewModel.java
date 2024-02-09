@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
-import com.gamergeo.lib.gamlib.javafx.viewmodel.AbstractChildViewModel;
+import com.gamergeo.lib.viewmodelfx.viewmodel.DefaultChildViewModel;
 import com.gamergeo.project.videomanager.gui.viewmodel.SceneViewModel;
 import com.gamergeo.project.videomanager.model.Tag;
 import com.gamergeo.project.videomanager.service.TagService;
@@ -15,7 +15,7 @@ import javafx.collections.ObservableList;
 import javafx.scene.input.MouseEvent;
 
 @Component
-public class TagListViewModel extends AbstractChildViewModel<SceneViewModel>{
+public class TagListViewModel extends DefaultChildViewModel<SceneViewModel>{
 
 	private final TagService tagService;
 	

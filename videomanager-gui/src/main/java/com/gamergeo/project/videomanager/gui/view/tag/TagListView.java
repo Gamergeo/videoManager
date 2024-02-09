@@ -1,9 +1,7 @@
 package com.gamergeo.project.videomanager.gui.view.tag;
 
-import org.springframework.context.ApplicationContext;
+import org.springframework.stereotype.Component;
 
-import com.gamergeo.lib.gamlib.javafx.view.FXMLView;
-import com.gamergeo.project.videomanager.gui.VideoManagerParameters;
 import com.gamergeo.project.videomanager.gui.viewmodel.tag.TagListViewModel;
 import com.gamergeo.project.videomanager.model.Tag;
 
@@ -13,7 +11,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
 
-@FXMLView
+@Component
 public class TagListView extends AbstractTagParentView<TagListViewModel> {
 	
 	@FXML
@@ -21,10 +19,6 @@ public class TagListView extends AbstractTagParentView<TagListViewModel> {
 	
 	@FXML
 	private TilePane list;
-	
-	public TagListView(ApplicationContext applicationContext, TagListViewModel viewModel, VideoManagerParameters applicationParameters) {
-		super(applicationContext, viewModel, applicationParameters);
-	}
 	
 	@FXML
 	protected void initialize() {

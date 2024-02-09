@@ -1,18 +1,17 @@
 package com.gamergeo.project.videomanager.gui.view;
 
 import org.controlsfx.control.Rating;
-import org.springframework.context.ApplicationContext;
+import org.springframework.stereotype.Component;
 
-import com.gamergeo.lib.gamlib.javafx.view.AbstractFXMLView;
-import com.gamergeo.lib.gamlib.javafx.view.FXMLView;
+import com.gamergeo.lib.viewmodelfx.view.FXMLView;
 import com.gamergeo.project.videomanager.gui.viewmodel.SearchViewModel;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.TilePane;
 
-@FXMLView
-public class SearchView extends AbstractFXMLView<SearchViewModel> {
+@Component
+public class SearchView extends FXMLView<SearchViewModel> {
 
 	@FXML
 	public TextField title;
@@ -25,10 +24,6 @@ public class SearchView extends AbstractFXMLView<SearchViewModel> {
 	
 	@FXML
 	public TilePane withoutTags;
-	
-	public SearchView(ApplicationContext applicationContext, SearchViewModel viewModel) {
-		super(applicationContext, viewModel);
-	}
 	
 	@FXML
 	private void initialize() {

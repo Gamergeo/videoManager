@@ -1,29 +1,24 @@
 	package com.gamergeo.project.videomanager.gui.view.tag;
 
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
-import com.gamergeo.lib.gamlib.javafx.view.AbstractFXMLView;
-import com.gamergeo.lib.gamlib.javafx.view.FXMLView;
+import com.gamergeo.lib.viewmodelfx.view.FXMLView;
 import com.gamergeo.project.videomanager.gui.viewmodel.tag.TagViewModel;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 
-@FXMLView
+@Component
 @Scope("prototype")
-public class TagView extends AbstractFXMLView<TagViewModel>{
+public class TagView extends FXMLView<TagViewModel>{
 	
 	@FXML
 	private BorderPane root;
 	
 	@FXML
 	private Label label;
-	
-	public TagView(ApplicationContext applicationContext, TagViewModel viewModel) {
-		super(applicationContext, viewModel);
-	}
 	
 	@FXML
 	private void initialize() { 

@@ -4,7 +4,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Component;
 
-import com.gamergeo.lib.gamlib.javafx.viewmodel.AbstractChildViewModel;
+import com.gamergeo.lib.viewmodelfx.viewmodel.DefaultChildViewModel;
 import com.gamergeo.project.videomanager.gui.VideoManagerApplication;
 import com.gamergeo.project.videomanager.gui.viewmodel.tag.TagDroppableViewModel;
 import com.gamergeo.project.videomanager.model.Tag;
@@ -25,7 +25,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Component
 @Slf4j
-public class ScreenViewModel extends AbstractChildViewModel<SceneViewModel> implements TagDroppableViewModel {
+public class ScreenViewModel extends DefaultChildViewModel<SceneViewModel> implements TagDroppableViewModel {
 
 	private final VideoService videoService;
 	private final UrlPatternService urlService;

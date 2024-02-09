@@ -52,5 +52,6 @@ So, View are forced into 1-1 relation with ViewModel. Not all viewmodels have to
      - 0.7.3 : Save video / Tag video
      - 0.7.4 : Improve engine and features
 Not ok yet, there is some architecture problems. We need to have proper interface for each viewmodel to simplify
+    - 0.7.5 : CrudService / Refactoring
 
 

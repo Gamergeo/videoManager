@@ -1,6 +1,6 @@
 package com.gamergeo.project.videomanager.gui.viewmodel.tag;
 
-import com.gamergeo.lib.gamlib.javafx.viewmodel.ViewModel;
+import com.gamergeo.lib.viewmodelfx.viewmodel.ViewModel;
 
 public interface TagDroppableViewModel extends ViewModel {
 

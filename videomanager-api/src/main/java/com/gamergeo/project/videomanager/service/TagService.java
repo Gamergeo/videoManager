@@ -1,17 +1,32 @@
-package com.gamergeo.project.videomanager.service;
+	package com.gamergeo.project.videomanager.service;
 
 import java.util.List;
+import java.util.stream.Collectors;
+
+import org.springframework.stereotype.Service;
 
 import com.gamergeo.project.videomanager.model.Tag;
+import com.gamergeo.project.videomanager.repository.TagRepository;
 
-public interface TagService {
+import jakarta.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
+
+@Service
+@RequiredArgsConstructor
+public class TagService extends ApplicationCrudService<Tag> {
 	
-	List<Tag> findAll();
+	private final TagRepository repository;
+	
+	@Override
+	public TagRepository getRepository() {
+		return repository;
+	}
 
-	Tag findById(Long id);
-
-	List<Tag> findAllById(List<Long> ids);
-
-	List<Long> findAllIds();
+	@Transactional
+	public List<Long> findAllIds() {
+		return findAll().stream()
+                .map(Tag::getId)
+                .collect(Collectors.toList());
+	}
 
 }

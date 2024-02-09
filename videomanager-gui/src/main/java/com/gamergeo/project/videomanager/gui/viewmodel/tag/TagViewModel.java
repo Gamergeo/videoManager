@@ -3,8 +3,7 @@ package com.gamergeo.project.videomanager.gui.viewmodel.tag;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-import com.gamergeo.lib.gamlib.javafx.viewmodel.AbstractChildViewModel;
-import com.gamergeo.project.videomanager.gui.VideoManagerParameters;
+import com.gamergeo.lib.viewmodelfx.viewmodel.DefaultChildViewModel;
 import com.gamergeo.project.videomanager.model.Tag;
 
 import javafx.beans.property.BooleanProperty;
@@ -14,23 +13,17 @@ import javafx.beans.property.StringProperty;
 
 @Component
 @Scope("prototype")
-public class TagViewModel extends AbstractChildViewModel<TagListViewModel>{
+public class TagViewModel extends DefaultChildViewModel<TagListViewModel>{
 
-	protected final VideoManagerParameters applicationParameters;
-	
 	private Tag tag;
 	
 	private final StringProperty label = new SimpleStringProperty();
 	private final BooleanProperty selected = new SimpleBooleanProperty();
 	
-	public TagViewModel(VideoManagerParameters applicationParameters) {
-		this.applicationParameters = applicationParameters;
-	}
-	
 	@Override
 	public void init() {
 		super.init();
-		this.tag = applicationParameters.tag();
+		this.tag = getParameter(Tag.class);
 		label.bindBidirectional(this.tag.labelProperty());
 	}
 	

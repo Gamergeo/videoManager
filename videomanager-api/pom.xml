@@ -9,7 +9,7 @@
 	<parent>
 		<groupId>com.gamergeo.project</groupId>
 		<artifactId>videomanager</artifactId>
-		<version>0.7.4</version>
+		<version>0.7.5</version>
 	</parent>
 
 	<artifactId>videomanager-api</artifactId>
@@ -35,7 +35,7 @@
 		<!-- Gamergeo lib -->
 		<dependency>
 			<groupId>com.gamergeo.lib</groupId>
-			<artifactId>gamlib</artifactId>
+			<artifactId>viewmodelfx</artifactId>
 		</dependency>
 	</dependencies>
 </project>

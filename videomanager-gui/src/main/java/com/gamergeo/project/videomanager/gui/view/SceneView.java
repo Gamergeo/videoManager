@@ -1,9 +1,8 @@
 package com.gamergeo.project.videomanager.gui.view;
 
-import org.springframework.context.ApplicationContext;
+import org.springframework.stereotype.Component;
 
-import com.gamergeo.lib.gamlib.javafx.view.AbstractFXMLView;
-import com.gamergeo.lib.gamlib.javafx.view.FXMLView;
+import com.gamergeo.lib.viewmodelfx.view.FXMLView;
 import com.gamergeo.project.videomanager.gui.view.tag.TagListView;
 import com.gamergeo.project.videomanager.gui.viewmodel.SceneViewModel;
 
@@ -11,18 +10,14 @@ import javafx.fxml.FXML;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 
-@FXMLView
-public class SceneView extends AbstractFXMLView<SceneViewModel> {
+@Component
+public class SceneView extends FXMLView<SceneViewModel> {
 	
 	@FXML 
 	private HBox root;
 	
 	@FXML
 	private BorderPane main;
-	
-	public SceneView(ApplicationContext applicationContext, SceneViewModel viewModel) {
-		super(applicationContext, viewModel);
-	}
 	
 	@FXML
     public void initialize() {
@@ -33,4 +28,5 @@ public class SceneView extends AbstractFXMLView<SceneViewModel> {
     	
     	root.cursorProperty().bind(viewModel.cursorProperty());
 	}
+
 }

@@ -1,13 +1,9 @@
 package com.gamergeo.project.videomanager.repository;
 
-import java.util.List;
-
 import org.springframework.data.repository.CrudRepository;
 
 import com.gamergeo.project.videomanager.model.Tag;
 
-public interface TagDao extends CrudRepository<Tag, Long> {
-	
-	List<Tag> findAll();
+public interface TagRepository extends CrudRepository<Tag, Long> {
 	
 }

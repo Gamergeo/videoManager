@@ -2,7 +2,7 @@ package com.gamergeo.project.videomanager.gui.viewmodel;
 
 import org.springframework.stereotype.Component;
 
-import com.gamergeo.lib.gamlib.javafx.viewmodel.AbstractViewModel;
+import com.gamergeo.lib.viewmodelfx.viewmodel.DefaultViewModel;
 import com.gamergeo.project.videomanager.gui.viewmodel.tag.TagListViewModel;
 import com.gamergeo.project.videomanager.model.Tag;
 import com.gamergeo.project.videomanager.model.Video;
@@ -15,7 +15,7 @@ import javafx.collections.ObservableList;
 import javafx.scene.Cursor;
 
 @Component
-public class SceneViewModel extends AbstractViewModel {
+public class SceneViewModel extends DefaultViewModel {
 	
 	private final SearchViewModel search;
 	private final ScreenViewModel screen;

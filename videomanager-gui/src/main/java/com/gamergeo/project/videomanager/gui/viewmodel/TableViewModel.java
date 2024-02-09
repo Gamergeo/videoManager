@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Component;
 
-import com.gamergeo.lib.gamlib.javafx.viewmodel.AbstractChildViewModel;
+import com.gamergeo.lib.viewmodelfx.viewmodel.DefaultChildViewModel;
 import com.gamergeo.project.videomanager.model.Video;
 import com.gamergeo.project.videomanager.service.VideoService;
 
@@ -19,7 +19,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 @Component
-public class TableViewModel extends AbstractChildViewModel<SceneViewModel> {
+public class TableViewModel extends DefaultChildViewModel<SceneViewModel> {
 	
 	private VideoService videoService;
 	
