@@ -10,7 +10,7 @@ import com.gamergeo.project.videomanager.model.Tag;
 import javafx.collections.ObservableList;
 import javafx.scene.layout.Pane;
 
-public abstract class AbstractTagParentView<VM extends ViewModel> extends FXMLView<VM> {
+public abstract class TagParentView<VM extends ViewModel> extends FXMLView<VM> {
 
 	protected void initialize() {
 		addSimpleListChangeListener(getTags(), this::refreshTags);
@@ -26,4 +26,4 @@ public abstract class AbstractTagParentView<VM extends ViewModel> extends FXMLVi
 
 	protected abstract Pane getTagPane();
 	protected abstract ObservableList<Tag> getTags();
-}
+}	

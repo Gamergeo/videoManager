@@ -1,10 +1,12 @@
 package com.gamergeo.project.videomanager.gui.viewmodel;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Component;
 
-import com.gamergeo.lib.viewmodelfx.viewmodel.DefaultChildViewModel;
+import com.gamergeo.lib.viewmodelfx.viewmodel.AbstractChildViewModel;
 import com.gamergeo.project.videomanager.gui.VideoManagerApplication;
 import com.gamergeo.project.videomanager.gui.viewmodel.tag.TagDroppableViewModel;
 import com.gamergeo.project.videomanager.model.Tag;
@@ -25,7 +27,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Component
 @Slf4j
-public class ScreenViewModel extends DefaultChildViewModel<SceneViewModel> implements TagDroppableViewModel {
+public class ScreenViewModel extends TagDroppableViewModel {
 
 	private final VideoService videoService;
 	private final UrlPatternService urlService;
@@ -121,15 +123,30 @@ public class ScreenViewModel extends DefaultChildViewModel<SceneViewModel> imple
 	}
 
 	@Override
-	public void onDragOver() {
-		parent.setDroppable(true);
+	public void onMouseDragReleased() {
+		super.onMouseDragReleased();
+		
+		// Add dropped tag to video
+		if (video != null) {
+		
+			ObservableList<Tag> tags = parent.getSelectedTags();
+			
+			if (tags.isEmpty()) {
+				return;
+			}
+			
+			// Add tag not present
+			tags.stream()
+		    	.filter(tag -> !videoTags.contains(tag))
+		    	.forEach(videoTags::add);
+		}
 	}
-
+	
 	@Override
-	public void onDragDropped() {
-		// TODO Auto-generated method stub
+	public void onMouseDragOver() {
+		getParent().setDroppable(video != null);
 	}
-
+	
 	public final StringProperty titleProperty() {
 		return this.title;
 	}

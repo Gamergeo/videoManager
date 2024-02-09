@@ -2,7 +2,7 @@ package com.gamergeo.project.videomanager.gui.viewmodel;
 
 import org.springframework.stereotype.Component;
 
-import com.gamergeo.lib.viewmodelfx.viewmodel.DefaultViewModel;
+import com.gamergeo.lib.viewmodelfx.viewmodel.AbstractViewModel;
 import com.gamergeo.project.videomanager.gui.viewmodel.tag.TagListViewModel;
 import com.gamergeo.project.videomanager.model.Tag;
 import com.gamergeo.project.videomanager.model.Video;
@@ -15,7 +15,7 @@ import javafx.collections.ObservableList;
 import javafx.scene.Cursor;
 
 @Component
-public class SceneViewModel extends DefaultViewModel {
+public class SceneViewModel extends AbstractViewModel {
 	
 	private final SearchViewModel search;
 	private final ScreenViewModel screen;
@@ -24,7 +24,9 @@ public class SceneViewModel extends DefaultViewModel {
 	
 	private final ObjectProperty<Video> selectedVideo = new SimpleObjectProperty<Video>();
 	private final ObjectProperty<Cursor> cursor = new SimpleObjectProperty<Cursor>();
-	private final BooleanProperty droppable = new SimpleBooleanProperty(); 
+	private final BooleanProperty dragDetected = new SimpleBooleanProperty();
+	private final BooleanProperty droppable = new SimpleBooleanProperty();
+	
 	
 	public SceneViewModel(SearchViewModel search, ScreenViewModel screen, TableViewModel table, TagListViewModel tagList) {
 		this.search = search;
@@ -41,22 +43,26 @@ public class SceneViewModel extends DefaultViewModel {
       	addSimpleChangeListener(table.selectedRowProperty(), (newValue) -> rowSelected(newValue));
       	
       	// Bind droppable and cursor
-      	addSimpleChangeListener(droppable.asObject(), this::onDragOver);
+      	addSimpleChangeListener(droppable, this::onDragOver);
 	}
 	
 	public void onDragDetected() {
+		setDragDetected(true);
 		setCursor(Cursor.CLOSED_HAND);
 	}
 	
 	public void onDragOver(Boolean droppable) {
-		if (droppable) {
-			setCursor(Cursor.OPEN_HAND);
-		} else {
-			setCursor(Cursor.CLOSED_HAND);
+		if (isDragDetected()) {
+			if (droppable) {
+				setCursor(Cursor.CLOSED_HAND);
+			} else {
+				setCursor(Cursor.OPEN_HAND);
+			}
 		}
 	}
 	
 	public void onDragDropped() {
+		setDragDetected(false);
 		setCursor(Cursor.DEFAULT);
 	}
 	
@@ -113,5 +119,16 @@ public class SceneViewModel extends DefaultViewModel {
 	public final void setDroppable(final boolean droppable) {
 		this.droppableProperty().set(droppable);
 	}
+
+	public final BooleanProperty dragDetectedProperty() {
+		return this.dragDetected;
+	}
+
+	public final boolean isDragDetected() {
+		return this.dragDetectedProperty().get();
+	}
 	
+	public final void setDragDetected(final boolean dragDetected) {
+		this.dragDetectedProperty().set(dragDetected);
+	}
 }

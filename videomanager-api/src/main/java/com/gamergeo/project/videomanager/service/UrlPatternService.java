@@ -32,7 +32,7 @@ public class UrlPatternService extends ApplicationCrudService<UrlPattern>{
 	@Transactional
 	public String getGoogleUrl(String title) {
 	    String query = StreamSupport.stream(super.findAll().spliterator(), false)
-	    					   .map(UrlPattern::getText)
+	    					   .map(UrlPattern::getPattern)
 	                           .reduce(title, (currentUrl, pattern) -> currentUrl.replace(pattern, ""));
 	    
 	    String encodedQuery;

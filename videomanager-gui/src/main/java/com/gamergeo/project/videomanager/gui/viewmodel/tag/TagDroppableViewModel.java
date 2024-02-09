@@ -1,12 +1,18 @@
 package com.gamergeo.project.videomanager.gui.viewmodel.tag;
 
-import com.gamergeo.lib.viewmodelfx.viewmodel.ViewModel;
+import com.gamergeo.project.videomanager.gui.viewmodel.SceneViewModel;
 
-public interface TagDroppableViewModel extends ViewModel {
+public abstract class TagDroppableViewModel extends TagParentViewModel<SceneViewModel> {
 
-	public void onDragOver();
+	public void onMouseDragOver() {
+		getParent().setDroppable(true);
+	}
 	
-	public void onDragDropped();
+	public void onMouseDragExited() {
+		getParent().setDroppable(false);
+	}
 	
-//	public void dragOverProperty();
+	public void onMouseDragReleased() {
+		getParent().onDragDropped();
+	}
 }

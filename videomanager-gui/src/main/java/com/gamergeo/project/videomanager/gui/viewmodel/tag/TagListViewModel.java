@@ -5,24 +5,23 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
-import com.gamergeo.lib.viewmodelfx.viewmodel.DefaultChildViewModel;
 import com.gamergeo.project.videomanager.gui.viewmodel.SceneViewModel;
 import com.gamergeo.project.videomanager.model.Tag;
 import com.gamergeo.project.videomanager.service.TagService;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.input.MouseEvent;
 
 @Component
-public class TagListViewModel extends DefaultChildViewModel<SceneViewModel>{
+public class TagListViewModel extends TagParentViewModel<SceneViewModel> {
 
 	private final TagService tagService;
 	
 	private final List<Tag> allTags = new ArrayList<Tag>();
 	private final ObservableList<Tag> displayedTags = FXCollections.observableArrayList();
+	private final ObservableList<Tag> selectedTags = FXCollections.observableArrayList();
 	
-	private final List<TagViewModel> tagViewModel = new ArrayList<TagViewModel>();
+//	private final List<TagViewModel> tagViewModel = new ArrayList<TagViewModel>();
 	
 	public TagListViewModel(TagService tagService) {
 		this.tagService = tagService;
@@ -38,16 +37,15 @@ public class TagListViewModel extends DefaultChildViewModel<SceneViewModel>{
 		return displayedTags;
 	}
 	
-	public void onDragDetected(MouseEvent event) {
+	public void onDragDetected() {
 		parent.onDragDetected();
 	}
-	
-	private final ObservableList<Tag> selectedTags = FXCollections.observableArrayList();
 	
 	/**
 	 * Select / Unselect a tag
 	 * @return true if tag is selected, false if unselected
 	 */
+	@Override
 	public boolean onTagClick(Tag tag) {
 		if (selectedTags.contains(tag)) {
 			selectedTags.remove(tag);

@@ -4,36 +4,26 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import jakarta.persistence.Access;
-import jakarta.persistence.AccessType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.ListProperty;
-import javafx.beans.property.LongProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleListProperty;
-import javafx.beans.property.SimpleLongProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 
 @Entity
-@Table
-@Access(AccessType.PROPERTY)
-public class Video {
+public class Video extends Model {
 
-	private LongProperty id = new SimpleLongProperty();
 	private StringProperty title = new SimpleStringProperty();
     private StringProperty url = new SimpleStringProperty();
     private BooleanProperty disabled = new SimpleBooleanProperty();
@@ -43,15 +33,6 @@ public class Video {
     private List<Tag> tags = new ArrayList<Tag>();
     private ListProperty<Tag> _tags = new SimpleListProperty<Tag>(FXCollections.observableArrayList());
     
-//    @Transient
-//    private ObservableList<Tag> tags = FXCollections.observableArrayList();
-
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	public long getId() {
-		return id.get();
-	}
-
 	@Column(length = 2000)
 	public String getTitle() {
 		return this.title.get();
@@ -65,19 +46,10 @@ public class Video {
     @ManyToMany(fetch = FetchType.EAGER)
 	public List<Tag> getTags() {
     	return tags;
-//		return new ArrayList<Tag>(tags);
 	}
 
 	public boolean isDisabled() {
 		return this.disabledProperty().get();
-	}
-	
-	public void setId(long id) {
-		this.id.set(id);
-	}
-	
-	public LongProperty idProperty() {
-		return this.id;
 	}
 
 	public void setTitle(String title) {
@@ -133,6 +105,7 @@ public class Video {
 		this._tags.setAll(tags);
 	}
 	
+	@Transient
 	public ListProperty<Tag> tagsProperty() {
 		return this._tags;
 	}

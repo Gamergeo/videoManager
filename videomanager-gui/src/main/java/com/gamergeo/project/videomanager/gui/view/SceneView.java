@@ -7,6 +7,7 @@ import com.gamergeo.project.videomanager.gui.view.tag.TagListView;
 import com.gamergeo.project.videomanager.gui.viewmodel.SceneViewModel;
 
 import javafx.fxml.FXML;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 
@@ -27,6 +28,11 @@ public class SceneView extends FXMLView<SceneViewModel> {
     	root.getChildren().add(getRoot(TagListView.class));
     	
     	root.cursorProperty().bind(viewModel.cursorProperty());
+    	
+    	root.setOnMouseDragReleased(this::onDragDropped);
 	}
-
+	
+	private void onDragDropped(MouseEvent e) {
+		viewModel.onDragDropped();
+	}
 }

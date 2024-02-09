@@ -4,7 +4,7 @@ import org.controlsfx.control.Rating;
 import org.springframework.stereotype.Component;
 
 import com.gamergeo.lib.viewmodelfx.view.ViewUtils;
-import com.gamergeo.project.videomanager.gui.view.tag.AbstractTagDroppableView;
+import com.gamergeo.project.videomanager.gui.view.tag.TagDroppableView;
 import com.gamergeo.project.videomanager.gui.viewmodel.ScreenViewModel;
 import com.gamergeo.project.videomanager.model.Tag;
 
@@ -17,7 +17,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
 
 @Component
-public class ScreenView extends AbstractTagDroppableView<ScreenViewModel> {
+public class ScreenView extends TagDroppableView<ScreenViewModel> {
 	
 	@FXML
 	private BorderPane root;

@@ -3,7 +3,7 @@ package com.gamergeo.project.videomanager.gui.viewmodel.tag;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-import com.gamergeo.lib.viewmodelfx.viewmodel.DefaultChildViewModel;
+import com.gamergeo.lib.viewmodelfx.viewmodel.AbstractChildViewModel;
 import com.gamergeo.project.videomanager.model.Tag;
 
 import javafx.beans.property.BooleanProperty;
@@ -13,7 +13,7 @@ import javafx.beans.property.StringProperty;
 
 @Component
 @Scope("prototype")
-public class TagViewModel extends DefaultChildViewModel<TagListViewModel>{
+public class TagViewModel extends AbstractChildViewModel<TagParentViewModel> {
 
 	private Tag tag;
 	

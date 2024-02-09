@@ -1,13 +1,8 @@
 package com.gamergeo.project.videomanager.gui.view;
 
-import java.util.List;
-
-import javax.swing.text.html.HTML.Tag;
-
 import org.springframework.stereotype.Component;
 
 import com.gamergeo.lib.viewmodelfx.view.FXMLView;
-import com.gamergeo.project.videomanager.gui.cell.RatingCellFactory;
 import com.gamergeo.project.videomanager.gui.viewmodel.TableRowViewModel;
 import com.gamergeo.project.videomanager.gui.viewmodel.TableViewModel;
 
@@ -30,24 +25,17 @@ public class TableView extends FXMLView<TableViewModel> {
     private TableColumn<TableRowViewModel, String> titleColumn;
     
     @FXML
-    private TableColumn<TableRowViewModel, List<Tag>> tagsColumn;
+    private TableColumn<TableRowViewModel, String> tagsColumn;
     
     @FXML
-    private TableColumn<TableRowViewModel, Double> ratingColumn;
+    private TableColumn<TableRowViewModel, String> ratingColumn;
     
     @FXML
     public void initialize() {
 		titleColumn.setCellValueFactory(new PropertyValueFactory<TableRowViewModel, String>("title"));
-	  	ratingColumn.setCellValueFactory(new PropertyValueFactory<TableRowViewModel, Double>("rating"));
-	  	ratingColumn.setCellFactory(new RatingCellFactory());
+	  	ratingColumn.setCellValueFactory(new PropertyValueFactory<TableRowViewModel, String>("rating"));
+	  	tagsColumn.setCellValueFactory(new PropertyValueFactory<TableRowViewModel, String>("tags"));
 		
-//      	tagsColumn.setCellValueFactory(cellData -> cellData.getValue().tagsProperty());
-//      	tagsColumn.setCellFactory(new TagListCellFactory());
-
-//      	titleColumn.setCellValueFactory(new PropertyValueFactory<VideoViewModelOld, String>("title"));
-//      	tagsColumn.setCellValueFactory(cellData -> cellData.getValue().tagsProperty());
-//      	tagsColumn.setCellFactory(new TagListCellFactory());
-      	
       	table.getSortOrder().add(titleColumn);
       	titleColumn.setSortType(TableColumn.SortType.ASCENDING);
       	
