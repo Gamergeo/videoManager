@@ -3,7 +3,10 @@ package com.gamergeo.project.videomanager.viewmodel;
 import org.springframework.stereotype.Component;
 
 import com.gamergeo.lib.viewmodelfx.view.FXUtils;
+import com.gamergeo.project.videomanager.model.Tag;
 import com.gamergeo.project.videomanager.model.Video;
+import com.gamergeo.project.videomanager.service.TagService;
+import com.gamergeo.project.videomanager.service.VideoService;
 import com.gamergeo.project.videomanager.viewmodel.tag.TagListViewModel;
 import com.gamergeo.project.videomanager.viewmodel.video.ScreenViewModel;
 import com.gamergeo.project.videomanager.viewmodel.video.SearchViewModel;
@@ -25,6 +28,9 @@ public class SceneViewModel implements ViewModel {
 	private TableViewModel table;
 	private TagListViewModel tagList;
 	
+	private final VideoService videoService;
+	private final TagService tagService;
+	
 	private final ObjectProperty<Video> selectedVideo = new SimpleObjectProperty<Video>();
 	private final ObjectProperty<Cursor> cursor = new SimpleObjectProperty<Cursor>();
 	
@@ -32,8 +38,10 @@ public class SceneViewModel implements ViewModel {
 	private final BooleanProperty dragInProgress = new SimpleBooleanProperty();
 	private final BooleanProperty dragReleased = new SimpleBooleanProperty();
 	
-	public SceneViewModel() {
-      	// Bind droppable and cursor
+	public SceneViewModel(VideoService videoService, TagService tagService) {
+      	this.videoService = videoService;
+      	this.tagService = tagService;
+		// Bind droppable and cursor
       	FXUtils.addSimpleChangeListener(droppable, this::onDragOver);
       	FXUtils.addSimpleChangeListener(dragReleased, this::onDragReleased);
 	}
@@ -77,7 +85,7 @@ public class SceneViewModel implements ViewModel {
 	}
 	
 	private void rowSelected(final TableRowViewModel selectedRow) {
-  		if (selectedVideo != null) {
+  		if (selectedVideo != null && selectedRow != null) {
   			selectedVideo.set(selectedRow.getVideo());
   		}
 	}
@@ -86,7 +94,25 @@ public class SceneViewModel implements ViewModel {
 		this.tagList = tagList;
 		
 		FXUtils.addSimpleChangeListener(tagList.dragDetectedProperty(), this::onDragDetected);
+		// Delete tag and refresh all
+		FXUtils.addSimpleChangeListener(tagList.tagToDeleteProperty(), this::deleteTag);
 	}
+	
+	/**
+	 * Dqelete tag and refresh videos
+	 */
+	public void deleteTag(Tag tag) {
+		
+		if (tag != null) {
+			Video selectedVideo = this.selectedVideo.get();
+			setSelectedVideo(null);
+			tagService.delete(tag);
+			tagList.setTagToDelete(null);
+			table.loadTable();
+			setSelectedVideo(videoService.refresh(selectedVideo));
+		}
+	}
+	
 	
 	public void onDragDetected(Boolean dragDetected) {
 		if (dragDetected) {

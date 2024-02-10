@@ -7,8 +7,8 @@
 
 <BorderPane fx:id="root" styleClass="tag-border-pane" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gamergeo.project.videomanager.view.tag.TagView">
 <!--   onMouseClicked="#onClick" onDragDetected="#dragTag"  -->
- <right>
-      <Button mnemonicParsing="false" text="x" BorderPane.alignment="CENTER" />
+   <right>
+      <Button fx:id="delete" mnemonicParsing="false" text="x" BorderPane.alignment="CENTER" />
    </right>
    <center>
       <Label fx:id="label" alignment="CENTER" BorderPane.alignment="CENTER" />

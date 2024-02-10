@@ -1,7 +1,5 @@
 package com.gamergeo.project.videomanager.viewmodel.video;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Component;
@@ -11,15 +9,16 @@ import com.gamergeo.project.videomanager.model.Tag;
 import com.gamergeo.project.videomanager.model.Video;
 import com.gamergeo.project.videomanager.service.UrlPatternService;
 import com.gamergeo.project.videomanager.service.VideoService;
-import com.gamergeo.project.videomanager.viewmodel.tag.TagParentViewModel;
-import com.gamergeo.project.videomanager.viewmodel.tag.TagViewModel;
+import com.gamergeo.project.videomanager.viewmodel.tag.TagDroppableViewModel;
 
 import de.saxsys.mvvmfx.ViewModel;
 import javafx.application.HostServices;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.ListProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleListProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
@@ -29,12 +28,11 @@ import lombok.extern.slf4j.Slf4j;
 
 @Component
 @Slf4j
-public class ScreenViewModel implements ViewModel, TagParentViewModel {
+public class ScreenViewModel implements ViewModel, TagDroppableViewModel {
 
 	private final VideoService videoService;
 	private final UrlPatternService urlService;
 	private final HostServices hostServices;
-	private final List<TagViewModel> tagViewModels = new ArrayList<TagViewModel>();
 	
 	private Video video;
 
@@ -42,7 +40,7 @@ public class ScreenViewModel implements ViewModel, TagParentViewModel {
 	private final StringProperty title = new SimpleStringProperty();
 	private final DoubleProperty rating = new SimpleDoubleProperty();
 	private final StringProperty url = new SimpleStringProperty();
-	private final ObservableList<Tag> renderedTags = FXCollections.observableArrayList();
+	private final ListProperty<Tag> renderedTags = new SimpleListProperty<Tag>(FXCollections.observableArrayList());
 	
 	/** drag & drop properties */
 	private final BooleanProperty droppable = new SimpleBooleanProperty();
@@ -60,9 +58,6 @@ public class ScreenViewModel implements ViewModel, TagParentViewModel {
 
 		// Semi rating + save
 		rating.addListener((observable, oldValue, newValue) -> saveRating(oldValue.doubleValue(), newValue.doubleValue()));
-		
-		// Save on tag change
-		FXUtils.addSimpleListChangeListener(renderedTags, this::saveTag);
 	}
 	
 	public void render(Video oldValue, Video newValue) {
@@ -86,8 +81,12 @@ public class ScreenViewModel implements ViewModel, TagParentViewModel {
 			title.bindBidirectional(video.titleProperty());
 			rating.bindBidirectional(video.ratingProperty());
 			url.bindBidirectional(video.urlProperty());
+			renderedTags.bindContent(video.tagsProperty());
+			
+			// Refresh on tags change
+//			FXUtils.addEmptyChangeListener(video.tagsProperty(), () -> renderedTags.bindContent(video.tagsProperty()));
+			
 			visible.set(true);
-			renderedTags.setAll(video.getTags());
 		}
 	}
 	
@@ -95,6 +94,7 @@ public class ScreenViewModel implements ViewModel, TagParentViewModel {
 		title.unbindBidirectional(video.titleProperty());
 		rating.unbindBidirectional(video.ratingProperty());
 		url.unbindBidirectional(video.urlProperty());
+		renderedTags.unbindContent(video.tagsProperty());
 	}
 	
 	/**
@@ -115,11 +115,6 @@ public class ScreenViewModel implements ViewModel, TagParentViewModel {
 	    	video.setRating(roundedValue);
 			videoService.save(video);
 		}
-	}
-	
-	private void saveTag(ObservableList<Tag> tags) {
-		video.setTags(tags.stream().collect(Collectors.toList()));
-		videoService.save(video);
 	}
 	
 	public void onMouseDragOver() {
@@ -145,18 +140,16 @@ public class ScreenViewModel implements ViewModel, TagParentViewModel {
 			
 			// Add tag not present
 			tags.stream()
-		    	.filter(tag -> !renderedTags.contains(tag))
-		    	.forEach(renderedTags::add);
+		    	.filter(tag -> !video.tagsProperty().contains(tag))
+		    	.forEach(video.getTags()::add);
+			
+			videoService.save(video);
 		}
 	}
 	
-	/**
-	 * Init child view model list / bind 
-	 */
-	public void initTagViewModel(TagViewModel tagViewModel, Tag tag) {
-		tagViewModels.add(tagViewModel);
-		tagViewModel.setTag(tag);
-		tagViewModel.setSelectable(false);
+	public void deleteTag(Tag tag) {
+		video.tagsProperty().remove(tag);
+		videoService.save(video);
 	}
 	
 	public final StringProperty titleProperty() {
@@ -231,8 +224,16 @@ public class ScreenViewModel implements ViewModel, TagParentViewModel {
 		this.dragReleasedProperty().set(dragReleased);
 	}
 
-	@Override
-	public ObservableList<Tag> getRenderedTags() {
-		return renderedTags;
+	public final ListProperty<Tag> renderedTagsProperty() {
+		return this.renderedTags;
 	}
+
+	public final ObservableList<Tag> getRenderedTags() {
+		return this.renderedTagsProperty().get();
+	}
+	
+	public final void setRenderedTags(final ObservableList<Tag> renderedTags) {
+		this.renderedTagsProperty().set(renderedTags);
+	}
+
 }

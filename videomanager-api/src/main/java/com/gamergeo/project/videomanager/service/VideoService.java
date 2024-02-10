@@ -50,4 +50,12 @@ public class VideoService extends ApplicationCrudService<Video> {
 	    int randomNumber = new Random().nextInt(videos.size());
 	    return videos.get(randomNumber);
 	}
+
+	public Video refresh(Video video) {
+		return repository.findById(video.getId()).orElseThrow();
+	}
+	
+//	public List<Video> findByTag(Tag tag) {
+//		return repository.findByTag(tag);
+//	}
 }

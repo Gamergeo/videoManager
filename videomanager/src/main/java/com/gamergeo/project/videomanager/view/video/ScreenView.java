@@ -7,7 +7,8 @@ import org.controlsfx.control.Rating;
 import org.springframework.stereotype.Component;
 
 import com.gamergeo.lib.viewmodelfx.view.FXUtils;
-import com.gamergeo.project.videomanager.helper.TagParentHelper;
+import com.gamergeo.project.videomanager.view.tag.TagDroppableView;
+import com.gamergeo.project.videomanager.viewmodel.tag.TagDroppableViewModel;
 import com.gamergeo.project.videomanager.viewmodel.video.ScreenViewModel;
 
 import de.saxsys.mvvmfx.FxmlView;
@@ -16,12 +17,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
 
 @Component
-public class ScreenView implements FxmlView<ScreenViewModel>, Initializable {
+public class ScreenView implements FxmlView<ScreenViewModel>, Initializable, TagDroppableView {
 	
 	@FXML
 	private BorderPane root;
@@ -44,12 +45,6 @@ public class ScreenView implements FxmlView<ScreenViewModel>, Initializable {
     @InjectViewModel
     private ScreenViewModel viewModel;    
     
-    private final TagParentHelper tagParentHelper;
-    
-	public ScreenView(TagParentHelper tagParentHelper) {
-		this.tagParentHelper = tagParentHelper;
-	}
-	
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 		title.textProperty().bindBidirectional(viewModel.titleProperty());
@@ -64,25 +59,24 @@ public class ScreenView implements FxmlView<ScreenViewModel>, Initializable {
 		this.url.visibleProperty().bind(viewModel.visibleProperty());
 		rating.visibleProperty().bind(viewModel.visibleProperty());
 		
-		root.setOnMouseDragOver(this::onMouseDragOver);
-		root.setOnMouseDragExited(this::onMouseDragExited);
-		root.setOnMouseDragReleased(this::onMouseDragReleased);	
-		
-		tagParentHelper.initTags(tags, viewModel);
+		renderTags(false);
+		setOnMouseDrag();
 	}
 
-	public void onMouseDragOver(MouseEvent event) {
-		viewModel.onMouseDragOver();
-		event.consume();
+	@Override
+	public Pane getTagPane() {
+		return tags;
 	}
 
-	public void onMouseDragExited(MouseEvent event) {
-		viewModel.onMouseDragExited();
-		event.consume();
+	@Override
+	public TagDroppableViewModel getViewModel() {
+		return viewModel;
 	}
 
-	public void onMouseDragReleased(MouseEvent event) {
-		viewModel.setDragReleased(true);
-		event.consume();
+	@Override
+	public Pane getDropPane() {
+		return root;
 	}
+
+
 }

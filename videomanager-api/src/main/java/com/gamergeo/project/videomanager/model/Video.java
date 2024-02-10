@@ -1,14 +1,12 @@
 package com.gamergeo.project.videomanager.model;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.Transient;
+import jakarta.persistence.OneToMany;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.ListProperty;
@@ -30,8 +28,7 @@ public class Video extends Model {
     private final ObjectProperty<LocalDate> addedDate = new SimpleObjectProperty<>();
     private final DoubleProperty rating = new SimpleDoubleProperty();
     
-    private List<Tag> tags = new ArrayList<Tag>();
-    private ListProperty<Tag> _tags = new SimpleListProperty<Tag>(FXCollections.observableArrayList());
+    private ListProperty<Tag> tags = new SimpleListProperty<Tag>(FXCollections.observableArrayList());
     
 	@Column(length = 2000)
 	public String getTitle() {
@@ -43,9 +40,9 @@ public class Video extends Model {
 		return this.urlProperty().get();
 	}
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @OneToMany(fetch = FetchType.EAGER)
 	public List<Tag> getTags() {
-    	return tags;
+    	return tags.get();
 	}
 
 	public boolean isDisabled() {
@@ -100,13 +97,11 @@ public class Video extends Model {
 		this.ratingProperty().set(rating);
 	}
 	
-	public void setTags(List<Tag> tags) {
-		this.tags = tags;
-		this._tags.setAll(tags);
-	}
+    public void setTags(List<Tag> tags) {
+	   this.tags.set(FXCollections.observableArrayList(tags));
+    }
 	
-	@Transient
 	public ListProperty<Tag> tagsProperty() {
-		return this._tags;
+		return this.tags;
 	}
 }

@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import com.gamergeo.project.videomanager.VideoManagerException;
 import com.gamergeo.project.videomanager.model.Model;
+import com.gamergeo.project.videomanager.model.Video;
 import com.gamergeo.project.videomanager.util.ApplicationUtils;
 
 import jakarta.transaction.Transactional;
@@ -45,5 +46,7 @@ public abstract class ApplicationCrudService<T extends Model> implements CrudSer
 	public List<T> findAllById(List<Long> ids) {
 		return ApplicationUtils.toList(getRepository().findAllById(ids));
 	}
+
+
 
 }

@@ -13,6 +13,7 @@ import de.saxsys.mvvmfx.FxmlView;
 import de.saxsys.mvvmfx.InjectViewModel;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 
@@ -25,6 +26,9 @@ public class TagView implements FxmlView<TagViewModel>, Initializable {
 	
 	@FXML
 	private Label label;
+	
+	@FXML
+	private Button delete;
 
     @InjectViewModel
     private TagViewModel viewModel;
@@ -32,17 +36,19 @@ public class TagView implements FxmlView<TagViewModel>, Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		label.textProperty().bindBidirectional(viewModel.labelProperty());
-		root.setOnMouseClicked((event) -> viewModel.setClicked(true));
-		FXUtils.addSimpleChangeListener(viewModel.clickedProperty(), this::select);
+		delete.setOnAction((event) -> viewModel.setDeleted(true));
+		
+		// Select tag (click or drag)
+		root.setOnMouseClicked((event) -> viewModel.select());
+		FXUtils.addSimpleChangeListener(viewModel.selectedProperty(), this::select);
+		root.setOnDragDetected((event) -> viewModel.setSelected(true));
 	}
 	
 	private void select(boolean isSelected) {
-		if (viewModel.isSelectable()) {
-			if (isSelected) {
-				root.getStyleClass().add("tag-border-pane-selected");
-			} else {
-				root.getStyleClass().remove("tag-border-pane-selected");
-			}
+		if (isSelected) {
+			root.getStyleClass().add("tag-border-pane-selected");
+		} else {
+			root.getStyleClass().remove("tag-border-pane-selected");
 		}
 	}
 }

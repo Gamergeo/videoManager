@@ -2,14 +2,17 @@ package com.gamergeo.project.videomanager.viewmodel.tag;
 
 import com.gamergeo.project.videomanager.model.Tag;
 
+import javafx.beans.property.ListProperty;
 import javafx.collections.ObservableList;
 
 public interface TagParentViewModel {
 	
-	/**
-	 * Init child view model list / bind 
-	 */
-	public void initTagViewModel(TagViewModel tagViewModel, Tag tag);
-	
 	public ObservableList<Tag> getRenderedTags();
+	
+	public ListProperty<Tag> renderedTagsProperty();
+	
+	public void deleteTag(Tag tag);
+	
+	default public void selectTag(Tag tag, Boolean isSelected) {}
+	
 }

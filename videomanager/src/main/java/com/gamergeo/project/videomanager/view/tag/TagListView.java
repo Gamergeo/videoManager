@@ -5,8 +5,8 @@ import java.util.ResourceBundle;
 
 import org.springframework.stereotype.Component;
 
-import com.gamergeo.project.videomanager.helper.TagParentHelper;
 import com.gamergeo.project.videomanager.viewmodel.tag.TagListViewModel;
+import com.gamergeo.project.videomanager.viewmodel.tag.TagParentViewModel;
 
 import de.saxsys.mvvmfx.FxmlView;
 import de.saxsys.mvvmfx.InjectViewModel;
@@ -14,10 +14,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
 
 @Component
-public class TagListView implements FxmlView<TagListViewModel>, Initializable {
+public class TagListView implements FxmlView<TagListViewModel>, Initializable, TagParentView {
 	
 	@FXML
 	private TextField search;
@@ -28,15 +29,9 @@ public class TagListView implements FxmlView<TagListViewModel>, Initializable {
     @InjectViewModel
     private TagListViewModel viewModel;
     
-    private final TagParentHelper tagParentHelper;
-    
-	public TagListView(TagParentHelper tagParentHelper) {
-		this.tagParentHelper = tagParentHelper;
-	}
-
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		tagParentHelper.initTags(list, viewModel);
+		renderTags(true);
 		list.setOnDragDetected(this::onDragDetected);
 	}
 	
@@ -44,5 +39,15 @@ public class TagListView implements FxmlView<TagListViewModel>, Initializable {
 		list.startFullDrag();
 		viewModel.setDragDetected(true);
 		event.consume();
+	}
+
+	@Override
+	public TagParentViewModel getViewModel() {
+		return viewModel;
+	}
+
+	@Override
+	public Pane getTagPane() {
+		return list;
 	}
 }

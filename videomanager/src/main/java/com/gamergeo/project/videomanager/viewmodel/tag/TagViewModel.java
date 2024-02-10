@@ -19,8 +19,9 @@ public class TagViewModel implements ViewModel {
 	private Tag tag;
 	
 	private final StringProperty label = new SimpleStringProperty();
-	private final BooleanProperty clicked = new SimpleBooleanProperty(); // true on click
+	private final BooleanProperty selected = new SimpleBooleanProperty(); // true on click
 	private final BooleanProperty selectable = new SimpleBooleanProperty(); // true if selectable
+	private final BooleanProperty deleted = new SimpleBooleanProperty();
 	
 	public void setTag(Tag tag) {
 		if (this.tag != null) { // Useless but for security, normally tag should not change after initialisation
@@ -28,6 +29,16 @@ public class TagViewModel implements ViewModel {
 		}
 		this.tag = tag;
 		label.bindBidirectional(this.tag.labelProperty());
+	}
+	
+	public void select() {
+		if (isSelectable()) {
+			setSelected(!isSelected());
+		}
+	}
+	
+	public Tag getTag() {
+		return tag;
 	}
 
 	public final StringProperty labelProperty() {
@@ -42,18 +53,6 @@ public class TagViewModel implements ViewModel {
 		this.labelProperty().set(label);
 	}
 
-	public final BooleanProperty clickedProperty() {
-		return this.clicked;
-	}
-
-	public final boolean isClicked() {
-		return this.clickedProperty().get();
-	}
-	
-	public final void setClicked(final boolean clicked) {
-		this.clickedProperty().set(clicked);
-	}
-
 	public final BooleanProperty selectableProperty() {
 		return this.selectable;
 	}
@@ -64,6 +63,30 @@ public class TagViewModel implements ViewModel {
 
 	public final void setSelectable(final boolean selectable) {
 		this.selectableProperty().set(selectable);
+	}
+
+	public final BooleanProperty selectedProperty() {
+		return this.selected;
+	}
+
+	public final boolean isSelected() {
+		return this.selectedProperty().get();
+	}
+
+	public final void setSelected(final boolean selected) {
+		this.selectedProperty().set(selected);
+	}
+
+	public final BooleanProperty deletedProperty() {
+		return this.deleted;
+	}
+	
+	public final boolean isDeleted() {
+		return this.deletedProperty().get();
+	}
+	
+	public final void setDeleted(final boolean deleted) {
+		this.deletedProperty().set(deleted);
 	}
 	
 }

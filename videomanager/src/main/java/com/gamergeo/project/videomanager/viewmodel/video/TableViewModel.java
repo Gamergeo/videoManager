@@ -24,15 +24,22 @@ import javafx.collections.ObservableList;
 @Component
 public class TableViewModel implements ViewModel {
 	
+	private final VideoService videoService;
+	
 	private final ListProperty<TableRowViewModel> rows = new SimpleListProperty<TableRowViewModel>(FXCollections.observableArrayList());
 	private final List<Video> allVideos = new ArrayList<Video>();
 	private final StringProperty headerMessage = new SimpleStringProperty();
 	private final ObjectProperty<TableRowViewModel> selectedRow = new SimpleObjectProperty<TableRowViewModel>();
 	
 	public TableViewModel(VideoService videoService) {
-		allVideos.addAll(videoService.findAll());
-
+		this.videoService = videoService;
 		FXUtils.addSimpleListChangeListener(rows, (rows) -> headerMessage.set(rows.size() + " videos found"));
+		loadTable();
+	}
+	
+	public void loadTable() {
+		allVideos.clear();
+		allVideos.addAll(videoService.findAll());
 		rows.setAll(allVideos.stream().map(TableRowViewModel::new).collect(Collectors.toList()));
 	}
 

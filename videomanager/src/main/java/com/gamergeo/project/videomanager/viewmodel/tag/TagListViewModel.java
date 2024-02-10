@@ -5,47 +5,51 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
-import com.gamergeo.lib.viewmodelfx.view.FXUtils;
 import com.gamergeo.project.videomanager.model.Tag;
 import com.gamergeo.project.videomanager.service.TagService;
 
 import de.saxsys.mvvmfx.ViewModel;
 import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.ListProperty;
+import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.SimpleListProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 @Component
 public class TagListViewModel implements ViewModel, TagParentViewModel {
+	
+	private final TagService tagService;
 
-	protected final List<TagViewModel> tagViewModels = new ArrayList<TagViewModel>();
 	private final List<Tag> allTags = new ArrayList<Tag>();
-	protected final ObservableList<Tag> renderedTags = FXCollections.observableArrayList();
+	private final ListProperty<Tag> renderedTags = new SimpleListProperty<Tag>(FXCollections.observableArrayList());
 	private final ObservableList<Tag> selectedTags = FXCollections.observableArrayList();
 	private final BooleanProperty dragDetected = new SimpleBooleanProperty();
+
+	private final ObjectProperty<Tag> tagToDelete = new SimpleObjectProperty<Tag>(); // Tag to be delete if any
 	
 	public TagListViewModel(TagService tagService) {
+		this.tagService = tagService;
 		allTags.addAll(tagService.findAll());
 		renderedTags.setAll(allTags);
 	}
 	
-	/**
-	 * Init child view model list / bind 
-	 */
 	@Override
-	public void initTagViewModel(TagViewModel tagViewModel, Tag tag) {
-		tagViewModels.add(tagViewModel);
-		tagViewModel.setTag(tag);
-		tagViewModel.setSelectable(true);
-		FXUtils.addSimpleChangeListener(tagViewModel.clickedProperty(), (isClicked) -> selectTag(tag, isClicked));
-	}
-	
-	private void selectTag(Tag tag, Boolean isClicked) {
-		if (isClicked) {
+	public void selectTag(Tag tag, Boolean isSelected) {
+		if (isSelected) {
 			selectedTags.add(tag);
 		} else {
 			selectedTags.remove(tag);
 		}
+	}
+
+	@Override
+	public void deleteTag(Tag tag) {
+		tagToDelete.set(tag);
+		selectedTags.remove(tag);
+		renderedTags.remove(tag);
 	}
 	
 	public ObservableList<Tag> getSelectedTags() {
@@ -63,8 +67,30 @@ public class TagListViewModel implements ViewModel, TagParentViewModel {
 	public final void setDragDetected(final boolean dragDetected) {
 		this.dragDetectedProperty().set(dragDetected);
 	}
-	
-	public ObservableList<Tag> getRenderedTags() {
-		return renderedTags;
+
+	public final ListProperty<Tag> renderedTagsProperty() {
+		return this.renderedTags;
 	}
+	
+
+	public final ObservableList<Tag> getRenderedTags() {
+		return this.renderedTagsProperty().get();
+	}
+	
+	public final void setRenderedTags(final ObservableList<Tag> renderedTags) {
+		this.renderedTagsProperty().set(renderedTags);
+	}
+
+	public final ObjectProperty<Tag> tagToDeleteProperty() {
+		return this.tagToDelete;
+	}
+
+	public final Tag getTagToDelete() {
+		return this.tagToDeleteProperty().get();
+	}
+	
+	public final void setTagToDelete(final Tag tagToDelete) {
+		this.tagToDeleteProperty().set(tagToDelete);
+	}
+	
 }
