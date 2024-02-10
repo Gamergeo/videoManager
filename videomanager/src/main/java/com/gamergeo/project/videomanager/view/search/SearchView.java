@@ -1,4 +1,4 @@
-package com.gamergeo.project.videomanager.view.video;
+package com.gamergeo.project.videomanager.view.search;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -6,36 +6,36 @@ import java.util.ResourceBundle;
 import org.controlsfx.control.Rating;
 import org.springframework.stereotype.Component;
 
-import com.gamergeo.project.videomanager.viewmodel.video.SearchViewModel;
+import com.gamergeo.lib.viewmodelfx.view.FXUtils;
+import com.gamergeo.project.videomanager.viewmodel.search.SearchTagViewModel;
+import com.gamergeo.project.videomanager.viewmodel.search.SearchViewModel;
 
 import de.saxsys.mvvmfx.FxmlView;
 import de.saxsys.mvvmfx.InjectViewModel;
+import de.saxsys.mvvmfx.ViewTuple;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.SplitPane;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.TilePane;
 
 @Component
 public class SearchView implements FxmlView<SearchViewModel>, Initializable {
 
 	@FXML
-	public TextField title;
+	private TextField title;
 	
 	@FXML
-	public Rating rating;
+	private Rating rating;
 	
 	@FXML
-	public TilePane withTags;
+	private Button reset;
 	
 	@FXML
-	public TilePane withoutTags;
+	private Button random;
 	
 	@FXML
-	public Button reset;
-	
-	@FXML
-	public Button random;
+	private SplitPane searchTags;
 	
 	@InjectViewModel
 	SearchViewModel viewModel;
@@ -47,5 +47,15 @@ public class SearchView implements FxmlView<SearchViewModel>, Initializable {
 		
 		reset.setOnAction((e) -> viewModel.setResetClick(true));
 		random.setOnAction((e) -> viewModel.setRandomClick(true));
+		
+		loadSearchTag(true);
+		loadSearchTag(false);
+	}
+	
+	private void loadSearchTag(boolean with) {
+    	ViewTuple<SearchTagView, SearchTagViewModel> searchTag = FXUtils.load(SearchTagView.class);
+    	searchTag.getViewModel().setWith(with);
+    	searchTags.getItems().add(searchTag.getView());
+    	viewModel.initSearchTag(searchTag.getViewModel(), with);
 	}
 }

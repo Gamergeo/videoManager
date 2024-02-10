@@ -1,10 +1,7 @@
-package com.gamergeo.project.videomanager.viewmodel.video;
-
-import java.util.stream.Collectors;
+package com.gamergeo.project.videomanager.viewmodel.screen;
 
 import org.springframework.stereotype.Component;
 
-import com.gamergeo.lib.viewmodelfx.view.FXUtils;
 import com.gamergeo.project.videomanager.model.Tag;
 import com.gamergeo.project.videomanager.model.Video;
 import com.gamergeo.project.videomanager.service.UrlPatternService;
@@ -47,7 +44,9 @@ public class ScreenViewModel implements ViewModel, TagDroppableViewModel {
 	private final BooleanProperty dragReleased = new SimpleBooleanProperty();
 	
 	/** other properties */
+	private final BooleanProperty disabled = new SimpleBooleanProperty();
 	private final BooleanProperty visible = new SimpleBooleanProperty();
+	
 	
 	public ScreenViewModel(VideoService videoService, UrlPatternService urlService, HostServices hostServices) {
 		this.videoService = videoService;
@@ -82,6 +81,7 @@ public class ScreenViewModel implements ViewModel, TagDroppableViewModel {
 			rating.bindBidirectional(video.ratingProperty());
 			url.bindBidirectional(video.urlProperty());
 			renderedTags.bindContent(video.tagsProperty());
+			setDisabled(false);
 			
 			// Refresh on tags change
 //			FXUtils.addEmptyChangeListener(video.tagsProperty(), () -> renderedTags.bindContent(video.tagsProperty()));
@@ -116,13 +116,20 @@ public class ScreenViewModel implements ViewModel, TagDroppableViewModel {
 			videoService.save(video);
 		}
 	}
-	
+
+	@Override
 	public void onMouseDragOver() {
 		setDroppable(video != null);
 	}
-	
+
+	@Override
 	public void onMouseDragExited() {
 		setDroppable(false);
+	}
+
+	@Override
+	public void onMouseDragReleased() {
+		setDragReleased(true);
 	}
 
 	/**
@@ -236,4 +243,15 @@ public class ScreenViewModel implements ViewModel, TagDroppableViewModel {
 		this.renderedTagsProperty().set(renderedTags);
 	}
 
+	public final BooleanProperty disabledProperty() {
+		return this.disabled;
+	}
+	
+	public final boolean isDisabled() {
+		return this.disabledProperty().get();
+	}
+	
+	public final void setDisabled(final boolean disabled) {
+		this.disabledProperty().set(disabled);
+	}
 }

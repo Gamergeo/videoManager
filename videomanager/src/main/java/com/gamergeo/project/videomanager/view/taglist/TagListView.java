@@ -1,12 +1,13 @@
-package com.gamergeo.project.videomanager.view.tag;
+package com.gamergeo.project.videomanager.view.taglist;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 import org.springframework.stereotype.Component;
 
-import com.gamergeo.project.videomanager.viewmodel.tag.TagListViewModel;
+import com.gamergeo.project.videomanager.view.tag.TagParentView;
 import com.gamergeo.project.videomanager.viewmodel.tag.TagParentViewModel;
+import com.gamergeo.project.videomanager.viewmodel.taglist.TagListViewModel;
 
 import de.saxsys.mvvmfx.FxmlView;
 import de.saxsys.mvvmfx.InjectViewModel;

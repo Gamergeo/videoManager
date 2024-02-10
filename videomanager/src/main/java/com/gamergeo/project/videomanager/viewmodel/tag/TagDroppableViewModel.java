@@ -6,6 +6,6 @@ public interface TagDroppableViewModel extends TagParentViewModel{
 
 	void onMouseDragExited();
 
-	void setDragReleased(boolean dragReleased);
+	void onMouseDragReleased();
 	
 }

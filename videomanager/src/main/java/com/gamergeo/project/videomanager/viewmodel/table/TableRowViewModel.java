@@ -1,4 +1,4 @@
-package com.gamergeo.project.videomanager.viewmodel.video;
+package com.gamergeo.project.videomanager.viewmodel.table;
 
 import java.util.List;
 import java.util.StringJoiner;
@@ -52,6 +52,17 @@ public class TableRowViewModel implements ViewModel {
 		tags.forEach((tag) -> joiner.add(tag.getLabel()));
         setTags(joiner.toString());
     }
+    
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        
+        TableRowViewModel row = (TableRowViewModel) o;
+        
+        return row.getVideo() != null && video.getId() == row.getVideo().getId();
+    }
+    
 
 	public Video getVideo() {
 		return video;

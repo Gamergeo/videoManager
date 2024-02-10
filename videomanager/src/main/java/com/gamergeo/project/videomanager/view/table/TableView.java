@@ -1,4 +1,4 @@
-package com.gamergeo.project.videomanager.view.video;
+package com.gamergeo.project.videomanager.view.table;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -6,8 +6,8 @@ import java.util.ResourceBundle;
 import org.springframework.stereotype.Component;
 
 import com.gamergeo.lib.viewmodelfx.view.FXUtils;
-import com.gamergeo.project.videomanager.viewmodel.video.TableRowViewModel;
-import com.gamergeo.project.videomanager.viewmodel.video.TableViewModel;
+import com.gamergeo.project.videomanager.viewmodel.table.TableRowViewModel;
+import com.gamergeo.project.videomanager.viewmodel.table.TableViewModel;
 
 import de.saxsys.mvvmfx.FxmlView;
 import de.saxsys.mvvmfx.InjectViewModel;
@@ -63,7 +63,7 @@ public class TableView implements FxmlView<TableViewModel>, Initializable {
     }
     
     private void select(TableRowViewModel row) {
-  		if (table.getSelectionModel().getSelectedItem() != row) {
+  		if (row != null && table.getSelectionModel().getSelectedItem() != row) {
       		table.getSelectionModel().select(row);
       		table.scrollTo(row);
   		}

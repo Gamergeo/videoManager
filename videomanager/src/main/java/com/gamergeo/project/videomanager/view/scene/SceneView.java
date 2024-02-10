@@ -1,4 +1,4 @@
-package com.gamergeo.project.videomanager.view;
+package com.gamergeo.project.videomanager.view.scene;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -6,15 +6,15 @@ import java.util.ResourceBundle;
 import org.springframework.stereotype.Component;
 
 import com.gamergeo.lib.viewmodelfx.view.FXUtils;
-import com.gamergeo.project.videomanager.view.tag.TagListView;
-import com.gamergeo.project.videomanager.view.video.ScreenView;
-import com.gamergeo.project.videomanager.view.video.SearchView;
-import com.gamergeo.project.videomanager.view.video.TableView;
-import com.gamergeo.project.videomanager.viewmodel.SceneViewModel;
-import com.gamergeo.project.videomanager.viewmodel.tag.TagListViewModel;
-import com.gamergeo.project.videomanager.viewmodel.video.ScreenViewModel;
-import com.gamergeo.project.videomanager.viewmodel.video.SearchViewModel;
-import com.gamergeo.project.videomanager.viewmodel.video.TableViewModel;
+import com.gamergeo.project.videomanager.view.screen.ScreenView;
+import com.gamergeo.project.videomanager.view.search.SearchView;
+import com.gamergeo.project.videomanager.view.table.TableView;
+import com.gamergeo.project.videomanager.view.taglist.TagListView;
+import com.gamergeo.project.videomanager.viewmodel.scene.SceneViewModel;
+import com.gamergeo.project.videomanager.viewmodel.screen.ScreenViewModel;
+import com.gamergeo.project.videomanager.viewmodel.search.SearchViewModel;
+import com.gamergeo.project.videomanager.viewmodel.table.TableViewModel;
+import com.gamergeo.project.videomanager.viewmodel.taglist.TagListViewModel;
 
 import de.saxsys.mvvmfx.FxmlView;
 import de.saxsys.mvvmfx.InjectViewModel;

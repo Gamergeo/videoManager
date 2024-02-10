@@ -1,4 +1,4 @@
-package com.gamergeo.project.videomanager.view.video;
+package com.gamergeo.project.videomanager.view.screen;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -8,13 +8,14 @@ import org.springframework.stereotype.Component;
 
 import com.gamergeo.lib.viewmodelfx.view.FXUtils;
 import com.gamergeo.project.videomanager.view.tag.TagDroppableView;
+import com.gamergeo.project.videomanager.viewmodel.screen.ScreenViewModel;
 import com.gamergeo.project.videomanager.viewmodel.tag.TagDroppableViewModel;
-import com.gamergeo.project.videomanager.viewmodel.video.ScreenViewModel;
 
 import de.saxsys.mvvmfx.FxmlView;
 import de.saxsys.mvvmfx.InjectViewModel;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
@@ -41,9 +42,12 @@ public class ScreenView implements FxmlView<ScreenViewModel>, Initializable, Tag
 	
 	@FXML
 	private TilePane tags;
+	
+	@FXML
+	private Button disable;
 
     @InjectViewModel
-    private ScreenViewModel viewModel;    
+    private ScreenViewModel viewModel;  
     
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -58,6 +62,8 @@ public class ScreenView implements FxmlView<ScreenViewModel>, Initializable, Tag
 		
 		this.url.visibleProperty().bind(viewModel.visibleProperty());
 		rating.visibleProperty().bind(viewModel.visibleProperty());
+		
+		disable.setOnAction((event) -> viewModel.setDisabled(true));
 		
 		renderTags(false);
 		setOnMouseDrag();

@@ -9,9 +9,11 @@ import com.gamergeo.project.videomanager.model.Video;
 import com.gamergeo.project.videomanager.repository.VideoRepository;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class VideoService extends ApplicationCrudService<Video> {
 
 	private final VideoRepository repository;
@@ -53,6 +55,11 @@ public class VideoService extends ApplicationCrudService<Video> {
 
 	public Video refresh(Video video) {
 		return repository.findById(video.getId()).orElseThrow();
+	}
+	
+	public List<Video> findAllEnabled() {
+		log.info("Load all enabled videos");
+		return repository.findByDisabled(false);
 	}
 	
 //	public List<Video> findByTag(Tag tag) {

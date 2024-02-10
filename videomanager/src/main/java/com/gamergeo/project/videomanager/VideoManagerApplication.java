@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 import com.gamergeo.lib.viewmodelfx.view.FXUtils;
-import com.gamergeo.project.videomanager.view.SceneView;
+import com.gamergeo.project.videomanager.view.scene.SceneView;
 
 import de.saxsys.mvvmfx.spring.MvvmfxSpringApplication;
 import javafx.scene.Parent;

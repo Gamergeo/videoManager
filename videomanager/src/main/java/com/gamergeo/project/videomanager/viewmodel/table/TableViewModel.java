@@ -1,4 +1,4 @@
-package com.gamergeo.project.videomanager.viewmodel.video;
+package com.gamergeo.project.videomanager.viewmodel.table;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 import org.springframework.stereotype.Component;
 
 import com.gamergeo.lib.viewmodelfx.view.FXUtils;
+import com.gamergeo.project.videomanager.model.Tag;
 import com.gamergeo.project.videomanager.model.Video;
 import com.gamergeo.project.videomanager.service.VideoService;
 
@@ -39,19 +40,23 @@ public class TableViewModel implements ViewModel {
 	
 	public void loadTable() {
 		allVideos.clear();
-		allVideos.addAll(videoService.findAll());
+		allVideos.addAll(videoService.findAllEnabled());
 		rows.setAll(allVideos.stream().map(TableRowViewModel::new).collect(Collectors.toList()));
 	}
 
-	public void filter(String title,Double rating) {
+	public void filter(String title, Double rating, List<Tag> withTags, List<Tag> withoutTags) {
+		TableRowViewModel selectedRow = this.selectedRow.get();
 		rows.setAll(allVideos.stream()
 				.filter(video -> title ==  null || title.isBlank() || video.getTitle().contains(title))
 	            .filter(video -> rating == null || rating == 0 || video.getRating() >= rating) // Filtrage par note minimale
-//	            .filter(video -> withTags.isEmpty() || video.getTags().stream().anyMatch(tag -> withTags.contains(tag))) // Vérifie la présence d'au moins un tag recherché
-//	            .filter(video -> withoutTags.isEmpty() || video.getTags().stream().noneMatch(tag -> withoutTags.contains(tag))) // Exclut les vidéos avec des tags non désirés
-//	            .sorted()
+	            .filter(video -> withTags.isEmpty() || video.getTags().stream().anyMatch(tag -> withTags.contains(tag))) // Vérifie la présence d'au moins un tag recherché
+	            .filter(video -> withoutTags.isEmpty() || video.getTags().stream().noneMatch(tag -> withoutTags.contains(tag))) // Exclut les vidéos avec des tags non désirés
 	            .map(TableRowViewModel::new)
 	            .collect(Collectors.toCollection(FXCollections::observableArrayList)));
+		
+		if (rows.contains(selectedRow)) {
+			setSelectedRow(selectedRow);
+		}
 	}
 	
 	public Video random() {
@@ -90,8 +95,12 @@ public class TableViewModel implements ViewModel {
 	}
 	
 	public final void setSelectedRow(final Video video) {
-		TableRowViewModel selectedRow = rows.stream().filter((row) -> row.getVideo().getId() == video.getId()).findAny().orElseThrow();
-		setSelectedRow(selectedRow);
+		if (video == null) {
+			selectedRow.set(null);
+		} else {
+			TableRowViewModel selectedRow = rows.stream().filter((row) -> row.getVideo().getId() == video.getId()).findAny().orElseThrow();
+			setSelectedRow(selectedRow);
+		}
 	}
 
 	public final ListProperty<TableRowViewModel> rowsProperty() {

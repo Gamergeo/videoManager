@@ -27,7 +27,7 @@ public interface TagDroppableView extends TagParentView {
 	}
 
 	default public void onMouseDragReleased(MouseEvent event) {
-		getViewModel().setDragReleased(true);
+		getViewModel().onMouseDragReleased();
 		event.consume();
 	}
 	

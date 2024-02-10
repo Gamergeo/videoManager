@@ -61,4 +61,6 @@ Its was interesting to try to adapt mvvm pattern alone but it seems far too time
 	- 0.8.2 : Continue mvvmfx integration
 	- 0.8.3 : All features implemented
 	- 0.8.4 : Working version
+- 0.9 : Features. First Release incoming
+	- 0.9.1 : Search by tag (with without)
 

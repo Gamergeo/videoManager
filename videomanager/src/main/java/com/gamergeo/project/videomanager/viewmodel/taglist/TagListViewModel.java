@@ -1,4 +1,4 @@
-package com.gamergeo.project.videomanager.viewmodel.tag;
+package com.gamergeo.project.videomanager.viewmodel.taglist;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 
 import com.gamergeo.project.videomanager.model.Tag;
 import com.gamergeo.project.videomanager.service.TagService;
+import com.gamergeo.project.videomanager.viewmodel.tag.TagParentViewModel;
 
 import de.saxsys.mvvmfx.ViewModel;
 import javafx.beans.property.BooleanProperty;
@@ -71,7 +72,6 @@ public class TagListViewModel implements ViewModel, TagParentViewModel {
 	public final ListProperty<Tag> renderedTagsProperty() {
 		return this.renderedTags;
 	}
-	
 
 	public final ObservableList<Tag> getRenderedTags() {
 		return this.renderedTagsProperty().get();

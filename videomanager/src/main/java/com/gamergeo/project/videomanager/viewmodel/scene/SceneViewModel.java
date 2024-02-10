@@ -1,4 +1,4 @@
-package com.gamergeo.project.videomanager.viewmodel;
+package com.gamergeo.project.videomanager.viewmodel.scene;
 
 import org.springframework.stereotype.Component;
 
@@ -7,11 +7,11 @@ import com.gamergeo.project.videomanager.model.Tag;
 import com.gamergeo.project.videomanager.model.Video;
 import com.gamergeo.project.videomanager.service.TagService;
 import com.gamergeo.project.videomanager.service.VideoService;
-import com.gamergeo.project.videomanager.viewmodel.tag.TagListViewModel;
-import com.gamergeo.project.videomanager.viewmodel.video.ScreenViewModel;
-import com.gamergeo.project.videomanager.viewmodel.video.SearchViewModel;
-import com.gamergeo.project.videomanager.viewmodel.video.TableRowViewModel;
-import com.gamergeo.project.videomanager.viewmodel.video.TableViewModel;
+import com.gamergeo.project.videomanager.viewmodel.screen.ScreenViewModel;
+import com.gamergeo.project.videomanager.viewmodel.search.SearchViewModel;
+import com.gamergeo.project.videomanager.viewmodel.table.TableRowViewModel;
+import com.gamergeo.project.videomanager.viewmodel.table.TableViewModel;
+import com.gamergeo.project.videomanager.viewmodel.taglist.TagListViewModel;
 
 import de.saxsys.mvvmfx.ViewModel;
 import javafx.beans.property.BooleanProperty;
@@ -33,14 +33,15 @@ public class SceneViewModel implements ViewModel {
 	
 	private final ObjectProperty<Video> selectedVideo = new SimpleObjectProperty<Video>();
 	private final ObjectProperty<Cursor> cursor = new SimpleObjectProperty<Cursor>();
-	
-	private final BooleanProperty droppable = new SimpleBooleanProperty();
+
 	private final BooleanProperty dragInProgress = new SimpleBooleanProperty();
+	private final BooleanProperty droppable = new SimpleBooleanProperty();
 	private final BooleanProperty dragReleased = new SimpleBooleanProperty();
 	
 	public SceneViewModel(VideoService videoService, TagService tagService) {
       	this.videoService = videoService;
       	this.tagService = tagService;
+      	
 		// Bind droppable and cursor
       	FXUtils.addSimpleChangeListener(droppable, this::onDragOver);
       	FXUtils.addSimpleChangeListener(dragReleased, this::onDragReleased);
@@ -52,7 +53,27 @@ public class SceneViewModel implements ViewModel {
 		// Filter table through search property
       	FXUtils.addEmptyChangeListener(search.titleProperty(), this::filter);
       	FXUtils.addEmptyChangeListener(search.ratingProperty(), this::filter);
+      	FXUtils.addSimpleListChangeListener(search.getWithTags(), (list) -> this.filter());
+      	FXUtils.addSimpleListChangeListener(search.getWithoutTags(), (list) -> this.filter());
+      	
+      	// Random handler
       	FXUtils.addSimpleChangeListener(search.randomClickProperty(), this::random);
+      	
+		// Drag and drop
+		FXUtils.addEmptyChangeListener(search.dragOverProperty(), this::droppable);
+		FXUtils.addSimpleChangeListener(search.dragReleasedProperty(true), (dragReleased) -> this.onDragSearchReleased(true, dragReleased));
+		FXUtils.addSimpleChangeListener(search.dragReleasedProperty(false), (dragReleased) -> this.onDragSearchReleased(false, dragReleased));
+	}
+	
+	/**
+	 * Drag released on with tag
+	 */
+	private void onDragSearchReleased(boolean with, boolean dragReleased) {
+		if (dragReleased) {
+			endDrag();
+			search.addTags(tagList.getSelectedTags(), with);
+			search.setDragReleased(with, false);
+		}
 	}
 	
 	public void random(boolean isClicked) {
@@ -63,7 +84,7 @@ public class SceneViewModel implements ViewModel {
 	}
 	
 	private void filter() {
-		table.filter(search.getTitle(), search.getRating());
+		table.filter(search.getTitle(), search.getRating(), search.getWithTags(), search.getWithoutTags());
 	}
 	
 	public void initScreen(ScreenViewModel screen) {
@@ -72,8 +93,33 @@ public class SceneViewModel implements ViewModel {
       	// Bind selected and screen
 		selectedVideoProperty().addListener((observable, oldValue, newValue) -> screen.render(oldValue, newValue));
 		
-		FXUtils.addSimpleChangeListener(screen.droppableProperty(), this::setDroppable);
+		// Drag and drop
+		FXUtils.addEmptyChangeListener(screen.droppableProperty(), this::droppable);
 		FXUtils.addSimpleChangeListener(screen.dragReleasedProperty(), this::onDragScreenReleased);
+		
+		// Disable
+		FXUtils.addSimpleChangeListener(screen.disabledProperty(), this::disableVideo);
+	}
+	
+	private void disableVideo(boolean disabled) {
+		if (disabled) {
+			Video selectedVideo = getSelectedVideo();
+			setSelectedVideo(null);
+			selectedVideo.setDisabled(true);
+			videoService.save(selectedVideo);
+			table.loadTable();
+		}
+	}
+	
+	/**
+	 * Drag released on screen
+	 */
+	private void onDragScreenReleased(boolean dragReleased) {
+		if (dragReleased) {
+			endDrag();
+			screen.addTags(tagList.getSelectedTags());
+			screen.setDragReleased(false);
+		}
 	}
 	
 	public void initTable(TableViewModel table) {
@@ -85,9 +131,7 @@ public class SceneViewModel implements ViewModel {
 	}
 	
 	private void rowSelected(final TableRowViewModel selectedRow) {
-  		if (selectedVideo != null && selectedRow != null) {
-  			selectedVideo.set(selectedRow.getVideo());
-  		}
+		selectedVideo.set(selectedRow == null ? null : selectedRow.getVideo());
 	}
 	
 	public void initTagList(TagListViewModel tagList) {
@@ -101,7 +145,7 @@ public class SceneViewModel implements ViewModel {
 	/**
 	 * Dqelete tag and refresh videos
 	 */
-	public void deleteTag(Tag tag) {
+	private void deleteTag(Tag tag) {
 		
 		if (tag != null) {
 			Video selectedVideo = this.selectedVideo.get();
@@ -109,12 +153,12 @@ public class SceneViewModel implements ViewModel {
 			tagService.delete(tag);
 			tagList.setTagToDelete(null);
 			table.loadTable();
+			search.deleteTag(tag);
 			setSelectedVideo(videoService.refresh(selectedVideo));
 		}
 	}
 	
-	
-	public void onDragDetected(Boolean dragDetected) {
+	private void onDragDetected(Boolean dragDetected) {
 		if (dragDetected) {
 			setCursor(Cursor.CLOSED_HAND);
 			tagList.setDragDetected(false);
@@ -122,7 +166,7 @@ public class SceneViewModel implements ViewModel {
 		}
 	}
 	
-	public void onDragOver(Boolean droppable) {
+	private void onDragOver(Boolean droppable) {
 		if (isDragInProgress()) {
 			if (droppable) {
 				setCursor(Cursor.CLOSED_HAND);
@@ -133,23 +177,21 @@ public class SceneViewModel implements ViewModel {
 	}
 	
 	/**
-	 * Drag released on screen
+	 * Drag released on non valid location
 	 */
-	public void onDragScreenReleased(boolean dragReleased) {
+	private void onDragReleased(boolean dragReleased) {
 		if (dragReleased) {
 			endDrag();
-			screen.addTags(tagList.getSelectedTags());
-			screen.setDragReleased(false);
+			setDragReleased(false);
 		}
 	}
 	
 	/**
-	 * Drag released on screen
+	 * Check if current drag is droppable
 	 */
-	public void onDragReleased(boolean dragReleased) {
-		if (dragReleased) {
-			endDrag();
-			setDragReleased(false);
+	private void droppable() {
+		if (isDragInProgress()) {
+			setDroppable(screen.isDroppable() || search.isDragOver());
 		}
 	}
 	
@@ -157,8 +199,6 @@ public class SceneViewModel implements ViewModel {
 		setDragInProgress(false);
 		setCursor(Cursor.DEFAULT);
 	}
-
-	
 	
 	/*************************************************************************************************************************************/
 	/*													       																		     */
