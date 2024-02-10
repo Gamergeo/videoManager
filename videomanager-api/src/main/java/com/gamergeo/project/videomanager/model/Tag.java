@@ -20,5 +20,4 @@ public class Tag extends Model {
 	public void setLabel(final String label) {
 		this.labelProperty().set(label);
 	}
-	
 }

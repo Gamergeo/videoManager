@@ -11,10 +11,15 @@ import com.gamergeo.project.videomanager.viewmodel.tag.TagViewModel;
 
 import de.saxsys.mvvmfx.FxmlView;
 import de.saxsys.mvvmfx.InjectViewModel;
+import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 
 @Component
@@ -28,6 +33,9 @@ public class TagView implements FxmlView<TagViewModel>, Initializable {
 	private Label label;
 	
 	@FXML
+	private TextField labelEdit;
+	
+	@FXML
 	private Button delete;
 
     @InjectViewModel
@@ -39,10 +47,23 @@ public class TagView implements FxmlView<TagViewModel>, Initializable {
 		delete.setOnAction((event) -> viewModel.setDeleted(true));
 		
 		// Select tag (click or drag)
-		root.setOnMouseClicked((event) -> viewModel.select());
+		root.setOnMousePressed(this::onMousePressed);
+		root.addEventFilter(MouseEvent.MOUSE_CLICKED, this::onMousePressed);
+		
 		select(viewModel.isSelected());
 		FXUtils.addSimpleChangeListener(viewModel.selectedProperty(), this::select);
 		root.setOnDragDetected((event) -> viewModel.setSelected(true));
+		
+		labelEdit.setManaged(false);
+		label.visibleProperty().bind(label.managedProperty());
+		label.managedProperty().bind(viewModel.editProperty().not());
+//		label.addEventFilter(MouseEvent.MOUSE_CLICKED, this::onMousePressed);
+		labelEdit.visibleProperty().bind(labelEdit.managedProperty());
+		labelEdit.managedProperty().bind(viewModel.editProperty());
+		labelEdit.setOnKeyPressed(this::onKeyPressed);
+//		labelEdit.addEventFilter(MouseEvent.MOUSE_CLICKED, this::onMousePressed);
+		labelEdit.setOnContextMenuRequested(event -> event.consume());
+		FXUtils.addSimpleChangeListener(labelEdit.textProperty(), viewModel::setLabelEdit);
 	}
 	
 	private void select(boolean isSelected) {
@@ -52,4 +73,28 @@ public class TagView implements FxmlView<TagViewModel>, Initializable {
 			root.getStyleClass().remove("tag-border-pane-selected");
 		}
 	}
+	
+    private void onMousePressed(MouseEvent event) {
+    	// Tag selection
+    	if (event.isPrimaryButtonDown()) {
+        	event.consume();
+    		 viewModel.select();
+    	} else if (event.isSecondaryButtonDown()) { // Rename
+        	event.consume();
+    		viewModel.switchEdit();
+    		
+    		// edit
+    		if (labelEdit.isManaged()) {
+    			labelEdit.setText(viewModel.getLabel());
+    			labelEdit.requestFocus();
+    		}
+    	}
+    	event.consume();
+    }
+    
+    private void onKeyPressed(KeyEvent event) {
+    	if (event.getCode() == KeyCode.ENTER) {
+    		viewModel.switchEdit();
+    	}
+    }
 }

@@ -39,6 +39,7 @@ public class TagListViewModel implements ViewModel, TagParentViewModel {
 	public TagListViewModel(TagService tagService) {
 		this.tagService = tagService;
 		allTags.addAll(tagService.findAll());
+		
 		renderedTags.setAll(allTags);
 		
 		FXUtils.addSimpleChangeListener(label, this::filter);
@@ -74,6 +75,15 @@ public class TagListViewModel implements ViewModel, TagParentViewModel {
 		
 		renderedTags.add(tag);
 		allTags.add(tag);
+	}
+	
+	public void unselectAllTag() {
+		selectedTags.clear();
+		
+		// Best way to reset css TODO CLEAN IT
+		List<Tag> renderedTags = new ArrayList<Tag>(getRenderedTags());
+		this.renderedTags.clear();
+		this.renderedTags.setAll(renderedTags);
 	}
 
 	@Override

@@ -1,5 +1,6 @@
 package com.gamergeo.project.videomanager.view.tag;
 
+import java.util.Comparator;
 import java.util.List;
 
 import com.gamergeo.lib.viewmodelfx.view.FXUtils;
@@ -9,6 +10,7 @@ import com.gamergeo.project.videomanager.viewmodel.tag.TagViewModel;
 
 import de.saxsys.mvvmfx.ViewTuple;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.SortedList;
 import javafx.scene.layout.Pane;
 
 public interface TagParentView {
@@ -27,7 +29,9 @@ public interface TagParentView {
 	private void renderTags(ObservableList<Tag> tags, boolean selectable) {
 		List<Tag> selectedTags = getViewModel().getSelectedTags();
 		getTagPane().getChildren().clear();
-		tags.forEach((tag) -> renderTag(tag, selectable, selectedTags.contains(tag)));
+		SortedList<Tag> sortedList = new SortedList<Tag>(tags, (tag1, tag2)  -> tag1.getLabel().compareTo(tag2.getLabel()));
+				
+		sortedList.forEach((tag) -> renderTag(tag, selectable, selectedTags.contains(tag)));
 	}
 	
 	private void renderTag(Tag tag, boolean selectable, boolean selected) {

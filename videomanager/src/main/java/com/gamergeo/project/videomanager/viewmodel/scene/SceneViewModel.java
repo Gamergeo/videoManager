@@ -73,6 +73,7 @@ public class SceneViewModel implements ViewModel {
 			endDrag();
 			search.addTags(tagList.getSelectedTags(), with);
 			search.setDragReleased(with, false);
+			tagList.unselectAllTag();
 		}
 	}
 	
@@ -119,6 +120,7 @@ public class SceneViewModel implements ViewModel {
 			endDrag();
 			screen.addTags(tagList.getSelectedTags());
 			screen.setDragReleased(false);
+			tagList.unselectAllTag();
 		}
 	}
 	

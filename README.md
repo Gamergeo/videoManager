@@ -63,6 +63,7 @@ Its was interesting to try to adapt mvvm pattern alone but it seems far too time
 	- 0.8.4 : Working version
 - 0.9 : Features. First Release incoming
 	- 0.9.1 : Search by tag (with without)
-	- 0.9.2.RELEASE : Edit url, search on tag list, add tag. 
+	 - 0.9.2.RELEASE : Edit url, search on tag list, add tag. 
 This version seems ready to release. No data import yet, you have to do it in sql. Will add this on future version
+    - 0.9.3 : Tag rename on right click / reset selected tag on drop
 

@@ -13,6 +13,14 @@
     -fx-font-size: 12px; /* Taille de police ajustée */
 }
 
+.tag-border-pane .text-field {
+    -fx-background-color: #1db954; /* Couleur de fond verte de Spotify */
+    -fx-text-fill: white; /* Couleur de texte blanc */
+    -fx-font-size: 12px; /* Taille de police ajustée */
+    -fx-padding: 0; /* Pas d'espacement supplémentaire */
+    -fx-margin: 0; /* Pas d'espacement supplémentaire */
+}
+
 /* Style pour le bouton 'x' dans le tag */
 .tag-border-pane .button {
     -fx-background-color: transparent; /* Fond transparent */
