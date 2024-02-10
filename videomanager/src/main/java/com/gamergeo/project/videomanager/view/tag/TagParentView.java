@@ -1,5 +1,7 @@
 package com.gamergeo.project.videomanager.view.tag;
 
+import java.util.List;
+
 import com.gamergeo.lib.viewmodelfx.view.FXUtils;
 import com.gamergeo.project.videomanager.model.Tag;
 import com.gamergeo.project.videomanager.viewmodel.tag.TagParentViewModel;
@@ -23,15 +25,17 @@ public interface TagParentView {
 	}
 	
 	private void renderTags(ObservableList<Tag> tags, boolean selectable) {
+		List<Tag> selectedTags = getViewModel().getSelectedTags();
 		getTagPane().getChildren().clear();
-		tags.forEach((tag) -> renderTag(tag, selectable));
+		tags.forEach((tag) -> renderTag(tag, selectable, selectedTags.contains(tag)));
 	}
 	
-	private void renderTag(Tag tag, boolean selectable) {
+	private void renderTag(Tag tag, boolean selectable, boolean selected) {
 		ViewTuple<TagView, TagViewModel> tuple = FXUtils.load(TagView.class);
 		TagViewModel tagViewModel = tuple.getViewModel();
 		tagViewModel.setTag(tag);
 		tagViewModel.setSelectable(selectable);
+		tagViewModel.setSelected(selected);
 		FXUtils.addSimpleChangeListener(tagViewModel.selectedProperty(), (isSelected) -> getViewModel().selectTag(tag, isSelected));
 		FXUtils.addEmptyChangeListener(tagViewModel.deletedProperty(), () -> getViewModel().deleteTag(tag));
 		getTagPane().getChildren().add(tuple.getView());

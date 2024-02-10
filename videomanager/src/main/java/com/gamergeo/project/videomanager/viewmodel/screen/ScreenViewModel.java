@@ -2,6 +2,7 @@ package com.gamergeo.project.videomanager.viewmodel.screen;
 
 import org.springframework.stereotype.Component;
 
+import com.gamergeo.lib.viewmodelfx.view.FXUtils;
 import com.gamergeo.project.videomanager.model.Tag;
 import com.gamergeo.project.videomanager.model.Video;
 import com.gamergeo.project.videomanager.service.UrlPatternService;
@@ -35,8 +36,10 @@ public class ScreenViewModel implements ViewModel, TagDroppableViewModel {
 
 	/** Video property */
 	private final StringProperty title = new SimpleStringProperty();
+	private final StringProperty date = new SimpleStringProperty();
 	private final DoubleProperty rating = new SimpleDoubleProperty();
 	private final StringProperty url = new SimpleStringProperty();
+	private final StringProperty urlEdit = new SimpleStringProperty();
 	private final ListProperty<Tag> renderedTags = new SimpleListProperty<Tag>(FXCollections.observableArrayList());
 	
 	/** drag & drop properties */
@@ -46,6 +49,7 @@ public class ScreenViewModel implements ViewModel, TagDroppableViewModel {
 	/** other properties */
 	private final BooleanProperty disabled = new SimpleBooleanProperty();
 	private final BooleanProperty visible = new SimpleBooleanProperty();
+	private final BooleanProperty edit = new SimpleBooleanProperty();
 	
 	
 	public ScreenViewModel(VideoService videoService, UrlPatternService urlService, HostServices hostServices) {
@@ -57,10 +61,13 @@ public class ScreenViewModel implements ViewModel, TagDroppableViewModel {
 
 		// Semi rating + save
 		rating.addListener((observable, oldValue, newValue) -> saveRating(oldValue.doubleValue(), newValue.doubleValue()));
+		FXUtils.addSimpleChangeListener(urlEdit, this::saveUrl);
 	}
 	
 	public void render(Video oldValue, Video newValue) {
 		log.info("Selected video changed");
+		
+		setEdit(false);
 		// Unbind old selected video
 		if (oldValue != null) {
 			unbindVideo(oldValue);
@@ -73,19 +80,18 @@ public class ScreenViewModel implements ViewModel, TagDroppableViewModel {
 		this.video = video;
 		if (video == null) {
 			title.set("");
+			date.set("");
 			rating.set(0);
 			renderedTags.clear();
 			visible.set(false);
 		} else {
 			title.bindBidirectional(video.titleProperty());
+			date.set(video.getAddedDate().toString());
 			rating.bindBidirectional(video.ratingProperty());
-			url.bindBidirectional(video.urlProperty());
+			url.bind(video.urlProperty());
+			urlEdit.set(url.get());
 			renderedTags.bindContent(video.tagsProperty());
 			setDisabled(false);
-			
-			// Refresh on tags change
-//			FXUtils.addEmptyChangeListener(video.tagsProperty(), () -> renderedTags.bindContent(video.tagsProperty()));
-			
 			visible.set(true);
 		}
 	}
@@ -93,7 +99,7 @@ public class ScreenViewModel implements ViewModel, TagDroppableViewModel {
 	private void unbindVideo(Video video) {
 		title.unbindBidirectional(video.titleProperty());
 		rating.unbindBidirectional(video.ratingProperty());
-		url.unbindBidirectional(video.urlProperty());
+		url.unbind();
 		renderedTags.unbindContent(video.tagsProperty());
 	}
 	
@@ -113,6 +119,17 @@ public class ScreenViewModel implements ViewModel, TagDroppableViewModel {
 		if (oldValue != newValue && !newValue.equals(roundedValue)) {
 	    	setRating(roundedValue);
 	    	video.setRating(roundedValue);
+			videoService.save(video);
+		}
+	}
+
+	/**
+	 * Save url on enter
+	 */
+	public void saveUrl(String url) {
+		
+		if (isEdit()) {
+			video.setUrl(url);
 			videoService.save(video);
 		}
 	}
@@ -151,6 +168,12 @@ public class ScreenViewModel implements ViewModel, TagDroppableViewModel {
 		    	.forEach(video.getTags()::add);
 			
 			videoService.save(video);
+		}
+	}
+	
+	public void switchEdit() {
+		if (isVisible()) {
+			setEdit(!isEdit());
 		}
 	}
 	
@@ -253,5 +276,41 @@ public class ScreenViewModel implements ViewModel, TagDroppableViewModel {
 	
 	public final void setDisabled(final boolean disabled) {
 		this.disabledProperty().set(disabled);
+	}
+
+	public final StringProperty dateProperty() {
+		return this.date;
+	}
+	
+	public final String getDate() {
+		return this.dateProperty().get();
+	}
+	
+	public final void setDate(final String date) {
+		this.dateProperty().set(date);
+	}
+
+	public final BooleanProperty editProperty() {
+		return this.edit;
+	}
+
+	public final boolean isEdit() {
+		return this.editProperty().get();
+	}
+	
+	public final void setEdit(final boolean edit) {
+		this.editProperty().set(edit);
+	}
+
+	public final StringProperty urlEditProperty() {
+		return this.urlEdit;
+	}
+
+	public final String getUrlEdit() {
+		return this.urlEditProperty().get();
+	}
+
+	public final void setUrlEdit(final String urlEdit) {
+		this.urlEditProperty().set(urlEdit);
 	}
 }

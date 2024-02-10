@@ -5,3 +5,7 @@
 .hyperlink {
     -fx-padding: 4 0 4 0;
 }
+
+#urlEdit {
+	-fx-max-width: 500;
+}

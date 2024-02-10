@@ -14,6 +14,8 @@ import de.saxsys.mvvmfx.InjectViewModel;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
@@ -34,6 +36,8 @@ public class TagListView implements FxmlView<TagListViewModel>, Initializable, T
 	public void initialize(URL location, ResourceBundle resources) {
 		renderTags(true);
 		list.setOnDragDetected(this::onDragDetected);
+		viewModel.labelProperty().bind(search.textProperty());
+		search.setOnKeyPressed(this::onKeyPressed);
 	}
 	
 	private void onDragDetected(MouseEvent event) {
@@ -41,6 +45,12 @@ public class TagListView implements FxmlView<TagListViewModel>, Initializable, T
 		viewModel.setDragDetected(true);
 		event.consume();
 	}
+	
+    private void onKeyPressed(KeyEvent event) {
+    	if (event.getCode() == KeyCode.ENTER) {
+    		viewModel.createTag();
+    	}
+    }
 
 	@Override
 	public TagParentViewModel getViewModel() {

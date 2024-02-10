@@ -40,6 +40,7 @@ public class TagView implements FxmlView<TagViewModel>, Initializable {
 		
 		// Select tag (click or drag)
 		root.setOnMouseClicked((event) -> viewModel.select());
+		select(viewModel.isSelected());
 		FXUtils.addSimpleChangeListener(viewModel.selectedProperty(), this::select);
 		root.setOnDragDetected((event) -> viewModel.setSelected(true));
 	}

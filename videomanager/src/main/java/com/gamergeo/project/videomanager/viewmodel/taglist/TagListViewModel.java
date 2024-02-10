@@ -2,9 +2,11 @@ package com.gamergeo.project.videomanager.viewmodel.taglist;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Component;
 
+import com.gamergeo.lib.viewmodelfx.view.FXUtils;
 import com.gamergeo.project.videomanager.model.Tag;
 import com.gamergeo.project.videomanager.service.TagService;
 import com.gamergeo.project.videomanager.viewmodel.tag.TagParentViewModel;
@@ -16,17 +18,20 @@ import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleListProperty;
 import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 @Component
 public class TagListViewModel implements ViewModel, TagParentViewModel {
-	
+
 	private final TagService tagService;
 
 	private final List<Tag> allTags = new ArrayList<Tag>();
 	private final ListProperty<Tag> renderedTags = new SimpleListProperty<Tag>(FXCollections.observableArrayList());
 	private final ObservableList<Tag> selectedTags = FXCollections.observableArrayList();
+	private final StringProperty label = new SimpleStringProperty();
 	private final BooleanProperty dragDetected = new SimpleBooleanProperty();
 
 	private final ObjectProperty<Tag> tagToDelete = new SimpleObjectProperty<Tag>(); // Tag to be delete if any
@@ -35,6 +40,8 @@ public class TagListViewModel implements ViewModel, TagParentViewModel {
 		this.tagService = tagService;
 		allTags.addAll(tagService.findAll());
 		renderedTags.setAll(allTags);
+		
+		FXUtils.addSimpleChangeListener(label, this::filter);
 	}
 	
 	@Override
@@ -53,6 +60,23 @@ public class TagListViewModel implements ViewModel, TagParentViewModel {
 		renderedTags.remove(tag);
 	}
 	
+	public void filter(String searchText) {
+		renderedTags.setAll(allTags.stream()
+				.filter(tag -> searchText ==  null || searchText.isBlank() || tag.getLabel().toLowerCase().contains(searchText.toLowerCase()))
+	            .collect(Collectors.toCollection(FXCollections::observableArrayList)));
+		selectedTags.retainAll(renderedTags);
+	}
+
+	public void createTag() {
+		Tag tag = new Tag();
+		tag.setLabel(getLabel());
+		tagService.save(tag);
+		
+		renderedTags.add(tag);
+		allTags.add(tag);
+	}
+
+	@Override
 	public ObservableList<Tag> getSelectedTags() {
 		return selectedTags;
 	}
@@ -92,5 +116,16 @@ public class TagListViewModel implements ViewModel, TagParentViewModel {
 	public final void setTagToDelete(final Tag tagToDelete) {
 		this.tagToDeleteProperty().set(tagToDelete);
 	}
+
+	public final StringProperty labelProperty() {
+		return this.label;
+	}
+
+	public final String getLabel() {
+		return this.labelProperty().get();
+	}
 	
+	public final void setLabel(final String label) {
+		this.labelProperty().set(label);
+	}
 }

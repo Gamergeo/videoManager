@@ -47,7 +47,7 @@ public class TableViewModel implements ViewModel {
 	public void filter(String title, Double rating, List<Tag> withTags, List<Tag> withoutTags) {
 		TableRowViewModel selectedRow = this.selectedRow.get();
 		rows.setAll(allVideos.stream()
-				.filter(video -> title ==  null || title.isBlank() || video.getTitle().contains(title))
+				.filter(video -> title ==  null || title.isBlank() || video.getTitle().toLowerCase().contains(title.toLowerCase()))
 	            .filter(video -> rating == null || rating == 0 || video.getRating() >= rating) // Filtrage par note minimale
 	            .filter(video -> withTags.isEmpty() || video.getTags().stream().anyMatch(tag -> withTags.contains(tag))) // Vérifie la présence d'au moins un tag recherché
 	            .filter(video -> withoutTags.isEmpty() || video.getTags().stream().noneMatch(tag -> withoutTags.contains(tag))) // Exclut les vidéos avec des tags non désirés

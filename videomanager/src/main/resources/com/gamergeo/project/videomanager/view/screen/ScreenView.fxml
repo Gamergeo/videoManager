@@ -5,38 +5,40 @@
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.TilePane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.TilePane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
 <?import org.controlsfx.control.Rating?>
 
 <BorderPane fx:id="root" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gamergeo.project.videomanager.view.screen.ScreenView">
    <bottom>
-      <HBox alignment="BASELINE_RIGHT" styleClass="buttonLine" BorderPane.alignment="CENTER">
+      <HBox alignment="BASELINE_RIGHT" prefWidth="600.0" styleClass="buttonLine" BorderPane.alignment="CENTER">
          <children>
             <Button fx:id="disable" text="Disable" />
          </children>
+         <BorderPane.margin>
+            <Insets bottom="20.0" />
+         </BorderPane.margin>
       </HBox>
    </bottom>
-   <right>
-      <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER" />
-   </right>
    <center>
-   <VBox styleClass="video" maxHeight="-Infinity" maxWidth="-Infinity" spacing="20.0" BorderPane.alignment="CENTER">
+   <VBox spacing="20.0" styleClass="video" BorderPane.alignment="CENTER">
 <!--       <VBox styleClass="video" maxHeight="-Infinity" maxWidth="-Infinity" spacing="20.0" BorderPane.alignment="CENTER" onDragDropped="#dropTags" onDragOver="#dragOver"> -->
          <children>
-            <Label fx:id="title" />
-            <Hyperlink fx:id="url" text="Access to video"/>
-            <Label fx:id="date" />
-            <Rating fx:id="rating" max="5" partialRating="true" />
-            <TilePane fx:id="tags" hgap="10.0" prefColumns="4" vgap="5.0"/>
+            <Label fx:id="title" VBox.vgrow="ALWAYS" />
+            <Hyperlink fx:id="url" text="Access to video" VBox.vgrow="ALWAYS" />
+            <TextField fx:id="urlEdit" VBox.vgrow="ALWAYS" />
+            <Label fx:id="date" VBox.vgrow="ALWAYS" />
+            <Rating fx:id="rating" max="5" partialRating="true" rating="0.0" VBox.vgrow="NEVER" />
+            <TilePane fx:id="tags" hgap="10.0" prefColumns="4" vgap="5.0" VBox.vgrow="ALWAYS" />
          </children>
+         <BorderPane.margin>
+            <Insets bottom="20.0" left="150.0" top="100.0" />
+         </BorderPane.margin>
       </VBox>
    </center>
    <padding>
-      <Insets bottom="30.0" left="20.0" />
+      <Insets bottom="3.0" />
    </padding>
 </BorderPane>
