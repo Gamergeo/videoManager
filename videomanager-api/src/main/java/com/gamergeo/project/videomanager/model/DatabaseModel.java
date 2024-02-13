@@ -14,7 +14,7 @@ import javafx.beans.property.SimpleLongProperty;
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @MappedSuperclass
 @Access(AccessType.PROPERTY)
-public abstract class Model {
+public abstract class DatabaseModel {
 	
 	private LongProperty id = new SimpleLongProperty();
 	
@@ -22,7 +22,7 @@ public abstract class Model {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Model model = (Model) o;
+        DatabaseModel model = (DatabaseModel) o;
         
         return id.get() == model.idProperty().get();
     }

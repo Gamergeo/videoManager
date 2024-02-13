@@ -45,6 +45,7 @@ public class SceneViewModel implements ViewModel {
 		// Bind droppable and cursor
       	FXUtils.addSimpleChangeListener(droppable, this::onDragOver);
       	FXUtils.addSimpleChangeListener(dragReleased, this::onDragReleased);
+      	
 	}
 	
 	public void initSearch(SearchViewModel search) {
@@ -109,6 +110,9 @@ public class SceneViewModel implements ViewModel {
 			selectedVideo.setDisabled(true);
 			videoService.save(selectedVideo);
 			table.loadTable();
+			
+			// Select a new random video
+			setSelectedVideo(table.random());
 		}
 	}
 	
@@ -266,4 +270,5 @@ public class SceneViewModel implements ViewModel {
 	public final void setDragReleased(final boolean dragReleased) {
 		this.dragReleasedProperty().set(dragReleased);
 	}
+	
 }

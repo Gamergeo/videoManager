@@ -4,11 +4,11 @@ import java.util.List;
 
 import org.springframework.data.repository.CrudRepository;
 
-import com.gamergeo.project.videomanager.model.Model;
+import com.gamergeo.project.videomanager.model.DatabaseModel;
 
 import jakarta.transaction.Transactional;
 
-public interface CrudService<T extends Model> {
+public interface CrudService<T extends DatabaseModel> {
 	
 	public CrudRepository<T, Long> getRepository();
 	

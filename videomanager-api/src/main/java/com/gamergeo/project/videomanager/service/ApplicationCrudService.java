@@ -4,15 +4,14 @@ import java.util.List;
 import java.util.Optional;
 
 import com.gamergeo.project.videomanager.VideoManagerException;
-import com.gamergeo.project.videomanager.model.Model;
-import com.gamergeo.project.videomanager.model.Video;
+import com.gamergeo.project.videomanager.model.DatabaseModel;
 import com.gamergeo.project.videomanager.util.ApplicationUtils;
 
 import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public abstract class ApplicationCrudService<T extends Model> implements CrudService<T> {
+public abstract class ApplicationCrudService<T extends DatabaseModel> implements CrudService<T> {
 	
 	// Used for log / error message
 	protected String getModelName() {

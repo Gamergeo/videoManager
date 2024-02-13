@@ -20,7 +20,7 @@ import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 
 @Entity
-public class Video extends Model {
+public class Video extends DatabaseModel {
 
 	private StringProperty title = new SimpleStringProperty();
     private StringProperty url = new SimpleStringProperty();

@@ -107,7 +107,7 @@ public class ScreenViewModel implements ViewModel, TagDroppableViewModel {
 	 * Open url TODO
 	 */
 	public void openUrl(MouseEvent event) {
-		String url = !event.isControlDown() ? getUrl() : urlService.getGoogleUrl(getUrl());
+		String url = !event.isControlDown() ? getUrl() : urlService.getGoogleUrl(getTitle());
 		hostServices.showDocument(url);
 	}
 	

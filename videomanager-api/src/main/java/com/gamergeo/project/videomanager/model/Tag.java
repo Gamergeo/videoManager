@@ -5,7 +5,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 @Entity
-public class Tag extends Model {
+public class Tag extends DatabaseModel {
 	
 	private StringProperty label = new SimpleStringProperty();
 	

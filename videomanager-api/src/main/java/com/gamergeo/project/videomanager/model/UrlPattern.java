@@ -5,7 +5,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 @Entity
-public class UrlPattern extends Model {
+public class UrlPattern extends DatabaseModel {
 	
 	private StringProperty pattern = new SimpleStringProperty();
 
