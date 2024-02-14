@@ -43,9 +43,7 @@ public class XMLParseService {
     public Folder parseFolders(File file) {
     	Document document = createDocument(file);
         try {
-            // Root folder for all node (first title)
-            Node rootElement = getRootElement(document.getDocumentElement());
-            return parseFolder(rootElement);
+            return parseFolders(document.getDocumentElement());
         } catch (Exception e) {
         	throw new VideoManagerException("Impossible to parse folders: " + file.getName(), e);
         }
@@ -54,7 +52,7 @@ public class XMLParseService {
     /** Return the parent folder element */
     private Node getRootElement(Node node) {
 
-        if (isFolder(node)) {
+        if (isFolderContent(node)) {
         	return node;
         } else {
             // Recursive call to get children
@@ -73,6 +71,16 @@ public class XMLParseService {
     }
     
     /**
+     * Parse folders
+     */
+    private Folder parseFolders(Node documentElement) {
+    	Node rootElement = getRootElement(documentElement);
+    	Folder rootFolder = new Folder("root");
+        parseFolderContent(rootElement, rootFolder);
+        return rootFolder;
+    }
+    
+    /**
      * Parse a folder
      */
     private Folder parseFolder(Node titleNode) {
@@ -83,6 +91,12 @@ public class XMLParseService {
 		folder.setContentNode(contentNode);
     	
 		// Parse folder childs
+        parseFolderContent(contentNode, folder);
+        
+        return folder;
+    }
+    
+    private void parseFolderContent(Node contentNode, Folder folder) {
         NodeList children = contentNode.getChildNodes();
         for (int i = 0; i < children.getLength(); i++) {
         	Node child = children.item(i);
@@ -93,8 +107,6 @@ public class XMLParseService {
         		
         	}
         }
-        
-        return folder;
     }
     
     /** 
