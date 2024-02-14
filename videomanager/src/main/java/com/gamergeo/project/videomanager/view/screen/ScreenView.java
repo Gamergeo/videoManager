@@ -34,6 +34,9 @@ public class ScreenView implements FxmlView<ScreenViewModel>, Initializable, Tag
 	private BorderPane root;
 	
 	@FXML
+	private Label hasDuplicate;
+	
+	@FXML
 	private Label title;
 	
 	@FXML
@@ -53,13 +56,15 @@ public class ScreenView implements FxmlView<ScreenViewModel>, Initializable, Tag
 	
 	@FXML
 	private Button disable;
+	
+	@FXML
+	private Button duplicate;
 
     @InjectViewModel
     private ScreenViewModel viewModel;  
     
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-    	urlEdit.setManaged(false);
 		title.textProperty().bindBidirectional(viewModel.titleProperty());
 		date.textProperty().bindBidirectional(viewModel.dateProperty());
 		
@@ -81,6 +86,11 @@ public class ScreenView implements FxmlView<ScreenViewModel>, Initializable, Tag
 		rating.visibleProperty().bind(viewModel.visibleProperty());
 		
 		disable.setOnAction((event) -> viewModel.setDisabled(true));
+		duplicate.setOnAction((event) -> viewModel.setDuplicate(!viewModel.isDuplicate()));
+		
+		FXUtils.addSimpleChangeListener(viewModel.duplicateProperty(), this::setDuplicateButtonText);
+    	hasDuplicate.managedProperty().bind(viewModel.hasDuplicateProperty());
+    	hasDuplicate.visibleProperty().bind(viewModel.hasDuplicateProperty());
 		
 		renderTags(false);
 		setOnMouseDrag();
@@ -103,6 +113,15 @@ public class ScreenView implements FxmlView<ScreenViewModel>, Initializable, Tag
     	if (event.getCode() == KeyCode.ENTER) {
     		viewModel.switchEdit();
     	}
+    }
+    
+    private void setDuplicateButtonText(boolean isDuplicate) {
+    	if (isDuplicate) {
+        	duplicate.setText("End");
+    	} else {
+        	duplicate.setText("Duplicate");
+    	}
+    	
     }
 
 	@Override

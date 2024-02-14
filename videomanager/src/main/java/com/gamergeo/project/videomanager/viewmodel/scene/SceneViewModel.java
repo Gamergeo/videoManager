@@ -101,6 +101,9 @@ public class SceneViewModel implements ViewModel {
 		
 		// Disable
 		FXUtils.addSimpleChangeListener(screen.disabledProperty(), this::disableVideo);
+		
+		// Duplicate
+		FXUtils.addSimpleChangeListener(screen.duplicateProperty(), this::findDuplicate);
 	}
 	
 	private void disableVideo(boolean disabled) {
@@ -113,6 +116,14 @@ public class SceneViewModel implements ViewModel {
 			
 			// Select a new random video
 			setSelectedVideo(table.random());
+		}
+	}
+	
+	private void findDuplicate(boolean duplicate) {
+		if (duplicate) {
+			table.filter(screen.getUrl());
+		} else { // reset search
+			filter();
 		}
 	}
 	

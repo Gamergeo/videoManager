@@ -15,6 +15,7 @@
    <bottom>
       <HBox alignment="BASELINE_RIGHT" prefWidth="600.0" styleClass="buttonLine" BorderPane.alignment="CENTER">
          <children>
+            <Button fx:id="duplicate" text="Duplicate" />
             <Button fx:id="disable" text="Disable" />
          </children>
          <BorderPane.margin>
@@ -24,8 +25,8 @@
    </bottom>
    <center>
    <VBox spacing="20.0" styleClass="video" BorderPane.alignment="CENTER">
-<!--       <VBox styleClass="video" maxHeight="-Infinity" maxWidth="-Infinity" spacing="20.0" BorderPane.alignment="CENTER" onDragDropped="#dropTags" onDragOver="#dragOver"> -->
          <children>
+            <Label fx:id="hasDuplicate" alignment="CENTER" text="Video has duplicates !" VBox.vgrow="ALWAYS" />
             <Label fx:id="title" VBox.vgrow="ALWAYS" />
             <Hyperlink fx:id="url" text="Access to video" VBox.vgrow="ALWAYS" />
             <TextField fx:id="urlEdit" VBox.vgrow="ALWAYS" />

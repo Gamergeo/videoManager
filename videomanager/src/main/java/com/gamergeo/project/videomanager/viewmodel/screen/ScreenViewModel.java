@@ -41,6 +41,7 @@ public class ScreenViewModel implements ViewModel, TagDroppableViewModel {
 	private final StringProperty url = new SimpleStringProperty();
 	private final StringProperty urlEdit = new SimpleStringProperty();
 	private final ListProperty<Tag> renderedTags = new SimpleListProperty<Tag>(FXCollections.observableArrayList());
+	private final BooleanProperty hasDuplicate = new SimpleBooleanProperty(); // Video has duplicate
 	
 	/** drag & drop properties */
 	private final BooleanProperty droppable = new SimpleBooleanProperty();
@@ -50,7 +51,7 @@ public class ScreenViewModel implements ViewModel, TagDroppableViewModel {
 	private final BooleanProperty disabled = new SimpleBooleanProperty();
 	private final BooleanProperty visible = new SimpleBooleanProperty();
 	private final BooleanProperty edit = new SimpleBooleanProperty();
-	
+	private final BooleanProperty duplicate = new SimpleBooleanProperty(); // Find duplicate
 	
 	public ScreenViewModel(VideoService videoService, UrlPatternService urlService, HostServices hostServices) {
 		this.videoService = videoService;
@@ -65,7 +66,6 @@ public class ScreenViewModel implements ViewModel, TagDroppableViewModel {
 	}
 	
 	public void render(Video oldValue, Video newValue) {
-		log.info("Selected video changed");
 		
 		setEdit(false);
 		// Unbind old selected video
@@ -79,12 +79,16 @@ public class ScreenViewModel implements ViewModel, TagDroppableViewModel {
 	private void renderVideo(Video video) {
 		this.video = video;
 		if (video == null) {
+			log.info("Unselect video");
 			title.set("");
 			date.set("");
 			rating.set(0);
 			renderedTags.clear();
 			visible.set(false);
+			setHasDuplicate(false);
 		} else {
+			log.info("Select video: " + video.getId());
+			
 			title.bindBidirectional(video.titleProperty());
 			date.set(video.getAddedDate().toString());
 			rating.bindBidirectional(video.ratingProperty());
@@ -93,6 +97,7 @@ public class ScreenViewModel implements ViewModel, TagDroppableViewModel {
 			renderedTags.bindContent(video.tagsProperty());
 			setDisabled(false);
 			visible.set(true);
+			setHasDuplicate(videoService.hasDuplicate(video));
 		}
 	}
 	
@@ -131,9 +136,12 @@ public class ScreenViewModel implements ViewModel, TagDroppableViewModel {
 		if (isEdit()) {
 			video.setUrl(url);
 			videoService.save(video);
+			
+			// Duplicate
+			setHasDuplicate(videoService.hasDuplicate(video));
 		}
 	}
-
+	
 	@Override
 	public void onMouseDragOver() {
 		setDroppable(video != null);
@@ -312,5 +320,29 @@ public class ScreenViewModel implements ViewModel, TagDroppableViewModel {
 
 	public final void setUrlEdit(final String urlEdit) {
 		this.urlEditProperty().set(urlEdit);
+	}
+
+	public final BooleanProperty duplicateProperty() {
+		return this.duplicate;
+	}
+
+	public final boolean isDuplicate() {
+		return this.duplicateProperty().get();
+	}
+	
+	public final void setDuplicate(final boolean duplicate) {
+		this.duplicateProperty().set(duplicate);
+	}
+
+	public final BooleanProperty hasDuplicateProperty() {
+		return this.hasDuplicate;
+	}
+	
+	public final boolean isHasDuplicate() {
+		return this.hasDuplicateProperty().get();
+	}
+
+	public final void setHasDuplicate(final boolean hasDuplicate) {
+		this.hasDuplicateProperty().set(hasDuplicate);
 	}
 }

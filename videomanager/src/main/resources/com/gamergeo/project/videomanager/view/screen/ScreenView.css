@@ -9,3 +9,8 @@
 #urlEdit {
 	-fx-max-width: 500;
 }
+
+#hasDuplicate {
+	-fx-font-size: 26;
+    -fx-text-fill: red;
+}

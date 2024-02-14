@@ -59,6 +59,24 @@ public class TableViewModel implements ViewModel {
 		}
 	}
 	
+	/**
+	 * Find all videos for url
+	 */
+	public void filter(String url) {
+		TableRowViewModel selectedRow = this.selectedRow.get();
+		String cleanedUrl = url.replace("&amp;", "&").trim().toLowerCase();
+		
+		rows.setAll(allVideos.stream()
+				.filter(video -> url ==  null || url.isBlank() || video.getUrl().replace("&amp;", "&").trim().toLowerCase().contains(cleanedUrl) 
+															   || cleanedUrl.contains(video.getUrl().replace("&amp;", "&").trim().toLowerCase()))
+	            .map(TableRowViewModel::new)
+	            .collect(Collectors.toCollection(FXCollections::observableArrayList)));
+		
+		if (rows.contains(selectedRow)) {
+			setSelectedRow(selectedRow);
+		}
+	}
+	
 	public Video random() {
 		Integer size = rows.size();
 		

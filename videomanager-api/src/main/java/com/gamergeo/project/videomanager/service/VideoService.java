@@ -65,4 +65,11 @@ public class VideoService extends ApplicationCrudService<Video> {
 	public List<Video> findVideoByLink(String url) {
 		return repository.findByUrlWithAmpersandNative(url);
 	}
+	
+	/**
+	 * @return true if video has duplicate
+	 */
+	public boolean hasDuplicate(Video video) {
+		return findVideoByLink(video.getUrl()).size() > 1;
+	}
 }
