@@ -12,9 +12,6 @@ This work is in progress. Architecture, code, functionnalities will change a lot
 
 I am not a JavaFX expert. Coming from the world of web development, I will try my best to adapt my principles to create a complete and simple project, with a clear and extensible architecture.
 
-This project is meant to be used with [ViewModelFx](https://github.com/Gamergeo/ViewModelFx), a library I've created to adapt my vision of MVVM
-I know some other framework or libraries exists, but I wan't to do it by myself
-
 # Versionning
 
 - 0.3: Linking Database / App and Improving JavaFX Architecture
