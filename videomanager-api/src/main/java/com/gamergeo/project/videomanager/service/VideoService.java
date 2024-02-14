@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.gamergeo.project.videomanager.model.Video;
 import com.gamergeo.project.videomanager.repository.VideoRepository;
 
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -18,28 +19,10 @@ public class VideoService extends ApplicationCrudService<Video> {
 
 	private final VideoRepository repository;
 	
-//	private final TagService tagService;
-
 	@Override
 	public VideoRepository getRepository() {
 		return repository;
 	}
-	
-//	/**
-//	 * Filter a videos list from search criteria
-//	 */
-//	@Override
-//	public List<Video> filter(List<Video> videos, 
-//								String title, Double minimalRating, List<Tag> searchWithTagIds, List<Tag> searchWithoutTagIds) {
-//		log.info("Filter with params (title=" + title + ", rating=" + minimalRating + ", with: " + searchWithTagIds.toString() + ", without" + searchWithoutTagIds.toString());
-//		
-//		return videos.stream()
-//				.filter(video -> title ==  null || title.isBlank() || video.getTitle().contains(title))
-//	            .filter(video -> minimalRating == null || minimalRating == 0 || video.getRating() >= minimalRating) // Filtrage par note minimale
-//	            .filter(video -> searchWithTagIds.isEmpty() || video.getTags().stream().anyMatch(tag -> searchWithTagIds.contains(tag))) // Vérifie la présence d'au moins un tag recherché
-//	            .filter(video -> searchWithoutTagIds.isEmpty() || video.getTags().stream().noneMatch(tag -> searchWithoutTagIds.contains(tag))) // Exclut les vidéos avec des tags non désirés
-//	            .collect(Collectors.toList()); // Collecte les résultats correspondants
-//	}
 	
 	/**
 	 * Find a random video in list
@@ -62,7 +45,24 @@ public class VideoService extends ApplicationCrudService<Video> {
 		return repository.findByDisabled(false);
 	}
 	
-//	public List<Video> findByTag(Tag tag) {
-//		return repository.findByTag(tag);
-//	}
+	/**
+	 * Add a video, only if not alreadyu found in base (link matters)
+	 */
+	@Transactional
+	public Video addVideo(Video video) {
+		
+		if (!findVideoByLink(video.getUrl()).isEmpty()) {
+			log.info("Can't add video, already in base: " + video.getTitle());
+			return null;
+		}
+		
+		return save(video);
+	}
+	
+	/**
+	 * @return video by url, but with & and &amp; alike 
+	 */
+	public List<Video> findVideoByLink(String url) {
+		return repository.findByUrlWithAmpersandNative(url);
+	}
 }

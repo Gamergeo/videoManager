@@ -1,23 +1,33 @@
 package com.gamergeo.project.videomanager.service.parse;
 
 import java.io.File;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneId;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
 import org.springframework.stereotype.Service;
 import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import com.gamergeo.project.videomanager.VideoManagerException;
-import com.gamergeo.project.videomanager.model.parse.Folder;
+import com.gamergeo.project.videomanager.model.Video;
+import com.gamergeo.project.videomanager.service.VideoService;
+
+import lombok.AllArgsConstructor;
 
 /**
  * Specific class to manage XML Parsing
  */
 @Service
+@AllArgsConstructor
 public class XMLParseService {
+	
+	private final VideoService videoService;
 	
 	private Document createDocument(File file) {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
@@ -62,30 +72,6 @@ public class XMLParseService {
         return null;
     }
     
-    
-//    private Folder parseFolder(Node node) {
-//    	Folder folder = new Folder();
-//    	
-//        NodeList children = node.getChildNodes();
-//        
-//        for (int i = 0; i < children.getLength(); i++) {
-//        	Node child = children.item(i);
-//            if (isFolder(child)) {
-//            	folder.setName(child.getTextContent());
-//            	
-//            } else if (isFolderContent(child)) {
-//            	 Folder childFolder = parseFolder(child);
-//            	
-//            	// We add child folder only its a folder
-//            	if (childFolder.getName() != null && !childFolder.getName().isEmpty()) {
-//                	folder.getChildFolder().add(childFolder);
-//            	}
-//            }
-//        }
-//        
-//        return folder;
-//    }
-
     /**
      * Parse a folder
      */
@@ -94,6 +80,7 @@ public class XMLParseService {
 
     	// Find corresponding content node
 		Node contentNode = findFolderContent(titleNode);
+		folder.setContentNode(contentNode);
     	
 		// Parse folder childs
         NodeList children = contentNode.getChildNodes();
@@ -110,6 +97,9 @@ public class XMLParseService {
         return folder;
     }
     
+    /** 
+     * Find the node containing the content associated to titlenode, i.e. the closest DL Tag
+     */
     private Node findFolderContent(Node titleNode) {
 		Node sibling = titleNode.getNextSibling();
 		
@@ -123,60 +113,61 @@ public class XMLParseService {
         throw new VideoManagerException("Folder content not found :" + titleNode.getTextContent());
     }
     
+    /**
+     * Parse and import all videos for selected folder and childs
+     */
+    public ParseResult parseVideos(Folder selectedFolder) {
+
+    	ParseResult result = new ParseResult();
+    	
+    	if (!isFolderContent(selectedFolder.getContentNode())) {
+    		throw new VideoManagerException("Folder: " + selectedFolder + " is incorrect. Content node is not a DL tag");
+    	}
+
+        NodeList videoNodes = ((Element) selectedFolder.getContentNode()).getElementsByTagName(ParseConstant.VIDEO_TAG);
+        
+        for (int i = 0; i < videoNodes.getLength(); i++) {
+        	result.incrementParsed();
+        	Element videoElement = (Element) videoNodes.item(i);
+        	Video video = parseVideo(videoElement);
+        	video = videoService.addVideo(video);
+        	
+        	if (video != null) {
+        		result.incrementImported();
+        	}
+        }
+        
+        return result;
+    }
     
+    private Video parseVideo(Element videoElement) {
+    	Video video = new Video();
+    	
+    	video.setUrl(getAttribute(videoElement, ParseConstant.LINK_ATTRIBUTE));
+    	
+    	String date = getAttribute(videoElement, ParseConstant.DATE_ATTRIBUTE);
+        LocalDate localDate = Instant.ofEpochSecond(Long.valueOf(date)).atZone(ZoneId.systemDefault()).toLocalDate();
+    	video.setAddedDate(localDate);
+    	
+    	video.setTitle(videoElement.getTextContent());
+    	
+    	return video;
+    }
     
+    /**
+     * Raise errror if attribute not found
+     */
+    private String getAttribute(Element element, String attribute) {
+    	String result = element.getAttribute(attribute);
+    	
+    	if (result == null || result.isEmpty()) {
+    		throw new VideoManagerException("Attribute " + attribute + " not found for " + element);
+    	}
+    	
+    	return result;
+    		
+    }
     
-    
-    
-    
-    
-    
-//    
-//    private Folder parseFolder(Node node) {
-//        Folder rootFolder = new Folder();
-//        NodeList children = node.getChildNodes();
-//        
-//        for (int i = 0; i < children.getLength(); i++) {
-//        	Node child = children.item(i);
-//            if (isFolder(child)) {
-//            	rootFolder.setName(child.getTextContent());
-//            } else if (isFolderContent(child)) {
-//            	parseContent(child, rootFolder);
-//            }
-//        }
-//        return rootFolder;
-//    }
-//    
-//    private void parseFolder(Node node, Folder currentFolder) {
-//        // Folder are in H3 Node
-//        if (isFolder(node)) {
-//            Folder folder = new Folder();
-//            folder.setName(node.getTextContent());
-//            currentFolder.getChildFolder().add(folder);
-//
-//            NodeList children = node.getChildNodes();
-//            for (int i = 0; i < children.getLength(); i++) {
-//            	parseContent(children.item(i), folder);
-//            }
-//
-//            Node sibling = node.getNextSibling();
-//            while (sibling != null) {
-//            	parseContent(sibling, folder);
-//                sibling = sibling.getNextSibling();
-//            }
-//        }
-//    }
-//    
-//    private void parseContent(Node node, Folder folder) {
-//    	if (isFolderContent(node)) {
-//            // Recursive call to get children
-//            NodeList children = node.getChildNodes();
-//            for (int i = 0; i < children.getLength(); i++) {
-//                parseFolder(children.item(i), folder);
-//            }
-//    	}
-//    }
-//    
     private boolean isFolder(Node node) {
     	return node.getNodeType() == Node.ELEMENT_NODE && ParseConstant.FOLDER_TAG.equals(node.getNodeName());
     }

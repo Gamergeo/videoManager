@@ -7,20 +7,10 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
 
 import org.springframework.stereotype.Service;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
 
 import com.gamergeo.project.videomanager.VideoManagerException;
-import com.gamergeo.project.videomanager.model.parse.Folder;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -159,5 +149,9 @@ public class ParseService {
 	
     public Folder parseFolders(File xmlFile) {
     	return xmlParseService.parseFolders(xmlFile);
+    }
+
+    public ParseResult parseVideos(Folder selectedFolder) {
+    	return xmlParseService.parseVideos(selectedFolder);
     }
 }

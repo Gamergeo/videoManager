@@ -2,11 +2,11 @@ package com.gamergeo.project.videomanager.repository;
 
 import java.util.List;
 
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
 import com.gamergeo.project.videomanager.model.Video;
 
-//@Repository("videoDao")
 public interface VideoRepository extends CrudRepository<Video, Long> {
 	
 	List<Video> findAll();
@@ -15,16 +15,7 @@ public interface VideoRepository extends CrudRepository<Video, Long> {
 	
 	List<Video> findByDisabledAndTitleContaining(boolean disabled, String title);
 	
-//    @Query(value = "SELECT DISTINCT v.* FROM video v " +
-//            "JOIN video_tags vt ON v.id = vt.video_id " +
-//            "JOIN tag t ON vt.tags_id = t.id " +
-//            "WHERE v.title LIKE %:title% " +
-//            "AND v.rating >= :rating " +
-//            "AND t.id IN :includeTags " +
-//            "AND t.id NOT IN :excludeTags", nativeQuery = true)
-//	List<Video> findByTitleContainingAndTagsIncludedAndExcluded(@Param("title") String title, 
-//																@Param("rating") Double minimalRating, 
-//	                                                            @Param("includeTags") List<Long> includeTags, 
-//	                                                            @Param("excludeTags") List<Long> excludeTags);
-	
+    @Query(value = "SELECT * FROM video WHERE REPLACE(url, '&amp;', '&') LIKE %?1% OR REPLACE(url, '&', '&amp;') LIKE %?1%", nativeQuery = true)
+    List<Video> findByUrlWithAmpersandNative(String url);
+
 }

@@ -5,13 +5,10 @@ import jakarta.persistence.AccessType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.Inheritance;
-import jakarta.persistence.InheritanceType;
 import jakarta.persistence.MappedSuperclass;
 import javafx.beans.property.LongProperty;
 import javafx.beans.property.SimpleLongProperty;
 
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @MappedSuperclass
 @Access(AccessType.PROPERTY)
 public abstract class DatabaseModel {
@@ -28,7 +25,7 @@ public abstract class DatabaseModel {
     }
     
 	@Id
-	@GeneratedValue(strategy = GenerationType.TABLE)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public long getId() {
 		return this.idProperty().get();
 	}

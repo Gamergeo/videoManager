@@ -1,6 +1,5 @@
 package com.gamergeo.project.videomanager.view.tag;
 
-import java.util.Comparator;
 import java.util.List;
 
 import com.gamergeo.lib.viewmodelfx.view.FXUtils;

@@ -22,4 +22,10 @@ public class ParseConstant {
 	public final static String FOLDER_TAG = "H3";
 	
 	public final static String FOLDER_CONTENT_TAG = "DL";
+	
+	public final static String VIDEO_TAG = "A";
+
+	public final static String LINK_ATTRIBUTE = "HREF";
+	
+	public final static String DATE_ATTRIBUTE = "ADD_DATE";
 }

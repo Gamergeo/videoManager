@@ -68,4 +68,5 @@ This version seems ready to release. No data import yet, you have to do it in sq
     - 0.9.3 : Tag rename on right click / reset selected tag on drop
 - 0.10 : Import bookmark
 	- 0.10.1 : Drag and drop bookmark file, validation, interface for selecting folder
+	- 0.10.2 : Import bookmark
 

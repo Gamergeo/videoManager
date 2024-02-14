@@ -1,13 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TreeView?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-
-<VBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gamergeo.project.videomanager.view.parse.ParseTabView">
+<VBox spacing="5.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gamergeo.project.videomanager.view.parse.ParseTabView">
    <children>
-      <Label fx:id="message" />
       <TreeView fx:id="tree" />
+      <Label fx:id="message" />
+      <HBox alignment="CENTER_RIGHT">
+         <children>
+            <Button fx:id="parse" alignment="CENTER" defaultButton="true" mnemonicParsing="false" text="Import" />
+         </children>
+      </HBox>
    </children>
 </VBox>
